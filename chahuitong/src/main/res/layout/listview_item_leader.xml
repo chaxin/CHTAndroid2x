@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="85dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="26dp"
+    android:background="@drawable/draw_white2gray_sel"
+    >
+    
+    <ImageView
+        android:id="@+id/leader_avatar"
+        android:layout_width="63dp"
+        android:layout_height="63dp"
+        android:src="@drawable/test_juju_avator"
+        android:scaleType="centerCrop"
+        android:layout_centerVertical="true"
+        />
+    
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/leader_avatar"
+        android:layout_alignTop="@id/leader_avatar"
+        android:orientation="vertical"
+        android:paddingTop="2dp"
+        android:paddingLeft="14dp"
+        >
+
+        <TextView
+            android:id="@+id/leader_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="周杰伦"
+            android:textSize="@dimen/title_text_size"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/leader_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_body"
+            android:textSize="@dimen/body_text_size"
+            android:text="中国茶学院院长\n中国茶叶流通协会常务副会长"
+            android:layout_marginTop="9dp"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/leader_favorites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="已关注"
+        android:textColor="@color/primary"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:drawableTop="@drawable/icon_forum_favorites"
+        />
+
+</RelativeLayout>

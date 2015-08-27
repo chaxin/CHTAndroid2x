@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:hodor="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/backcolor"
+    >
+
+    <com.damenghai.chahuitong.view.TopBar
+        android:id="@+id/shop_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@android:color/white"
+        hodor:titleTextColor="@color/primary"
+        hodor:rightSrc="@drawable/icon_search"
+        hodor:titleText="普洱茶"
+        hodor:titleTextSize="@dimen/title_text_size"
+        />
+
+    <com.handmark.pulltorefresh.library.PullToRefreshGridView
+        android:id="@+id/shop_gridview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="4"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:scrollbars="none"
+        android:clipToPadding="false"
+        style="@style/GridView"
+        android:listSelector="@color/backcolor"
+        android:background="@color/backcolor"
+        android:gravity="center"
+        />
+
+</LinearLayout>

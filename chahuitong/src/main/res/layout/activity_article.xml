@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/article_rl"
+    >
+
+    <LinearLayout
+        android:id="@+id/news_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/primary"
+        >
+
+        <Button
+            android:id="@+id/btn_hill"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/hill_logo"
+            android:background="@drawable/draw_primary2dark_sel"
+            android:text="@string/hill"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:layout_gravity="center"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
+            />
+
+        <com.viewpagerindicator.TabPageIndicator
+            android:id="@+id/news_indicator"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            />
+
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/news_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/news_ll"
+        />
+
+    <com.damenghai.chahuitong.view.Navigation
+        android:id="@+id/article_navigation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        />
+
+</RelativeLayout>

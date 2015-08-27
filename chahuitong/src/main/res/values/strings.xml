@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <string name="app_name">茶汇通</string>
+
+    <!-- 主页面 -->
+    <string name="home_main">首页</string>
+    <string name="home_brand">品牌</string>
+    <string name="home_category">分类</string>
+    <string name="home_cart">购物车</string>
+    <string name="home_member">我的中心</string>
+
+    <!-- 茶市 -->
+    <string name="market">茶市</string>
+    <string name="publish">发布</string>
+    <string name="msg">消息</string>
+    <string name="mine">我的</string>
+    <!-- 茶市首页 -->
+    <string name="all">全部</string>
+    <string name="sell">出售</string>
+    <string name="required">求购</string>
+    <!-- 茶市首页 -->
+
+    <!-- 发布 -->
+    <string name="sale">卖</string>
+    <string name="buy">买</string>
+    <string name="brand">品牌</string>
+    <string name="brand_hint">请输入品牌</string>
+    <string name="item_name">品名</string>
+    <string name="item_name_hint">请输入品名</string>
+    <string name="years">年份</string>
+    <string name="price">单价</string>
+    <string name="price_hint">请输入价格</string>
+    <string name="detail">是否详谈</string>
+    <string name="quantity">数量</string>
+    <string name="quantity_hint">请输入数量</string>
+    <string name="piece">件</string>
+    <string name="address">货源所在地</string>
+    <string name="address_hint">广东 广州</string>
+    <string name="phone_num">联系电话</string>
+    <string name="phone_num_hint">请输入联系电话</string>
+    <string name="add_time">发布时间</string>
+    <string name="phone">电话</string>
+    <string name="product_sale_desction">请输入新产品简介</string>
+    <string name="product_buy_desction">请输入求购商品相关信息及其他需求</string>
+    <string name="product_detail">商品详情</string>
+    <string name="delete">删除</string>
+    <string name="submit">提交</string>
+    <string name="input_message">输入留言</string>
+    <string name="contact_saler">联系卖家</string>
+    <string name="loading">正在加载</string>
+    <!-- 发布 -->
+
+    <!-- 登录/注册 -->
+    <string name="register">注册</string>
+    <string name="login_in">登录</string>
+    <string name="password">密码</string>
+    <string name="username">用户名</string>
+    <string name="forgot_password"><u>忘记密码?</u></string>
+    <string name="email">邮箱</string>
+    <string name="confirm">再次输入密码</string>
+    <string name="register_now">立即注册</string>
+
+    <string name="title_activity_personal">PersonalActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_base">BaseActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <!-- 登录/注册 -->
+
+    <!-- 2.0 -->
+    <!-- 首页 -->
+    <string name="home_market">茶 市</string>
+    <string name="home_Forum">论 坛</string>
+    <string name="home_news">资 讯</string>
+    <string name="shop">商 城</string>
+    <string name="hill">山头</string>
+    <string name="home_personal">个人中心</string>
+    <string name="show_detail">查看详情</string>
+    <string name="publish_sale_title">我要出售好茶</string>
+    <string name="publish_sale_desc">我要发布一款好茶，寻求可遇不可求的茶客</string>
+    <string name="publish_buy_title">我要收入好茶</string>
+    <string name="publish_buy_desc">我要收入一款用心做的好茶，不可多得的稀世珍宝</string>
+    <string name="publish_product">发布商品</string>
+
+    <!-- 个人中心 -->
+    <string name="personal_purse">红包</string>
+    <string name="personal_point">积分</string>
+    <string name="personal_balance">余额</string>
+
+    <!-- 社区 -->
+    <string name="more">更多</string>
+    <string name="popular_leader">魅力领袖</string>
+    <string name="today_topic">今日新声</string>
+    <string name="travel_for_tea">茶客聚聚</string>
+    <string name="statuses">百家争鸣</string>
+    <string name="statuses_desc">眉笑颜开，乐趣多晒晒。</string>
+    <string name="leaders">领袖榜单</string>
+    <string name="leader_desc">资深茶客|品茶专家</string>
+    <string name="topic_list">话题精选</string>
+    <string name="topic_desc">广而有趣的话题交流</string>
+    <string name="everyday_topic">每日一话</string>
+    <string name="comment">评论</string>
+</resources>

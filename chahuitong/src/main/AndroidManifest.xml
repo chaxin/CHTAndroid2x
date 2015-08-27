@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.damenghai.chahuitong"
+    android:versionCode="33"
+    android:versionName="Beta2.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="21" />
+
+    <!-- 读写SD卡 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 获取网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 获取mac地址作为用户的备用唯一标识 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 网络通信 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 获取设备信息 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 读取log -->
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <!-- QQ、QQ空间所需权限 -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:name=".BaseApplication"
+        android:theme="@style/AppTheme" >
+
+        <!-- ############# 友盟AppKey渠道ID自动更新 ############# -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5563e50967e58e4bbf00179c" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${UMENG_CHANNEL_VALUE}" />
+
+        <service
+            android:name="com.umeng.update.net.DownloadingService"
+            android:process=":DownloadingService" />
+
+        <activity
+            android:name="com.umeng.update.UpdateDialogActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- 友盟自动更新 -->
+        <!-- ###################注册SDK使用的Activity###################### -->
+        <!-- 分享编辑页 -->
+        <activity
+            android:name="com.umeng.socialize.view.ShareActivity"
+            android:configChanges="orientation|keyboard"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            android:theme="@style/Theme.UMDialog"
+            android:windowSoftInputMode="stateVisible|adjustResize" >
+        </activity>
+
+        <!-- ############ QQ空间和QQ SSO授权的Activity注册 ############ -->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- 100424468，如果你使用的公用账号，则不需要修改；否则修改成你在QQ开放平台申请的 APP ID -->
+                <data android:scheme="tencent100424468" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+        <!-- ###################注册SDK使用的Activity###################### -->
+
+        <activity
+            android:name=".ui.activity.SplashActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.activity.GuideActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.activity.ContentActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.activity.MarketActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/StyledIndicators" />
+        <activity
+            android:name=".ui.activity.ProductActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.activity.ContactActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.activity.ChatActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.activity.LoginActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ui.activity.PersonalActivity" />
+        <activity
+            android:name=".BaseActivity"
+            android:label="@string/title_activity_base" />
+        <activity
+            android:name=".ui.activity.HomeActivity"
+            android:label="@string/title_activity_home" >
+        </activity>
+        <activity
+            android:name=".ui.activity.ForumActivity"
+            >
+        </activity>
+        <activity
+            android:name=".ui.activity.NewsActivity"
+            android:theme="@style/StyledIndicators"
+            >
+        </activity>
+        <activity
+            android:name=".ui.activity.ShopActivity"
+            android:theme="@style/StyledIndicators."
+            >
+        </activity>
+        <activity android:name=".ui.activity.PublishActivity" />
+        <activity
+            android:name=".ui.activity.MyTeaMarketActivity"
+            android:theme="@style/StyledIndicators" />
+        <activity android:name=".ui.activity.LeadersActivity" />
+        <activity android:name=".ui.activity.TopicsActivity" />
+        <activity android:name=".ui.activity.TravleActivity" />
+        <activity android:name=".ui.activity.StatusesActivity" />
+        <activity android:name=".ui.activity.LeaderActivity" />
+        <activity android:name=".ui.activity.CommentActivity" />
+        <activity
+            android:name=".ui.activity.CoterieActivity"
+            android:theme="@style/StyledIndicators.." />
+    </application>
+
+</manifest>

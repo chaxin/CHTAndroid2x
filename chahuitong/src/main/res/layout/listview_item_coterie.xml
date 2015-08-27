@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/coterie_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="普洱茶的收藏价值普洱茶的收藏价值普洱茶的收藏价值普洱茶的收藏价值普洱茶的收藏价值???"
+            android:paddingRight="8dp"
+            android:singleLine="true"
+            android:textSize="@dimen/title_text_size"
+            />
+
+        <TextView
+            android:id="@+id/coterie_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6th.July"
+            android:layout_marginRight="18dp"
+            android:textColor="@color/caption"
+            android:textSize="@dimen/caption_text_size"
+            />
+
+        <TextView
+            android:id="@+id/topic_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="删除"
+            android:textSize="@dimen/body_text_size"
+            android:textColor="@color/primary"
+            android:drawableLeft="@drawable/icon_coterie_delete"
+            android:drawablePadding="4dp"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/coterie_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="其中以ArrayAdapter最为简单，只能展示一行字。Adapter有最好的扩充性，可以自定义出各种效果。SimpleCursorAdapter可以认为是SimpleAdapter对数据库的简单结合，可以方面的把数据库的内容以列表的形式展示出来。"
+        android:layout_marginTop="26dp"
+        android:layout_marginBottom="26dp"
+        android:textColor="@color/text_body"
+        android:textSize="@dimen/body_text_size"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:lineSpacingExtra="4dp"
+        />
+
+    <include layout="@layout/include_forum_controlbar" />
+
+</LinearLayout>

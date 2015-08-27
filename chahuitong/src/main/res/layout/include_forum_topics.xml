@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="7dp"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/today_topic"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/title_text_size"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/topic_tv_more"
+            style="@style/TextMore"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/stroke"
+            android:layout_alignParentBottom="true"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="118dp"
+        android:padding="14dp"
+        android:background="@drawable/draw_white2gray_sel"
+        android:clickable="true"
+        >
+
+        <ImageView
+            android:id="@+id/forum_iv_topic"
+            android:layout_width="63dp"
+            android:layout_height="63dp"
+            android:layout_marginRight="14dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/test_image_topic" />
+
+        <TextView
+            android:id="@+id/forum_tv_topic_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/forum_iv_topic"
+            android:layout_toRightOf="@id/forum_iv_topic"
+            android:paddingBottom="9dp"
+            android:text="当今普洱茶收藏价值怎么样?" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/forum_tv_topic_title"
+            android:layout_below="@id/forum_tv_topic_title"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:paddingRight="12dp"
+            android:text="近几年的普洱茶越来越被大家所熟知和接受，普洱茶的收藏也被大家纷纷提出，其实普洱茶在很早的时候就已经被各大收藏家收藏，现如今"
+            android:textColor="@color/caption"
+            android:textSize="@dimen/caption_text_size" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/forum_iv_topic"
+            android:layout_alignParentBottom="true"
+            android:text="话题主理人：杨丞琳"
+            android:textColor="@color/caption"
+            android:textSize="@dimen/caption_text_size" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="已有10034人参加"
+            android:textColor="@color/caption"
+            android:textSize="@dimen/caption_text_size" />
+    </RelativeLayout>
+
+</LinearLayout>

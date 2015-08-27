@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="7dp"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/statuses"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/title_text_size"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/statuses_tv_more"
+            style="@style/TextMore"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/stroke"
+            android:layout_alignParentBottom="true"
+            />
+
+    </RelativeLayout>
+
+    <include layout="@layout/include_status_header" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="17dp"
+        android:text="洗洗茶碗，开始下午茶啦~！"
+        android:textColor="@color/text_body"
+        android:textSize="@dimen/body_text_size" />
+
+    <include layout="@layout/include_gridview_images"
+        android:visibility="gone"
+        />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="273dp"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/test_statuses_image"
+        android:layout_marginBottom="17dp"
+        />
+
+    <include layout="@layout/include_forum_controlbar" />
+
+</LinearLayout>

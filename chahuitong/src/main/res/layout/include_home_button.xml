@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            style="@style/HomeButton"
+            android:id="@+id/home_market"
+            android:text="@string/home_market"
+            android:drawableTop="@drawable/icon_home_tea_market"
+            />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray" />
+
+        <Button
+            style="@style/HomeButton"
+            android:id="@+id/home_Forum"
+            android:text="@string/home_Forum"
+            android:drawableTop="@drawable/icon_home_forum"
+            />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            style="@style/HomeButton"
+            android:id="@+id/home_News"
+            android:text="@string/home_news"
+            android:drawableTop="@drawable/icon_home_news"
+            />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray" />
+
+        <Button
+            style="@style/HomeButton"
+            android:id="@+id/home_shop"
+            android:text="@string/shop"
+            android:drawableTop="@drawable/icon_home_shop"
+            />
+    </LinearLayout>
+
+</LinearLayout>

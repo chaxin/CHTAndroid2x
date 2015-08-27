@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="110dp">
+
+    <ImageView
+        android:id="@+id/id_img"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/default_load_image"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="18dp"
+        android:paddingTop="18dp"
+        android:paddingBottom="18dp"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:paddingRight="18dp"
+            >
+            <TextView
+                style="@style/TextViewTitle"
+                android:id="@+id/id_tv_title"
+                android:text="高頂古茶 茶寶"
+                />
+
+            <TextView
+                style="@style/TextViewDate"
+                android:id="@+id/id_tv_date"
+                android:text="6th July"
+                />
+        </LinearLayout>
+
+        <TextView
+            style="@style/TextViewHomeDesc"
+            android:id="@+id/market_tv_desc"
+            android:paddingRight="18dp"
+            android:text="独有的气质和原生态的生长环境独有的气质和原生态的生长环境独有的气质和原生态的生长环境"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            >
+            <TextView
+                android:id="@+id/id_tv_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="￥8,000"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/small_middle_text_size"
+                />
+
+            <TextView
+                android:id="@+id/market_btn_detail"
+                android:layout_width="49dp"
+                android:layout_height="16dp"
+                android:text="详情"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/caption_text_size"
+                android:background="@color/primary"
+                android:gravity="center"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

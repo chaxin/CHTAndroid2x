@@ -1,0 +1,193 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/log_header"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@color/primary"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_logo"
+            android:layout_centerInParent="true"
+            />
+
+        <ImageView
+            android:id="@+id/id_btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/register_btn_back_normal" />
+
+        <ImageView
+            android:id="@+id/login_btn_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_home_normal"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="12dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <Button
+                style="@style/log_tab"
+                android:id="@+id/id_tab_login"
+                android:text="@string/login_in"
+                />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="18dp"
+                android:background="@android:color/white" />
+
+            <Button
+                style="@style/log_tab"
+                android:id="@+id/id_tab_register"
+                android:text="@string/register"
+                />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        style="@style/log_layout"
+        android:id="@+id/id_login_layout"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/login_input_background"
+            android:orientation="vertical">
+
+            <EditText
+                style="@style/log_editText"
+                android:id="@+id/id_input_username"
+                android:drawableLeft="@drawable/icon_username"
+                android:hint="@string/username" />
+
+            <View style="@style/log_divider" />
+
+            <EditText
+                style="@style/log_editText"
+                android:id="@+id/id_input_password"
+                android:inputType="textPassword"
+                android:drawableLeft="@drawable/icon_password"
+                android:hint="@string/password" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="30dp"
+            android:text="@string/forgot_password"
+            android:textColor="@color/light_gray" />
+        <Button
+            android:id="@+id/id_btn_login_in"
+            style="@style/log_button"
+            android:text="@string/login_in" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/log_layout"
+        android:id="@+id/id_register_layout"
+        android:visibility="gone"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/login_input_background"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/id_editUsername"
+                style="@style/log_editText"
+                android:drawableLeft="@drawable/icon_username"
+                android:hint="@string/username" />
+
+            <View style="@style/log_divider" />
+
+            <EditText
+                android:id="@+id/id_editEmail"
+                style="@style/log_editText"
+                android:drawableLeft="@drawable/icon_email"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress" />
+
+            <View style="@style/log_divider" />
+
+            <EditText
+                android:id="@+id/id_editPassword"
+                style="@style/log_editText"
+                android:drawableLeft="@drawable/icon_password"
+                android:hint="@string/password"
+                android:inputType="textPassword" />
+
+            <View style="@style/log_divider" />
+
+            <EditText
+                android:id="@+id/id_editConfirm"
+                style="@style/log_editText"
+                android:drawableLeft="@drawable/icon_password"
+                android:hint="@string/confirm"
+                android:inputType="textPassword" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/id_btn_register"
+            style="@style/log_button"
+            android:text="@string/register_now" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/third_party_login_in" />
+
+    <LinearLayout
+        android:id="@+id/id_third_icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/icon_qq" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/icon_weibo" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/icon_weixin" />
+    </LinearLayout>
+
+</LinearLayout>

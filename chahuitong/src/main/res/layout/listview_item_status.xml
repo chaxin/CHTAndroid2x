@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    >
+
+    <include layout="@layout/include_status_header" />
+
+    <TextView
+        android:id="@+id/status_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="17dp"
+        android:text="洗洗茶碗，开始下午茶啦~！"
+        android:textColor="@color/text_body"
+        android:textSize="@dimen/body_text_size" />
+
+    <include
+        android:id="@+id/status_images"
+        layout="@layout/include_gridview_images"
+        android:visibility="gone"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/backcolor"
+        android:paddingLeft="6dp"
+        android:paddingRight="6dp"
+        />
+
+    <include layout="@layout/include_forum_controlbar" />
+
+</LinearLayout>

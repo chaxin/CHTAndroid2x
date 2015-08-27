@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    >
+
+    <RelativeLayout
+        android:id="@+id/topic_item_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/module_title_height"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="往期话题"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/title_text_size"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/leader_tv_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="HOT"
+            android:textColor="@color/caption"
+            android:textSize="@dimen/caption_text_size"
+            android:layout_centerVertical="true"
+            android:paddingRight="10dp"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="@color/stroke"
+            android:layout_alignParentBottom="true"
+            />
+
+    </RelativeLayout>
+
+    <include layout="@layout/include_topic_item" />
+
+</LinearLayout>

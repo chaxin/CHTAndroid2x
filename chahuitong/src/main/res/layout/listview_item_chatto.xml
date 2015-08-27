@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="end"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:orientation="vertical" >
+    
+    <TextView 
+        android:id="@+id/id_chat_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Apr.20,2015"
+        android:textColor="@color/chat_item_date"
+        android:layout_marginRight="20dp"
+        android:gravity="end"
+        />
+    
+    <TextView 
+        android:id="@+id/id_chat_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/chatto_bg_normal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp"
+        android:text="这是茶汇通的聊天模块，我是聊天列表的项目布局，为了达到第三行我得多打点字，好像还不够再努力"
+        android:textSize="13sp"
+        android:textColor="@android:color/white"
+        android:gravity="center_vertical"
+        />
+
+</LinearLayout>

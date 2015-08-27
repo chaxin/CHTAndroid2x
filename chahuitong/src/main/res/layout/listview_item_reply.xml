@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/reply_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backcolor"
+        android:lineSpacingExtra="3dp"
+        android:padding="18dp"
+        android:text="茶，属于山茶科，为常绿灌木或小乔木植物，植株高达1-6米，茶树喜欢湿润的气候，在中国长江流域以南地区广泛栽培。茶树叶子制成茶叶，泡水后使用。茶树种植3年就可以采叶子。一般清明前后采摘长出4-5个叶的嫩芽，制作茶叶质量非常好，属于珍品。"
+        android:textColor="@color/text_body"
+        android:textSize="@dimen/body_text_size" />
+
+</LinearLayout>
