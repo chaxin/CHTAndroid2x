@@ -2,12 +2,10 @@ package com.damenghai.chahuitong.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
-import com.damenghai.chahuitong.BaseActivity;
+import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.config.SessionKeeper;
-import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.view.Navigation;
 import com.damenghai.chahuitong.view.NewWebView;
 import com.damenghai.chahuitong.view.TopBar;

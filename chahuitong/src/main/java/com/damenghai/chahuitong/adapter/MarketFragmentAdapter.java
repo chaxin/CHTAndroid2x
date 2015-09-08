@@ -4,11 +4,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.damenghai.chahuitong.ui.fragment.MyProductFragment;
 import com.damenghai.chahuitong.ui.fragment.ListProductFragment;
-import com.damenghai.chahuitong.ui.fragment.PublishFragment;
 
 public class MarketFragmentAdapter extends FragmentPagerAdapter {
-	private final String[] TITLES = new String[] {"求购", "出售", "发布"};
+	private final String[] TITLES = new String[] {"求购", "出售", "我的发布"};
 
 	public MarketFragmentAdapter(FragmentManager fm) {
 		super(fm);
@@ -22,7 +22,7 @@ public class MarketFragmentAdapter extends FragmentPagerAdapter {
 		case 1:
 			return ListProductFragment.get(1);
 		case 2:
-			return new PublishFragment();
+			return new MyProductFragment();
 		}
 
 		return null;

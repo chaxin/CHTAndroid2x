@@ -19,7 +19,7 @@
         android:layout_weight="1"
         android:background="@color/chat_backgroud"
         android:divider="@null"
-        android:dividerHeight="@dimen/listview_item_divider"
+        android:dividerHeight="7dp"
         android:listSelector="#00000000"
         android:transcriptMode="alwaysScroll" >
     </ListView>

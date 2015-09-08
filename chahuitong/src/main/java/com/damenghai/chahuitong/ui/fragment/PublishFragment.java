@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.damenghai.chahuitong.BaseFragment;
+import com.damenghai.chahuitong.base.BaseFragment;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.ui.activity.PublishActivity;
 

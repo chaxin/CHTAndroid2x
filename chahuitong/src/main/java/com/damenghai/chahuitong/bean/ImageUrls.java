@@ -1,9 +1,11 @@
 package com.damenghai.chahuitong.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by Sgun on 15/8/24.
  */
-public class ImageUrls {
+public class ImageUrls implements Serializable {
     // 中等质量图片url前缀
     //private static final String BMIDDLE_URL = "";
     // 原质量图片url前缀

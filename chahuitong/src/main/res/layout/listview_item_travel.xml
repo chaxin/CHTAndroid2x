@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="420dp"
+    android:background="@drawable/draw_white2gray_sel"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/travel_item_image"
+        android:layout_width="match_parent"
+        android:layout_height="191dp"
+        android:scaleType="centerCrop"
+        />
+
+    <TextView
+        android:id="@+id/travel_item_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="布郎山淘茶之旅"
+        android:textSize="@dimen/text_title"
+        android:textStyle="bold"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/travel_item_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="14dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:textSize="@dimen/text_body"
+        android:text="地       点：西双版纳 百望山 艾冷山 勐海\n状       态：即将出发\n行程天数：5天"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="了解详情"
+        android:textSize="@dimen/text_title"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:background="@drawable/correct_primary2dark_sel"
+        android:gravity="center"
+        />
+</LinearLayout>

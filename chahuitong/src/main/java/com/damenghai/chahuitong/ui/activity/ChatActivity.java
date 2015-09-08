@@ -10,7 +10,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.damenghai.chahuitong.BaseActivity;
+import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.ListViewChatAdapter;
 import com.damenghai.chahuitong.bean.Chat;

@@ -21,7 +21,7 @@
             android:background="@drawable/stroke_unless_bottom_selector"
             android:text="@string/all"
             android:textColor="@drawable/text_tab_selector"
-            android:textSize="@dimen/text_size_small" />
+            android:textSize="@dimen/text_body" />
 
         <Button
             android:id="@+id/id_btn_sale"
@@ -34,7 +34,7 @@
             android:gravity="center"
             android:text="@string/sell"
             android:textColor="@drawable/text_tab_selector"
-            android:textSize="@dimen/text_size_small" />
+            android:textSize="@dimen/text_body" />
 
         <Button
             android:id="@+id/id_btn_buy"
@@ -47,7 +47,7 @@
             android:gravity="center"
             android:text="@string/required"
             android:textColor="@drawable/text_tab_selector"
-            android:textSize="@dimen/text_size_small" />
+            android:textSize="@dimen/text_body" />
 
         <ImageView
             android:id="@+id/id_sort"

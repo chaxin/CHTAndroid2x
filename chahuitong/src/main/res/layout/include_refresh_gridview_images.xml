@@ -13,8 +13,8 @@
         android:scrollbars="none"
         android:clipToPadding="false"
         style="@style/GridView"
-        android:listSelector="@color/backcolor"
-        android:background="@color/backcolor"
+        android:listSelector="@color/background"
+        android:background="@color/background"
         android:gravity="center"
         />
 

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/backcolor"
+    android:background="@color/background"
     >
 
     <com.damenghai.chahuitong.view.TopBar
@@ -15,7 +15,7 @@
         hodor:titleTextColor="@color/primary"
         hodor:rightSrc="@drawable/icon_search"
         hodor:titleText="普洱茶"
-        hodor:titleTextSize="@dimen/title_text_size"
+        hodor:titleTextSize="@dimen/text_title"
         />
 
     <com.handmark.pulltorefresh.library.PullToRefreshGridView
@@ -28,8 +28,8 @@
         android:scrollbars="none"
         android:clipToPadding="false"
         style="@style/GridView"
-        android:listSelector="@color/backcolor"
-        android:background="@color/backcolor"
+        android:listSelector="@color/background"
+        android:background="@color/background"
         android:gravity="center"
         />
 

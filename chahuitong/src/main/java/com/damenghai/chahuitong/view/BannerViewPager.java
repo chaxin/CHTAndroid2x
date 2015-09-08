@@ -54,7 +54,7 @@ public class BannerViewPager extends RelativeLayout implements OnPageChangeListe
 
 	private Timer timer = null;
 	private TimerTask task = null;
-	
+
 	Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			if(mImageViews.size() != 0)
@@ -154,26 +154,31 @@ public class BannerViewPager extends RelativeLayout implements OnPageChangeListe
 		isAutoScroll = false;
 		if(timer != null) timer.cancel();
 	}
-	
+
 	public void setImageUrl(String rootURL, String name) {
         if(name == null) return;
 
         String[] urls = name.split(",");
         BANNER_URL = rootURL;
         PAGER_COUNT = urls.length;
-        addImageView(urls[PAGER_COUNT - FIRST_ITEM]);
+        if(PAGER_COUNT != 1) addImageView(urls[PAGER_COUNT - FIRST_ITEM]);
         for(int i=0; i<urls.length; i++) {
             addImageView(urls[i]);
 		}
-        addImageView(urls[0]);
+        if(PAGER_COUNT != 1) addImageView(urls[0]);
 		
 		mViewPager.setAdapter(mAdapter);
 		mViewPager.setCurrentItem(mCurrent, false);
         mViewPager.setOnPageChangeListener(this);
 	}
 
+    public void setImageUrl(String name) {
+        setImageUrl("", name);
+    }
+
     public void setIndicator(PageIndicator indicator) {
-        indicator.setViewPager(mViewPager, true);
+        if(PAGER_COUNT != 1) indicator.setViewPager(mViewPager, true);
+		else indicator.setViewPager(mViewPager, false);
         indicator.setCurrentItem(mCurrent);
         indicator.setOnPageChangeListener(this);
     }

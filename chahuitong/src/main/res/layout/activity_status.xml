@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:text="@string/statuses"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/title_text_size"
+            android:textSize="@dimen/text_title"
             android:textStyle="bold" />
 
         <TextView
@@ -24,16 +24,16 @@
             android:layout_height="wrap_content"
             android:text="@string/statuses_desc"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/body_text_size"
+            android:textSize="@dimen/text_body"
             />
 
     </LinearLayout>
 
-    <ListView
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/statuses_lv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@color/backcolor"
+        android:divider="@color/background"
         android:dividerHeight="6dp"
         />
 

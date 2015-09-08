@@ -1,19 +1,76 @@
 package com.damenghai.chahuitong.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Sgun on 15/8/24.
  */
-public class Status {
+public class Status implements Serializable {
+    private int content_id;
+    private int uid;
+    private int class_id;
+    private String title;
+    private String time;
     private int avatar;
-    private String created_at;
-    private String text;
+    private String content;
+    private int share;
+    private int view;
+    private int comment;
     private String source;
     private String thumbnail_pic;
-    private User user;
+    private Leader memberInfo;
+    private String image;
 
-    private ArrayList<ImageUrls> imageUrls;
+    private ArrayList<ImageUrls> imageUrlses;
+
+    public int getContent_id() {
+        return content_id;
+    }
+
+    public void setContent_id(int content_id) {
+        this.content_id = content_id;
+    }
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
+    public int getClass_id() {
+        return class_id;
+    }
+
+    public void setClass_id(int class_id) {
+        this.class_id = class_id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getView() {
+        return view;
+    }
+
+    public void setView(int view) {
+        this.view = view;
+    }
+
+    public int getComment() {
+        return comment;
+    }
+
+    public void setComment(int comment) {
+        this.comment = comment;
+    }
 
     public int getAvatar() {
         return avatar;
@@ -24,19 +81,27 @@ public class Status {
     }
 
     public String getCreated_at() {
-        return created_at;
+        return time;
     }
 
     public void setCreated_at(String created_at) {
-        this.created_at = created_at;
+        this.time = created_at;
     }
 
     public String getText() {
-        return text;
+        return content;
     }
 
     public void setText(String text) {
-        this.text = text;
+        this.content = text;
+    }
+
+    public int getShare() {
+        return share;
+    }
+
+    public void setShare(int share) {
+        this.share = share;
     }
 
     public String getSource() {
@@ -55,21 +120,33 @@ public class Status {
         this.thumbnail_pic = thumbnail_pic;
     }
 
-    public User getUser() {
-        return user;
+    public Leader getMemberInfo() {
+        return memberInfo;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setMemberInfo(Leader memberInfo) {
+        this.memberInfo = memberInfo;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public ArrayList<ImageUrls> getImageUrls() {
-        return imageUrls;
+        imageUrlses = new ArrayList<ImageUrls>();
+        if (!image.equals("")) {
+            String[] images = image.split(",");
+            for (int i = 0; i < images.length; i++) {
+                ImageUrls imageUrls = new ImageUrls();
+                imageUrls.setBmiddle_pic("http://www.chahuitong.com/data/upload/qunzi/" + images[i]);
+                imageUrlses.add(imageUrls);
+            }
+        }
+        return imageUrlses;
     }
-
-    public void setImageUrls(ArrayList<ImageUrls> imageUrls) {
-        this.imageUrls = imageUrls;
-    }
-
 
 }

@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="7dp"
+    android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
         >
@@ -17,7 +15,7 @@
             android:layout_height="wrap_content"
             android:text="@string/statuses"
             android:textColor="@color/primary"
-            android:textSize="@dimen/title_text_size"
+            android:textSize="@dimen/text_title"
             android:layout_centerVertical="true"
             android:paddingLeft="10dp"
             android:textStyle="bold"
@@ -37,30 +35,12 @@
 
     </RelativeLayout>
 
-    <include layout="@layout/include_status_header" />
-
-    <TextView
+    <com.damenghai.chahuitong.view.WrapHeightListView
+        android:id="@+id/forum_statuses"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="17dp"
-        android:text="洗洗茶碗，开始下午茶啦~！"
-        android:textColor="@color/text_body"
-        android:textSize="@dimen/body_text_size" />
-
-    <include layout="@layout/include_gridview_images"
-        android:visibility="gone"
+        android:divider="@color/background_pressed"
+        android:dividerHeight="1dp"
         />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="273dp"
-        android:paddingLeft="18dp"
-        android:paddingRight="18dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/test_statuses_image"
-        android:layout_marginBottom="17dp"
-        />
-
-    <include layout="@layout/include_forum_controlbar" />
 
 </LinearLayout>

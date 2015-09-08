@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.damenghai.chahuitong.R;
-import com.damenghai.chahuitong.ui.fragment.IndividualFragement;
+import com.damenghai.chahuitong.ui.fragment.MyProductFragment;
 import com.viewpagerindicator.TabPageIndicator;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class MyTeaMarketActivity extends FragmentActivity {
     private ViewPager mViewPager;
     private ViewPagerAdapter mAdapter;
 
-    private ArrayList<IndividualFragement> mFragments;
+    private ArrayList<MyProductFragment> mFragments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +39,9 @@ public class MyTeaMarketActivity extends FragmentActivity {
     }
 
     private void initView() {
-        mFragments = new ArrayList<IndividualFragement>();
-        mFragments.add(new IndividualFragement());
-        mFragments.add(new IndividualFragement());
+        mFragments = new ArrayList<MyProductFragment>();
+        mFragments.add(new MyProductFragment());
+        mFragments.add(new MyProductFragment());
 
         mAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mAdapter);
@@ -62,7 +62,7 @@ public class MyTeaMarketActivity extends FragmentActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return new IndividualFragement();
+            return new MyProductFragment();
         }
 
         @Override

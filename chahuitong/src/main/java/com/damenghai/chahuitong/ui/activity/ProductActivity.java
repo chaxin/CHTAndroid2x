@@ -6,7 +6,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.damenghai.chahuitong.BaseActivity;
+import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.bean.Product;
 import com.damenghai.chahuitong.config.Constants;
@@ -58,10 +58,7 @@ public class ProductActivity extends BaseActivity implements OnLeftClickListener
 
 	private void initView() {
 		mTopBar.setOnLeftClickListener(this);
-
 		mContact.setOnClickListener(this);
-
-        mIndicator.setFillColor(R.color.primary);
 	}
 
 	private void initDatas() {
@@ -76,7 +73,7 @@ public class ProductActivity extends BaseActivity implements OnLeftClickListener
 		mTitle.setText(mProduct.getTitle());
 		mPrice.setText(mProduct.getPrice());
 		mYear.setText(mProduct.getYear());
-		mQuantity.setText(mProduct.getQuantity());
+		mQuantity.setText(mProduct.getQuantity() + "");
 		mAddress.setText(mProduct.getAddress());
 		mPhone.setText(mProduct.getPhone());
 		mDesc.setText(mProduct.getDesc());

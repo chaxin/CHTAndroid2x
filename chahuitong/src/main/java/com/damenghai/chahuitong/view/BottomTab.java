@@ -29,7 +29,7 @@ public class BottomTab extends LinearLayout implements OnClickListener {
 	OnTabChangeListener listener;
 	
 	public interface OnTabChangeListener {
-		public void onTabSelected(int arg0);
+		void onTabSelected(int arg0);
 	}
 	
 	public BottomTab(Context context) {

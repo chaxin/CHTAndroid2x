@@ -14,7 +14,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.damenghai.chahuitong.BaseActivity;
+import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.CommonAdapter;
 import com.damenghai.chahuitong.api.HodorAPI;

@@ -6,20 +6,36 @@
     android:orientation="vertical">
 
     <com.damenghai.chahuitong.view.TopBar
+        android:id="@+id/comment_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height"
         android:background="@color/primary"
         app:titleText="@string/comment"
         app:titleTextSize="@dimen/small_middle_text_size"
         app:titleTextColor="@android:color/white"
+        app:leftSrc="@drawable/btn_back_item_selector"
         />
 
-    <ListView
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/comment_lv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@color/backcolor"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:cacheColorHint="@android:color/transparent"
+        android:listSelector="@android:color/transparent"
+        android:divider="@color/background"
         android:dividerHeight="4dp"
+        android:clickable="false"
+        />
+
+    <Button
+        android:id="@+id/write_comment"
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:text="写评论"
+        android:textColor="@android:color/white"
+        style="@style/TextViewBody"
+        android:background="@drawable/correct_primary2dark_sel"
         />
 
 </LinearLayout>

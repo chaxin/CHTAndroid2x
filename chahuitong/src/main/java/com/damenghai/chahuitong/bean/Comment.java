@@ -14,13 +14,9 @@ public class Comment implements Serializable {
     private String comment;
     private String comment_time;
     private int reply_id;
-    private String member_name;
-    private String member_avatar;
-    private int reply_number;
-
-    private String source;
-    private ArrayList<Comment> replys;
-
+    private Leader memberInfo;
+    private String reply_to;
+    private ArrayList<Comment> reply;
 
     public int getId() {
         return id;
@@ -54,6 +50,22 @@ public class Comment implements Serializable {
         this.uid = uid;
     }
 
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public String getComment_time() {
+        return comment_time;
+    }
+
+    public void setComment_time(String comment_time) {
+        this.comment_time = comment_time;
+    }
+
     public int getReply_id() {
         return reply_id;
     }
@@ -62,60 +74,27 @@ public class Comment implements Serializable {
         this.reply_id = reply_id;
     }
 
-    public String getMember_name() {
-        return member_name;
+    public Leader getMemberInfo() {
+        return memberInfo;
     }
 
-    public void setMember_name(String member_name) {
-        this.member_name = member_name;
+    public void setMemberInfo(Leader memberInfo) {
+        this.memberInfo = memberInfo;
     }
 
-    public String getMember_avatar() {
-        return member_avatar;
+    public String getReply_to() {
+        return reply_to;
     }
 
-    public void setMember_avatar(String member_avatar) {
-        this.member_avatar = member_avatar;
+    public void setReply_to(String reply_to) {
+        this.reply_to = reply_to;
     }
 
-    public int getReply_number() {
-        return reply_number;
+    public ArrayList<Comment> getReply() {
+        return reply;
     }
 
-    public void setReply_number(int reply_number) {
-        this.reply_number = reply_number;
+    public void setReply(ArrayList<Comment> reply) {
+        this.reply = reply;
     }
-
-    public String getText() {
-        return comment;
-    }
-
-    public void setText(String text) {
-        this.comment = text;
-    }
-
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
-    }
-
-    public String getTime() {
-        return comment_time;
-    }
-
-    public void setTime(String time) {
-        this.comment_time = time;
-    }
-
-    public ArrayList<Comment> getReplys() {
-        return replys;
-    }
-
-    public void setReplys(ArrayList<Comment> replys) {
-        this.replys = replys;
-    }
-
 }

@@ -12,6 +12,7 @@ import android.widget.Button;
 
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.ui.fragment.NewsFragment;
+import com.damenghai.chahuitong.view.TopBar;
 import com.viewpagerindicator.TabPageIndicator;
 
 import java.util.ArrayList;
@@ -32,9 +33,11 @@ public class NewsActivity extends FragmentActivity {
 
     private static final String[] CONTENT = new String[] {"茶事", "公开课"};
 
+    private TopBar mTopBar;
     private Button mBtnHill;
     private TabPageIndicator mIndicator;
     private ViewPager mViewPager;
+
     private Adapter mAdapter;
     private ArrayList<Fragment> mFragments;
 
@@ -49,12 +52,29 @@ public class NewsActivity extends FragmentActivity {
     }
 
     private void findViewById() {
+        mTopBar = (TopBar) findViewById(R.id.news_bar);
         mIndicator = (TabPageIndicator) findViewById(R.id.news_indicator);
         mViewPager = (ViewPager) findViewById(R.id.news_viewpager);
         mBtnHill = (Button) findViewById(R.id.btn_hill);
     }
 
     private void initView() {
+        mTopBar.setOnLeftClickListener(new TopBar.OnLeftClickListener() {
+            @Override
+            public void onLeftClick() {
+                finish();
+            }
+        });
+
+        mTopBar.setOnRightClickListener(new TopBar.onRightClickListener() {
+            @Override
+            public void onRightClick() {
+                Intent intent = new Intent(NewsActivity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+
         mAdapter = new Adapter(getSupportFragmentManager());
         mViewPager.setAdapter(mAdapter);
         mIndicator.setViewPager(mViewPager);

@@ -14,8 +14,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.damenghai.chahuitong.AppManager;
-import com.damenghai.chahuitong.BaseActivity;
+import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.config.Constants;
 import com.damenghai.chahuitong.ui.fragment.WebFragment;
@@ -244,7 +243,7 @@ public class MainActivity extends BaseActivity {
                 }
             } else {
                 MobclickAgent.onKillProcess(this);
-                AppManager.getInstance().AppExit(this);
+                System.exit(0);
             }
         }
         return true;

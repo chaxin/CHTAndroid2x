@@ -9,19 +9,17 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.damenghai.chahuitong.BaseFragment;
+import com.damenghai.chahuitong.base.BaseFragment;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.CommonAdapter;
 import com.damenghai.chahuitong.api.HodorAPI;
 import com.damenghai.chahuitong.bean.Comment;
-import com.damenghai.chahuitong.bean.Topic;
-import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.request.VolleyRequest;
-import com.damenghai.chahuitong.utils.DateUtils;
 import com.damenghai.chahuitong.utils.DensityUtils;
 import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.ViewHolder;
 import com.google.gson.Gson;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,10 +40,9 @@ public class CommentFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View mView = inflater.inflate(R.layout.fragment_list, null);
 
-        ListView mListView = (ListView) mView.findViewById(R.id.commond_listview);
-        mListView.setDividerHeight(DensityUtils.dp2px(getActivity(), 4));
+        PullToRefreshListView mListView = (PullToRefreshListView) mView.findViewById(R.id.commond_listview);
+        mListView.getRefreshableView().setDividerHeight(DensityUtils.dp2px(getActivity(), 4));
         mDatas = new ArrayList<Comment>();
-        loadDatas();
         mAdapter = new ListViewAdapter(getActivity(), mDatas, R.layout.listview_item_comment);
         mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -56,14 +53,17 @@ public class CommentFragment extends BaseFragment {
             }
         });
 
+        loadDatas();
+
         return mView;
     }
 
     private void loadDatas() {
-        HodorAPI.myCommentShow(SessionKeeper.readSession(getActivity()), SessionKeeper.readUsername(getActivity()), new VolleyRequest() {
+        HodorAPI.myCommentShow(getActivity(), new VolleyRequest() {
             @Override
             public void onSuccess(String response) {
                 super.onSuccess(response);
+                L.d(response);
                 try {
                     JSONArray array = new JSONObject(response).getJSONArray("content");
                     for (int i = 0; i < array.length(); i++) {
@@ -87,13 +87,10 @@ public class CommentFragment extends BaseFragment {
 
         @Override
         public void convert(ViewHolder holder, Comment comment) {
-            holder.setText(R.id.comment_user, comment.getMember_name())
-                    .setText(R.id.comment_time, comment.getTime())
-                    .setText(R.id.comment_text, comment.getText())
-                    .setText(R.id.comment_reply, "回复")
-                    .setTextColor(R.id.comment_reply, R.color.primary)
-                    .setTextDrawableLeft(R.id.comment_reply, R.drawable.icon_comment_reply);
-
+            holder.setText(R.id.comment_text, comment.getComment())
+                    .setText(R.id.comment_time, comment.getComment_time())
+                    .setText(R.id.comment_user, comment.getMemberInfo().getMember_name())
+                    .loadDefaultImage(R.id.comment_avatar, comment.getMemberInfo().getMember_avatar());
         }
     }
 }

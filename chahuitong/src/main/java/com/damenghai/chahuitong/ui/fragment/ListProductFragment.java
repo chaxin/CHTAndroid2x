@@ -10,7 +10,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
-import com.damenghai.chahuitong.BaseFragment;
+import com.damenghai.chahuitong.base.BaseFragment;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.CommonAdapter;
 import com.damenghai.chahuitong.api.HodorAPI;
@@ -180,9 +180,9 @@ public class ListProductFragment extends BaseFragment implements OnItemClickList
         public void convert(ViewHolder holder, final Product t) {
             holder.setText(R.id.id_tv_title, t.getTitle())
                     .setText(R.id.market_tv_desc, t.getDesc())
-                    .setText(R.id.id_tv_price, t.getPrice())
+                    .setText(R.id.id_tv_price, t.getPrice().equals("") ? "" : "￥" + t.getPrice())
                     .setText(R.id.id_tv_date, DateUtils.convert2US(t.getDate()))
-                    .loadUrlImage(R.id.id_img, t.getImgUrl())
+                    .loadDefaultImage(R.id.id_img, t.getImgUrl())
             ;
 
         }

@@ -113,7 +113,7 @@ public class TopBar extends LinearLayout {
 		rightView.setVisibility(visibility);
 	}
 
-	public void setTitle(String text) {
+	public void setTitle(CharSequence text) {
         if(text != null) {
             titleView.setVisibility(TextUtils.isEmpty(text) ? View.GONE : View.VISIBLE);
             titleView.setText(text);

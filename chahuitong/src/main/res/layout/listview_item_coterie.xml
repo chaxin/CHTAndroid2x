@@ -20,7 +20,7 @@
             android:text="普洱茶的收藏价值普洱茶的收藏价值普洱茶的收藏价值普洱茶的收藏价值普洱茶的收藏价值???"
             android:paddingRight="8dp"
             android:singleLine="true"
-            android:textSize="@dimen/title_text_size"
+            android:textSize="@dimen/text_title"
             />
 
         <TextView
@@ -29,8 +29,8 @@
             android:layout_height="wrap_content"
             android:text="6th.July"
             android:layout_marginRight="18dp"
-            android:textColor="@color/caption"
-            android:textSize="@dimen/caption_text_size"
+            android:textColor="@color/text_caption"
+            android:textSize="@dimen/text_caption"
             />
 
         <TextView
@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="删除"
-            android:textSize="@dimen/body_text_size"
+            android:textSize="@dimen/text_body"
             android:textColor="@color/primary"
             android:drawableLeft="@drawable/icon_coterie_delete"
             android:drawablePadding="4dp"
@@ -53,7 +53,7 @@
         android:layout_marginTop="26dp"
         android:layout_marginBottom="26dp"
         android:textColor="@color/text_body"
-        android:textSize="@dimen/body_text_size"
+        android:textSize="@dimen/text_body"
         android:maxLines="2"
         android:ellipsize="end"
         android:lineSpacingExtra="4dp"

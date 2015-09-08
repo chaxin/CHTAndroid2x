@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="周杰伦"
-            android:textSize="@dimen/title_text_size"
+            android:textSize="@dimen/text_title"
             android:textStyle="bold"
             />
 
@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/text_body"
-            android:textSize="@dimen/body_text_size"
+            android:textSize="@dimen/text_body"
             android:text="中国茶学院院长\n中国茶叶流通协会常务副会长"
             android:layout_marginTop="9dp"
             />

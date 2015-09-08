@@ -17,9 +17,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 
-import com.damenghai.chahuitong.BaseActivity;
+import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.config.Constants;
+import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.utils.ImageManager;
 import com.damenghai.chahuitong.utils.T;
 import com.damenghai.chahuitong.view.CustomSpinner;
@@ -87,15 +88,6 @@ public class PublishActivity extends BaseActivity implements OnClickListener {
 	}
 
 	private void initView() {
-		boolean tab = getIntent().getBooleanExtra("tab", true);
-		if(tab) {
-			mTabButtonGroup.check(R.id.tab_sale);
-			mSaleway = "1";
-		} else {
-			mTabButtonGroup.check(R.id.tab_buy);
-			mSaleway = "2";
-		}
-
 		mTopBar.setOnLeftClickListener(new TopBar.OnLeftClickListener() {
 			@Override
 			public void onLeftClick() {
@@ -152,7 +144,7 @@ public class PublishActivity extends BaseActivity implements OnClickListener {
 					if(pi == null) {
 						pi = new ImageManager(this);
 						mProductImage.put(mClickView.getId(), pi);
-					}					
+					}
 					
 					if(pi.checkUri(uri)) {
 						pi.display(mClickView);
@@ -210,7 +202,6 @@ public class PublishActivity extends BaseActivity implements OnClickListener {
 		@Override
 		public void onClick(View v) {
 			RequestParams params = new RequestParams();
-			int user_id = sp.getInt("user_id", 0);
 			final String brand = mBrand.getText().toString();
 			final String name = mName.getText().toString();
 			final String year = mYearSpinner.getSelectedItem();
@@ -220,7 +211,8 @@ public class PublishActivity extends BaseActivity implements OnClickListener {
 			String address = mAddress.getText().toString();
 			String phone = mPhone.getText().toString();
 
-			params.addBodyParameter("user_id", user_id + "");
+			params.addBodyParameter("key", SessionKeeper.readSession(PublishActivity.this));
+			params.addBodyParameter("username", SessionKeeper.readUsername(PublishActivity.this));
 			params.addBodyParameter("saleway", mSaleway);
 			params.addBodyParameter("brand", brand);
 			params.addBodyParameter("name", name);
@@ -266,6 +258,7 @@ public class PublishActivity extends BaseActivity implements OnClickListener {
 			        @Override
 			        public void onSuccess(ResponseInfo<String> responseInfo) {
 			        	new AlertDialog.Builder(PublishActivity.this).setMessage("上传成功").setPositiveButton("确定", null).show();
+						finish();
 			        	pd.dismiss();
 
 			        	//把图片选择图片的控件恢复成默认图片

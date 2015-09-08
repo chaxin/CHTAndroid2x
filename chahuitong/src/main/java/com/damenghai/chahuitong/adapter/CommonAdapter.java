@@ -35,9 +35,9 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
 	 */
 	protected List<T> mDatas;
 
-	public CommonAdapter(Context context, List<T> mDatas, int resId) {
+	public CommonAdapter(Context context, List<T> data, int resId) {
 		this.mContext = context;
-		this.mDatas = mDatas;
+		this.mDatas = data;
 		this.mResId = resId;
 	}
 

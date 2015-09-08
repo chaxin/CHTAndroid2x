@@ -1,96 +1,116 @@
 package com.damenghai.chahuitong.ui.activity;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.widget.Adapter;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
-import com.damenghai.chahuitong.BaseActivity;
+import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
-import com.damenghai.chahuitong.adapter.CommonAdapter;
+import com.damenghai.chahuitong.adapter.StatusCommentAdapter;
+import com.damenghai.chahuitong.api.HodorAPI;
 import com.damenghai.chahuitong.bean.Comment;
-import com.damenghai.chahuitong.utils.ViewHolder;
+import com.damenghai.chahuitong.bean.Status;
+import com.damenghai.chahuitong.request.VolleyRequest;
+import com.damenghai.chahuitong.view.TopBar;
+import com.google.gson.Gson;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
+ * 评论
  * Created by Sgun on 15/8/25.
  */
 public class CommentActivity extends BaseActivity {
-    private ListView mLv;
+    private Status mStatus;
+
+    private TopBar mTopBar;
+    private PullToRefreshListView mLv;
+    private Button mWrite;
+
     private ArrayList<Comment> mDatas;
-    private Adapter mAdapter;
+    private StatusCommentAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
 
+        mStatus = (Status) getIntent().getSerializableExtra("status");
+
         findViewById();
 
         initView();
+
+        loadData(1);
     }
 
     private void findViewById() {
-        mLv = (ListView) findViewById(R.id.comment_lv);
+        mTopBar = (TopBar) findViewById(R.id.comment_bar);
+        mLv = (PullToRefreshListView) findViewById(R.id.comment_lv);
+        mWrite = (Button) findViewById(R.id.write_comment);
     }
 
     private void initView() {
+        mTopBar.setOnLeftClickListener(new TopBar.OnLeftClickListener() {
+            @Override
+            public void onLeftClick() {
+                finish();
+            }
+        });
+
         mDatas = new ArrayList<Comment>();
-        initData();
-        mAdapter = new Adapter(this, mDatas, R.layout.listview_item_comment);
+        mAdapter = new StatusCommentAdapter(this, mDatas, R.layout.listview_item_comment);
         mLv.setAdapter(mAdapter);
+        mLv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+            @Override
+            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                loadData(1);
+            }
+        });
+
+        mWrite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("status_id", mStatus.getContent_id());
+                openActivity(WriteCommentActivity.class, bundle);
+            }
+        });
     }
 
-    private void initData() {
-//        for(int i=0; i<5; i++) {
-//            Comment comment = new Comment();
-//            comment.setTime("2015-8-5 09:40");
-//            comment.setFrom("Jay" + i);
-//            comment.setText("茶，属于山茶科，为常绿灌木或小乔木植物，植株高达1-6米，茶树喜欢湿润的气候，在中国长江流域以南地区广泛栽培。茶树叶子制成茶叶，泡水后使用。茶树种植3年就可以采叶子。一般清明前后采摘长出4-5个叶的嫩芽，制作茶叶质量非常好，属于珍品。");
-//            ArrayList<Comment> replys = new ArrayList<Comment>();
-//            for(int j=0; j<5; j++) {
-//                Comment reply = new Comment();
-//                reply.setText("这是回复别人的" + j);
-//                replys.add(reply);
-//            }
-//            comment.setReplys(replys);
-//            mDatas.add(comment);
-//        }
+    private void loadData(final int page) {
+        HodorAPI.commentShow(mStatus.getContent_id(), new VolleyRequest() {
+            @Override
+            public void onSuccess(String response) {
+                super.onSuccess(response);
+                if(page == 1) mDatas.clear();
+
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    JSONArray array = obj.getJSONArray("content");
+                    for (int i = 0; i < array.length(); i++) {
+                        Comment comment = new Gson().fromJson(array.get(i).toString(), Comment.class);
+                        if (!mDatas.contains(comment)) mDatas.add(comment);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                mAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onAllDone() {
+                super.onAllDone();
+                mLv.onRefreshComplete();
+            }
+        });
     }
 
-    private class Adapter extends CommonAdapter<Comment> {
-        private Context mContext;
-
-        public Adapter(Context context, List<Comment> mDatas, int resId) {
-            super(context, mDatas, resId);
-            mContext = context;
-        }
-
-        @Override
-        public void convert(ViewHolder holder, Comment comment) {
-            ListView listView = holder.getView(R.id.comment_reply_lv);
-            ArrayList<Comment> comments = comment.getReplys();
-            ReplyAdapter adapter = new ReplyAdapter(mContext, comments, R.layout.listview_item_reply);
-            listView.setAdapter(adapter);
-
-//            holder.setText(R.id.comment_from, comment.getFrom())
-//                    .setText(R.id.comment_time, comment.getTime())
-//                    .setText(R.id.comment_text, comment.getText());
-        }
-
-    }
-
-    private class ReplyAdapter extends CommonAdapter<Comment> {
-
-        public ReplyAdapter(Context context, List<Comment> mDatas, int resId) {
-            super(context, mDatas, resId);
-        }
-
-        @Override
-        public void convert(ViewHolder holder, Comment comment) {
-            holder.setText(R.id.reply_text, comment.getText());
-        }
-    }
 }

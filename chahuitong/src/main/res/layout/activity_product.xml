@@ -36,6 +36,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
+                hodor:fillColor="@color/primary"
+                hodor:pageColor="@color/background"
+                hodor:snap="true"
                 />
 
             <TextView

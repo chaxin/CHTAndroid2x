@@ -154,7 +154,7 @@ public class BrandFragment extends Fragment implements PullToRefreshBase.OnRefre
             ImageView iv_logo = holder.getView(R.id.gridview_item_image);
             iv_logo.setLayoutParams(params);
 
-            holder.loadUrlImage(R.id.gridview_item_image, "http://www.chahuitong.com/data/upload/shop/brand/" + brand.getPic());
+            holder.loadDefaultImage(R.id.gridview_item_image, "http://www.chahuitong.com/data/upload/shop/brand/" + brand.getPic());
         }
     }
 

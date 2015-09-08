@@ -7,13 +7,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.damenghai.chahuitong.BaseActivity;
+import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.api.HodorAPI;
 import com.damenghai.chahuitong.bean.Goods;
 import com.damenghai.chahuitong.bean.response.RecommendResponse;
 import com.damenghai.chahuitong.request.VolleyRequest;
-import com.damenghai.chahuitong.utils.T;
 import com.damenghai.chahuitong.view.BannerViewPager;
 import com.google.gson.Gson;
 import com.lidroid.xutils.BitmapUtils;
@@ -49,28 +48,21 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     private TextView mTitleOne, mDescOne, mPriceOne, mFavoritesOne;
     private Button mBtnOne;
 
-    private Goods goods1, goods2;
+    private Goods goods;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        findViewByid();
+        findViewById();
+
         initView();
+
         loadData();
     }
 
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        int height = mIvProduct.getHeight();
-        ViewGroup.LayoutParams params = mIvProduct.getLayoutParams();
-        params.width = height;
-        mIvProduct.setLayoutParams(params);
-    }
-
-    private void findViewByid() {
+    public void findViewById() {
         mBanner = (BannerViewPager) findViewById(R.id.home_banner);
         mIndicator = (LinePageIndicator) findViewById(R.id.home_indicator);
 
@@ -88,10 +80,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         mPriceOne = (TextView) goodsOne.findViewById(R.id.home_tv_price);
         mBtnOne = (Button) goodsOne.findViewById(R.id.home_btn_detail);
         mFavoritesOne = (TextView) goodsOne.findViewById(R.id.home_tv_favorites);
-
     }
 
-    private void initView() {
+    public void initView() {
         mBtnMarket.setOnClickListener(this);
         mBtnForum.setOnClickListener(this);
         mBtnNews.setOnClickListener(this);
@@ -100,9 +91,18 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
         mBanner.setImageUrl(BANNER_URL, "s0_04895059675997715.jpg,s0_04895059874744164.jpg,s0_04895060498121693.jpg");
         mIndicator.setSelectedColor(android.R.color.white);
-        mIndicator.setUnselectedColor(R.color.caption);
+        mIndicator.setUnselectedColor(R.color.text_caption);
         mIndicator.setLineWidth(50);
         mBanner.setIndicator(mIndicator);
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        int height = mIvProduct.getHeight();
+        ViewGroup.LayoutParams params = mIvProduct.getLayoutParams();
+        params.width = height;
+        mIvProduct.setLayoutParams(params);
     }
 
     private void loadData() {
@@ -110,23 +110,23 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             @Override
             public void onSuccess(String response) {
                 RecommendResponse recommend = new Gson().fromJson(response, RecommendResponse.class);
-                goods1 = recommend.getContent().get(0);
+                goods = recommend.getContent().get(0);
                 BitmapUtils utils = new BitmapUtils(HomeActivity.this);
-                utils.display(mIvProduct, IMAGE_URL + goods1.getImageUrl());
-                mTitleOne.setText(goods1.getName());
-                mDescOne.setText(goods1.getDescription());
-                mPriceOne.setText(("￥" + goods1.getPrice()));
+                utils.display(mIvProduct, IMAGE_URL + goods.getImageUrl());
+                mTitleOne.setText(goods.getName());
+                mDescOne.setText(goods.getDescription());
+                mPriceOne.setText(("￥" + goods.getPrice()));
                 mBtnOne.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (goods1 != null) {
+                        if (goods != null) {
                             Bundle bundleGoods1 = new Bundle();
-                            bundleGoods1.putString("url", GOODS_DETAIL + goods1.getGoods_id());
+                            bundleGoods1.putString("url", GOODS_DETAIL + goods.getGoods_id());
                             openActivity(ContentActivity.class, bundleGoods1);
                         }
                     }
                 });
-                HodorAPI.favorites(goods1.getGoods_id(), new VolleyRequest() {
+                HodorAPI.favorites(goods.getGoods_id(), new VolleyRequest() {
                     @Override
                     public void onSuccess(String response) {
                         try {
@@ -152,18 +152,12 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 openActivity(ForumActivity.class);
                 break;
             case R.id.home_News :
-//                Bundle extras = new Bundle();
-//                extras.putString("url", "http://www.chahuitong.com/wap/index.php/Home/news");
                 openActivity(NewsActivity.class);
                 break;
             case R.id.home_shop :
-//                Bundle shop = new Bundle();
-//                shop.putString("url", "http://www.chahuitong.com/wap/index.php/Home/Index/brand");
                 openActivity(ShopActivity.class);
                 break;
             case R.id.home_personal :
-//                Bundle personal = new Bundle();
-//                personal.putString("url", "http://www.chahuitong.com/wap/index.php/Home/Index/member");
                 openActivity(PersonalActivity.class);
                 break;
         }

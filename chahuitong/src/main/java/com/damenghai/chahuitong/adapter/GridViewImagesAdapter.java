@@ -27,6 +27,6 @@ public class GridViewImagesAdapter extends CommonAdapter<ImageUrls> {
                 - gv.getPaddingLeft() - gv.getPaddingRight()) / numCols;
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, width);
         holder.getView(R.id.gridview_item_image).setLayoutParams(params);
-        holder.setImageResource(R.id.gridview_item_image, imageUrls.getResId());
+        holder.loadImage(R.id.gridview_item_image, imageUrls.getBmiddle_pic());
     }
 }

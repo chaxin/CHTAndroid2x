@@ -1,33 +1,50 @@
 package com.damenghai.chahuitong.ui.activity;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ListView;
+import android.view.View.OnClickListener;
 import android.widget.TextView;
 
-import com.damenghai.chahuitong.BaseActivity;
 import com.damenghai.chahuitong.R;
-import com.damenghai.chahuitong.adapter.CommonAdapter;
+import com.damenghai.chahuitong.adapter.StatusesAdapter;
+import com.damenghai.chahuitong.api.HodorAPI;
+import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.bean.Leader;
 import com.damenghai.chahuitong.bean.Status;
-import com.damenghai.chahuitong.utils.ViewHolder;
+import com.damenghai.chahuitong.request.VolleyRequest;
+import com.damenghai.chahuitong.utils.T;
+import com.damenghai.chahuitong.view.RoundImageView;
+import com.google.gson.Gson;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnLastItemVisibleListener;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.lidroid.xutils.BitmapUtils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Sgun on 15/8/25.
  */
-public class LeaderActivity extends BaseActivity {
+public class LeaderActivity extends BaseActivity implements OnClickListener, OnLastItemVisibleListener, OnRefreshListener {
     private Leader mLeader;
 
+    private View mHeader;
+
+    private RoundImageView mAvatar;
     private TextView mName;
     private TextView mTitle;
-    private ListView mLv;
+    private TextView mFollowers;
+    private TextView mFollow;
+    private PullToRefreshListView mPlv;
 
-    private ArrayList<Status> mDatas;
-    private ListViewAdapter mAdapter;
+    private ArrayList<Status> mData;
+    private StatusesAdapter mAdapter;
+    private int mCurrpage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,53 +56,104 @@ public class LeaderActivity extends BaseActivity {
         findViewById();
 
         initView();
+
+        loadData(1);
     }
 
     public void findViewById() {
-        mName = (TextView) findViewById(R.id.leader_detail_name);
-        mTitle = (TextView) findViewById(R.id.leader_detail_title);
-        mLv = (ListView) findViewById(R.id.leader_lv_detail);
+        mHeader = View.inflate(this, R.layout.include_leader_header, null);
+        mAvatar = (RoundImageView) mHeader.findViewById(R.id.leader_avatar);
+        mName = (TextView) mHeader.findViewById(R.id.leader_detail_name);
+        mTitle = (TextView) mHeader.findViewById(R.id.leader_detail_title);
+        mFollowers = (TextView) mHeader.findViewById(R.id.leader_detail_followers);
+        mFollow = (TextView) mHeader.findViewById(R.id.leader_detail_follow);
+        mPlv = (PullToRefreshListView) findViewById(R.id.leader_lv_detail);
     }
 
     private void initView() {
-        mDatas = new ArrayList<Status>();
-        initDatas();
-        mAdapter = new ListViewAdapter(this, mDatas, R.layout.listview_item_leader_detail);
-        mLv.setAdapter(mAdapter);
+        mData = new ArrayList<Status>();
+        mAdapter = new StatusesAdapter(this, mData, R.layout.listview_item_status, false);
+        mPlv.setAdapter(mAdapter);
+        mPlv.getRefreshableView().addHeaderView(mHeader);
+        mPlv.setOnLastItemVisibleListener(this);
+        mPlv.setOnRefreshListener(this);
 
-        if(mLeader != null) {
-            mName.setText(mLeader.getName());
-            mTitle.setText(mLeader.getTitle());
+        if (mLeader != null) {
+            mName.setText(mLeader.getMember_name());
+            mTitle.setText(mLeader.getRank().replaceAll("</*[a-z]+>", ""));
+            mFollowers.setText(mLeader.getGuanzhu() + " 关注");
+            if (mLeader.getBeInstered() > 0) {
+                mFollow.setText("已关注");
+                mFollow.setTextColor(getResources().getColor(R.color.gray));
+            } else {
+                mFollow.setText("加关注");
+                mFollow.setOnClickListener(this);
+            }
+
+            BitmapUtils util = new BitmapUtils(this, this.getCacheDir().getAbsolutePath());
+            util.configDefaultLoadingImage(R.drawable.default_load_image);
+            util.configDefaultLoadFailedImage(R.drawable.default_load_image);
+            util.display(mAvatar, !mLeader.getMember_avatar().equals("null") ? mLeader.getMember_avatar() : "");
         }
     }
 
-    private void initDatas() {
-        Status status = new Status();
-        status.setSource("56分钟 来自捡来的iphone6");
-        status.setText("从纽约到柏林，什么都能少，唯一不能少的是壶好茶。从纽约到柏林，什么都能少，唯一不能少的是壶好茶。");
-        mDatas.add(status);
+    private void loadData(final int page) {
+        if (mLeader == null) return;
+        HodorAPI.leaderStatus(mLeader.getMember_id(), page, new VolleyRequest() {
+            @Override
+            public void onListSuccess(JSONArray array) {
+                super.onListSuccess(array);
+                mCurrpage = page;
 
-        Status status1 = new Status();
-        status1.setSource("4分钟前 来自 微博 weibo.com");
-        status1.setText("这是一个很酷的HTML5技术应用，用户可以在画布上用画笔写出自己想看的文字或图案，这个应该能将你写的东西用3D方式呈现，而且让它围着中心3D旋转，只要你设计的巧妙，你可以绘制出让人惊叹的效果和图案。");
-        mDatas.add(status1);
+                if(page == 1) mData.clear();
 
-        Status status2 = new Status();
-        status2.setSource("11分钟前 来自 微博 weibo.com");
-        status2.setText("华尔街日报：中国创业公司的黄金时代已结束？】一些投资人和创业者指出，由于市场对经济的信心不足以及股市大跌，创业圈火爆的局面很可能将会改变。甚至有人认为，中国市场存在泡沫，而泡沫将在一两年内破灭。详情请戳：");
-        mDatas.add(status2);
+                try {
+                    for (int i = 0; i < array.length(); i++) {
+                        Status status = new Gson().fromJson(array.get(i).toString(), Status.class);
+                        if (!mData.contains(status)) mData.add(status);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                mAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
-    private class ListViewAdapter extends CommonAdapter<Status> {
+    @Override
+    public void onClick(View view) {
+        HodorAPI.addFollow(this, mLeader.getMember_id(), new VolleyRequest() {
+            @Override
+            public void onSuccess(String response) {
+                super.onSuccess(response);
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    T.showShort(LeaderActivity.this, obj.getInt("code") == 404 ? obj.getString("cotent") : "关注成功");
+                    if (obj.getInt("code") != 404) {
+                        mFollow.setText("已关注");
+                        mFollow.setTextColor(getResources().getColor(R.color.background));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
 
-        public ListViewAdapter(Context context, List<Status> mDatas, int resId) {
-            super(context, mDatas, resId);
-        }
+            @Override
+            public void onAllDone() {
+                super.onAllDone();
+                mPlv.onRefreshComplete();
+            }
+        });
+    }
 
-        @Override
-        public void convert(ViewHolder holder, Status status) {
-            holder.setText(R.id.status_detail_source, status.getSource())
-                    .setText(R.id.status_detail_text, status.getText());
-        }
+    @Override
+    public void onLastItemVisible() {
+        loadData(mCurrpage);
+    }
+
+    @Override
+    public void onRefresh(PullToRefreshBase refreshView) {
+        loadData(1);
     }
 }

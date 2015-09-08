@@ -10,15 +10,19 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginRight="15dp"
-        android:src="@drawable/test_juju_avator" />
+        android:src="@drawable/test_juju_avator"
+        android:visibility="gone"
+        />
 
     <TextView
-        android:id="@+id/status_name"
+        android:id="@+id/status_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/status_avatar"
         android:text="飞翔的林志颖"
-        android:textSize="@dimen/body_text_size" />
+        android:textSize="@dimen/text_body"
+        android:visibility="gone"
+        />
 
     <TextView
         android:id="@+id/status_source"
@@ -27,7 +31,21 @@
         android:layout_alignBottom="@id/status_avatar"
         android:layout_toRightOf="@id/status_avatar"
         android:text="28分钟  来自iphone 6 Plus"
-        android:textColor="@color/caption"
-        android:textSize="@dimen/caption_text_size" />
+        android:textColor="@color/text_caption"
+        android:textSize="@dimen/text_caption" />
 
+    <TextView
+        android:id="@+id/status_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="删除"
+        android:textSize="@dimen/text_body"
+        android:textColor="@color/primary"
+        android:drawableLeft="@drawable/icon_coterie_delete"
+        android:drawablePadding="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@id/status_source"
+        android:visibility="gone"
+        />
 </RelativeLayout>

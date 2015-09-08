@@ -14,16 +14,12 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
-import com.damenghai.chahuitong.AppManager;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.config.Constants;
 import com.damenghai.chahuitong.ui.activity.ContentActivity;
 import com.damenghai.chahuitong.ui.activity.LoginActivity;
 import com.damenghai.chahuitong.ui.activity.MarketActivity;
-import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.T;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshWebView;
 
 
 /**
@@ -41,7 +37,6 @@ public class NewWebView extends RelativeLayout {
     private String mKey;
 
     private View mView;
-    private PullToRefreshWebView mWebRefresh;
     private WebView mWebView;
     private ProgressBar mProgressBar;
     private WebSettings mSettings;
@@ -56,8 +51,7 @@ public class NewWebView extends RelativeLayout {
         super(context, attrs);
 
         mView = LayoutInflater.from(context).inflate(R.layout.custom_webview, this);
-        mWebRefresh = (PullToRefreshWebView) mView.findViewById(R.id.web_webview);
-        mWebView = mWebRefresh.getRefreshableView();
+        mWebView = (WebView) mView.findViewById(R.id.web_webview);
         mProgressBar = (ProgressBar) mView.findViewById(R.id.web_pb);
 
         if(isInEditMode()) return;
@@ -81,10 +75,8 @@ public class NewWebView extends RelativeLayout {
                     context.startActivity(intent);
                     return true;
                 } else if (url.contains("login")) {
-                    if (AppManager.getInstance().getTopActivity().getClass() != LoginActivity.class) {
-                        Intent intent = new Intent(context, LoginActivity.class);
-                        ((Activity) context).startActivityForResult(intent, LOGIN_IN_REQUEST_CODE);
-                    }
+                    Intent intent = new Intent(context, LoginActivity.class);
+                    ((Activity) context).startActivityForResult(intent, LOGIN_IN_REQUEST_CODE);
                     return true;
                 } else if(url.contains("back")) {
                     T.showShort(context, "kkkk");
@@ -110,14 +102,6 @@ public class NewWebView extends RelativeLayout {
                 if (l != null) {
                     l.receivedTitle(title);
                 }
-            }
-        });
-
-        mWebRefresh.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<WebView>() {
-            @Override
-            public void onRefresh(PullToRefreshBase<WebView> refreshView) {
-                mWebView.reload();
-                mWebRefresh.onRefreshComplete();
             }
         });
 

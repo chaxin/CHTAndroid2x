@@ -3,6 +3,8 @@ package com.damenghai.chahuitong.utils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.text.Spanned;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -111,13 +113,18 @@ public class ViewHolder {
 		return mPosition;
 	}
 
+	public ViewHolder setVisibility(int viewId, int visibility) {
+		getView(viewId).setVisibility(visibility);
+		return this;
+	}
+
 	/**
 	 * 设置TextView的文本
 	 * @param viewId 需要设置的TextView控件
 	 * @param text 需要设置的文本
 	 * @return 返回Holder对象可用于链式编程
 	 */
-	public ViewHolder setText(int viewId, String text) {
+	public ViewHolder setText(int viewId, CharSequence text) {
 		TextView tv = getView(viewId);
 		if(tv != null) tv.setText(text);
 		return this;
@@ -160,24 +167,60 @@ public class ViewHolder {
 	 */
 	public ViewHolder setImageResource(int viewId, int resId) {
 		ImageView iv = getView(viewId);
-		iv.setBackgroundResource(resId);
+		iv.setImageResource(resId);
 		return this;
 	}
-	
+
+	public ViewHolder setImageUri(int viewId, Uri uri) {
+		ImageView iv = getView(viewId);
+		iv.setImageURI(uri);
+		return this;
+	}
+
 	/**
 	 * 在控件中显示网络图片
-	 * @param ViewId 控件的ID
+	 * @param viewId 控件的ID
 	 * @param url 网络图片的完整url
 	 * @return 返回Holder对象可用于链式编程
 	 */
-	public ViewHolder loadUrlImage(int ViewId, String url) {
-		BitmapUtils util = new BitmapUtils(mContext, mContext.getCacheDir().getAbsolutePath());
-		util.configDefaultLoadingImage(R.drawable.default_load_image);
-		util.configDefaultLoadFailedImage(R.drawable.default_load_image);
-		if(getView(ViewId) != null && !url.equals(""))
-			util.display(getView(ViewId), url);
+	public ViewHolder loadDefaultImage(int viewId, String url) {
+		if(url != null) {
+			BitmapUtils util = new BitmapUtils(mContext, mContext.getCacheDir().getAbsolutePath());
+			if (getView(viewId) != null && !url.equals(""))
+				util.display(getView(viewId), url, ImageConfigHelper.getDefaultConfig(mContext));
+		}
 		return this;
 	}
+
+	/**
+	 * 在控件中显示网络图片
+	 * @param viewId 控件的ID
+	 * @param url 网络图片的完整url
+	 * @return 返回Holder对象可用于链式编程
+	 */
+	public ViewHolder loadImage(int viewId, String url) {
+		if(url != null) {
+			BitmapUtils util = new BitmapUtils(mContext, mContext.getCacheDir().getAbsolutePath());
+			if (getView(viewId) != null && !url.equals(""))
+				util.display(getView(viewId), url, ImageConfigHelper.getImageConfig(mContext));
+		}
+		return this;
+	}
+
+    /**
+     * 在控件中显示网络图片
+     * @param viewId 控件的ID
+     * @param url 网络图片的完整url
+     * @return 返回Holder对象可用于链式编程
+     */
+    public ViewHolder loadAvatarImage(int viewId, String url) {
+        if(url != null) {
+            BitmapUtils util = new BitmapUtils(mContext, mContext.getCacheDir().getAbsolutePath());
+            if (getView(viewId) != null && !url.equals(""))
+                util.display(getView(viewId), url, ImageConfigHelper.getAvatarConfig(mContext));
+        }
+        return this;
+    }
 
 	/**
 	 * 设置控件点击事件
@@ -185,9 +228,9 @@ public class ViewHolder {
 	 * @param l 监听事件
 	 * @return 返回Holder对象可用于链式编程
 	 */
-	public ViewHolder setButtonClick(int viewId, OnClickListener l) {
-		Button btn = getView(viewId);
-		if(btn != null) btn.setOnClickListener(l);
+	public ViewHolder setOnClickListener(int viewId, OnClickListener l) {
+		View view = getView(viewId);
+		if(view != null) view.setOnClickListener(l);
 		return this;
 	}
 	

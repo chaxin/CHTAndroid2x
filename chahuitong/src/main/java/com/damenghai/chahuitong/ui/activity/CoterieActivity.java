@@ -1,34 +1,26 @@
 package com.damenghai.chahuitong.ui.activity;
 
-import android.app.MediaRouteButton;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.damenghai.chahuitong.BaseActivity;
-import com.damenghai.chahuitong.BaseFragmentActivity;
+import com.damenghai.chahuitong.base.BaseFragmentActivity;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.CommonAdapter;
-import com.damenghai.chahuitong.api.HodorAPI;
 import com.damenghai.chahuitong.bean.Status;
 import com.damenghai.chahuitong.bean.User;
 import com.damenghai.chahuitong.config.SessionKeeper;
-import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.ui.fragment.CommentFragment;
 import com.damenghai.chahuitong.ui.fragment.LeaderFragment;
-import com.damenghai.chahuitong.ui.fragment.TopicFragment;
-import com.damenghai.chahuitong.utils.L;
+import com.damenghai.chahuitong.ui.fragment.MyStatusFragment;
+import com.damenghai.chahuitong.ui.fragment.TravelFragment;
 import com.damenghai.chahuitong.utils.ViewHolder;
 import com.damenghai.chahuitong.view.RoundImageView;
 import com.lidroid.xutils.BitmapUtils;
@@ -113,14 +105,14 @@ public class CoterieActivity extends BaseFragmentActivity {
     }
 
     private class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final String[] TITLES = new String[] {"关注", "晒一晒", "活动", "评论"};
+        private final String[] TITLES = new String[] {"关注", "晒一晒", "茶聚聚", "评论"};
         private ArrayList<Fragment> mFragments = new ArrayList<Fragment>();
 
         public ViewPagerAdapter(FragmentManager fm) {
             super(fm);
             mFragments.add(new LeaderFragment());
-            mFragments.add(new TopicFragment());
-            mFragments.add(new LeaderFragment());
+            mFragments.add(new MyStatusFragment());
+            mFragments.add(new TravelFragment());
             mFragments.add(new CommentFragment());
         }
 
@@ -141,15 +133,4 @@ public class CoterieActivity extends BaseFragmentActivity {
 
     }
 
-    private class ListAdapter extends CommonAdapter<Status> {
-
-        public ListAdapter(Context context, List<Status> mDatas, int resId) {
-            super(context, mDatas, resId);
-        }
-
-        @Override
-        public void convert(ViewHolder holder, Status status) {
-            holder.setText(R.id.coterie_text, status.getText());
-        }
-    }
 }

@@ -109,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/piece"
                 android:layout_marginRight="20dp"
-                android:textSize="@dimen/text_size_large"
+                android:textSize="@dimen/text_title"
 
                 />
 			

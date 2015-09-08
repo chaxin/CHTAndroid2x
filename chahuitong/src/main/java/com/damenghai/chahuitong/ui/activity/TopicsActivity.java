@@ -6,13 +6,28 @@ import android.view.View;
 import android.widget.GridView;
 import android.widget.ListView;
 
-import com.damenghai.chahuitong.BaseActivity;
+import com.damenghai.chahuitong.adapter.StatusesAdapter;
+import com.damenghai.chahuitong.api.HodorAPI;
+import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.CommonAdapter;
 import com.damenghai.chahuitong.adapter.GridViewImagesAdapter;
 import com.damenghai.chahuitong.bean.ImageUrls;
-import com.damenghai.chahuitong.bean.Topic;
+import com.damenghai.chahuitong.bean.Leader;
+import com.damenghai.chahuitong.bean.Status;
+import com.damenghai.chahuitong.bean.response.TopicResponse;
+import com.damenghai.chahuitong.request.VolleyRequest;
+import com.damenghai.chahuitong.utils.L;
+import com.damenghai.chahuitong.utils.T;
 import com.damenghai.chahuitong.utils.ViewHolder;
+import com.google.gson.Gson;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnLastItemVisibleListener;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,15 +35,12 @@ import java.util.List;
 /**
  * Created by Sgun on 15/8/23.
  */
-public class TopicsActivity extends BaseActivity {
-    private View mHeader;
-    private GridView mGvHeader;
-    private ListView mListView;
+public class TopicsActivity extends BaseActivity implements OnLastItemVisibleListener, OnRefreshListener {
+    private PullToRefreshListView mListView;
 
-    private ArrayList<Topic> mTopics;
-    private ArrayList<ImageUrls> mGvImages;
-    private GridViewImagesAdapter mGvAdapter;
+    private ArrayList<Status> mTopics;
     private ListViewAdapter mLvAdapter;
+    private int mCurrPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,71 +50,105 @@ public class TopicsActivity extends BaseActivity {
         findViewById();
 
         initView();
+
+        loadData(1);
     }
 
     private void findViewById() {
-        mHeader = View.inflate(this, R.layout.header_topics_listview, null);
-        mGvHeader = (GridView) mHeader.findViewById(R.id.wrap_gridview_images);
-        mListView = (ListView) findViewById(R.id.topics_lv);
+        mListView = (PullToRefreshListView) findViewById(R.id.topics_lv);
     }
 
     private void initView() {
-        mTopics = new ArrayList<Topic>();
-        mGvImages = new ArrayList<ImageUrls>();
-        initDatas();
-        mGvAdapter = new GridViewImagesAdapter(this, mGvImages, R.layout.gridview_item_image);
+        mTopics = new ArrayList<Status>();
         mLvAdapter = new ListViewAdapter(this, mTopics, R.layout.listview_item_topic);
-        mGvHeader.setAdapter(mGvAdapter);
-        mListView.addHeaderView(mHeader);
         mListView.setAdapter(mLvAdapter);
+        mListView.setOnLastItemVisibleListener(this);
+        mListView.setOnRefreshListener(this);
     }
 
-    private void initDatas() {
-//        Topic topic = new Topic();
-//        topic.setTitle("当今的普洱茶的收藏价值怎么样");
-//        topic.setFrom("话题主理人：林林林");
-//        topic.setDesc("近几年的普洱茶越来越被大家所熟知和接受，普洱茶的收藏也被大家纷纷提出，其实普洱茶在很早的时候就已经被各大收藏家收藏，现如今");
-//        mTopics.add(topic);
-//
-//        Topic topic2 = new Topic();
-//        topic2.setTitle("当今的普洱茶的收藏价值怎么样");
-//        topic2.setFrom("话题主理人：林林林");
-//        topic2.setDesc("近几年的普洱茶越来越被大家所熟知和接受，普洱茶的收藏也被大家纷纷提出，其实普洱茶在很早的时候就已经被各大收藏家收藏，现如今");
-//        mTopics.add(topic2);
-//
-//        Topic topic3 = new Topic();
-//        topic3.setTitle("当今的普洱茶的收藏价值怎么样");
-//        topic3.setFrom("话题主理人：林林林");
-//        topic3.setDesc("近几年的普洱茶越来越被大家所熟知和接受，普洱茶的收藏也被大家纷纷提出，其实普洱茶在很早的时候就已经被各大收藏家收藏，现如今");
-//        mTopics.add(topic3);
-//
-//        ImageUrls image1 = new ImageUrls();
-//        image1.setResId(R.drawable.test_gridview_image1);
-//        mGvImages.add(image1);
-//
-//        ImageUrls image2 = new ImageUrls();
-//        image2.setResId(R.drawable.test_gridview_image2);
-//        mGvImages.add(image2);
-//
-//        ImageUrls image3 = new ImageUrls();
-//        image3.setResId(R.drawable.test_gridview_image3);
-//        mGvImages.add(image3);
+    private void loadData(final int page) {
+        HodorAPI.leaderStatus(1, page, new VolleyRequest() {
+            @Override
+            public void onSuccess(String response) {
+                super.onSuccess(response);
+                mCurrPage = page;
+
+                if(page == 1) mTopics.clear();
+
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    if (obj.getInt("code") != 404) {
+                        TopicResponse topicResponse = new Gson().fromJson(obj.toString(), TopicResponse.class);
+                        addData(topicResponse);
+                    } else {
+                        T.showShort(TopicsActivity.this, obj.getString("content"));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onAllDone() {
+                super.onAllDone();
+                mListView.onRefreshComplete();
+            }
+        });
     }
 
-    private class ListViewAdapter extends CommonAdapter<Topic> {
+    private void addData(TopicResponse topicResponse) {
+        ArrayList<Status> statuses = topicResponse.getContent();
+        Leader leader = topicResponse.getMemberInfo();
+        for(Status status : statuses) {
+            status.setMemberInfo(leader);
+            if(!mTopics.contains(status)) mTopics.add(status);
+        }
 
-        public ListViewAdapter(Context context, List<Topic> mDatas, int resId) {
-            super(context, mDatas, resId);
+        mLvAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onLastItemVisible() {
+        loadData(1);
+    }
+
+    @Override
+    public void onRefresh(PullToRefreshBase refreshView) {
+        loadData(mCurrPage);
+    }
+
+    private class ListViewAdapter extends StatusesAdapter {
+        private boolean mIsSet = false;
+
+        public ListViewAdapter(Context context, List<Status> statuses, int resId) {
+            super(context, statuses, resId, false);
         }
 
         @Override
-        public void convert(ViewHolder holder, Topic topic) {
-            if(holder.getPosition() == 0) {
-                holder.getView(R.id.topic_item_top).setVisibility(View.VISIBLE);
+        public void convert(ViewHolder holder, Status status) {
+            setImages(holder, status);
+
+            if(holder.getPosition() == 0 && !mIsSet) {
+                holder.setVisibility(R.id.topic_item_top, View.VISIBLE)
+                        .setText(R.id.topic_top_title, "今日新声")
+                        .setVisibility(R.id.topic_top_desc, View.VISIBLE)
+                        .setText(R.id.topic_top_desc, "每日一话");
+                mIsSet = true;
             }
 
-            holder.setText(R.id.topic_item_title, topic.getTitle())
-                    .setText(R.id.topic_item_info, topic.getFrom());
+            if(holder.getPosition() == 1) {
+                holder.setVisibility(R.id.topic_item_top, View.VISIBLE)
+                        .setText(R.id.topic_top_title, "往期话题");
+            }
+
+            holder.setText(R.id.topic_item_title, status.getTitle())
+                    .setText(R.id.topic_item_text, status.getText())
+                    .setText(R.id.topic_item_user, "话题主理人：" + status.getMemberInfo().getMember_name())
+                    .setText(R.id.control_tv_share, status.getShare() + "")
+                    .setText(R.id.control_tv_comment, status.getComment() + "")
+                    .setText(R.id.control_tv_like, status.getView() + "");
+
+            setControl(holder, status);
         }
     }
 }

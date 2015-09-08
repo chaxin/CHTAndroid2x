@@ -19,7 +19,7 @@
         </layer-list>
     </item>
 
-    <item android:state_pressed="true" android:drawable="@color/bg_gray_pressed" />
+    <item android:state_pressed="true" android:drawable="@color/background_pressed" />
 
     <item>
         <layer-list>

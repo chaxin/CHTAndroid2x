@@ -206,7 +206,7 @@ public class NewsFragment extends Fragment {
             holder.setText(R.id.news_item_title, article.getTitle())
                     .setText(R.id.news_item_date, article.getTime())
                     .setText(R.id.news_item_desc, article.getAbstract())
-                    .loadUrlImage(R.id.news_item_image, "http://www.chahuitong.com/data/upload/cms/article/60/" + article.getImage().getName());
+                    .loadDefaultImage(R.id.news_item_image, "http://www.chahuitong.com/data/upload/cms/article/60/" + article.getImage().getName());
         }
     }
 }

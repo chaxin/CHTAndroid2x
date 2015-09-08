@@ -7,6 +7,7 @@
     android:paddingRight="23dp"
     android:paddingBottom="14dp"
     android:background="@drawable/draw_white2gray_sel"
+    android:id="@+id/comment_rl"
     >
 
     <ImageView
@@ -35,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="陈奕迅"
-                android:textSize="@dimen/body_text_size"
+                android:textSize="@dimen/text_body"
                 android:textStyle="bold"
                 />
 
@@ -45,15 +46,6 @@
                 android:layout_weight="1"
                 />
 
-            <TextView
-                android:id="@+id/comment_reply"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="23回复"
-                android:textColor="@color/text_body"
-                android:textSize="@dimen/body_text_size"
-                />
-
         </LinearLayout>
 
         <TextView
@@ -61,8 +53,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2015-8-5 09:40"
-            android:textColor="@color/caption"
-            android:textSize="@dimen/caption_text_size"
+            android:textColor="@color/text_caption"
+            android:textSize="@dimen/text_caption"
             android:paddingTop="7dp"
             android:paddingBottom="13dp"
             />
@@ -71,8 +63,8 @@
             android:id="@+id/comment_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="茶，属于山茶科，为常绿灌木或小乔木植物，植株高达1-6米，茶树喜欢湿润的气候，在中国长江流域以南地区广泛栽培。茶树叶子制成茶叶，泡水后使用。茶树种植3年就可以采叶子。一般清明前后采摘长出4-5个叶的嫩芽，制作茶叶质量非常好，属于珍品。"
-            android:textSize="@dimen/body_text_size"
+            android:text="茶，属于山茶科，为常绿灌木或小乔木植物，植株高达1-6米，"
+            android:textSize="@dimen/text_body"
             android:textColor="@color/text_body"
             android:lineSpacingExtra="3dp"
             android:layout_marginBottom="13dp"

@@ -3,12 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.handmark.pulltorefresh.library.PullToRefreshWebView
-        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+    <WebView
         android:id="@+id/web_webview"
         android:layout_height="fill_parent"
         android:layout_width="fill_parent"
-        ptr:ptrMode="both" />
+        />
 
     <ProgressBar
         android:id="@+id/web_pb"

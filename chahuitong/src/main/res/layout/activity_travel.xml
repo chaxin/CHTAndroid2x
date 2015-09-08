@@ -1,24 +1,241 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    >
 
     <com.damenghai.chahuitong.view.TopBar
+        android:id="@+id/event_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height"
         android:background="@color/primary"
-        app:titleText="茶客聚聚"
+        app:titleText="布郞山"
         app:titleTextColor="@android:color/white"
+        app:titleTextSize="@dimen/text_title"
+        app:leftSrc="@drawable/icon_event_favorites"
+        app:rightSrc="@drawable/icon_event_share"
         />
 
-    <ListView
-        android:id="@+id/travels_lv"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@color/backcolor"
-        android:dividerHeight="10dp"
-        />
+        android:layout_below="@id/event_bar"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@android:color/white"
+            >
 
-</LinearLayout>
+            <com.damenghai.chahuitong.view.BannerViewPager
+                android:id="@+id/travel_banner"
+                android:layout_width="match_parent"
+                android:layout_height="195dp"
+                android:scaleType="centerCrop"
+                />
+
+            <com.viewpagerindicator.CirclePageIndicator
+                android:id="@+id/travel_indicator"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:paddingTop="10dp"
+                app:pageColor="@color/background"
+                app:fillColor="@color/primary"
+                app:snap="true"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="@color/background"
+                />
+
+            <TextView
+                android:id="@+id/travel_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="布朗山之旅"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_title"
+                android:padding="16dp"
+                />
+
+            <TextView
+                android:id="@+id/travel_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="西双版纳"
+                android:textSize="@dimen/text_title"
+                android:textColor="@color/text_body"
+                android:paddingLeft="24dp"
+                android:paddingBottom="12dp"
+                />
+
+            <TextView
+                android:id="@+id/travel_cost"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:background="@color/background_light"
+                android:text="￥6000"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/text_title"
+                android:gravity="center_vertical"
+                android:paddingLeft="24dp"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/background"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="活动详情"
+                android:gravity="center"
+                android:textStyle="bold"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/background"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="24dp"
+                >
+
+                <TextView
+                    style="@style/TextViewBody"
+                    android:id="@+id/travel_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="行程天数：5天"
+                    android:drawableLeft="@drawable/icon_item"
+                    android:drawablePadding="8dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/stroke"
+                    />
+
+                <TextView
+                    style="@style/TextViewBody"
+                    android:id="@+id/travel_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="行程时间：2015-08-01~2015-08-20"
+                    android:drawableLeft="@drawable/icon_item"
+                    android:drawablePadding="8dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/stroke"
+                    />
+
+                <TextView
+                    style="@style/TextViewBody"
+                    android:id="@+id/travel_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="淘茶宣言：布郎山的优质自然条件与生态环境，吸取其精华"
+                    android:drawableLeft="@drawable/icon_item"
+                    android:drawablePadding="8dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:maxLines="2"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/stroke"
+                    />
+
+                <TextView
+                    style="@style/TextViewBody"
+                    android:id="@+id/travel_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="布朗山位于西双版纳勐海县的境内，靠近中缅边境，是著名的普洱茶产区，也是古茶园保留得最多的地区之一，布朗山方圆1000多平方公里。布朗山乡包括班章、老曼峨、曼新龙等村寨"
+                    android:layout_marginTop="33dp"
+                    android:layout_marginBottom="33dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="活动提醒"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextViewBody"
+                    android:text="1.交通：飞机（成都-西双版纳）\n 2.用餐：当地特色风味小吃"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="自费项目"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextViewBody"
+                    android:text="个人消费。\n活动费6000/人"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        >
+        <TextView
+            android:id="@+id/travel_fee"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:text="￥6000"
+            android:background="@android:color/white"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/btn_join"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/correct_primary2dark_sel"
+            android:text="立即报名"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            />
+    </LinearLayout>
+
+</RelativeLayout>

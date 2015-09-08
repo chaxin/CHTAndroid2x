@@ -29,7 +29,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:name=".BaseApplication"
+        android:name=".base.BaseApplication"
         android:theme="@style/AppTheme" >
 
         <!-- ############# 友盟AppKey渠道ID自动更新 ############# -->
@@ -103,10 +103,6 @@
             android:name=".ui.activity.ContentActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.activity.MarketActivity"
-            android:launchMode="singleTop"
-            android:theme="@style/StyledIndicators" />
-        <activity
             android:name=".ui.activity.ProductActivity"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme" />
@@ -123,39 +119,47 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".ui.activity.PersonalActivity" />
         <activity
-            android:name=".BaseActivity"
+            android:name=".base.BaseActivity"
             android:label="@string/title_activity_base" />
         <activity
             android:name=".ui.activity.HomeActivity"
-            android:label="@string/title_activity_home" >
-        </activity>
+            android:label="@string/title_activity_home" />
+
+        <activity
+            android:name=".ui.activity.MarketActivity"
+            android:theme="@style/PrimaryTextIndicators" />
         <activity
             android:name=".ui.activity.ForumActivity"
             >
         </activity>
         <activity
             android:name=".ui.activity.NewsActivity"
-            android:theme="@style/StyledIndicators"
-            >
-        </activity>
+            android:theme="@style/PrimaryTextIndicators"
+            />
         <activity
             android:name=".ui.activity.ShopActivity"
-            android:theme="@style/StyledIndicators."
+            android:theme="@style/WhiteTextTranIndicators"
             >
         </activity>
         <activity android:name=".ui.activity.PublishActivity" />
         <activity
             android:name=".ui.activity.MyTeaMarketActivity"
-            android:theme="@style/StyledIndicators" />
+            android:theme="@style/PrimaryTextIndicators" />
         <activity android:name=".ui.activity.LeadersActivity" />
         <activity android:name=".ui.activity.TopicsActivity" />
-        <activity android:name=".ui.activity.TravleActivity" />
+        <activity android:name=".ui.activity.TravelsActivity" />
         <activity android:name=".ui.activity.StatusesActivity" />
         <activity android:name=".ui.activity.LeaderActivity" />
         <activity android:name=".ui.activity.CommentActivity" />
         <activity
             android:name=".ui.activity.CoterieActivity"
-            android:theme="@style/StyledIndicators.." />
+            android:theme="@style/GrayTextPrimaryIndicators" />
+        <activity android:name=".ui.activity.ImageBrowserActivity" />
+        <activity android:name=".ui.activity.WriteStatusActivity" />
+        <activity android:name=".ui.activity.JoinEventActivity" />
+        <activity android:name=".ui.activity.TravelActivity" />
+        <activity android:name=".ui.activity.InitiateEventActivity" />
+        <activity android:name=".ui.activity.WriteCommentActivity" />
     </application>
 
 </manifest>
