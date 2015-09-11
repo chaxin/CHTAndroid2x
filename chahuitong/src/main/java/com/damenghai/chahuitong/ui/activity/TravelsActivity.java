@@ -1,5 +1,7 @@
 package com.damenghai.chahuitong.ui.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,6 +31,8 @@ import java.util.ArrayList;
  * Created by Sgun on 15/8/23.
  */
 public class TravelsActivity extends BaseActivity implements OnItemClickListener, OnRefreshListener, OnLastItemVisibleListener {
+    private final int REQUEST_CODE_INITIATE = 0x300;
+
     private PullToRefreshListView mPlv;
     private TopBar mTopBar;
 
@@ -56,7 +60,7 @@ public class TravelsActivity extends BaseActivity implements OnItemClickListener
         mTopBar.setOnRightClickListener(new TopBar.onRightClickListener() {
             @Override
             public void onRightClick() {
-                openActivity(InitiateEventActivity.class);
+                openResultActivity(InitiateEventActivity.class, REQUEST_CODE_INITIATE);
             }
         });
 
@@ -118,5 +122,14 @@ public class TravelsActivity extends BaseActivity implements OnItemClickListener
     @Override
     public void onLastItemVisible() {
         loadData(mCurrPage + 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == Activity.RESULT_CANCELED) return;
+
+        if(requestCode == REQUEST_CODE_INITIATE && resultCode == Activity.RESULT_OK) {
+            mPlv.setRefreshing();
+        }
     }
 }

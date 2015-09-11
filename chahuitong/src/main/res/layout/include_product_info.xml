@@ -16,13 +16,12 @@
         <TextView
             android:id="@+id/home_tv_title"
             style="@style/TextViewTitle"
-            android:text="佤山映象冰岛古树普洱茶冰岛古树普洱茶冰岛古树普洱茶" />
+            />
 
         <TextView
             android:id="@+id/home_tv_favorites"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1888"
             android:textColor="@color/text_body"
             android:textSize="@dimen/text_caption"
             android:gravity="right"
@@ -35,7 +34,7 @@
     <TextView
         android:id="@+id/home_tv_desc"
         style="@style/TextViewHomeDesc"
-        android:text="独有的气质和原生态的生长环境独有的气质和原生态的生长环境独有的气质和原生态的生长环境" />
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,7 +48,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="￥2,000"
             android:textColor="@color/primary"
             />
 

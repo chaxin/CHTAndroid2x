@@ -15,13 +15,18 @@ import com.damenghai.chahuitong.config.Constants;
 import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.utils.L;
+import com.damenghai.chahuitong.utils.StringUtils;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
+
+import im.yixin.algorithm.MD5;
 
 /**
  * Created by Sgun on 15/8/13.
@@ -44,6 +49,7 @@ public class HodorAPI {
                 try {
                     JSONObject obj = new JSONObject(response);
                     if(obj.getInt("code") != 404) {
+                        l.onSuccess();
                         l.onListSuccess(obj.getJSONArray("content"));
                     } else {
                         l.onError(obj.getString("content"));
@@ -104,6 +110,52 @@ public class HodorAPI {
             }
         };
         BaseApplication.getRequestQueue().add(request);
+    }
+
+    /**
+     * 发送验证码
+     *
+     * @param mobile
+     * @param code
+     * @param l
+     */
+    public static void sendSMS(String mobile, int code, VolleyRequest l) {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("account", "cf_chahuitong");
+        map.put("password", "chahuitong2015");
+        map.put("mobile", mobile);
+        map.put("content", "你申请的手机验证码是：" + code + "，请不要把验证码泄露给其他人。如非本人操作，请忽略本条消息！");
+        postRequest("http://106.ihuyi.cn/webservice/sms.php?method=Submit", map, l);
+    }
+
+    /**
+     * 注册账号
+     *
+     * @param mobile
+     * @param password
+     * @param l
+     */
+    public static void register(String mobile, String password, VolleyRequest l) {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("mobilenumber", mobile);
+        map.put("password", password);
+        map.put("check", "804451dc13014b1c785fb73b1617b760");
+        postRequest("http://www.chahuitong.com/wap/index.php/Home/Index/add_count_api", map, l);
+    }
+
+    /**
+     * 登录
+     *
+     * @param username
+     * @param password
+     * @param l
+     */
+    public static void login(String username, String password, VolleyRequest l) {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("username", username);
+        map.put("password", password);
+        map.put("client", "android");
+        postRequest("http://www.chahuitong.com/mobile/index.php?act=login", map, l);
     }
 
     /**
@@ -251,6 +303,18 @@ public class HodorAPI {
     }
 
     /**
+     * 分享微博
+     *
+     * @param statusID
+     * @param l
+     */
+    public static void statusShare(int statusID, VolleyRequest l) {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("content_id", statusID + "");
+        postRequest("http://www.chahuitong.com/wap/index.php/Home/Discuz/add_share_api", map, l);
+    }
+
+    /**
      * 获取我发表的微博
      *
      * @param l
@@ -291,6 +355,15 @@ public class HodorAPI {
         postRequest("http://www.chahuitong.com/wap/index.php/Home/Discuz/get_content_comment_api", map, l);
     }
 
+    /**
+     * 提交评论
+     *
+     * @param context
+     * @param content_id
+     * @param comment
+     * @param reply_to
+     * @param l
+     */
     public static void uploadComment(Context context, int content_id, String comment, String reply_to, VolleyRequest l) {
         Map<String, String> map = new HashMap<String, String>();
         map.put("key", SessionKeeper.readSession(context));
@@ -328,8 +401,6 @@ public class HodorAPI {
     /**
      * 获取我的活动列表
      *
-     * @param key
-     * @param username
      * @param l
      */
     public static void myTravelShow(Context context, int page, VolleyRequest l) {

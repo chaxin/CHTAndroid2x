@@ -1,5 +1,7 @@
 package com.damenghai.chahuitong.ui.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +30,8 @@ import java.util.ArrayList;
  * Created by Sgun on 15/8/25.
  */
 public class CommentActivity extends BaseActivity {
+    private final int REQUEST_CODE_WRITE = 0x200;
+
     private Status mStatus;
 
     private TopBar mTopBar;
@@ -80,7 +84,7 @@ public class CommentActivity extends BaseActivity {
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putInt("status_id", mStatus.getContent_id());
-                openActivity(WriteCommentActivity.class, bundle);
+                openResultActivity(WriteCommentActivity.class, REQUEST_CODE_WRITE, bundle);
             }
         });
     }
@@ -113,4 +117,12 @@ public class CommentActivity extends BaseActivity {
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == Activity.RESULT_CANCELED) return;
+
+        if(requestCode == REQUEST_CODE_WRITE && resultCode == Activity.RESULT_OK) {
+            mLv.setRefreshing();
+        }
+    }
 }

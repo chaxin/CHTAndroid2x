@@ -1,58 +1,60 @@
 package com.damenghai.chahuitong.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
+import com.damenghai.chahuitong.api.HodorAPI;
+import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.config.Constants;
 import com.damenghai.chahuitong.config.SessionKeeper;
+import com.damenghai.chahuitong.request.VolleyRequest;
+import com.damenghai.chahuitong.utils.DialogUtils;
 import com.damenghai.chahuitong.utils.HttpUtils;
+import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.T;
+import com.damenghai.chahuitong.view.FlippingLoadingDialog;
 
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class LoginActivity extends BaseActivity {
-
-    /**
-     * 登录请求接口
-     */
-    private final String LOGIN_IN_URL = "/index.php?act=login";
-
-    /**
-     * 注册请求接口
-     */
-    private final String REGISTER_URL = "/index.php?act=login&op=register";
-
-    /**
-     * 登录请求参数：客户端标识
-     */
-    private final String CLIENT_AGENT = "android";
-
-    public static final int LOGIN_RESULT_CODE = 0;
-    public static final int LOGOUT_RESULT_CODE = 1;
-
-    SharedPreferences mSp;
+public class LoginActivity extends BaseActivity implements TextWatcher, View.OnClickListener {
     private Drawable drawable;
-    private String mUsernameText, mPasswordText, mRegisterUsernameText, mRegisterPasswordText, mRegisterConfirmText, mRegisterEmailText;
+    private String mUsernameText, mPasswordText;
     private ImageView mBtnBack;
     private LinearLayout mLoginLayout, mRegisterLayout;
-    private EditText mLoginUsername, mLoginPassword, mRegisterUsername, mRegisterPassword, mRegisterEmail, mRegisterConfirm;
+    private EditText mLoginUsername, mLoginPassword, mRegPassword;
+    private EditText mEtPhone;
+    private EditText mEtCode;
+    private Button mBtSend;
     private Button mTabLogin, mTabRegister, mBtnLoginIn, mBtnRegister;
     private ImageView mBtnHome;
+
+    private int mCode;
+
+    private CountTimer mTimer;
+
+    private FlippingLoadingDialog mDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,11 +78,12 @@ public class LoginActivity extends BaseActivity {
         mLoginPassword = (EditText) findViewById(R.id.id_input_password);
         mBtnLoginIn = (Button) findViewById(R.id.id_btn_login_in);
 
-        mRegisterUsername = (EditText) findViewById(R.id.id_editUsername);
-        mRegisterPassword = (EditText) findViewById(R.id.id_editPassword);
-        mRegisterEmail = (EditText) findViewById(R.id.id_editEmail);
-        mRegisterConfirm = (EditText) findViewById(R.id.id_editConfirm);
+        mRegPassword = (EditText) findViewById(R.id.register_password);
         mBtnRegister = (Button) findViewById(R.id.id_btn_register);
+
+        mEtPhone = (EditText) findViewById(R.id.register_phone);
+        mEtCode = (EditText) findViewById(R.id.register_code);
+        mBtSend = (Button) findViewById(R.id.register_send);
     }
 
     private void initView() {
@@ -88,15 +91,12 @@ public class LoginActivity extends BaseActivity {
         drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
         mTabLogin.setCompoundDrawables(null, null, null, drawable);
 
-        mTabLogin.setOnClickListener(new ChangeTabListener());
-        mTabRegister.setOnClickListener(new ChangeTabListener());
-
         // 单击返回按钮
         mBtnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setResult(Activity.RESULT_CANCELED);
-                finish();
+                finishActivity();
             }
         });
 
@@ -110,127 +110,214 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
+        mTabLogin.setOnClickListener(this);
+        mTabRegister.setOnClickListener(this);
+
+        // 发送验证码
+        mBtSend.setOnClickListener(this);
+
+        // 监听输入手机号码
+        mEtPhone.addTextChangedListener(this);
+
         // 单击登录按钮
-        mBtnLoginIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mLoginUsername.length() <= 0) {
-                    Toast.makeText(LoginActivity.this, "用户名不能为空", Toast.LENGTH_SHORT).show();
-                } else if (mLoginPassword.length() <= 0) {
-                    Toast.makeText(LoginActivity.this, "密码不能为空", Toast.LENGTH_SHORT).show();
-                } else {
-                    mUsernameText = mLoginUsername.getText().toString();
-                    mPasswordText = mLoginPassword.getText().toString();
-
-                    requestData(Constants.API_URL + LOGIN_IN_URL, "username=" + mUsernameText + "&password=" + mPasswordText + "&client=" + CLIENT_AGENT);
-                }
-            }
-        });
-
+        mBtnLoginIn.setOnClickListener(this);
         // 单击立即注册按钮
-        mBtnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mRegisterUsername.length() <= 0) {
-                    T.showShort(LoginActivity.this, "用户名不能为空");
-                } else if (mRegisterPassword.length() <= 0) {
-                    T.showShort(LoginActivity.this, "密码不能为空");
-                } else if (mRegisterPassword.length() < 6) {
-                    T.showShort(LoginActivity.this, "密码长度不为小6位");
-                } else if (mRegisterEmail.length() <= 0) {
-                    T.showShort(LoginActivity.this, "邮箱地址不能为空");
-                } else if (mRegisterConfirm.length() <= 0) {
-                    T.showShort(LoginActivity.this, "确认密码不能为空");
-                } else {
-                    Pattern pattern = Pattern.compile("([a-zA-z0-9-_])+@([a-zA-z0-9-_])+.([a-zA-z0-9-_])+");
-                    Matcher matcher = pattern.matcher(mRegisterEmail.getText().toString());
-                    if (!matcher.matches()) {
-                        T.showShort(LoginActivity.this, "邮箱格式不正确");
-                    } else if (!mRegisterPassword.getText().toString().equals(mRegisterConfirm.getText().toString())) {
-                        T.showShort(LoginActivity.this, "两次密码输入不一致");
-                    } else {
-                        mRegisterUsernameText = mRegisterUsername.getText().toString();
-                        mRegisterPasswordText = mRegisterPassword.getText().toString();
-                        mRegisterConfirmText = mRegisterConfirm.getText().toString();
-                        mRegisterEmailText = mRegisterEmail.getText().toString();
-                        String params = "username=" + mRegisterUsernameText + "&password=" + mRegisterPasswordText
-                                + "&password_confirm=" + mRegisterConfirmText + "&email=" + mRegisterEmailText + "&client=" + CLIENT_AGENT;
+        mBtnRegister.setOnClickListener(this);
 
-                        requestData(Constants.API_URL + REGISTER_URL, params);
+    }
+
+    private void getCode() {
+        String mobile = mEtPhone.getText().toString();
+
+        mCode = (int)((Math.random()*9+1)*100000);
+
+        HodorAPI.sendSMS(mobile, mCode, new VolleyRequest() {
+            @Override
+            public void onSuccess(String response) {
+                super.onSuccess(response);
+
+                try {
+                    Document doc = DocumentHelper.parseText(response);
+                    Element root = doc.getRootElement();
+
+                    String code = root.elementText("code");
+                    String msg = root.elementText("msg");
+
+                    if (!"2".equals(code)) {
+                        T.showShort(LoginActivity.this, msg);
                     }
+
+                } catch (DocumentException e) {
+                    e.printStackTrace();
                 }
             }
         });
     }
 
-    // 异步请求网络数据
-    private void requestData(String url, String params) {
-        try {
-            HttpUtils.doPostAsyn(url, params, new HttpUtils.CallBack() {
-                @Override
-                public void onRequestComplete(String result) {
-                    if(result != null && !result.equals("")) {
-                        try {
-                            JSONObject json = new JSONObject(result);
-                            JSONObject datas = json.getJSONObject("datas");
-                            if (!datas.has("error")) {
-                                String username = datas.getString("username");
-                                String key = datas.getString("key");
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                                if(username != null && key != null && !username.trim().equals("") && !key.trim().equals("")) {
-                                    SessionKeeper.writeSession(LoginActivity.this, key);
-                                    SessionKeeper.writeUsername(LoginActivity.this, username);
-                                    setResult(LOGIN_RESULT_CODE);
-                                    finish();
+    }
+
+    @SuppressLint("NewApi")
+    @Override
+    public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+        String phone = mEtPhone.getText().toString();
+        if(phone.length() == 11) {
+            mBtSend.setBackground(getResources().getDrawable(R.drawable.draw_primary2dark_sel));
+            mBtSend.setEnabled(true);
+        }
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.id_btn_login_in :
+                if (mLoginUsername.length() <= 0) {
+                    T.showShort(LoginActivity.this, "手机号不能为空");
+                } else if (mLoginPassword.length() <= 0) {
+                    T.showShort(LoginActivity.this, "密码不能为空");
+                } else {
+                    mUsernameText = mLoginUsername.getText().toString();
+                    mPasswordText = mLoginPassword.getText().toString();
+
+                    if(mDialog == null) {
+                        mDialog = new FlippingLoadingDialog(LoginActivity.this);
+                    }
+                    mDialog.show();
+
+                    HodorAPI.login(mUsernameText, mPasswordText, new VolleyRequest(mDialog) {
+                        @Override
+                        public void onSuccess(String response) {
+                            super.onSuccess(response);
+                            try {
+                                JSONObject obj = new JSONObject(response);
+
+                                if(obj.getInt("code") == 200) {
+                                    T.showShort(LoginActivity.this, "登录成功");
+                                    JSONObject datas = obj.getJSONObject("datas");
+                                    SessionKeeper.writeSession(LoginActivity.this, datas.getString("key"));
+                                    SessionKeeper.writeUsername(LoginActivity.this, datas.getString("username"));
+                                    setResult(Activity.RESULT_OK);
+                                    finishActivity();
+                                } else {
+                                    T.showShort(LoginActivity.this, "登录失败");
                                 }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void onAllDone() {
+                            super.onAllDone();
+                            DialogUtils.createLoadingDialog(LoginActivity.this).dismiss();
+                        }
+                    });
+                }
+                break;
+            case R.id.register_send :
+                if(mTimer == null) {
+                    mTimer = new CountTimer(60000, 1000);
+                }
+                mTimer.start();
+                mBtSend.setBackgroundResource(R.color.primary_light);
+                getCode();
+                break;
+            case R.id.id_btn_register :
+                String mobile = mEtPhone.getText().toString();
+                String password = mRegPassword.getText().toString();
+                String code = mEtCode.getText().toString();
+
+                if(TextUtils.isEmpty(mobile) || mobile.length() != 11) {
+                    T.showShort(LoginActivity.this, "请填写正确的手机号码");
+                    return;
+                }
+                if(TextUtils.isEmpty(password)) {
+                    T.showShort(LoginActivity.this, "请填写密码");
+                    return;
+                }
+                if(TextUtils.isEmpty(code)) {
+                    T.showShort(LoginActivity.this, "请填写手机号后获取验证码");
+                    return;
+                }
+
+                if(!code.equals(mCode + "")) {
+                    T.showShort(LoginActivity.this, "验证码错误");
+                    return;
+                }
+
+                if(mDialog == null) {
+                    mDialog = new FlippingLoadingDialog(LoginActivity.this);
+                }
+                mDialog.show();
+
+                HodorAPI.register(mobile, password, new VolleyRequest(mDialog) {
+                    @Override
+                    public void onSuccess(String response) {
+                        super.onSuccess(response);
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if(obj.getInt("code") == 200) {
+                                T.showShort(LoginActivity.this, "注册成功");
+                                SessionKeeper.writeSession(LoginActivity.this, obj.getString("key"));
+                                SessionKeeper.writeUsername(LoginActivity.this, "username");
+                                setResult(Activity.RESULT_OK);
+                                finishActivity();
                             } else {
-                                final String error = datas.getString("error");
-                                if(error != null && !error.trim().equals("")) {
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            T.showShort(LoginActivity.this, error);
-                                        }
-                                    });
-                                }
+                                T.showShort(LoginActivity.this, obj.getString("content"));
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
+                });
+
+                break;
+            case R.id.id_tab_login :
+                if(!mTabLogin.isSelected()) {
+                    mTabLogin.setSelected(true);
+                    mTabLogin.setCompoundDrawables(null, null, null, drawable);
+                    mTabRegister.setSelected(false);
+                    mTabRegister.setCompoundDrawables(null, null, null, null);
+                    mLoginLayout.setVisibility(View.VISIBLE);
+                    mRegisterLayout.setVisibility(View.GONE);
                 }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
+                break;
+            case R.id.id_tab_register :
+                if(!mTabRegister.isSelected()) {
+                    mTabRegister.setSelected(true);
+                    mTabRegister.setCompoundDrawables(null, null, null, drawable);
+                    mTabLogin.setSelected(false);
+                    mTabLogin.setCompoundDrawables(null, null, null, null);
+                    mRegisterLayout.setVisibility(View.VISIBLE);
+                    mLoginLayout.setVisibility(View.GONE);
+                }
+                break;
         }
     }
 
-    // 切换标签
-    private class ChangeTabListener implements View.OnClickListener {
+    /* 定义一个倒计时的内部类 */
+    class CountTimer extends CountDownTimer {
+        public CountTimer(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
         @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.id_tab_login :
-                    if(!mTabLogin.isSelected()) {
-                        mTabLogin.setSelected(true);
-                        mTabLogin.setCompoundDrawables(null, null, null, drawable);
-                        mTabRegister.setSelected(false);
-                        mTabRegister.setCompoundDrawables(null, null, null, null);
-                        mLoginLayout.setVisibility(View.VISIBLE);
-                        mRegisterLayout.setVisibility(View.GONE);
-                    }
-                    break;
-                case R.id.id_tab_register :
-                    if(!mTabRegister.isSelected()) {
-                        mTabRegister.setSelected(true);
-                        mTabRegister.setCompoundDrawables(null, null, null, drawable);
-                        mTabLogin.setSelected(false);
-                        mTabLogin.setCompoundDrawables(null, null, null, null);
-                        mRegisterLayout.setVisibility(View.VISIBLE);
-                        mLoginLayout.setVisibility(View.GONE);
-                    }
-                    break;
-            }
+        public void onTick(long l) {
+            mBtSend.setEnabled(false);
+            mBtSend.setText("(" + l/1000 + "秒)");
+        }
+
+        @Override
+        public void onFinish() {
+            mBtSend.setEnabled(true);
+            mBtSend.setText("发送验证码");
         }
     }
 }

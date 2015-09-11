@@ -1,5 +1,6 @@
 package com.damenghai.chahuitong.ui.activity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -67,7 +68,8 @@ public class WriteCommentActivity extends BaseActivity implements View.OnClickLi
                 public void onSuccess() {
                     super.onSuccess();
                     T.showShort(WriteCommentActivity.this, "评论成功");
-                    finish();
+                    setResult(Activity.RESULT_OK);
+                    finishActivity();
                 }
             });
         }

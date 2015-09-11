@@ -1,5 +1,6 @@
 package com.damenghai.chahuitong.ui.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -21,7 +22,6 @@ public class ContentActivity extends BaseActivity implements NewWebView.OnReceiv
 	private String mUrl, mTitle;
 	private TopBar mTopBar;
 	private NewWebView mWebView;
-	private Navigation mNavigation;
 
 	// 友盟分享成员变量
 	final UMSocialService mController = UMServiceFactory.getUMSocialService("com.umeng.share");
@@ -30,7 +30,6 @@ public class ContentActivity extends BaseActivity implements NewWebView.OnReceiv
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_content);
-
 
 		findViewById();
 		initView();
@@ -49,7 +48,6 @@ public class ContentActivity extends BaseActivity implements NewWebView.OnReceiv
 	private void findViewById() {
 		mTopBar = (TopBar) findViewById(R.id.topBar);
 		mWebView = (NewWebView) findViewById(R.id.new_webview);
-		mNavigation = (Navigation) findViewById(R.id.web_navigation);
 	}
 
 	private void initView() {
@@ -66,8 +64,7 @@ public class ContentActivity extends BaseActivity implements NewWebView.OnReceiv
 		mTopBar.setOnLeftClickListener(new OnLeftClickListener() {
 			@Override
 			public void onLeftClick() {
-				overridePendingTransition(R.anim.slide_left_in, R.anim.slide_right_out);
-				finish();
+				finishActivity();
 			}
 		});
 
@@ -127,13 +124,12 @@ public class ContentActivity extends BaseActivity implements NewWebView.OnReceiv
 		if(ssoHandler != null){
 			ssoHandler.authorizeCallBack(requestCode, resultCode, data);
 		}
+
+		if(resultCode == Activity.RESULT_CANCELED) return;
 		
-		if(resultCode == LoginActivity.LOGIN_RESULT_CODE) {
+		if(requestCode == NewWebView.LOGIN_IN_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
 			mWebView.setCookie("key", SessionKeeper.readSession(this));
 			mWebView.setCookie("username", SessionKeeper.readUsername(this));
-		} else if(resultCode == LoginActivity.LOGOUT_RESULT_CODE) {
-			SessionKeeper.clearSession(ContentActivity.this);
-			mWebView.removeCookie();
 		}
 	}
 

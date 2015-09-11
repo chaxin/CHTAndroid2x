@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.damenghai.chahuitong.R;
+import com.damenghai.chahuitong.base.BaseFragmentActivity;
 import com.damenghai.chahuitong.bean.Brand;
 import com.damenghai.chahuitong.ui.fragment.BrandFragment;
 import com.damenghai.chahuitong.view.TopBar;
@@ -20,7 +21,7 @@ import java.util.List;
 /**
  * Created by Sgun on 15/8/10.
  */
-public class ShopActivity extends FragmentActivity {
+public class ShopActivity extends BaseFragmentActivity {
     private Adapter mAdapter;
     private ViewPager mViewpager;
     private TabPageIndicator mIndicator;
@@ -51,7 +52,7 @@ public class ShopActivity extends FragmentActivity {
         mTopBar.setOnLeftClickListener(new TopBar.OnLeftClickListener() {
             @Override
             public void onLeftClick() {
-                finish();
+                finishActivity();
             }
         });
 

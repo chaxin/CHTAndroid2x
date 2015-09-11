@@ -76,7 +76,6 @@
             <ImageView
                 style="@style/ImageViewHomeProduct"
                 android:id="@+id/home_iv_product"
-                android:src="@drawable/default_load_image"
                 />
 
             <include

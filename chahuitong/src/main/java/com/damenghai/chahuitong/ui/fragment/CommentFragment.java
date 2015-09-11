@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListView;
 
 import com.damenghai.chahuitong.base.BaseFragment;
 import com.damenghai.chahuitong.R;
@@ -53,17 +52,16 @@ public class CommentFragment extends BaseFragment {
             }
         });
 
-        loadDatas();
+        loadData();
 
         return mView;
     }
 
-    private void loadDatas() {
+    private void loadData() {
         HodorAPI.myCommentShow(getActivity(), new VolleyRequest() {
             @Override
             public void onSuccess(String response) {
                 super.onSuccess(response);
-                L.d(response);
                 try {
                     JSONArray array = new JSONObject(response).getJSONArray("content");
                     for (int i = 0; i < array.length(); i++) {

@@ -57,7 +57,7 @@ public class WriteStatusActivity extends BaseActivity implements AdapterView.OnI
         mTopBar.setOnLeftClickListener(new TopBar.OnLeftClickListener() {
             @Override
             public void onLeftClick() {
-                finish();
+                finishActivity();
             }
         });
         mCommit.setOnClickListener(this);
@@ -121,7 +121,7 @@ public class WriteStatusActivity extends BaseActivity implements AdapterView.OnI
                 public void onSuccess(String response) {
                     super.onSuccess(response);
                     T.showShort(WriteStatusActivity.this, "发送成功");
-                    finish();
+                    finishActivity();
                 }
             });
         }

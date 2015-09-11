@@ -1,5 +1,6 @@
 package com.damenghai.chahuitong.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.damenghai.chahuitong.R;
@@ -13,6 +14,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnLastItemVisibleListener;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.umeng.socialize.sso.UMSsoHandler;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,7 +41,7 @@ public class StatusesActivity extends BaseActivity implements OnRefreshListener,
 
         initView();
 
-        loadDatas(1);
+        loadData(1);
     }
     private void findViewById() {
         mLv = (PullToRefreshListView) findViewById(R.id.statuses_lv);
@@ -53,19 +55,19 @@ public class StatusesActivity extends BaseActivity implements OnRefreshListener,
         mLv.setOnLastItemVisibleListener(this);
     }
 
-    private void loadDatas(final int page) {
+    private void loadData(final int page) {
         HodorAPI.statusShow(page, new VolleyRequest() {
             @Override
             public void onListSuccess(JSONArray array) {
                 super.onListSuccess(array);
-                if(page == 1) mStatuses.clear();
+                if (page == 1) mStatuses.clear();
 
                 mCurrPage = page;
 
-                for(int i=0; i<array.length(); i++) {
+                for (int i = 0; i < array.length(); i++) {
                     try {
                         Status status = new Gson().fromJson(array.getString(i), Status.class);
-                        if(!mStatuses.contains(status)) mStatuses.add(status);
+                        if (!mStatuses.contains(status)) mStatuses.add(status);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -83,11 +85,11 @@ public class StatusesActivity extends BaseActivity implements OnRefreshListener,
 
     @Override
     public void onRefresh(PullToRefreshBase refreshView) {
-        loadDatas(1);
+        loadData(1);
     }
 
     @Override
     public void onLastItemVisible() {
-        loadDatas(mCurrPage + 1);
+        loadData(mCurrPage + 1);
     }
 }

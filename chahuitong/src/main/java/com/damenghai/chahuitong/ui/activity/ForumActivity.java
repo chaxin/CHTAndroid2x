@@ -130,7 +130,7 @@ public class ForumActivity extends BaseFragmentActivity implements View.OnClickL
         mTopBar.setOnLeftClickListener(new TopBar.OnLeftClickListener() {
             @Override
             public void onLeftClick() {
-                finish();
+                finishActivity();
             }
         });
 

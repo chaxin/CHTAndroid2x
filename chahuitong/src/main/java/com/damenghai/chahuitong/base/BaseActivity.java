@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.view.KeyEvent;
 
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.config.Constants;
 import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.ui.activity.LoginActivity;
+import com.damenghai.chahuitong.utils.L;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.socialize.controller.UMServiceFactory;
@@ -28,7 +30,7 @@ public class BaseActivity extends Activity {
     protected SharedPreferences sp;
 
     // 友盟分享成员变量
-    final protected UMSocialService mController = UMServiceFactory.getUMSocialService("com.umeng.share");
+    final public UMSocialService mController = UMServiceFactory.getUMSocialService("com.umeng.share");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,7 @@ public class BaseActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         /**使用SSO授权必须添加如下代码 */
         UMSsoHandler ssoHandler = mController.getConfig().getSsoHandler(requestCode) ;
         if(ssoHandler != null){
@@ -114,11 +117,20 @@ public class BaseActivity extends Activity {
         super.onStop();
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK) {
+            finishActivity();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
     /**
      * 通过类名启动Activity
      * @param pClass
      */
-    public void openActivity(Class<? extends Activity> pClass) {
+    protected void openActivity(Class<? extends Activity> pClass) {
         openActivity(pClass, null);
     }
 
@@ -127,7 +139,7 @@ public class BaseActivity extends Activity {
      * @param pClass
      * @param pBundle
      */
-    public void openActivity(Class<? extends Activity> pClass, Bundle pBundle) {
+    protected void openActivity(Class<? extends Activity> pClass, Bundle pBundle) {
         Intent intent = new Intent(this, pClass);
         if(pBundle != null) {
             intent.putExtras(pBundle);
@@ -140,7 +152,7 @@ public class BaseActivity extends Activity {
      * 通过Action启动Activity
      * @param pAction
      */
-    public void openActivity(String pAction) {
+    protected void openActivity(String pAction) {
         openActivity(pAction, null);
     }
 
@@ -149,7 +161,7 @@ public class BaseActivity extends Activity {
      * @param pAction
      * @param pBundle
      */
-    public void openActivity(String pAction, Bundle pBundle) {
+    protected void openActivity(String pAction, Bundle pBundle) {
         Intent intent = new Intent(pAction);
         if(pBundle != null) {
             intent.putExtras(pBundle);
@@ -163,15 +175,19 @@ public class BaseActivity extends Activity {
      * @param clazz
      * @param requestCode
      */
-    public void openResultActivity(Class<? extends Activity> clazz, int requestCode) {
+    protected void openResultActivity(Class<? extends Activity> clazz, int requestCode) {
         openResultActivity(clazz, requestCode, null);
     }
 
-    public void openResultActivity(Class<? extends Activity> clazz, int requestCode, Bundle bundle) {
+    protected void openResultActivity(Class<? extends Activity> clazz, int requestCode, Bundle bundle) {
         Intent intent = new Intent(this, clazz);
         if(bundle != null) intent.putExtras(bundle);
         startActivityForResult(intent, requestCode);
         overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
     }
 
+    protected void finishActivity() {
+        this.finish();
+        this.overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+    }
 }

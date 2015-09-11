@@ -1,7 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/background"
+    >
 
     <RelativeLayout
         android:id="@+id/log_header"
@@ -70,14 +72,18 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/login_input_background"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@android:color/white"
+            >
 
             <EditText
                 style="@style/log_editText"
                 android:id="@+id/id_input_username"
+                android:inputType="number"
                 android:drawableLeft="@drawable/icon_username"
-                android:hint="@string/username" />
+                android:hint="手机号码"
+                android:maxLength="11"
+                />
 
             <View style="@style/log_divider" />
 
@@ -98,9 +104,10 @@
             android:layout_marginRight="30dp"
             android:text="@string/forgot_password"
             android:textColor="@color/light_gray" />
+
         <Button
             android:id="@+id/id_btn_login_in"
-            style="@style/log_button"
+            style="@style/CommonButton"
             android:text="@string/login_in" />
     </LinearLayout>
 
@@ -113,63 +120,84 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/login_input_background"
+            android:background="@android:color/white"
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/id_editUsername"
+                android:id="@+id/register_phone"
                 style="@style/log_editText"
                 android:drawableLeft="@drawable/icon_username"
-                android:hint="@string/username" />
+                android:hint="您的手机号码"
+                android:inputType="phone"
+                android:maxLength="11"
+                />
+
+            <View style="@style/log_divider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <EditText
+                    android:id="@+id/register_code"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    style="@style/log_editText"
+                    android:drawableLeft="@drawable/icon_password"
+                    android:hint="输入验证码"
+                    android:inputType="number"
+                    android:maxLength="6"
+                    />
+
+                <Button
+                    android:id="@+id/register_send"
+                    android:layout_width="80dp"
+                    android:layout_height="32dp"
+                    android:text="发送验证码"
+                    android:background="@color/primary_light"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/text_body"
+                    android:gravity="center"
+                    android:enabled="false"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    />
+            </LinearLayout>
 
             <View style="@style/log_divider" />
 
             <EditText
-                android:id="@+id/id_editEmail"
-                style="@style/log_editText"
-                android:drawableLeft="@drawable/icon_email"
-                android:hint="@string/email"
-                android:inputType="textEmailAddress" />
-
-            <View style="@style/log_divider" />
-
-            <EditText
-                android:id="@+id/id_editPassword"
+                android:id="@+id/register_password"
                 style="@style/log_editText"
                 android:drawableLeft="@drawable/icon_password"
                 android:hint="@string/password"
-                android:inputType="textPassword" />
-
-            <View style="@style/log_divider" />
-
-            <EditText
-                android:id="@+id/id_editConfirm"
-                style="@style/log_editText"
-                android:drawableLeft="@drawable/icon_password"
-                android:hint="@string/confirm"
                 android:inputType="textPassword" />
 
         </LinearLayout>
 
         <Button
             android:id="@+id/id_btn_register"
-            style="@style/log_button"
+            style="@style/CommonButton"
             android:text="@string/register_now" />
 
     </LinearLayout>
 
     <ImageView
-        android:layout_width="match_parent"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:src="@drawable/third_party_login_in" />
+        android:src="@drawable/third_party_login_in"
+        android:layout_gravity="center_horizontal"
+        />
 
     <LinearLayout
         android:id="@+id/id_third_icon"
-        android:layout_width="match_parent"
+        android:layout_width="174dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        >
 
         <ImageView
             android:layout_width="0dp"

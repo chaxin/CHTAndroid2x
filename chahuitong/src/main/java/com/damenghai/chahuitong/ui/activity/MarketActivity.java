@@ -45,7 +45,7 @@ public class MarketActivity extends BaseFragmentActivity implements View.OnClick
 		mTopBar.setOnLeftClickListener(new TopBar.OnLeftClickListener() {
 			@Override
 			public void onLeftClick() {
-				finish();
+				finishActivity();
 			}
 		});
 

@@ -117,7 +117,8 @@
         <activity
             android:name=".ui.activity.LoginActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ui.activity.PersonalActivity" />
+        <activity android:name=".ui.activity.PersonalActivity"
+            android:theme="@style/GrayTextPrimaryIndicators" />
         <activity
             android:name=".base.BaseActivity"
             android:label="@string/title_activity_base" />
@@ -151,9 +152,7 @@
         <activity android:name=".ui.activity.StatusesActivity" />
         <activity android:name=".ui.activity.LeaderActivity" />
         <activity android:name=".ui.activity.CommentActivity" />
-        <activity
-            android:name=".ui.activity.CoterieActivity"
-            android:theme="@style/GrayTextPrimaryIndicators" />
+        <activity android:name=".ui.activity.CoterieActivity" />
         <activity android:name=".ui.activity.ImageBrowserActivity" />
         <activity android:name=".ui.activity.WriteStatusActivity" />
         <activity android:name=".ui.activity.JoinEventActivity" />

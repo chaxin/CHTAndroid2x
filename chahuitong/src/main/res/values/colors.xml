@@ -5,6 +5,7 @@
     <!-- 主题蓝 -->
     <color name="primary">#1b8b80</color>
     <color name="primary_dark">#166f66</color>
+    <color name="primary_light">#78c8c0</color>
 
     <color name="background">#ffefefef</color>
     <color name="background_pressed">#e8e8e8</color>

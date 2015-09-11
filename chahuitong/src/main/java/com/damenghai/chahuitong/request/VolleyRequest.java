@@ -1,5 +1,6 @@
 package com.damenghai.chahuitong.request;
 
+import android.app.Dialog;
 import android.content.Context;
 
 import com.android.volley.Response;
@@ -15,6 +16,15 @@ import org.json.JSONObject;
  * Created by Sgun on 15/8/13.
  */
 public class VolleyRequest {
+    private Dialog mDialog;
+
+    public VolleyRequest() {
+    }
+
+    public VolleyRequest(Dialog mDialog) {
+        this.mDialog = mDialog;
+    }
+
     public void onSuccess() {
         onAllDone();
     }
@@ -36,6 +46,10 @@ public class VolleyRequest {
 //        L.d(new String(htmlBodyBytes));
 //    }
 
-    public void onAllDone() {}
+    public void onAllDone() {
+        if(mDialog != null && mDialog.isShowing()) {
+            mDialog.dismiss();
+        }
+    }
 
 }

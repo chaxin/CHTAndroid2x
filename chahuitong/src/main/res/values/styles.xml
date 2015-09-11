@@ -36,24 +36,23 @@
         <item name="android:background">@null</item>
         <item name="android:gravity">center_horizontal</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">@dimen/medium_text_size</item>
+        <item name="android:textSize">@dimen/text_body</item>
         <item name="android:drawableLeft">@drawable/triangle_indicator_selector</item>
     </style>
 
     <!-- 标签内容布局 -->
     <style name="log_layout">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/background_light</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:orientation">vertical</item>
-        <item name="android:layout_marginTop">20dp</item>
         <item name="android:layout_marginBottom">50dp</item>
     </style>
 
     <!-- 登录注册页输入框 -->
     <style name="log_editText">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">50dp</item>
         <item name="android:layout_marginLeft">30dp</item>
         <item name="android:layout_marginRight">10dp</item>
         <item name="android:ems">10</item>
@@ -61,6 +60,7 @@
         <item name="android:drawablePadding">20dp</item>
         <item name="android:paddingTop">15dp</item>
         <item name="android:paddingBottom">15dp</item>
+        <item name="android:textSize">@dimen/text_body</item>
     </style>
 
     <!-- 登录注册页分割线 -->
@@ -71,22 +71,6 @@
         <item name="android:layout_marginLeft">30dp</item>
         <item name="android:layout_marginRight">10dp</item>
     </style>
-
-    <!-- 登录注册页按钮样式 -->
-    <style name="log_button">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingTop">9dp</item>
-        <item name="android:paddingBottom">9dp</item>
-        <item name="android:layout_marginRight">30dp</item>
-        <item name="android:layout_marginLeft">30dp</item>
-        <item name="android:background">@color/primary</item>
-        <item name="android:layout_gravity">center_horizontal</item>
-        <item name="android:layout_marginTop">20dp</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">@dimen/medium_text_size</item>
-    </style>
-    <!-- 登录注册页 -->
 
     <!-- 茶市发布产品页 -->
 
@@ -178,9 +162,13 @@
     </style>
     
     <style name="DialogLoadding" parent="android:Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowContentOverlay">@null</item>
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowSoftInputMode">adjustPan</item>
     </style>
 
     <!-- 首页按钮 -->

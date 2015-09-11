@@ -8,25 +8,33 @@ import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.api.HodorAPI;
 import com.damenghai.chahuitong.base.BaseActivity;
+import com.damenghai.chahuitong.base.BaseFragmentActivity;
 import com.damenghai.chahuitong.bean.ImageUrls;
 import com.damenghai.chahuitong.bean.Status;
 import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.ui.activity.CommentActivity;
 import com.damenghai.chahuitong.ui.activity.ImageBrowserActivity;
+import com.damenghai.chahuitong.ui.activity.StatusesActivity;
 import com.damenghai.chahuitong.utils.ImageConfigHelper;
 import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.T;
 import com.damenghai.chahuitong.utils.ViewHolder;
 import com.damenghai.chahuitong.view.WrapHeightGridView;
 import com.lidroid.xutils.BitmapUtils;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.bean.SocializeEntity;
+import com.umeng.socialize.controller.listener.SocializeListeners;
+import com.umeng.socialize.media.UMImage;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -141,13 +149,60 @@ public class StatusesAdapter extends CommonAdapter<Status> {
     protected void setControl(final ViewHolder holder, final Status status) {
         LinearLayout statusComment = holder.getView(R.id.control_comment);
         LinearLayout statusShare = holder.getView(R.id.control_share);
-        final LinearLayout statusLike = holder.getView(R.id.control_like);
+        LinearLayout statusLike = holder.getView(R.id.control_like);
         statusShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(mContext instanceof BaseActivity) {
-                    Activity activity = (BaseActivity) mContext;
+                    BaseActivity activity = (BaseActivity) mContext;
+                    activity.mController.setShareContent(status.getText() + ", http://t.cn/RyU8vSP");
+                    if (status.getThumbImage() != null && !status.getThumbImage().equals(""))
+                        activity.mController.setShareImage(new UMImage(mContext, status.getThumbImage()));
+                    else if(status.getMemberInfo() != null && !status.getMemberInfo().getMember_avatar().equals(""))
+                        activity.mController.setShareImage(new UMImage(mContext, status.getMemberInfo().getMember_avatar()));
+                    activity.mController.openShare(activity, new SocializeListeners.SnsPostListener() {
+                        @Override
+                        public void onStart() {
+                            L.d("开始分享");
+                        }
 
+                        @Override
+                        public void onComplete(SHARE_MEDIA share_media, int i, SocializeEntity socializeEntity) {
+                            HodorAPI.statusShare(status.getContent_id(), new VolleyRequest() {
+                                @Override
+                                public void onSuccess() {
+                                    super.onSuccess();
+                                    int shareCount = Integer.parseInt(((TextView) holder.getView(R.id.control_tv_share)).getText().toString());
+                                    holder.setText(R.id.control_tv_share, shareCount + 1 + "");
+                                }
+                            });
+                        }
+                    });
+                } else if(mContext instanceof BaseFragmentActivity) {
+                    BaseFragmentActivity activity = (BaseFragmentActivity) mContext;
+                    activity.mController.setShareContent(status.getText() + ", http://t.cn/RyU8vSP");
+                    if (status.getThumbImage() != null && !status.getThumbImage().equals(""))
+                        activity.mController.setShareImage(new UMImage(mContext, status.getThumbImage()));
+                    else if(status.getMemberInfo() != null && !status.getMemberInfo().getMember_avatar().equals(""))
+                        activity.mController.setShareImage(new UMImage(mContext, status.getMemberInfo().getMember_avatar()));
+                    activity.mController.openShare(activity, new SocializeListeners.SnsPostListener() {
+                        @Override
+                        public void onStart() {
+                            L.d("开始分享");
+                        }
+
+                        @Override
+                        public void onComplete(SHARE_MEDIA share_media, int i, SocializeEntity socializeEntity) {
+                            HodorAPI.statusShare(status.getContent_id(), new VolleyRequest() {
+                                @Override
+                                public void onSuccess() {
+                                    super.onSuccess();
+                                    int shareCount = Integer.parseInt(((TextView) holder.getView(R.id.control_tv_share)).getText().toString());
+                                    holder.setText(R.id.control_tv_share, shareCount + 1 + "");
+                                }
+                            });
+                        }
+                    });
                 }
             }
         });

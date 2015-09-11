@@ -1,6 +1,7 @@
 package com.damenghai.chahuitong.ui.activity;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -75,7 +76,8 @@ public class InitiateEventActivity extends BaseActivity implements View.OnClickL
         mTopBar.setOnLeftClickListener(new TopBar.OnLeftClickListener() {
             @Override
             public void onLeftClick() {
-                finish();
+                setResult(Activity.RESULT_CANCELED);
+                finishActivity();
             }
         });
 
@@ -162,7 +164,8 @@ public class InitiateEventActivity extends BaseActivity implements View.OnClickL
             public void onSuccess(String response) {
                 super.onSuccess(response);
                 T.showShort(InitiateEventActivity.this, "发送成功");
-                finish();
+                setResult(Activity.RESULT_OK);
+                finishActivity();
             }
 
             @Override

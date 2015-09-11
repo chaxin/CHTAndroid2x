@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.damenghai.chahuitong.R;
+import com.damenghai.chahuitong.base.BaseFragmentActivity;
 import com.damenghai.chahuitong.ui.fragment.NewsFragment;
 import com.damenghai.chahuitong.view.TopBar;
 import com.viewpagerindicator.TabPageIndicator;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 /**
  * Created by Sgun on 15/8/10.
  */
-public class NewsActivity extends FragmentActivity {
+public class NewsActivity extends BaseFragmentActivity {
     /**
      * 茶事
      */
@@ -62,7 +63,7 @@ public class NewsActivity extends FragmentActivity {
         mTopBar.setOnLeftClickListener(new TopBar.OnLeftClickListener() {
             @Override
             public void onLeftClick() {
-                finish();
+                finishActivity();
             }
         });
 

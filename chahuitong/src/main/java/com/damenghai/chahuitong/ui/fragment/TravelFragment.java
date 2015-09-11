@@ -14,15 +14,15 @@ import com.damenghai.chahuitong.base.BaseFragment;
 import com.damenghai.chahuitong.bean.Travel;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.ui.activity.InitiateEventActivity;
-import com.damenghai.chahuitong.ui.activity.TravelsActivity;
+import com.damenghai.chahuitong.ui.activity.TravelActivity;
 import com.damenghai.chahuitong.utils.DateUtils;
 import com.damenghai.chahuitong.utils.DensityUtils;
 import com.damenghai.chahuitong.utils.T;
 import com.damenghai.chahuitong.utils.ViewHolder;
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnLastItemVisibleListener;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 import org.json.JSONArray;
@@ -56,8 +56,8 @@ public class TravelFragment extends BaseFragment implements OnRefreshListener, O
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("travel", mDatas.get(i));
-                openActivity(TravelsActivity.class, bundle);
+                bundle.putSerializable("travel", mDatas.get(i - 1));
+                openActivity(TravelActivity.class, bundle);
             }
         });
 

@@ -31,7 +31,7 @@ public class NewWebView extends RelativeLayout {
      */
     private final String UA_STRING = "/android_client";
 
-    private static final int LOGIN_IN_REQUEST_CODE = 0;
+    public static final int LOGIN_IN_REQUEST_CODE = 0;
 
     private String mUrl;
     private String mKey;

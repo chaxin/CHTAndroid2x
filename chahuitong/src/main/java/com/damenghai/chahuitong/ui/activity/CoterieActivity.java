@@ -1,6 +1,5 @@
 package com.damenghai.chahuitong.ui.activity;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,30 +10,25 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.damenghai.chahuitong.base.BaseFragmentActivity;
 import com.damenghai.chahuitong.R;
-import com.damenghai.chahuitong.adapter.CommonAdapter;
-import com.damenghai.chahuitong.bean.Status;
+import com.damenghai.chahuitong.base.BaseFragmentActivity;
 import com.damenghai.chahuitong.bean.User;
 import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.ui.fragment.CommentFragment;
 import com.damenghai.chahuitong.ui.fragment.LeaderFragment;
 import com.damenghai.chahuitong.ui.fragment.MyStatusFragment;
 import com.damenghai.chahuitong.ui.fragment.TravelFragment;
-import com.damenghai.chahuitong.utils.ViewHolder;
 import com.damenghai.chahuitong.view.RoundImageView;
 import com.lidroid.xutils.BitmapUtils;
 import com.viewpagerindicator.TabPageIndicator;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Sgun on 15/8/26.
  */
 public class CoterieActivity extends BaseFragmentActivity {
     private ViewPager mVp;
-    private ViewPagerAdapter mAdapter;
     private TabPageIndicator mIndicator;
     private RoundImageView mIvAvator;
 
@@ -73,7 +67,7 @@ public class CoterieActivity extends BaseFragmentActivity {
         mIvBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                finishActivity();
             }
         });
 
@@ -88,7 +82,7 @@ public class CoterieActivity extends BaseFragmentActivity {
             }
         });
 
-        mAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        ViewPagerAdapter mAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         mVp.setAdapter(mAdapter);
         mIndicator.setViewPager(mVp);
     }
@@ -130,7 +124,6 @@ public class CoterieActivity extends BaseFragmentActivity {
         public int getCount() {
             return mFragments.size();
         }
-
     }
 
 }

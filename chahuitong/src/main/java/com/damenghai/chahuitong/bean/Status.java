@@ -140,13 +140,23 @@ public class Status implements Serializable {
         imageUrlses = new ArrayList<ImageUrls>();
         if (!image.equals("")) {
             String[] images = image.split(",");
-            for (int i = 0; i < images.length; i++) {
+            for (String image1 : images) {
                 ImageUrls imageUrls = new ImageUrls();
-                imageUrls.setBmiddle_pic("http://www.chahuitong.com/data/upload/qunzi/" + images[i]);
+                imageUrls.setBmiddle_pic("http://www.chahuitong.com/data/upload/qunzi/" + image1);
                 imageUrlses.add(imageUrls);
             }
         }
         return imageUrlses;
+    }
+
+    public String getThumbImage() {
+        if(!image.equals("")) {
+            if(!image.contains(",")) return "http://www.chahuitong.com/data/upload/qunzi/" + image;
+            else {
+                return "http://www.chahuitong.com/data/upload/qunzi/" + image.substring(0, image.indexOf(","));
+            }
+        }
+        return image;
     }
 
 }
