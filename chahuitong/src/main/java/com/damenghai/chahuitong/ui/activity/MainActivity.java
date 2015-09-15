@@ -155,7 +155,7 @@ public class MainActivity extends BaseActivity {
                             public void onLeftClick() {
                                 Bundle bundle = new Bundle();
                                 bundle.putString("url", "http://www.chahuitong.com/wap/index.php/Home/Index/msg");
-                                openActivity(ContentActivity.class, bundle);
+                                openActivity(WebViewActivity.class, bundle);
                             }
                         });
                         mTopBar.setOnRightClickListener(new TopBar.onRightClickListener() {

@@ -22,7 +22,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.CommonAdapter;
 import com.damenghai.chahuitong.api.HodorAPI;
@@ -240,7 +239,7 @@ public class PersonalActivity extends BaseFragmentActivity implements OnItemClic
                 }
                 Bundle bundle = new Bundle();
                 bundle.putString("url", url);
-                openActivity(ContentActivity.class, bundle);
+                openActivity(WebViewActivity.class, bundle);
             } else {
                 openActivityForResult(LoginActivity.class, LOGIN_REQUEST_CODE);
             }

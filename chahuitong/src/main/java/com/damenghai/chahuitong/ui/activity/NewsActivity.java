@@ -3,7 +3,6 @@ package com.damenghai.chahuitong.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -86,7 +85,7 @@ public class NewsActivity extends BaseFragmentActivity {
         mBtnHill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(NewsActivity.this, ContentActivity.class);
+                Intent intent = new Intent(NewsActivity.this, WebViewActivity.class);
                 intent.putExtra("url", "http://www.chahuitong.com/mobile/app/b2b/index.php/News/Index/Home");
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);

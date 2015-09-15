@@ -21,7 +21,7 @@ import com.damenghai.chahuitong.adapter.CommonAdapter;
 import com.damenghai.chahuitong.api.HodorAPI;
 import com.damenghai.chahuitong.bean.Brand;
 import com.damenghai.chahuitong.request.VolleyRequest;
-import com.damenghai.chahuitong.ui.activity.ContentActivity;
+import com.damenghai.chahuitong.ui.activity.WebViewActivity;
 import com.damenghai.chahuitong.utils.ViewHolder;
 import com.damenghai.chahuitong.view.TopBar;
 import com.google.gson.Gson;
@@ -91,7 +91,7 @@ public class BrandFragment extends Fragment implements PullToRefreshBase.OnRefre
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getActivity(), ContentActivity.class);
+                Intent intent = new Intent(getActivity(), WebViewActivity.class);
                 intent.putExtra("url", "http://www.chahuitong.com/wap/index.php/Home/Index/brandGoods/bid/" + mDatas.get(i).getId());
                 startActivity(intent);
             }

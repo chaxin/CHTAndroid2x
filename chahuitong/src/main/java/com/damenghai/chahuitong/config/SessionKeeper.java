@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
-import com.damenghai.chahuitong.ui.activity.ContentActivity;
-
 /**
  * Created by Sgun on 15/8/11.
  */

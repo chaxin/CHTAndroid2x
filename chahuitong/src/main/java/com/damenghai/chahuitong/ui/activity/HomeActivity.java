@@ -122,7 +122,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                         if (goods != null) {
                             Bundle bundleGoods1 = new Bundle();
                             bundleGoods1.putString("url", GOODS_DETAIL + goods.getGoods_id());
-                            openActivity(ContentActivity.class, bundleGoods1);
+                            openActivity(WebViewActivity.class, bundleGoods1);
                         }
                     }
                 });

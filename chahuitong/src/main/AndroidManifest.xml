@@ -100,7 +100,7 @@
             android:launchMode="singleTop"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.activity.ContentActivity"
+            android:name=".ui.activity.WebViewActivity"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".ui.activity.ProductActivity"
@@ -159,6 +159,7 @@
         <activity android:name=".ui.activity.TravelActivity" />
         <activity android:name=".ui.activity.InitiateEventActivity" />
         <activity android:name=".ui.activity.WriteCommentActivity" />
+        <activity android:name=".ui.activity.PayActivity" />
     </application>
 
 </manifest>
