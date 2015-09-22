@@ -1,53 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.damenghai.chahuitong.view.AbScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/article_detail_layout"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbars="none"
     >
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/article_loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="100dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:background="@android:color/white"
+        android:layout_marginTop="300dp"
         >
 
-        <include
-            android:id="@+id/article_topbar"
-            layout="@layout/include_article_detail_topbar" />
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@android:style/Widget.ProgressBar.Small"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="正在加载..."
+            android:layout_marginLeft="10dp"
+            />
+    </LinearLayout>
+
+    <com.damenghai.chahuitong.view.AbScrollView
+        android:id="@+id/article_detail_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:visibility="gone"
+        >
 
         <LinearLayout
+            android:id="@+id/article_ll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/article_topbar"
-            android:background="@android:color/white"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="100dp"
+            >
 
-            <ImageView
+            <include
+                android:id="@+id/article_topbar"
+                layout="@layout/include_article_detail_topbar"/>
+
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:scaleType="centerCrop"
+                android:layout_height="1dp"
+                android:background="@color/stroke"
                 />
 
-            <TextView
-                android:id="@+id/article_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textColor="@color/text_caption" />
-
-            <TextView
-                android:id="@+id/article_content"
+            <WebView
+                android:id="@+id/article_web"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="@dimen/text_body" />
+
+                />
 
         </LinearLayout>
-    </RelativeLayout>
-</com.damenghai.chahuitong.view.AbScrollView>
+    </com.damenghai.chahuitong.view.AbScrollView>
+
+</RelativeLayout>

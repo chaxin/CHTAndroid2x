@@ -16,6 +16,7 @@ import com.damenghai.chahuitong.bean.Comment;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.utils.DensityUtils;
 import com.damenghai.chahuitong.utils.L;
+import com.damenghai.chahuitong.utils.T;
 import com.damenghai.chahuitong.utils.ViewHolder;
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -63,11 +64,17 @@ public class CommentFragment extends BaseFragment {
             public void onSuccess(String response) {
                 super.onSuccess(response);
                 try {
-                    JSONArray array = new JSONObject(response).getJSONArray("content");
-                    for (int i = 0; i < array.length(); i++) {
-                        Comment comment = new Gson().fromJson(array.get(i).toString(), Comment.class);
-                        if (!mDatas.contains(comment)) mDatas.add(comment);
+                    JSONObject obj = new JSONObject(response);
+                    if(obj.getInt("code") == 200) {
+                        JSONArray array = obj.getJSONArray("content");
+                        for (int i = 0; i < array.length(); i++) {
+                            Comment comment = new Gson().fromJson(array.get(i).toString(), Comment.class);
+                            if (!mDatas.contains(comment)) mDatas.add(comment);
+                        }
+                    } else {
+                        T.showShort(getActivity(), obj.getString("content"));
                     }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -87,8 +94,8 @@ public class CommentFragment extends BaseFragment {
         public void convert(ViewHolder holder, Comment comment) {
             holder.setText(R.id.comment_text, comment.getComment())
                     .setText(R.id.comment_time, comment.getComment_time())
-                    .setText(R.id.comment_user, comment.getMemberInfo().getMember_name())
-                    .loadDefaultImage(R.id.comment_avatar, comment.getMemberInfo().getMember_avatar());
+                    .setText(R.id.comment_user, comment.getMember_name())
+                    .loadDefaultImage(R.id.comment_avatar, comment.getMember_avatar());
         }
     }
 }

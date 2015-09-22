@@ -39,7 +39,8 @@ public class ProductActivity extends BaseActivity implements OnLeftClickListener
 		initDatas();
 	}
 
-	public void findViewById() {
+	@Override
+	protected void findViewById() {
 		mTopBar = (TopBar) findViewById(R.id.id_product_topBar);
 		mBanner = (BannerViewPager) findViewById(R.id.id_product_img);
 		mTitle = (TextView) findViewById(R.id.id_product_title);
@@ -56,7 +57,8 @@ public class ProductActivity extends BaseActivity implements OnLeftClickListener
         mIndicator = (CirclePageIndicator) findViewById(R.id.product_indicator);
     }
 
-	private void initView() {
+	@Override
+	protected void initView() {
 		mTopBar.setOnLeftClickListener(this);
 		mContact.setOnClickListener(this);
 	}

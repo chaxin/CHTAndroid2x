@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <com.damenghai.chahuitong.view.TopBar
-        android:id="@+id/initiate_top"
+        android:id="@+id/initiate_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height"
         android:background="@color/primary"
+        app:titleText="报名"
+        app:titleTextColor="@android:color/white"
+        app:titleTextSize="@dimen/text_title"
+        app:leftSrc="@drawable/back_text_normal"
+        app:rightSrc="@drawable/home_text_normal"
         />
 
     <LinearLayout
@@ -18,7 +23,7 @@
         android:orientation="vertical"
         android:paddingLeft="25dp"
         android:paddingRight="25dp"
-        android:layout_below="@id/initiate_top"
+        android:layout_below="@id/initiate_bar"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,7 +71,7 @@
                 android:id="@+id/info_phone"
                 style="@style/CommonEditText"
                 android:inputType="phone"
-                android:ems="10"
+                android:maxLength="11"
                 android:hint="请输入电话"
                 />
         </LinearLayout>
@@ -112,7 +117,7 @@
             android:layout_height="115dp"
             android:inputType="textMultiLine"
             android:layout_gravity="center_horizontal"
-            android:background="@android:color/transparent"
+            android:background="@color/background"
             android:layout_marginTop="17dp"
             android:hint="可在此处添加其他附加信息..."
             android:gravity="top"

@@ -1,5 +1,7 @@
 package com.damenghai.chahuitong.bean;
 
+import com.damenghai.chahuitong.config.Constants;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -7,15 +9,17 @@ import java.util.ArrayList;
  * Created by Sgun on 15/8/25.
  */
 public class Comment implements Serializable {
-    private int id;
-    private int member_id;
-    private int content_id;
     private int uid;
+    private int id;
+    private String reply_to;
+    private int content_id;
+    private String member_avatar;
+    private String member_name;
     private String comment;
     private String comment_time;
+    private int member_id;
     private int reply_id;
     private Leader memberInfo;
-    private String reply_to;
     private ArrayList<Comment> reply;
 
     public int getId() {
@@ -40,6 +44,23 @@ public class Comment implements Serializable {
 
     public void setContent_id(int content_id) {
         this.content_id = content_id;
+    }
+
+
+    public String getMember_name() {
+        return member_name;
+    }
+
+    public void setMember_name(String member_name) {
+        this.member_name = member_name;
+    }
+
+    public String getMember_avatar() {
+        return Constants.AVATAR_ROOT + member_avatar;
+    }
+
+    public void setMember_avatar(String member_avatar) {
+        this.member_avatar = member_avatar;
     }
 
     public int getUid() {

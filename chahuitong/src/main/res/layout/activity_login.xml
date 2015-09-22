@@ -3,6 +3,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/background"
+    android:id="@+id/login_layout"
     >
 
     <RelativeLayout
@@ -105,6 +106,12 @@
             android:text="@string/forgot_password"
             android:textColor="@color/light_gray" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+
         <Button
             android:id="@+id/id_btn_login_in"
             style="@style/CommonButton"
@@ -175,6 +182,12 @@
 
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+
         <Button
             android:id="@+id/id_btn_register"
             style="@style/CommonButton"
@@ -200,12 +213,14 @@
         >
 
         <ImageView
+            android:id="@+id/login_qq"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@drawable/icon_qq" />
 
         <ImageView
+            android:id="@+id/login_weibo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

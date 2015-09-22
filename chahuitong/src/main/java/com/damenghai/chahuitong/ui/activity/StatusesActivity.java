@@ -9,6 +9,7 @@ import com.damenghai.chahuitong.api.HodorAPI;
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.bean.Status;
 import com.damenghai.chahuitong.request.VolleyRequest;
+import com.damenghai.chahuitong.view.TopBar;
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnLastItemVisibleListener;
@@ -25,6 +26,7 @@ import java.util.ArrayList;
  * Created by Sgun on 15/8/23.
  */
 public class StatusesActivity extends BaseActivity implements OnRefreshListener, OnLastItemVisibleListener {
+    private TopBar mTopBar;
     private PullToRefreshListView mLv;
 
     private StatusesAdapter mAdapter;
@@ -43,11 +45,29 @@ public class StatusesActivity extends BaseActivity implements OnRefreshListener,
 
         loadData(1);
     }
-    private void findViewById() {
+
+    @Override
+    protected void findViewById() {
+        mTopBar = (TopBar) findViewById(R.id.statuses_bar);
         mLv = (PullToRefreshListView) findViewById(R.id.statuses_lv);
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
+        mTopBar.setOnLeftClickListener(new TopBar.OnLeftClickListener() {
+            @Override
+            public void onLeftClick() {
+                finishActivity();
+            }
+        });
+
+        mTopBar.setOnRightClickListener(new TopBar.onRightClickListener() {
+            @Override
+            public void onRightClick() {
+                goHome();
+            }
+        });
+
         mStatuses = new ArrayList<Status>();
         mAdapter = new StatusesAdapter(this, mStatuses, R.layout.listview_item_status, true);
         mLv.setAdapter(mAdapter);

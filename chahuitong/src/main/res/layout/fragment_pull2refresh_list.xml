@@ -3,7 +3,8 @@
     xmlns:ptr="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    >
 
     <LinearLayout
         android:id="@+id/id_list_pd"
@@ -32,12 +33,11 @@
         android:id="@+id/id_product_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
+        android:background="@color/background"
         android:divider="@color/background"
         android:dividerHeight="7dp"
         android:layout_marginLeft="7dp"
         android:layout_marginRight="7dp"
-        ptr:ptrHeaderBackground="@color/background"
         />
 
 </RelativeLayout>

@@ -2,14 +2,19 @@ package com.damenghai.chahuitong.ui.activity;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
@@ -18,24 +23,23 @@ import com.damenghai.chahuitong.api.HodorAPI;
 import com.damenghai.chahuitong.bean.Travel;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.utils.ImageUtils;
-import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.T;
 import com.damenghai.chahuitong.view.TopBar;
 import com.damenghai.chahuitong.view.WrapHeightGridView;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by Sgun on 15/9/4.
  */
 public class InitiateEventActivity extends BaseActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+    private LinearLayout mLayout;
     private TopBar mTopBar;
     private EditText mTheme;
     private EditText mLocation;
-    private EditText mStart;
+    private TextView mStart;
     private EditText mDuration;
     private EditText mPhone;
     private EditText mCost;
@@ -60,11 +64,13 @@ public class InitiateEventActivity extends BaseActivity implements View.OnClickL
         initView();
     }
 
-    private void findViewById() {
+    @Override
+    protected void findViewById() {
+        mLayout = (LinearLayout) findViewById(R.id.initiate_layout);
         mTopBar = (TopBar) findViewById(R.id.initiate_top);
         mTheme = (EditText) findViewById(R.id.initiate_theme);
         mLocation = (EditText) findViewById(R.id.initiate_location);
-        mStart = (EditText) findViewById(R.id.initiate_start);
+        mStart = (TextView) findViewById(R.id.initiate_start);
         mDuration = (EditText) findViewById(R.id.initiate_duration);
         mPhone = (EditText) findViewById(R.id.initiate_phone);
         mCost = (EditText) findViewById(R.id.initiate_cost);
@@ -72,7 +78,16 @@ public class InitiateEventActivity extends BaseActivity implements View.OnClickL
         mGvImages = (WrapHeightGridView) findViewById(R.id.initiate_images);
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
+        mLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+        });
+
         mTopBar.setOnLeftClickListener(new TopBar.OnLeftClickListener() {
             @Override
             public void onLeftClick() {
@@ -89,6 +104,23 @@ public class InitiateEventActivity extends BaseActivity implements View.OnClickL
             mPhone.setText(mTravel.getPhone());
             mCost.setText(mTravel.getFee() + "");
         }
+
+        mStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(new Date());
+                new DatePickerDialog(InitiateEventActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int mouth, int date) {
+                        mStart.setText(year + "-" + (mouth + 1) + "-" + date);
+                    }
+                },
+                        calendar.get(Calendar.YEAR),
+                        calendar.get(Calendar.MONTH),
+                        calendar.get(Calendar.DATE)).show();
+            }
+        });
 
         mCommit.setOnClickListener(this);
 
@@ -109,7 +141,7 @@ public class InitiateEventActivity extends BaseActivity implements View.OnClickL
         String comment = mCost.getText().toString();
 
         if(TextUtils.isEmpty(theme) || TextUtils.isEmpty(location) || TextUtils.isEmpty(start)
-                || TextUtils.isEmpty(phone) || TextUtils.isEmpty(comment)) {
+                || TextUtils.isEmpty(duration) || TextUtils.isEmpty(phone) || TextUtils.isEmpty(cost) || TextUtils.isEmpty(comment)) {
             T.showShort(this, "请填写完整信息");
         }
 
@@ -120,6 +152,7 @@ public class InitiateEventActivity extends BaseActivity implements View.OnClickL
         mTravel.setDuration(Integer.parseInt(duration));
         mTravel.setPhone(phone);
         mTravel.setFee(Integer.parseInt(cost));
+        mTravel.setContent(comment);
 
         commit();
     }
@@ -137,7 +170,7 @@ public class InitiateEventActivity extends BaseActivity implements View.OnClickL
             case ImageUtils.CAMERA_REQUEST_CODE :
                 if(resultCode == Activity.RESULT_CANCELED) ImageUtils.deleteImageUri(this);
 
-                mImages.add(ImageUtils.imageUriFromCamera);
+                mImages.add(ImageUtils.imageUri);
                 mImageAdapter.notifyDataSetChanged();
                 break;
         }

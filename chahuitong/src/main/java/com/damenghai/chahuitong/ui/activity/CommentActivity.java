@@ -13,6 +13,7 @@ import com.damenghai.chahuitong.adapter.StatusCommentAdapter;
 import com.damenghai.chahuitong.api.HodorAPI;
 import com.damenghai.chahuitong.bean.Comment;
 import com.damenghai.chahuitong.bean.Status;
+import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.view.TopBar;
 import com.google.gson.Gson;
@@ -35,10 +36,10 @@ public class CommentActivity extends BaseActivity {
     private Status mStatus;
 
     private TopBar mTopBar;
-    private PullToRefreshListView mLv;
+    private PullToRefreshListView mPlv;
     private Button mWrite;
 
-    private ArrayList<Comment> mDatas;
+    private ArrayList<Comment> mData;
     private StatusCommentAdapter mAdapter;
 
     @Override
@@ -55,24 +56,26 @@ public class CommentActivity extends BaseActivity {
         loadData(1);
     }
 
-    private void findViewById() {
+    @Override
+    protected void findViewById() {
         mTopBar = (TopBar) findViewById(R.id.comment_bar);
-        mLv = (PullToRefreshListView) findViewById(R.id.comment_lv);
+        mPlv = (PullToRefreshListView) findViewById(R.id.comment_lv);
         mWrite = (Button) findViewById(R.id.write_comment);
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
         mTopBar.setOnLeftClickListener(new TopBar.OnLeftClickListener() {
             @Override
             public void onLeftClick() {
-                finish();
+                finishActivity();
             }
         });
 
-        mDatas = new ArrayList<Comment>();
-        mAdapter = new StatusCommentAdapter(this, mDatas, R.layout.listview_item_comment);
-        mLv.setAdapter(mAdapter);
-        mLv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+        mData = new ArrayList<Comment>();
+        mAdapter = new StatusCommentAdapter(this, mData, R.layout.listview_item_comment);
+        mPlv.setAdapter(mAdapter);
+        mPlv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
                 loadData(1);
@@ -82,9 +85,13 @@ public class CommentActivity extends BaseActivity {
         mWrite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putInt("status_id", mStatus.getContent_id());
-                openResultActivity(WriteCommentActivity.class, REQUEST_CODE_WRITE, bundle);
+                if(!SessionKeeper.readSession(CommentActivity.this).equals("")) {
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("status_id", mStatus.getContent_id());
+                    openActivityForResult(WriteCommentActivity.class, REQUEST_CODE_WRITE, bundle);
+                } else {
+                    openActivity(LoginActivity.class);
+                }
             }
         });
     }
@@ -94,14 +101,14 @@ public class CommentActivity extends BaseActivity {
             @Override
             public void onSuccess(String response) {
                 super.onSuccess(response);
-                if(page == 1) mDatas.clear();
+                if(page == 1) mData.clear();
 
                 try {
                     JSONObject obj = new JSONObject(response);
                     JSONArray array = obj.getJSONArray("content");
                     for (int i = 0; i < array.length(); i++) {
                         Comment comment = new Gson().fromJson(array.get(i).toString(), Comment.class);
-                        if (!mDatas.contains(comment)) mDatas.add(comment);
+                        if (!mData.contains(comment)) mData.add(comment);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -112,7 +119,7 @@ public class CommentActivity extends BaseActivity {
             @Override
             public void onAllDone() {
                 super.onAllDone();
-                mLv.onRefreshComplete();
+                mPlv.onRefreshComplete();
             }
         });
     }
@@ -122,7 +129,7 @@ public class CommentActivity extends BaseActivity {
         if(resultCode == Activity.RESULT_CANCELED) return;
 
         if(requestCode == REQUEST_CODE_WRITE && resultCode == Activity.RESULT_OK) {
-            mLv.setRefreshing();
+            mPlv.setRefreshing();
         }
     }
 }

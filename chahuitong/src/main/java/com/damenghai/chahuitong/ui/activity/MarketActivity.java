@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.MarketFragmentAdapter;
 import com.damenghai.chahuitong.base.BaseFragmentActivity;
+import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.view.TopBar;
 import com.umeng.analytics.MobclickAgent;
 import com.viewpagerindicator.TabPageIndicator;
@@ -85,7 +86,11 @@ public class MarketActivity extends BaseFragmentActivity implements View.OnClick
 
 				break;
 			case R.id.iv_publish_product :
-				openActivity(PublishActivity.class);
+				if(SessionKeeper.readSession(MarketActivity.this).equals("")) {
+					openActivity(LoginActivity.class);
+				} else {
+					openActivity(PublishActivity.class);
+				}
 				break;
 		}
 	}

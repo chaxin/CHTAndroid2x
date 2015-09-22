@@ -20,6 +20,7 @@
         android:layout_height="0dp"
         android:layout_weight="3"
         android:orientation="vertical"
+        android:background="@color/background"
         >
 
         <GridView
@@ -33,24 +34,83 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="52dp"
             android:orientation="horizontal"
+            android:background="@android:color/white"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
             >
-            <Button
-                android:id="@+id/personal_balance"
+
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/personal_balance"
-                android:textSize="@dimen/text_title"
-                android:drawableLeft="@drawable/icon_personal_balance"
                 android:gravity="center"
-                android:paddingLeft="25dp"
-                android:paddingRight="25dp"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:background="@drawable/draw_white2gray_sel"
-                />
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_personal_balance"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/personal_balance"
+                    android:textSize="@dimen/text_title"
+                    android:textColor="@color/text_caption"
+                    android:paddingLeft="10dp"
+                    />
+
+                <TextView
+                    android:id="@+id/personal_deposit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20"
+                    android:textSize="@dimen/text_title"
+                    android:textColor="@color/text_caption"
+                    android:visibility="invisible"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_personal_point"
+                    />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/personal_point"
+                    android:textSize="@dimen/text_title"
+                    android:textColor="@color/text_caption"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:background="@android:color/white"
+                    />
+
+                <TextView
+                    android:id="@+id/personal_point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_title"
+                    android:textColor="@color/text_caption"
+                    android:text="50"
+                    android:visibility="invisible"
+                    />
+
+            </LinearLayout>
 
             <Button
                 android:id="@+id/personal_purse"
@@ -66,23 +126,9 @@
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
                 android:background="@drawable/draw_white2gray_sel"
+                android:visibility="gone"
                 />
 
-            <Button
-                android:id="@+id/personal_point"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/personal_point"
-                android:textSize="@dimen/text_title"
-                android:drawableLeft="@drawable/icon_personal_point"
-                android:gravity="center"
-                android:paddingLeft="25dp"
-                android:paddingRight="25dp"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:background="@drawable/draw_white2gray_sel"
-                />
         </LinearLayout>
 
     </LinearLayout>

@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.bean.Travel;
+import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.view.BannerViewPager;
 import com.damenghai.chahuitong.view.TopBar;
 import com.viewpagerindicator.CirclePageIndicator;
@@ -41,7 +42,8 @@ public class TravelActivity extends BaseActivity implements View.OnClickListener
         initView();
     }
 
-    private void findViewById() {
+    @Override
+    protected void findViewById() {
         mTopBar = (TopBar) findViewById(R.id.event_bar);
         mBanner = (BannerViewPager) findViewById(R.id.travel_banner);
         mIndicator = (CirclePageIndicator) findViewById(R.id.travel_indicator);
@@ -55,22 +57,19 @@ public class TravelActivity extends BaseActivity implements View.OnClickListener
         mJoin = (TextView) findViewById(R.id.btn_join);
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
         mTopBar.setOnLeftClickListener(new TopBar.OnLeftClickListener() {
             @Override
             public void onLeftClick() {
-
+                finishActivity();
             }
         });
 
         mTopBar.setOnRightClickListener(new TopBar.onRightClickListener() {
             @Override
             public void onRightClick() {
-                if (mTitle != null) {
-                    mController.setShareContent(mTravel.getTitle());
-                }
-                // 是否只有已登录用户才能打开分享选择页
-                mController.openShare(TravelActivity.this, false);
+                goHome();
             }
         });
 
@@ -90,8 +89,12 @@ public class TravelActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void onClick(View view) {
-        Bundle bundle = new Bundle();
-        bundle.putInt("id", mTravel.getActive_id());
-        openActivity(JoinEventActivity.class, bundle);
+        if(!SessionKeeper.readSession(TravelActivity.this).equals("")) {
+            Bundle bundle = new Bundle();
+            bundle.putInt("id", mTravel.getActive_id());
+            openActivity(JoinEventActivity.class, bundle);
+        } else {
+            openActivity(LoginActivity.class);
+        }
     }
 }

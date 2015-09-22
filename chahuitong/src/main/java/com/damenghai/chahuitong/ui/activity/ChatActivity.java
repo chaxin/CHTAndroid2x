@@ -43,6 +43,9 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
+        findViewById();
+
         initView();
 
         Handler handler = new Handler() {
@@ -61,12 +64,18 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 
     }
 
-    private void initView() {
+    @Override
+    protected void findViewById() {
         mTopBar = (TopBar) findViewById(R.id.id_chat_topbar);
         mListView = (ListView) findViewById(R.id.id_chat_lv);
         mBtnAdd = (RelativeLayout) findViewById(R.id.id_btn_add_img);
         mBtnSend = (RelativeLayout) findViewById(R.id.id_btn_send);
         mMsgText = (EditText) findViewById(R.id.id_msg_text);
+    }
+
+    @Override
+    protected void initView() {
+
     }
 
     private void loadDatas(final Handler handler) {

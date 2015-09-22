@@ -12,8 +12,8 @@ import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.TravelListAdapter;
 import com.damenghai.chahuitong.api.HodorAPI;
 import com.damenghai.chahuitong.bean.Travel;
+import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.request.VolleyRequest;
-import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.T;
 import com.damenghai.chahuitong.view.TopBar;
 import com.google.gson.Gson;
@@ -51,16 +51,28 @@ public class TravelsActivity extends BaseActivity implements OnItemClickListener
         loadData(1);
     }
 
-    private void findViewById() {
+    @Override
+    protected void findViewById() {
         mTopBar = (TopBar) findViewById(R.id.event_bar);
         mPlv = (PullToRefreshListView) findViewById(R.id.travels_lv);
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
+        mTopBar.setOnLeftClickListener(new TopBar.OnLeftClickListener() {
+            @Override
+            public void onLeftClick() {
+                finishActivity();
+            }
+        });
         mTopBar.setOnRightClickListener(new TopBar.onRightClickListener() {
             @Override
             public void onRightClick() {
-                openResultActivity(InitiateEventActivity.class, REQUEST_CODE_INITIATE);
+                if(SessionKeeper.readSession(TravelsActivity.this).equals("")) {
+                    openActivity(LoginActivity.class);
+                } else {
+                    openActivityForResult(InitiateEventActivity.class, REQUEST_CODE_INITIATE);
+                }
             }
         });
 

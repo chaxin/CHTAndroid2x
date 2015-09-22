@@ -3,6 +3,7 @@ package com.damenghai.chahuitong.ui.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,18 +11,26 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.SparseArray;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
+import com.damenghai.chahuitong.bean.Product;
 import com.damenghai.chahuitong.config.Constants;
 import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.utils.ImageManager;
+import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.T;
 import com.damenghai.chahuitong.view.CustomSpinner;
 import com.damenghai.chahuitong.view.TopBar;
@@ -43,30 +52,38 @@ public class PublishActivity extends BaseActivity implements OnClickListener {
 
 	private String mSaleway = "1";
 
+    private LinearLayout mInfo;
 	private TopBar mTopBar;
 	private RadioGroup mTabButtonGroup;
-	private EditText mBrand, mName, mPrice, mQuantity, mIsDetail, mWeight, mAddress, mPhone, mDescBuy;	
+	private EditText mBrand, mName, mPrice, mQuantity, mAddress, mPhone, mDescBuy;
 	private CustomSpinner mYearSpinner, mDetailSpinner;
 
 	private ImageView mIvFrist, mIvSecond, mIvThird;
 	private Button mBtnSubmit;
 	private SparseArray<ImageManager> mProductImage = new SparseArray<ImageManager>();
-	
+
 	View mClickView;
+
+	private Product mProduct;
+	private boolean mIsEdit;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_publish);
 
+		mProduct = (Product) getIntent().getSerializableExtra("product");
+		mIsEdit = getIntent().getBooleanExtra("isEdit", false);
+
 		findViewById();
 
 		initView();
-
 	}
 
-	private void findViewById() {
-		mTopBar = (TopBar) findViewById(R.id.publish_topbar);
+	@Override
+    protected void findViewById() {
+        mInfo = (LinearLayout) findViewById(R.id.publish_info);
+        mTopBar = (TopBar) findViewById(R.id.publish_topbar);
 		mTabButtonGroup = (RadioGroup) findViewById(R.id.tab_group);
 
 		//文本数据
@@ -87,11 +104,38 @@ public class PublishActivity extends BaseActivity implements OnClickListener {
 
 	}
 
-	private void initView() {
+	@Override
+	protected void initView() {
+		mInfo.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+			}
+		});
+        mTopBar.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+			}
+		});
+
+
+		if(mProduct != null) {
+			mBrand.setText(mProduct.getBrand() != null ? mProduct.getBrand() : "");
+			mName.setText(mProduct.getName() != null ? mProduct.getName() : "");
+			mPrice.setText(mProduct.getPrice() != null ? mProduct.getPrice() : "");
+			mQuantity.setText(mProduct.getQuantity() + "");
+			mAddress.setText(mProduct.getAddress() != null ? mProduct.getAddress() : "");
+			mDescBuy.setText(mProduct.getPrice() != null ? mProduct.getPrice() : "");
+			mPhone.setText(mProduct.getPhone());
+		}
+
 		mTopBar.setOnLeftClickListener(new TopBar.OnLeftClickListener() {
 			@Override
 			public void onLeftClick() {
-				finish();
+				finishActivity();
 			}
 		});
 
@@ -130,7 +174,7 @@ public class PublishActivity extends BaseActivity implements OnClickListener {
 		mIvThird.setOnClickListener(this);
 		mBtnSubmit.setOnClickListener(new submitOnClickListener());
 	}
-	
+
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -145,7 +189,7 @@ public class PublishActivity extends BaseActivity implements OnClickListener {
 						pi = new ImageManager(this);
 						mProductImage.put(mClickView.getId(), pi);
 					}
-					
+
 					if(pi.checkUri(uri)) {
 						pi.display(mClickView);
 					} else {
@@ -160,7 +204,7 @@ public class PublishActivity extends BaseActivity implements OnClickListener {
 			Bundle extra = data.getExtras();
 			if(extra != null) {
 				Bitmap bm = extra.getParcelable("data");
-				if(bm == null && mClickView == null) return;				
+				if(bm == null && mClickView == null) return;
 				((ImageView) mClickView).setImageBitmap(bm);
 				ImageManager pi = mProductImage.get(mClickView.getId());
 				if(pi == null) {
@@ -174,7 +218,7 @@ public class PublishActivity extends BaseActivity implements OnClickListener {
 		
 	}
 
-	@Override
+    @Override
 	public void onClick(final View v) {
 		mClickView = v;
 		new AlertDialog.Builder(this).setItems(CHOOSE_ITEM, new DialogInterface.OnClickListener() {
@@ -182,21 +226,21 @@ public class PublishActivity extends BaseActivity implements OnClickListener {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				switch (which) {
-				case 0:
-					Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-					startActivityForResult(intent, CAMERA_REQUEST_CODE);
-					break;
-				case 1:
-					Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-					startActivityForResult(i, CALLERY_REQUEST_CODE);
-					break;
+					case 0:
+						Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+						startActivityForResult(intent, CAMERA_REQUEST_CODE);
+						break;
+					case 1:
+						Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+						startActivityForResult(i, CALLERY_REQUEST_CODE);
+						break;
 				}
 			}
 
 		}).show();
 	}
 
-	private class submitOnClickListener implements OnClickListener {
+    private class submitOnClickListener implements OnClickListener {
 		private ProgressDialog pd;
 		
 		@Override
@@ -211,6 +255,9 @@ public class PublishActivity extends BaseActivity implements OnClickListener {
 			String address = mAddress.getText().toString();
 			String phone = mPhone.getText().toString();
 
+			if(mProduct != null && mProduct.getId() > 0 && mIsEdit) {
+				params.addBodyParameter("id", mProduct.getId() + "");
+			}
 			params.addBodyParameter("key", SessionKeeper.readSession(PublishActivity.this));
 			params.addBodyParameter("username", SessionKeeper.readUsername(PublishActivity.this));
 			params.addBodyParameter("saleway", mSaleway);
@@ -236,7 +283,7 @@ public class PublishActivity extends BaseActivity implements OnClickListener {
 			    Constants.URL_POST_SAVE,
 			    params,
 			    new RequestCallBack<String>() {
-				
+
 			        @Override
 			        public void onStart() {
 			        	pd = new ProgressDialog(PublishActivity.this);

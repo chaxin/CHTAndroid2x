@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height"
         android:background="@color/primary"
-        app:titleText="@string/comment"
+        app:titleText="@string/write_comment"
         app:titleTextSize="@dimen/small_middle_text_size"
         app:titleTextColor="@android:color/white"
         app:leftSrc="@drawable/btn_back_item_selector"

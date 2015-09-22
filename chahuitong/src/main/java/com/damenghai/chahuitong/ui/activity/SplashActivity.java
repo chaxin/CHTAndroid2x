@@ -26,6 +26,16 @@ public class SplashActivity extends BaseActivity {
 		init();
 	}
 
+	@Override
+	protected void findViewById() {
+
+	}
+
+	@Override
+	protected void initView() {
+
+	}
+
 	private void init() {		
 		SharedPreferences preferences = getSharedPreferences(Constants.SHARED_PREFERERENCE_NAME, MODE_PRIVATE);
         isFirstIn = preferences.getBoolean("isFirstIn", true);

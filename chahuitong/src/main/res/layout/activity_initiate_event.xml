@@ -3,14 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    >
 
     <com.damenghai.chahuitong.view.TopBar
         android:id="@+id/initiate_top"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height"
         android:background="@color/primary"
-        app:titleText="我要发布"
+        app:titleText="发起活动"
         app:titleTextSize="@dimen/text_title"
         app:titleTextColor="@android:color/white"
         app:leftSrc="@drawable/btn_back_item_selector"
@@ -20,14 +22,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/initiate_top"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp"
+        android:scrollbars="none"
         >
 
         <LinearLayout
+            android:id="@+id/initiate_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
             >
             <LinearLayout
                 android:layout_width="match_parent"
@@ -94,15 +98,15 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:text="活动时间"
+                    android:text="开始日期"
                     android:textColor="@color/primary"
                     android:textSize="@dimen/text_body" />
 
-                <EditText
+                <TextView
                     android:id="@+id/initiate_start"
                     style="@style/CommonEditText"
-                    android:inputType="number"
-                    android:hint="请选择活动时间"
+                    android:hint="活动出发时间"
+                    android:gravity="center_vertical"
                     />
             </LinearLayout>
 
@@ -130,7 +134,7 @@
                     android:id="@+id/initiate_duration"
                     style="@style/CommonEditText"
                     android:inputType="number"
-                    android:hint="请输入持续时间"
+                    android:hint="持续天数"
                     />
             </LinearLayout>
 
@@ -159,6 +163,7 @@
                     android:id="@+id/initiate_phone"
                     style="@style/CommonEditText"
                     android:inputType="phone"
+                    android:maxLength="11"
                     android:hint="请输入联系电话"
                     />
             </LinearLayout>
@@ -221,14 +226,15 @@
                 android:paddingRight="7dp"
                 />
 
+            <Button
+                style="@style/CommonButton"
+                android:id="@+id/initiate_commit"
+                android:text="@string/publish"
+                />
+
         </LinearLayout>
 
     </ScrollView>
 
-    <Button
-        style="@style/CommonButton"
-        android:id="@+id/initiate_commit"
-        android:text="@string/publish"
-        />
 
 </RelativeLayout>

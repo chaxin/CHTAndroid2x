@@ -46,14 +46,16 @@ public class WriteStatusActivity extends BaseActivity implements AdapterView.OnI
         initView();
     }
 
-    private void findViewById() {
+    @Override
+    protected void findViewById() {
         mTopBar = (TopBar) findViewById(R.id.write_status_bar);
         mText = (TextView) findViewById(R.id.write_status_text);
         mGv = (WrapHeightGridView) findViewById(R.id.gv_write_status);
         mCommit = (Button) findViewById(R.id.status_commit);
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
         mTopBar.setOnLeftClickListener(new TopBar.OnLeftClickListener() {
             @Override
             public void onLeftClick() {
@@ -81,7 +83,7 @@ public class WriteStatusActivity extends BaseActivity implements AdapterView.OnI
             case ImageUtils.CAMERA_REQUEST_CODE :
                 if(resultCode == Activity.RESULT_CANCELED) ImageUtils.deleteImageUri(this);
 
-                mDatas.add(ImageUtils.imageUriFromCamera);
+                mDatas.add(ImageUtils.imageUri);
                 mAdapter.notifyDataSetChanged();
                 break;
         }

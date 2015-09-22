@@ -41,10 +41,10 @@ public class VolleyRequest {
         onAllDone();
     }
 
-//    public void onError(VolleyError error) {
-//        byte[] htmlBodyBytes = error.networkResponse.data;
-//        L.d(new String(htmlBodyBytes));
-//    }
+    public void onError(VolleyError volleyError) {
+        byte[] htmlBodyBytes = volleyError.networkResponse.data;
+        L.d(new String(htmlBodyBytes));
+    }
 
     public void onAllDone() {
         if(mDialog != null && mDialog.isShowing()) {

@@ -1,5 +1,9 @@
 package com.damenghai.chahuitong.utils;
 
+import android.app.DatePickerDialog;
+import android.content.Context;
+import android.widget.DatePicker;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -50,10 +54,29 @@ public class DateUtils {
         return false;
     }
 
+    /**
+     * 获取当前时间
+     *
+     * @return
+     */
     public static String getCurrentTime() {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         Date date = new Date(System.currentTimeMillis());
         String str = format.format(date);
         return str;
+    }
+
+    /**
+     * 显示日期选择器窗口
+     *
+     */
+    public static void showDateDialog(Context context, DatePickerDialog.OnDateSetListener listener) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        DatePickerDialog dialog = new DatePickerDialog(context, listener,
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DATE));
+        dialog.show();
     }
 }

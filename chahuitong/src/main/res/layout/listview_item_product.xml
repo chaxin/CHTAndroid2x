@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="110dp">
+    android:layout_height="110dp"
+    android:background="@drawable/draw_white2gray_sel"
+    >
 
     <ImageView
         android:id="@+id/id_img"
@@ -28,7 +30,7 @@
             android:paddingRight="18dp"
             >
             <TextView
-                style="@style/TextViewTitle"
+                style="@style/ProductItemTitle"
                 android:id="@+id/id_tv_title"
                 android:text="高頂古茶 茶寶"
                 />

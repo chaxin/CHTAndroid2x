@@ -59,6 +59,8 @@ repositories {
 dependencies {
     compile(name: 'calligraphy-2.1.0', ext: 'aar')
     compile files('libs/dom4j-1.6.1.jar')
+    compile files('libs/UPPayPluginEx.jar')
+    compile files('libs/UPPayAssistEx.jar')
 }
 
 allprojects {

@@ -20,6 +20,7 @@ import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.ui.activity.CommentActivity;
 import com.damenghai.chahuitong.ui.activity.ImageBrowserActivity;
+import com.damenghai.chahuitong.ui.activity.LoginActivity;
 import com.damenghai.chahuitong.ui.activity.StatusesActivity;
 import com.damenghai.chahuitong.utils.ImageConfigHelper;
 import com.damenghai.chahuitong.utils.L;
@@ -67,8 +68,8 @@ public class StatusesAdapter extends CommonAdapter<Status> {
         if(mShowUser) {
             holder.setVisibility(R.id.status_avatar, View.VISIBLE)
                     .setVisibility(R.id.status_user, View.VISIBLE)
-                    .setText(R.id.status_user, status.getMemberInfo().getMember_name())
-                    .loadAvatarImage(R.id.status_avatar, status.getMemberInfo().getMember_avatar());
+                    .setText(R.id.status_user, status.getMemberInfo() != null ? status.getMemberInfo().getMember_name() : "")
+                    .loadAvatarImage(R.id.status_avatar, status.getMemberInfo() != null ? status.getMemberInfo().getMember_avatar() : "");
         } else {
             holder.setVisibility(R.id.status_delete, View.VISIBLE)
                     .setTextOnClickListener(R.id.status_delete, new View.OnClickListener() {
@@ -136,7 +137,8 @@ public class StatusesAdapter extends CommonAdapter<Status> {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(mContext, ImageBrowserActivity.class);
-                    intent.putExtra("status", status);
+                    intent.putExtra("pic", picUrls);
+                    intent.putExtra("position", 1);
                     mContext.startActivity(intent);
                 }
             });
@@ -153,7 +155,10 @@ public class StatusesAdapter extends CommonAdapter<Status> {
         statusShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mContext instanceof BaseActivity) {
+                if(SessionKeeper.readSession(mContext).equals("")) {
+                    Intent intent = new Intent(mContext, LoginActivity.class);
+                    mContext.startActivity(intent);
+                }else if(mContext instanceof BaseActivity) {
                     BaseActivity activity = (BaseActivity) mContext;
                     activity.mController.setShareContent(status.getText() + ", http://t.cn/RyU8vSP");
                     if (status.getThumbImage() != null && !status.getThumbImage().equals(""))
@@ -209,31 +214,41 @@ public class StatusesAdapter extends CommonAdapter<Status> {
         statusComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, CommentActivity.class);
-                intent.putExtra("status", status);
-                mContext.startActivity(intent);
+                if(SessionKeeper.readSession(mContext).equals("")) {
+                    Intent intent = new Intent(mContext, LoginActivity.class);
+                    mContext.startActivity(intent);
+                } else {
+                    Intent intent = new Intent(mContext, CommentActivity.class);
+                    intent.putExtra("status", status);
+                    mContext.startActivity(intent);
+                }
             }
         });
         statusLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                HodorAPI.statusLike(mContext, status.getContent_id(), new VolleyRequest() {
-                    @Override
-                    public void onSuccess(String response) {
-                        super.onSuccess(response);
-                        try {
-                            JSONObject obj = new JSONObject(response);
-                            if(obj.getInt("code") != 404) {
-                                holder.setText(R.id.control_tv_like, status.getView() + 1 + "");
-                            } else {
-                                T.showShort(mContext, obj.getString("content"));
+                if(SessionKeeper.readSession(mContext).equals("")) {
+                    Intent intent = new Intent(mContext, LoginActivity.class);
+                    mContext.startActivity(intent);
+                } else {
+                    HodorAPI.statusLike(mContext, status.getContent_id(), new VolleyRequest() {
+                        @Override
+                        public void onSuccess(String response) {
+                            super.onSuccess(response);
+                            try {
+                                JSONObject obj = new JSONObject(response);
+                                if (obj.getInt("code") != 404) {
+                                    holder.setText(R.id.control_tv_like, status.getView() + 1 + "");
+                                } else {
+                                    T.showShort(mContext, obj.getString("content"));
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
 
-                    }
-                });
+                        }
+                    });
+                }
             }
         });
     }

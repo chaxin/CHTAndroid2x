@@ -23,6 +23,11 @@ public interface Constants {
      String IMAGE_URL = "http://www.chahuitong.com/mobile/app/b2b/Public/upload/";
 
     /**
+     * 头像路径
+     */
+    String AVATAR_ROOT = "http://www.chahuitong.com/data/upload/shop/avatar/";
+
+    /**
      * 接口根地址
      */
      String API_ROOT = "http://www.chahuitong.com/mobile/app/b2b/index.php/Home/index/";

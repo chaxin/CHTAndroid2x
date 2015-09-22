@@ -1,5 +1,6 @@
 package com.damenghai.chahuitong.ui.activity;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -11,6 +12,8 @@ import com.damenghai.chahuitong.api.HodorAPI;
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.bean.Leader;
 import com.damenghai.chahuitong.bean.Status;
+import com.damenghai.chahuitong.listener.FollowListener;
+import com.damenghai.chahuitong.listener.UnFollowListener;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.utils.T;
 import com.damenghai.chahuitong.view.RoundImageView;
@@ -60,7 +63,8 @@ public class LeaderActivity extends BaseActivity implements OnClickListener, OnL
         loadData(1);
     }
 
-    public void findViewById() {
+    @Override
+    protected void findViewById() {
         mHeader = View.inflate(this, R.layout.include_leader_header, null);
         mAvatar = (RoundImageView) mHeader.findViewById(R.id.leader_avatar);
         mName = (TextView) mHeader.findViewById(R.id.leader_detail_name);
@@ -70,7 +74,8 @@ public class LeaderActivity extends BaseActivity implements OnClickListener, OnL
         mPlv = (PullToRefreshListView) findViewById(R.id.leader_lv_detail);
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
         mData = new ArrayList<Status>();
         mAdapter = new StatusesAdapter(this, mData, R.layout.listview_item_status, false);
         mPlv.setAdapter(mAdapter);
@@ -83,11 +88,19 @@ public class LeaderActivity extends BaseActivity implements OnClickListener, OnL
             mTitle.setText(mLeader.getRank().replaceAll("</*[a-z]+>", ""));
             mFollowers.setText(mLeader.getGuanzhu() + " 关注");
             if (mLeader.getBeInstered() > 0) {
-                mFollow.setText("已关注");
-                mFollow.setTextColor(getResources().getColor(R.color.gray));
+                mFollow.setText("取消关注");
+                mFollow.setTextColor(getResources().getColor(R.color.primary));
+                Drawable drawable = getResources().getDrawable(R.drawable.icon_followed);
+                drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+                mFollow.setCompoundDrawables(drawable, null, null, null);
+                mFollow.setOnClickListener(new UnFollowListener(LeaderActivity.this, mLeader, mFollow));
             } else {
                 mFollow.setText("加关注");
-                mFollow.setOnClickListener(this);
+                mFollow.setTextColor(getResources().getColor(android.R.color.black));
+                Drawable drawable = getResources().getDrawable(R.drawable.icon_unfollowed);
+                drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+                mFollow.setCompoundDrawables(drawable, null, null, null);
+                mFollow.setOnClickListener(new FollowListener(LeaderActivity.this, mLeader, mFollow));
             }
 
             BitmapUtils util = new BitmapUtils(this, this.getCacheDir().getAbsolutePath());
@@ -117,6 +130,12 @@ public class LeaderActivity extends BaseActivity implements OnClickListener, OnL
                 }
 
                 mAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onAllDone() {
+                super.onAllDone();
+                mPlv.onRefreshComplete();
             }
         });
     }

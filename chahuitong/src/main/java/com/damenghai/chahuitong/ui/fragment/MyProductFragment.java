@@ -1,6 +1,8 @@
 package com.damenghai.chahuitong.ui.fragment;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,12 +12,13 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.damenghai.chahuitong.api.TeaMarketAPI;
 import com.damenghai.chahuitong.base.BaseFragment;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.CommonAdapter;
-import com.damenghai.chahuitong.api.HodorAPI;
 import com.damenghai.chahuitong.bean.Product;
 import com.damenghai.chahuitong.request.VolleyRequest;
+import com.damenghai.chahuitong.ui.activity.EditActivity;
 import com.damenghai.chahuitong.ui.activity.ProductActivity;
 import com.damenghai.chahuitong.utils.DateUtils;
 import com.damenghai.chahuitong.utils.T;
@@ -63,22 +66,22 @@ public class MyProductFragment extends BaseFragment implements OnItemClickListen
     }
 
 	private void loadData() {
-		HodorAPI.myProductShow(getActivity(), new VolleyRequest() {
+		TeaMarketAPI.myProduct(getActivity(), new VolleyRequest() {
             @Override
             public void onSuccess(String response) {
                 super.onSuccess(response);
                 mData.clear();
                 try {
                     JSONArray array = new JSONArray(response);
-                    for(int i=0; i<array.length(); i++) {
+                    for (int i = 0; i < array.length(); i++) {
                         Product product = new Gson().fromJson(array.getString(i), Product.class);
-                        if(!mData.contains(product)) mData.add(product);
+                        if (!mData.contains(product)) mData.add(product);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 mAdapter.notifyDataSetChanged();
-                if(mListView.isRefreshing()) mListView.onRefreshComplete();
+                if (mListView.isRefreshing()) mListView.onRefreshComplete();
             }
         });
 	}
@@ -110,17 +113,34 @@ public class MyProductFragment extends BaseFragment implements OnItemClickListen
                     .setTextOnClickListener(R.id.mine_btn_delete, new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            HodorAPI.deleteMyProduct(product.getId(), new VolleyRequest() {
+                            final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                            builder.setMessage("确定要删除？");
+                            builder.setNegativeButton("确定", new DialogInterface.OnClickListener() {
                                 @Override
-                                public void onSuccess(String response) {
-                                    super.onSuccess(response);
-                                    if (response.equals("1")) {
-                                        T.showShort(getActivity(), "删除成功");
-                                        mDatas.remove(product);
-                                        notifyDataSetChanged();
-                                    }
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    TeaMarketAPI.deleteMyProduct(product.getId(), new VolleyRequest() {
+                                        @Override
+                                        public void onSuccess(String response) {
+                                            super.onSuccess(response);
+                                            if (response.equals("1")) {
+                                                T.showShort(getActivity(), "删除成功");
+                                                mDatas.remove(product);
+                                                notifyDataSetChanged();
+                                            }
+                                        }
+                                    });
                                 }
                             });
+                            builder.setPositiveButton("取消", null);
+                            builder.create().show();
+                        }
+                    })
+                    .setOnClickListener(R.id.my_product_edit, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("product", product);
+                            openActivity(EditActivity.class, bundle);
                         }
                     });
         }

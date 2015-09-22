@@ -71,6 +71,8 @@
 
         <LinearLayout
             style="@style/LinearLayoutHomeProduct"
+            android:id="@+id/home_recommend_layout"
+            android:background="@drawable/draw_white2gray_sel"
             >
 
             <ImageView

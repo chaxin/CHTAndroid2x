@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.v4.view.PagerAdapter;
 import android.view.Display;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -73,6 +74,17 @@ public class ImageBrowserAdapter extends PagerAdapter {
             @Override
             public void onLoadFailed(ImageView imageView, String s, Drawable drawable) {
 
+            }
+        });
+
+        view.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if(motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    ((Activity) mContext).finish();
+                    return true;
+                }
+                return false;
             }
         });
 

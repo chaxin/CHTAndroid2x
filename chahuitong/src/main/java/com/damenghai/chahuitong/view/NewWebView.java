@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.config.Constants;
+import com.damenghai.chahuitong.ui.activity.PaymentActivity;
 import com.damenghai.chahuitong.ui.activity.WebViewActivity;
 import com.damenghai.chahuitong.ui.activity.LoginActivity;
 import com.damenghai.chahuitong.ui.activity.MarketActivity;
@@ -78,8 +79,6 @@ public class NewWebView extends RelativeLayout {
                     Intent intent = new Intent(context, LoginActivity.class);
                     ((Activity) context).startActivityForResult(intent, LOGIN_IN_REQUEST_CODE);
                     return true;
-                } else if(url.contains("back")) {
-                    T.showShort(context, "kkkk");
                 }
                 Intent intent = new Intent(context, WebViewActivity.class);
                 intent.putExtra("url", url);

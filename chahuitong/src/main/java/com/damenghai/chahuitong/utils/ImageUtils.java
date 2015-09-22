@@ -15,17 +15,18 @@ import android.util.Base64;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 
 /**
+ * 图片选择
+ *
  * Created by Sgun on 15/8/31.
  */
 public class ImageUtils {
     public static final int CAMERA_REQUEST_CODE = 0x500;
     public static final int GALLERY_REQUEST_CODE = 0x501;
+    public static final int ZOOM_REQUEST_CODE = 0x502;
 
-    public static Uri imageUriFromCamera;
+    public static Uri imageUri;
 
     public static void showImagePickDialog(final Activity activity) {
         String[] item = new String[] {"拍照", "图库"};
@@ -49,9 +50,9 @@ public class ImageUtils {
 
     // 打开照相机
     public static void pickImageFromCamera(Activity activity) {
-        imageUriFromCamera = createImageUri(activity);
+        imageUri = createImageUri(activity);
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUriFromCamera);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
         activity.startActivityForResult(intent, CAMERA_REQUEST_CODE);
     }
 
@@ -59,6 +60,21 @@ public class ImageUtils {
     public static void pickImageFromGallery(Activity activity) {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         activity.startActivityForResult(intent, GALLERY_REQUEST_CODE);
+    }
+
+    // 打开裁剪图片界面
+    public static void showZoomImage(Activity activity, Uri uri) {
+        imageUri = createImageUri(activity);
+        Intent intent = new Intent("com.android.camera.action.CROP");
+        intent.setDataAndType(uri, "image/*");
+        intent.putExtra("crop", true);
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        intent.putExtra("outputX", 150);
+        intent.putExtra("outputY", 150);
+        intent.putExtra("return-data", true);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+        activity.startActivityForResult(intent, ZOOM_REQUEST_CODE);
     }
 
     // 创建一条Uri用于保存拍照后的照片
@@ -69,13 +85,12 @@ public class ImageUtils {
         values.put(MediaStore.Images.Media.TITLE, name);
         values.put(MediaStore.Images.Media.DISPLAY_NAME, name + ".jpeg");
         values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
-        Uri uri = context.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
 
-        return uri;
+        return context.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
     }
     // 删除一条Uri
     public static void deleteImageUri(Context context) {
-        context.getContentResolver().delete(imageUriFromCamera, null, null);
+        context.getContentResolver().delete(imageUri, null, null);
     }
 
     /**

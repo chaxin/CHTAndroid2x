@@ -7,16 +7,21 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:id="@+id/widget_layout_green"
+        android:id="@+id/publish_info"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:layout_marginLeft="30dp"
+        >
 
         <LinearLayout
             style="@style/publish_product_row">
             <TextView
+                android:id="@+id/publish_brand"
                 android:text="@string/brand"
                 style="@style/publish_product_label"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 />
 
             <EditText
@@ -49,24 +54,15 @@
 
         <View style="@style/divider" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
-
 		<com.damenghai.chahuitong.view.CustomSpinner
 		    android:id="@+id/id_spinner_years"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
 		    hodor:labelName="@string/years"
-		    hodor:textMarginLeft="30dp"
-		    hodor:textMarginRight="62dp"
+		    hodor:textMarginRight="70dp"
 		    />
-		
-        </LinearLayout>
-        
+
         <View style="@style/divider" />
       
         <LinearLayout style="@style/publish_product_row" >
@@ -78,16 +74,23 @@
             <EditText
                 android:id="@+id/id_input_price"
                 android:hint="@string/price_hint"
+                android:inputType="number"
                 style="@style/publish_product_input" >
             </EditText>
 
-			<com.damenghai.chahuitong.view.CustomSpinner
-			    android:id="@+id/id_spinner_detail"
-			    android:layout_width="wrap_content"
-			    android:layout_height="match_parent"
-			    hodor:labelName="@string/detail"
-			    />
+
         </LinearLayout>
+
+        <View style="@style/divider" />
+
+        <com.damenghai.chahuitong.view.CustomSpinner
+            android:id="@+id/id_spinner_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            hodor:labelName="@string/detail"
+            hodor:textMarginRight="42dp"
+            />
 
         <View style="@style/divider" />
 
@@ -100,6 +103,7 @@
             <EditText
                 android:id="@+id/id_input_quantity"
                 android:hint="@string/quantity_hint"
+                android:inputType="number"
                 style="@style/publish_product_input"
                 >
             </EditText>            
@@ -110,7 +114,6 @@
                 android:text="@string/piece"
                 android:layout_marginRight="20dp"
                 android:textSize="@dimen/text_title"
-
                 />
 			
         </LinearLayout>
@@ -144,6 +147,8 @@
                 android:id="@+id/id_input_phone"
                 android:hint="@string/phone_num_hint"
                 style="@style/publish_product_input"
+                android:inputType="phone"
+                android:maxLength="11"
                 >
             </EditText>
         </LinearLayout>
@@ -154,8 +159,9 @@
 		    android:id="@+id/id_product_desc" 
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
-		    android:layout_margin="20dip"
-		    android:lines="5" 
+		    android:layout_marginRight="30dp"
+            android:layout_marginBottom="20dp"
+		    android:lines="5"
 		    android:gravity="top|left" 
 		    android:inputType="textMultiLine"
 		    android:scrollHorizontally="false" 
@@ -164,12 +170,17 @@
 		    android:paddingTop="10dp"
 		    android:minWidth="10.0dip"
 		    android:maxWidth="180dip"
-		    android:background="@color/edittext_backgroud" >
+		    android:background="@color/edittext_backgroud"
+            android:textSize="@dimen/text_title"
+            >
         </EditText>
-        <LinearLayout 
+
+        <LinearLayout
+            android:id="@+id/upload_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginRight="30dp"
             >
             <ImageView
                 android:id="@+id/id_upload_img1"
@@ -203,10 +214,9 @@
 	        android:text="@string/publish"
 	        android:textSize="18sp"
 	        android:textColor="@android:color/white"
-	        android:layout_margin="10dp"
+            android:layout_marginRight="30dp"
 	        />
         
     </LinearLayout>
-
     
 </ScrollView>

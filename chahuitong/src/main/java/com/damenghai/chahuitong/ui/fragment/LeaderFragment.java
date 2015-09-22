@@ -12,9 +12,10 @@ import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.CommonAdapter;
 import com.damenghai.chahuitong.api.HodorAPI;
 import com.damenghai.chahuitong.bean.Leader;
-import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.ui.activity.LeaderActivity;
+import com.damenghai.chahuitong.utils.DensityUtils;
+import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.T;
 import com.damenghai.chahuitong.utils.ViewHolder;
 import com.google.gson.Gson;
@@ -31,15 +32,11 @@ import java.util.List;
  * Created by Sgun on 15/8/22.
  */
 public class LeaderFragment extends BaseFragment {
-    private final String KEY_INDEX = "LeaderFragment:isList";
+    private final String KEY_INDEX = "LeaderFragment:index";
 
-    private String mKey;
-    private String mUsername;
-
-    private View mView;
-    private PullToRefreshListView mListView;
+    private PullToRefreshListView mPlv;
     private ListViewAdapter mAdapter;
-    private List<Leader> mDatas;
+    private List<Leader> mData;
 
     private int mDataIndex;
 
@@ -52,83 +49,54 @@ public class LeaderFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(savedInstanceState != null && savedInstanceState.containsKey(KEY_INDEX)) {
-            mDataIndex = savedInstanceState.getInt(KEY_INDEX);
-        }
-
-        mKey = SessionKeeper.readSession(getActivity());
-        mUsername = SessionKeeper.readUsername(getActivity());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_list, null);
+        View view = inflater.inflate(R.layout.fragment_list, null);
 
-        mListView = (PullToRefreshListView) mView.findViewById(R.id.commond_listview);
-        mDatas = new ArrayList<Leader>();
-        initData();
-        mAdapter = new ListViewAdapter(getActivity(), mDatas, R.layout.listview_item_leader);
-        mListView.setAdapter(mAdapter);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mPlv = (PullToRefreshListView) view.findViewById(R.id.commond_listview);
+        mData = new ArrayList<Leader>();
+        mAdapter = new ListViewAdapter(getActivity(), mData, R.layout.listview_item_leader);
+        mPlv.setAdapter(mAdapter);
+        mPlv.getRefreshableView().setDividerHeight(DensityUtils.dp2px(getActivity(), 1));
+        mPlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("leader", mDatas.get(i - 1));
+                bundle.putSerializable("leader", mData.get(i - 1));
                 openActivity(LeaderActivity.class, bundle);
             }
         });
 
-        return mView;
+        initData();
+
+        return view;
     }
 
     private void initData() {
-        if(mDataIndex >= 0) {
-            HodorAPI.followShow(0, mKey, mUsername, new VolleyRequest() {
-                @Override
-                public void onSuccess(String response) {
-                    super.onSuccess(response);
-                    try {
-                        JSONObject obj = new JSONObject(response);
-                        if (obj.getInt("code") != 404) {
-                            JSONArray array = obj.getJSONArray("content");
-                            for (int i = mDataIndex; i < mDataIndex + 4; i++) {
-                                Leader leader = new Gson().fromJson(array.get(i).toString(), Leader.class);
-                                if (!mDatas.contains(leader)) mDatas.add(leader);
-                            }
-                        } else {
-                            T.showShort(getActivity(), obj.getString("content"));
+        HodorAPI.followShow(getActivity(), 0, new VolleyRequest() {
+            @Override
+            public void onSuccess(String response) {
+                super.onSuccess(response);
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    if (obj.getInt("code") != 404) {
+                        JSONArray array = obj.getJSONArray("content");
+                        for (int i = mDataIndex; i < mDataIndex + 4; i++) {
+                            Leader leader = new Gson().fromJson(array.get(i).toString(), Leader.class);
+                            if (!mData.contains(leader)) mData.add(leader);
                         }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                    } else {
+                        T.showShort(getActivity(), obj.getString("content"));
                     }
-
-                    mAdapter.notifyDataSetChanged();
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-            });
-        } else {
-            HodorAPI.myFollowShow(1, mKey, mUsername, new VolleyRequest() {
-                @Override
-                public void onSuccess(String response) {
-                    super.onSuccess(response);
-                    try {
-                        JSONObject obj = new JSONObject(response);
-                        if (obj.getInt("code") != 404) {
-                            JSONArray array = obj.getJSONArray("content");
-                            for (int i = 0; i < array.length(); i++) {
-                                Leader leader = new Gson().fromJson(array.get(i).toString(), Leader.class);
-                                if (!mDatas.contains(leader)) mDatas.add(leader);
-                            }
-                        } else {
-                            T.showShort(getActivity(), obj.getString("content"));
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
 
-                    mAdapter.notifyDataSetChanged();
-                }
-            });
-        }
+                mAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
@@ -152,57 +120,21 @@ public class LeaderFragment extends BaseFragment {
             if(leader.getBeInstered() == 1) {
                 holder.setText(R.id.leader_favorites, "已关注")
                         .setTextDrawableTop(R.id.leader_favorites, R.drawable.icon_forum_favorites)
-                        .setTextOnClickListener(R.id.leader_favorites, new RemoveFavoritesListener(leader, mContext, holder));
+                        .setTextOnClickListener(R.id.leader_favorites, new UnFollowListener(leader, mContext, holder));
             } else {
                 holder.setText(R.id.leader_favorites, "加关注")
                         .setTextDrawableTop(R.id.leader_favorites, R.drawable.icon_forum_unfavorites)
-                        .setTextOnClickListener(R.id.leader_favorites, new AddFavoritesListener(leader, mContext, holder));
+                        .setTextOnClickListener(R.id.leader_favorites, new FollowListener(leader, mContext, holder));
             }
         }
     }
 
-    public class RemoveFavoritesListener implements View.OnClickListener {
+    private class FollowListener implements View.OnClickListener {
         private Leader leader;
         private Context mContext;
         private ViewHolder holder;
 
-        public RemoveFavoritesListener(Leader leader, Context mContext, ViewHolder holder) {
-            this.leader = leader;
-            this.mContext = mContext;
-            this.holder = holder;
-        }
-
-        @Override
-        public void onClick(View view) {
-            HodorAPI.removeFollow(leader.getMember_id(), SessionKeeper.readSession(mContext),
-                    SessionKeeper.readUsername(mContext), new VolleyRequest() {
-                        @Override
-                        public void onSuccess(String response) {
-                            super.onSuccess(response);
-                            try {
-                                JSONObject obj = new JSONObject(response);
-                                if (obj.getInt("code") == 404) {
-                                    T.showShort(mContext, obj.getString("content"));
-                                } else {
-                                    T.showShort(mContext, "取消成功");
-                                    holder.setText(R.id.leader_favorites, "加关注")
-                                            .setTextDrawableTop(R.id.leader_favorites, R.drawable.icon_forum_unfavorites)
-                                            .setTextOnClickListener(R.id.leader_favorites, new AddFavoritesListener(leader, mContext, holder));
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-        }
-    }
-
-    public class AddFavoritesListener implements View.OnClickListener {
-        private Leader leader;
-        private Context mContext;
-        private ViewHolder holder;
-
-        public AddFavoritesListener(Leader leader, Context mContext, ViewHolder holder) {
+        public FollowListener(Leader leader, Context mContext, ViewHolder holder) {
             this.leader = leader;
             this.mContext = mContext;
             this.holder = holder;
@@ -222,13 +154,48 @@ public class LeaderFragment extends BaseFragment {
                             T.showShort(mContext, "关注成功");
                             holder.setText(R.id.leader_favorites, "已关注")
                                     .setTextDrawableTop(R.id.leader_favorites, R.drawable.icon_forum_favorites);
-                            holder.setTextOnClickListener(R.id.leader_favorites, new RemoveFavoritesListener(leader, mContext, holder));
+                            holder.setTextOnClickListener(R.id.leader_favorites, new UnFollowListener(leader, mContext, holder));
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
-                    });
+            });
+        }
+    }
+
+    private class UnFollowListener implements View.OnClickListener {
+        private Leader leader;
+        private Context mContext;
+        private ViewHolder holder;
+
+        public UnFollowListener(Leader leader, Context mContext, ViewHolder holder) {
+            this.leader = leader;
+            this.mContext = mContext;
+            this.holder = holder;
+        }
+
+        @Override
+        public void onClick(View view) {
+            HodorAPI.removeFollow(mContext, leader.getMember_id(), new VolleyRequest() {
+                @Override
+                public void onSuccess(String response) {
+                    super.onSuccess(response);
+                    try {
+                        JSONObject obj = new JSONObject(response);
+                        if (obj.getInt("code") == 404) {
+                            T.showShort(mContext, obj.getString("content"));
+                        } else {
+                            T.showShort(mContext, "取消成功");
+                            holder.setText(R.id.leader_favorites, "加关注")
+                                    .setTextDrawableTop(R.id.leader_favorites, R.drawable.icon_forum_unfavorites)
+                                    .setTextOnClickListener(R.id.leader_favorites, new FollowListener(leader, mContext, holder));
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
         }
     }
 }

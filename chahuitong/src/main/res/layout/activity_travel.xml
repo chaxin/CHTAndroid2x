@@ -13,8 +13,8 @@
         app:titleText="布郞山"
         app:titleTextColor="@android:color/white"
         app:titleTextSize="@dimen/text_title"
-        app:leftSrc="@drawable/icon_event_favorites"
-        app:rightSrc="@drawable/icon_event_share"
+        app:leftSrc="@drawable/back_text_normal"
+        app:rightSrc="@drawable/home_text_normal"
         />
 
     <ScrollView
@@ -173,38 +173,10 @@
                     android:id="@+id/travel_content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="布朗山位于西双版纳勐海县的境内，靠近中缅边境，是著名的普洱茶产区，也是古茶园保留得最多的地区之一，布朗山方圆1000多平方公里。布朗山乡包括班章、老曼峨、曼新龙等村寨"
                     android:layout_marginTop="33dp"
                     android:layout_marginBottom="33dp"
                     />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="活动提醒"
-                    android:textStyle="bold"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/TextViewBody"
-                    android:text="1.交通：飞机（成都-西双版纳）\n 2.用餐：当地特色风味小吃"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="自费项目"
-                    android:textStyle="bold"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/TextViewBody"
-                    android:text="个人消费。\n活动费6000/人"
-                    />
             </LinearLayout>
 
         </LinearLayout>

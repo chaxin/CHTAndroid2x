@@ -1,5 +1,7 @@
 package com.damenghai.chahuitong.bean;
 
+import com.google.gson.annotations.Expose;
+
 import java.io.Serializable;
 
 /**
@@ -7,12 +9,17 @@ import java.io.Serializable;
  */
 public class Leader implements Serializable {
     private int member_id;
+    @Expose
     private String member_name;
+    @Expose
     private String member_truename;
+    @Expose
     private String member_avatar;
+    @Expose
     private String member_sex;
-
+    @Expose
     private String member_birthday;
+
     private String member_passwd;
     private String member_paypwd;
     private String member_email;

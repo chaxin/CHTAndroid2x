@@ -44,12 +44,14 @@ public class WebViewActivity extends BaseActivity implements NewWebView.OnReceiv
         }
 	}
 
-	private void findViewById() {
+	@Override
+	protected void findViewById() {
 		mTopBar = (TopBar) findViewById(R.id.topBar);
 		mWebView = (NewWebView) findViewById(R.id.new_webview);
 	}
 
-	private void initView() {
+	@Override
+	protected void initView() {
 		Intent intent = getIntent();
 		Bundle extra = intent.getExtras();
 		if(extra != null) {
@@ -91,45 +93,6 @@ public class WebViewActivity extends BaseActivity implements NewWebView.OnReceiv
 			});
 		}
 
-	}
-
-	public void initUmengShare() {
-		String appID = "wx58ea4f88c26aa4b0";
-		String appSecret = "1999b86ded76a858588083ac46615b8d";
-		// 添加微信平台
-		UMWXHandler wxHandler = new UMWXHandler(this,appID,appSecret);
-		wxHandler.addToSocialSDK();
-		// 添加微信朋友圈
-		UMWXHandler wxCircleHandler = new UMWXHandler(this,appID,appSecret);
-		wxCircleHandler.setToCircle(true);
-		wxCircleHandler.addToSocialSDK();
-
-		// 分享给qq好友，参数1为当前Activity，参数2为开发者在QQ互联申请的APP ID，参数3为开发者在QQ互联申请的APP kEY.
-		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(this, "100424468",
-				"c7394704798a158208a74ab60104f0ba");
-		qqSsoHandler.addToSocialSDK();
-
-		//分享到qq空间，参数1为当前Activity，参数2为开发者在QQ互联申请的APP ID，参数3为开发者在QQ互联申请的APP kEY.
-		QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(this, "100424468",
-				"c7394704798a158208a74ab60104f0ba");
-		qZoneSsoHandler.addToSocialSDK();
-	}
-
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		/**使用SSO授权必须添加如下代码 */
-		UMSsoHandler ssoHandler = mController.getConfig().getSsoHandler(requestCode) ;
-		if(ssoHandler != null){
-			ssoHandler.authorizeCallBack(requestCode, resultCode, data);
-		}
-
-		if(resultCode == Activity.RESULT_CANCELED) return;
-		
-		if(requestCode == NewWebView.LOGIN_IN_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-			mWebView.setCookie("key", SessionKeeper.readSession(this));
-			mWebView.setCookie("username", SessionKeeper.readUsername(this));
-		}
 	}
 
 	@Override

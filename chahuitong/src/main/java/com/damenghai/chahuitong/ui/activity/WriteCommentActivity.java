@@ -38,13 +38,15 @@ public class WriteCommentActivity extends BaseActivity implements View.OnClickLi
         initView();
     }
 
-    private void findViewById() {
+    @Override
+    protected void findViewById() {
         mTopBar = (TopBar) findViewById(R.id.write_status_bar);
         mText = (EditText) findViewById(R.id.write_status_text);
         mCommit = (Button) findViewById(R.id.status_commit);
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
         mTopBar.setTitle("评论");
         mCommit.setText("发送");
 

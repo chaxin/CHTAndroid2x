@@ -6,24 +6,24 @@ import java.io.Serializable;
  * Created by Sgun on 15/8/4.
  */
 public class User implements Serializable {
-    float predepoit;
-    int point;
+    String predepoit;
+    String point;
     String user_name;
     String avator;
 
-    public float getPredepoit() {
+    public String getPredepoit() {
         return predepoit;
     }
 
-    public void setPredepoit(float predepoit) {
+    public void setPredepoit(String predepoit) {
         this.predepoit = predepoit;
     }
 
-    public int getPoint() {
+    public String getPoint() {
         return point;
     }
 
-    public void setPoint(int point) {
+    public void setPoint(String point) {
         this.point = point;
     }
 

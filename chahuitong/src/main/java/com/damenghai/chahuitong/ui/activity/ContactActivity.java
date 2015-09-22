@@ -38,7 +38,8 @@ public class ContactActivity extends BaseActivity implements OnClickListener {
         initView();
 	}
 
-	private void findViewById() {
+	@Override
+	protected void findViewById() {
 		mTopbar = (TopBar) findViewById(R.id.id_contact_topbar);
 		mTvDesc = (TextView) findViewById(R.id.id_product_info);
 		mCall = (Button) findViewById(R.id.id_call_phone);
@@ -46,7 +47,8 @@ public class ContactActivity extends BaseActivity implements OnClickListener {
 		mContent = (EditText) findViewById(R.id.id_input_msg);
 	}
 
-	private void initView() {
+	@Override
+	protected void initView() {
 		mCall.setOnClickListener(this);
 		mSubmit.setOnClickListener(this);
 		mTopbar.setOnLeftClickListener(new OnLeftClickListener() {

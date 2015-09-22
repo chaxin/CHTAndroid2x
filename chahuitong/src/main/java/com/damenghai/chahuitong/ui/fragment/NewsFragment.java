@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,7 +18,7 @@ import com.damenghai.chahuitong.api.HodorAPI;
 import com.damenghai.chahuitong.bean.Article;
 import com.damenghai.chahuitong.bean.response.ArticleResponse;
 import com.damenghai.chahuitong.request.VolleyRequest;
-import com.damenghai.chahuitong.utils.ArticleWindow;
+import com.damenghai.chahuitong.view.ArticleWindow;
 import com.damenghai.chahuitong.utils.ViewHolder;
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -42,7 +41,6 @@ public class NewsFragment extends Fragment {
     private TextView mTvTitle;
     private TextView mTvDesc;
     private TextView mTvDate;
-    private ImageView mBtnShare;
 
     private ArrayList<Article> mDatas;
     private Adapter mAdapter;
@@ -161,20 +159,11 @@ public class NewsFragment extends Fragment {
         mTvTitle = (TextView) mHeaderView.findViewById(R.id.news_header_title);
         mTvDate = (TextView) mHeaderView.findViewById(R.id.news_header_date);
         mTvDesc = (TextView) mHeaderView.findViewById(R.id.news_header_desc);
-        mBtnShare = (ImageView) mHeaderView.findViewById(R.id.news_header_share);
 
         if(article == null) return;
         mTvTitle.setText(article.getTitle());
         mTvDate.setText(article.getTime());
         mTvDesc.setText(article.getAbstract());
-
-        mBtnShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
         mHeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -186,7 +175,7 @@ public class NewsFragment extends Fragment {
     private void showWindow(String id) {
         ArticleWindow popupWindow = new ArticleWindow(getActivity(), id);
         popupWindow.setAnimationStyle(R.style.PopupWindowAnim);
-        popupWindow.showAtLocation(getActivity().findViewById(R.id.article_rl), Gravity.TOP, 0, 0);
+        popupWindow.showAtLocation(getActivity().findViewById(R.id.article_rl), Gravity.CENTER, 0, 0);
     }
 
     @Override

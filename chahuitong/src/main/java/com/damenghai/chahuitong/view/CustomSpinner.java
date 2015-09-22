@@ -63,13 +63,6 @@ public class CustomSpinner extends LinearLayout implements OnClickListener{
 		default:
 			break;
 		}
-//		
-//		LayoutInflater textInflater = LayoutInflater.from(context);
-//		View v = textInflater.inflate(R.layout.simple_spinner_item, null);
-//		LayoutParams text1Params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-//		text1Params.gravity = Gravity.END;
-//		TextView text1 = (TextView) v.findViewById(android.R.id.text1);
-//		text1.setLayoutParams(text1Params);
 	
 		//如果没设置标签名就隐藏视图
 		if(mLabelText != null) {
@@ -81,18 +74,23 @@ public class CustomSpinner extends LinearLayout implements OnClickListener{
 		mDrop.setOnClickListener(this);
 	}
 
+	public String getSelectedItem() {
+		return mSpinner.getSelectedItem().toString();
+	}
+
 	public void setAdapter(ArrayList<CharSequence> arrayList) {
         adapter = new ArrayAdapter<CharSequence>(getContext(), R.layout.simple_spinner_item, arrayList);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         mSpinner.setAdapter(adapter);
 	}
 
+	public void setSelection(int position) {
+		mSpinner.setSelection(position);
+	}
+
 	@Override
 	public void onClick(View v) {
 		mSpinner.performClick();
 	}
-	
-	public String getSelectedItem() {
-		return mSpinner.getSelectedItem().toString();
-	}
+
 }

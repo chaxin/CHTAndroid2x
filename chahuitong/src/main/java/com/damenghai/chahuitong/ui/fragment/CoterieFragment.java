@@ -10,15 +10,8 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.damenghai.chahuitong.R;
-import com.damenghai.chahuitong.bean.User;
-import com.damenghai.chahuitong.config.SessionKeeper;
-import com.damenghai.chahuitong.view.RoundImageView;
-import com.lidroid.xutils.BitmapUtils;
 import com.viewpagerindicator.TabPageIndicator;
 
 import java.util.ArrayList;
@@ -61,9 +54,9 @@ public class CoterieFragment extends Fragment {
 
         public ViewPagerAdapter(FragmentManager fm) {
             super(fm);
-            mFragments.add(new LeaderFragment());
+            mFragments.add(new MyFollowFragment());
             mFragments.add(new MyStatusFragment());
-            mFragments.add(new TravelFragment());
+            mFragments.add(new MyTravelFragment());
             mFragments.add(new CommentFragment());
         }
 

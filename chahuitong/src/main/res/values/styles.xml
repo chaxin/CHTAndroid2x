@@ -5,7 +5,7 @@
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
 
     -->
-    <style name="AppBaseTheme" parent="android:Theme.Light.NoTitleBar"/>
+    <style name="AppBaseTheme" parent="android:Theme.Holo.Light"/>
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
@@ -86,7 +86,7 @@
     <style name="publish_product_row">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginTop">10dp</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:orientation">horizontal</item>
     </style>
@@ -95,9 +95,9 @@
     <style name="publish_product_label">
         <item name="android:layout_width">100dp</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_marginLeft">30dp</item>
         <item name="android:textColor">@color/primary</item>
         <item name="android:textSize">@dimen/text_title</item>
+        <item name="android:gravity">center_vertical</item>
     </style>
 
     <!-- 发布产品页输入框 -->
@@ -107,7 +107,7 @@
         <item name="android:layout_weight">1</item>
         <item name="android:background">@null</item>
         <item name="android:singleLine">true</item>
-        <item name="android:textSize">@dimen/text_title</item>
+        <item name="android:textSize">@dimen/text_body</item>
     </style>
 
     <!-- 茶市发布产品页 -->
@@ -186,15 +186,12 @@
         <item name="android:minHeight">32dp</item>
     </style>
 
-    <!-- 标题 -->
+    <!-- 标题样式 -->
     <style name="TextViewTitle">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:singleLine">true</item>
-        <item name="android:maxEms">10</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:textStyle">bold</item>
         <item name="android:textSize">@dimen/text_title</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <!-- 段落文本样式 -->
@@ -227,6 +224,14 @@
         <item name="android:layout_height">40dp</item>
         <item name="android:layout_weight">2</item>
         <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <!-- 产品标题 -->
+    <style name="ProductItemTitle" parent="TextViewTitle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:maxLength">15</item>
     </style>
 
     <!-- 首页描述 -->
@@ -276,7 +281,6 @@
         <item name="android:paddingRight">6dp</item>
         <item name="android:paddingTop">6dp</item>
         <item name="android:listSelector">@color/background</item>
-        <item name="android:background">@color/background</item>
         <item name="android:gravity">center</item>
     </style>
 

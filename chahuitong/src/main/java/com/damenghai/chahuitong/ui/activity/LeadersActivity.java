@@ -2,10 +2,10 @@ package com.damenghai.chahuitong.ui.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.GridView;
 
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
@@ -13,10 +13,16 @@ import com.damenghai.chahuitong.adapter.CommonAdapter;
 import com.damenghai.chahuitong.api.HodorAPI;
 import com.damenghai.chahuitong.bean.Leader;
 import com.damenghai.chahuitong.config.SessionKeeper;
+import com.damenghai.chahuitong.listener.FollowListener;
+import com.damenghai.chahuitong.listener.UnFollowListener;
 import com.damenghai.chahuitong.request.VolleyRequest;
-import com.damenghai.chahuitong.utils.T;
 import com.damenghai.chahuitong.utils.ViewHolder;
+import com.damenghai.chahuitong.view.TopBar;
 import com.google.gson.Gson;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnLastItemVisibleListener;
+import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,8 +34,9 @@ import java.util.List;
 /**
  * Created by Sgun on 15/8/23.
  */
-public class LeadersActivity extends BaseActivity {
-    private GridView mGv;
+public class LeadersActivity extends BaseActivity implements OnRefreshListener, OnLastItemVisibleListener {
+    private TopBar mTopBar;
+    private PullToRefreshGridView mPgv;
     private GridViewAdapter mAdapter;
     private ArrayList<Leader> mDatas;
 
@@ -44,18 +51,39 @@ public class LeadersActivity extends BaseActivity {
 
         initView();
 
-        loadDatas();
+        loadData(1);
     }
 
-    private void findViewById() {
-        mGv = (GridView) findViewById(R.id.leader_list_gv);
+    @Override
+    protected void findViewById() {
+        mTopBar = (TopBar) findViewById(R.id.leaders_bar);
+        mPgv = (PullToRefreshGridView) findViewById(R.id.leader_list_gv);
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
+        mTopBar.setOnLeftClickListener(new TopBar.OnLeftClickListener() {
+            @Override
+            public void onLeftClick() {
+                finishActivity();
+            }
+        });
+
+        mTopBar.setOnRightClickListener(new TopBar.onRightClickListener() {
+            @Override
+            public void onRightClick() {
+                Intent intent = new Intent(LeadersActivity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+
         mDatas = new ArrayList<Leader>();
         mAdapter = new GridViewAdapter(this, mDatas, R.layout.gridview_item_leader_list);
-        mGv.setAdapter(mAdapter);
-        mGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mPgv.setAdapter(mAdapter);
+        mPgv.setOnRefreshListener(this);
+        mPgv.setOnLastItemVisibleListener(this);
+        mPgv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Leader leader = mDatas.get(i);
@@ -66,11 +94,18 @@ public class LeadersActivity extends BaseActivity {
         });
     }
 
-    private void loadDatas() {
-        HodorAPI.followShow(1, SessionKeeper.readSession(this), SessionKeeper.readUsername(this), new VolleyRequest() {
+    private void loadData(final int page) {
+        HodorAPI.followShow(this, page, new VolleyRequest() {
             @Override
             public void onSuccess(String response) {
                 super.onSuccess(response);
+
+                mCurrentPage = page;
+
+                if(page == 1) {
+                    mDatas.clear();
+                }
+
                 try {
                     JSONObject obj = new JSONObject(response);
                     JSONArray array = obj.getJSONArray("content");
@@ -84,7 +119,23 @@ public class LeadersActivity extends BaseActivity {
 
                 mAdapter.notifyDataSetChanged();
             }
+
+            @Override
+            public void onAllDone() {
+                super.onAllDone();
+                mPgv.onRefreshComplete();
+            }
         });
+    }
+
+    @Override
+    public void onLastItemVisible() {
+        loadData(mCurrentPage + 1);
+    }
+
+    @Override
+    public void onRefresh(PullToRefreshBase refreshView) {
+        loadData(1);
     }
 
     private class GridViewAdapter extends CommonAdapter<Leader> {
@@ -101,35 +152,15 @@ public class LeadersActivity extends BaseActivity {
                     .setText(R.id.leader_item_favorites, leader.getGuanzhu() + " 关注")
                     .loadDefaultImage(R.id.leader_item_avatar, leader.getMember_avatar());
             if(leader.getBeInstered() == 1) {
-                holder.setTextColor(R.id.leader_item_follow, R.color.primary)
-                        .setTextDrawableLeft(R.id.leader_item_follow, R.drawable.icon_followed);
+                holder.setText(R.id.leader_item_follow, "取消关注")
+                        .setTextColor(R.id.leader_item_follow, R.color.primary)
+                        .setTextDrawableLeft(R.id.leader_item_follow, R.drawable.icon_followed)
+                        .setOnClickListener(R.id.leader_item_follow, new UnFollowListener(mContext, leader, holder));
             } else {
-                holder.setTextColor(R.id.leader_item_follow, android.R.color.black)
+                holder.setText(R.id.leader_item_follow, "加关注")
+                        .setTextColor(R.id.leader_item_follow, android.R.color.black)
                         .setTextDrawableLeft(R.id.leader_item_follow, R.drawable.icon_unfollowed)
-                        .setTextOnClickListener(R.id.leader_item_follow, new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                HodorAPI.addFollow(mContext, leader.getMember_id(), new VolleyRequest() {
-                                    @Override
-                                    public void onSuccess(String response) {
-                                        super.onSuccess(response);
-                                        try {
-                                            JSONObject obj = new JSONObject(response);
-                                            if(obj.getInt("code") != 404) {
-                                                holder.setTextColor(R.id.leader_item_follow, R.color.primary)
-                                                        .setTextDrawableLeft(R.id.leader_item_follow, R.drawable.icon_followed);
-                                                leader.setBeInstered(1);
-                                                T.showShort(mContext, "关注成功");
-                                            } else {
-                                                T.showShort(mContext, obj.getString("content"));
-                                            }
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                });
-                            }
-                        });
+                        .setTextOnClickListener(R.id.leader_item_follow, new FollowListener(mContext, leader, holder));
             }
         }
     }

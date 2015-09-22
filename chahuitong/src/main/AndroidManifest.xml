@@ -25,6 +25,8 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+    <uses-permission android:name="android.permission.WRITE_APN_SETTINGS" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -70,12 +72,13 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <!-- 100424468，如果你使用的公用账号，则不需要修改；否则修改成你在QQ开放平台申请的 APP ID -->
-                <data android:scheme="tencent100424468" />
+                <data android:scheme="tencent1104563629" />
             </intent-filter>
         </activity>
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
             android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
         </activity>
         <!-- ###################注册SDK使用的Activity###################### -->
@@ -142,12 +145,16 @@
             android:theme="@style/WhiteTextTranIndicators"
             >
         </activity>
-        <activity android:name=".ui.activity.PublishActivity" />
+        <activity
+            android:name=".ui.activity.PublishActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            />
         <activity
             android:name=".ui.activity.MyTeaMarketActivity"
             android:theme="@style/PrimaryTextIndicators" />
         <activity android:name=".ui.activity.LeadersActivity" />
         <activity android:name=".ui.activity.TopicsActivity" />
+        <activity android:name=".ui.activity.TopicActivity" />
         <activity android:name=".ui.activity.TravelsActivity" />
         <activity android:name=".ui.activity.StatusesActivity" />
         <activity android:name=".ui.activity.LeaderActivity" />
@@ -159,7 +166,14 @@
         <activity android:name=".ui.activity.TravelActivity" />
         <activity android:name=".ui.activity.InitiateEventActivity" />
         <activity android:name=".ui.activity.WriteCommentActivity" />
-        <activity android:name=".ui.activity.PayActivity" />
+
+        <activity android:name=".ui.activity.PaymentActivity" >
+        </activity>
+        <activity android:name=".ui.activity.EditActivity" />
+        <activity android:name=".ui.activity.ProfileActivity" />
+        <activity android:name=".ui.activity.ModifyActivity" />
+
+        <activity android:name="com.unionpay.uppay.PayActivity" />
     </application>
 
 </manifest>

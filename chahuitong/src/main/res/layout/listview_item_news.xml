@@ -24,7 +24,7 @@
             <TextView
                 android:id="@+id/news_item_title"
                 android:textStyle="normal"
-                style="@style/TextViewTitle" />
+                style="@style/ProductItemTitle" />
 
             <TextView
                 android:id="@+id/news_item_date"

@@ -2,6 +2,8 @@ package com.damenghai.chahuitong.ui.activity;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -10,23 +12,19 @@ import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.ImageBrowserAdapter;
 import com.damenghai.chahuitong.bean.ImageUrls;
-import com.damenghai.chahuitong.bean.Status;
 
 import java.util.ArrayList;
 
 /**
  * Created by Sgun on 15/8/28.
  */
-public class ImageBrowserActivity extends BaseActivity implements View.OnClickListener, ViewPager.OnPageChangeListener {
+public class ImageBrowserActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
     private ImageBrowserAdapter mAdapter;
     private ArrayList<ImageUrls> mPicUrls;
-    private Status mStatus;
     private int mPosition;
 
     private ViewPager mViewPager;
     private TextView mTextIndex;
-    private Button mBtnSave;
-    private Button mBtnOriginalImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,23 +36,19 @@ public class ImageBrowserActivity extends BaseActivity implements View.OnClickLi
 
         findViewById();
 
-        initViwe();
+        initView();
     }
 
-    private void findViewById() {
+    protected void findViewById() {
         mViewPager = (ViewPager) findViewById(R.id.vp_image_brower);
         mTextIndex = (TextView) findViewById(R.id.tv_image_index);
-        mBtnSave = (Button) findViewById(R.id.btn_save);
-        mBtnOriginalImage = (Button) findViewById(R.id.btn_original_image);
     }
 
-    private void initViwe() {
+    @Override
+    protected void initView() {
         mAdapter = new ImageBrowserAdapter(this, mPicUrls);
         mViewPager.setAdapter(mAdapter);
         mViewPager.addOnPageChangeListener(this);
-
-        mBtnSave.setOnClickListener(this);
-        mBtnOriginalImage.setOnClickListener(this);
 
         if(mPicUrls.size() > 1) {
             mViewPager.setCurrentItem(mPosition);
@@ -63,12 +57,6 @@ public class ImageBrowserActivity extends BaseActivity implements View.OnClickLi
             mTextIndex.setVisibility(View.GONE);
         }
     }
-
-    @Override
-    public void onClick(View view) {
-
-    }
-
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -84,4 +72,14 @@ public class ImageBrowserActivity extends BaseActivity implements View.OnClickLi
     public void onPageScrollStateChanged(int state) {
 
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK) {
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
 }

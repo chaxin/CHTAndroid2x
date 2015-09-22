@@ -82,7 +82,8 @@ public class MainActivity extends BaseActivity {
         initView();
     }
 
-    private void findViewById() {
+    @Override
+    protected void findViewById() {
         mTopBar = (TopBar) findViewById(R.id.topBar);
         mRadioGroup = (RadioGroup) findViewById(R.id.id_home_tab);
 
@@ -93,7 +94,8 @@ public class MainActivity extends BaseActivity {
         mRadioMember = (RadioButton) findViewById(R.id.home_tab_member);
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
         mFragments = new SparseArray<WebFragment>();
 
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

@@ -46,7 +46,7 @@
                 >
                 <TextView
                     android:id="@+id/news_header_title"
-                    style="@style/TextViewTitle"
+                    style="@style/ProductItemTitle"
                     />
 
                 <TextView
@@ -57,12 +57,6 @@
                     android:layout_gravity="center"
                     />
 
-                <ImageView
-                    android:id="@+id/news_header_share"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/icon_news_share"
-                    />
             </LinearLayout>
 
             <TextView

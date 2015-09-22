@@ -1,5 +1,6 @@
 package com.damenghai.chahuitong.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.api.HodorAPI;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.utils.T;
+import com.damenghai.chahuitong.view.TopBar;
 
 /**
  * Created by Sgun on 15/9/2.
@@ -17,6 +19,7 @@ import com.damenghai.chahuitong.utils.T;
 public class JoinEventActivity extends BaseActivity implements View.OnClickListener {
     private int mID;
 
+    private TopBar mTopBar;
     private EditText mName;
     private EditText mPhone;
     private EditText mCount;
@@ -35,7 +38,9 @@ public class JoinEventActivity extends BaseActivity implements View.OnClickListe
         initView();
     }
 
-    private void findViewById() {
+    @Override
+    protected void findViewById() {
+        mTopBar = (TopBar) findViewById(R.id.initiate_bar);
         mName = (EditText) findViewById(R.id.info_name);
         mPhone = (EditText) findViewById(R.id.info_phone);
         mCount = (EditText) findViewById(R.id.info_count);
@@ -43,7 +48,23 @@ public class JoinEventActivity extends BaseActivity implements View.OnClickListe
         mCommit = (Button) findViewById(R.id.btn_join);
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
+        mTopBar.setOnLeftClickListener(new TopBar.OnLeftClickListener() {
+            @Override
+            public void onLeftClick() {
+                finishActivity();
+            }
+        });
+        mTopBar.setOnRightClickListener(new TopBar.onRightClickListener() {
+            @Override
+            public void onRightClick() {
+                Intent intent = new Intent(JoinEventActivity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+
         mCommit.setOnClickListener(this);
     }
 

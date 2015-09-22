@@ -10,10 +10,10 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.damenghai.chahuitong.api.TeaMarketAPI;
 import com.damenghai.chahuitong.base.BaseFragment;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.CommonAdapter;
-import com.damenghai.chahuitong.api.HodorAPI;
 import com.damenghai.chahuitong.bean.response.MarketProductsResponse;
 import com.damenghai.chahuitong.bean.Product;
 import com.damenghai.chahuitong.request.VolleyRequest;
@@ -70,7 +70,6 @@ public class ListProductFragment extends BaseFragment implements OnItemClickList
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-
         initView();
 
 		loadDatas(1);
@@ -108,7 +107,7 @@ public class ListProductFragment extends BaseFragment implements OnItemClickList
      * @param page
      */
 	private void loadDatas(final int page) {
-        HodorAPI.teaMarketProducts(mSaleway + "", page, new VolleyRequest() {
+        TeaMarketAPI.productsShow(mSaleway + "", page, new VolleyRequest() {
             @Override
             public void onSuccess(String response) {
                 mLoading.setVisibility(View.GONE);
@@ -116,7 +115,7 @@ public class ListProductFragment extends BaseFragment implements OnItemClickList
 
                 mCurrentPage = page;
 
-                if(page == 1) {
+                if (page == 1) {
                     mDatas.clear();
                 }
 

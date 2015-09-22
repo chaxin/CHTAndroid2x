@@ -17,7 +17,7 @@ import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.ui.fragment.CommentFragment;
 import com.damenghai.chahuitong.ui.fragment.LeaderFragment;
 import com.damenghai.chahuitong.ui.fragment.MyStatusFragment;
-import com.damenghai.chahuitong.ui.fragment.TravelFragment;
+import com.damenghai.chahuitong.ui.fragment.MyTravelFragment;
 import com.damenghai.chahuitong.view.RoundImageView;
 import com.lidroid.xutils.BitmapUtils;
 import com.viewpagerindicator.TabPageIndicator;
@@ -56,7 +56,7 @@ public class CoterieActivity extends BaseFragmentActivity {
         mIvLogout = (ImageView) findViewById(R.id.personal_logout);
         mVp = (ViewPager) findViewById(R.id.coterie_vp);
         mIndicator = (TabPageIndicator) findViewById(R.id.coterie_indicator);
-        mIvAvator = (RoundImageView) findViewById(R.id.personal_avator);
+        mIvAvator = (RoundImageView) findViewById(R.id.personal_avatar);
         mTvUsername = (TextView) findViewById(R.id.personal_username);
         mBtnLogin = (Button) findViewById(R.id.personal_login);
     }
@@ -106,7 +106,7 @@ public class CoterieActivity extends BaseFragmentActivity {
             super(fm);
             mFragments.add(new LeaderFragment());
             mFragments.add(new MyStatusFragment());
-            mFragments.add(new TravelFragment());
+            mFragments.add(new MyTravelFragment());
             mFragments.add(new CommentFragment());
         }
 

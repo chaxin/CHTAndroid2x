@@ -1,25 +1,21 @@
 package com.damenghai.chahuitong.ui.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.GridView;
-import android.widget.ListView;
 
 import com.damenghai.chahuitong.adapter.StatusesAdapter;
 import com.damenghai.chahuitong.api.HodorAPI;
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
-import com.damenghai.chahuitong.adapter.CommonAdapter;
-import com.damenghai.chahuitong.adapter.GridViewImagesAdapter;
-import com.damenghai.chahuitong.bean.ImageUrls;
 import com.damenghai.chahuitong.bean.Leader;
 import com.damenghai.chahuitong.bean.Status;
 import com.damenghai.chahuitong.bean.response.TopicResponse;
 import com.damenghai.chahuitong.request.VolleyRequest;
-import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.T;
 import com.damenghai.chahuitong.utils.ViewHolder;
+import com.damenghai.chahuitong.view.TopBar;
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnLastItemVisibleListener;
@@ -36,6 +32,7 @@ import java.util.List;
  * Created by Sgun on 15/8/23.
  */
 public class TopicsActivity extends BaseActivity implements OnLastItemVisibleListener, OnRefreshListener {
+    private TopBar mTopBar;
     private PullToRefreshListView mListView;
 
     private ArrayList<Status> mTopics;
@@ -45,7 +42,7 @@ public class TopicsActivity extends BaseActivity implements OnLastItemVisibleLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_topic);
+        setContentView(R.layout.activity_topics);
 
         findViewById();
 
@@ -54,11 +51,30 @@ public class TopicsActivity extends BaseActivity implements OnLastItemVisibleLis
         loadData(1);
     }
 
-    private void findViewById() {
+    @Override
+    protected void findViewById() {
+        mTopBar = (TopBar) findViewById(R.id.topics_top_bar);
         mListView = (PullToRefreshListView) findViewById(R.id.topics_lv);
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
+        mTopBar.setOnLeftClickListener(new TopBar.OnLeftClickListener() {
+            @Override
+            public void onLeftClick() {
+                finishActivity();
+            }
+        });
+
+        mTopBar.setOnRightClickListener(new TopBar.onRightClickListener() {
+            @Override
+            public void onRightClick() {
+                Intent intent = new Intent(TopicsActivity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+
         mTopics = new ArrayList<Status>();
         mLvAdapter = new ListViewAdapter(this, mTopics, R.layout.listview_item_topic);
         mListView.setAdapter(mLvAdapter);

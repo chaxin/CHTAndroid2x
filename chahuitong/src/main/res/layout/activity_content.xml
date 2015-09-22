@@ -13,8 +13,8 @@
         android:background="@color/primary"
         hodor:titleTextColor="@android:color/white"
         hodor:titleTextSize="@dimen/small_middle_text_size"
-        hodor:leftSrc="@drawable/btn_back_item_selector"
-        hodor:rightSrc="@drawable/icon_home_normal"
+        hodor:leftSrc="@drawable/back_text_normal"
+        hodor:rightSrc="@drawable/home_text_normal"
         />
 
     <View

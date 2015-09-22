@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.damenghai.chahuitong.base.BaseActivity;
@@ -45,10 +46,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     private Button mBtnShop;
     private Button mBtnPersonal;
     private ImageView mIvProduct;
-    private TextView mTitleOne, mDescOne, mPriceOne, mFavoritesOne;
-    private Button mBtnOne;
-
-    private Goods goods;
+    private TextView mTitle, mDesc, mPrice, mFavoritesOne;
+    private LinearLayout mLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,12 +73,12 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
         mIvProduct = (ImageView) findViewById(R.id.home_iv_product);
 
-        View goodsOne = findViewById(R.id.goods_one);
-        mTitleOne = (TextView) goodsOne.findViewById(R.id.home_tv_title);
-        mDescOne = (TextView) goodsOne.findViewById(R.id.home_tv_desc);
-        mPriceOne = (TextView) goodsOne.findViewById(R.id.home_tv_price);
-        mBtnOne = (Button) goodsOne.findViewById(R.id.home_btn_detail);
-        mFavoritesOne = (TextView) goodsOne.findViewById(R.id.home_tv_favorites);
+        mLayout = (LinearLayout) findViewById(R.id.home_recommend_layout);
+        View include_recommend = findViewById(R.id.goods_one);
+        mTitle = (TextView) include_recommend.findViewById(R.id.home_tv_title);
+        mDesc = (TextView) include_recommend.findViewById(R.id.home_tv_desc);
+        mPrice = (TextView) include_recommend.findViewById(R.id.home_tv_price);
+        mFavoritesOne = (TextView) include_recommend.findViewById(R.id.home_tv_favorites);
     }
 
     public void initView() {
@@ -96,34 +95,23 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         mBanner.setIndicator(mIndicator);
     }
 
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        int height = mIvProduct.getHeight();
-        ViewGroup.LayoutParams params = mIvProduct.getLayoutParams();
-        params.width = height;
-        mIvProduct.setLayoutParams(params);
-    }
-
     private void loadData() {
         HodorAPI.getRequest("http://www.chahuitong.com/wap/index.php/Home/Index/homePromotionGoods", new VolleyRequest() {
             @Override
             public void onSuccess(String response) {
                 RecommendResponse recommend = new Gson().fromJson(response, RecommendResponse.class);
-                goods = recommend.getContent().get(0);
+                final Goods goods = recommend.getContent().get(0);
                 BitmapUtils utils = new BitmapUtils(HomeActivity.this);
                 utils.display(mIvProduct, IMAGE_URL + goods.getImageUrl());
-                mTitleOne.setText(goods.getName());
-                mDescOne.setText(goods.getDescription());
-                mPriceOne.setText(("￥" + goods.getPrice()));
-                mBtnOne.setOnClickListener(new View.OnClickListener() {
+                mTitle.setText(goods.getName());
+                mDesc.setText(goods.getDescription());
+                mPrice.setText(("￥" + goods.getPrice()));
+                mLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (goods != null) {
-                            Bundle bundleGoods1 = new Bundle();
-                            bundleGoods1.putString("url", GOODS_DETAIL + goods.getGoods_id());
-                            openActivity(WebViewActivity.class, bundleGoods1);
-                        }
+                        Bundle bundleGoods1 = new Bundle();
+                        bundleGoods1.putString("url", GOODS_DETAIL + goods.getGoods_id());
+                        openActivity(WebViewActivity.class, bundleGoods1);
                     }
                 });
                 HodorAPI.favorites(goods.getGoods_id(), new VolleyRequest() {
@@ -162,4 +150,13 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 break;
         }
     }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        ViewGroup.LayoutParams params = mIvProduct.getLayoutParams();
+        params.width = mIvProduct.getHeight();
+        mIvProduct.setLayoutParams(params);
+    }
+
 }

@@ -1,10 +1,13 @@
 package com.damenghai.chahuitong.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,6 +34,7 @@ import com.damenghai.chahuitong.bean.User;
 import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.ui.fragment.CoterieFragment;
+import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.ViewHolder;
 import com.damenghai.chahuitong.view.RoundImageView;
 import com.google.gson.Gson;
@@ -44,6 +48,7 @@ import java.util.List;
 
 public class PersonalActivity extends BaseFragmentActivity implements OnItemClickListener, OnClickListener {
     public static int LOGIN_REQUEST_CODE = 0x100;
+    public static int PROFILE_REQUEST_CODE = 0x101;
 
     public static boolean isLogin = false;
 
@@ -51,14 +56,14 @@ public class PersonalActivity extends BaseFragmentActivity implements OnItemClic
     private User mUser;
 
     private ImageView mIvBack;
-    private RoundImageView mIvAvator;
+    private RoundImageView mIvAvatar;
     private TextView mTvUsername;
     private ImageView mIvLogout;
     private Button mBtnLogin;
     private GridView mGridView;
-    private Button mBtnBalance;
-    private Button mBtnPurse;
-    private Button mBtnPoint;
+    private TextView mDeposit;
+//    private Button mBtnPurse;
+    private TextView mPoint;
     private ArrayList<Personal> mDatas;
     private Adapter mAdapter;
     private LinearLayout mLayout;
@@ -82,6 +87,8 @@ public class PersonalActivity extends BaseFragmentActivity implements OnItemClic
             mKey = SessionKeeper.readSession(PersonalActivity.this);
             if(mKey.equals("")) return;
             loadUserInfo();
+        } else if(requestCode == PROFILE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            loadUserInfo();
         }
     }
 
@@ -89,14 +96,14 @@ public class PersonalActivity extends BaseFragmentActivity implements OnItemClic
         mLayout = (LinearLayout) findViewById(R.id.personal_items);
         mMyCoterie = (FrameLayout) findViewById(R.id.personal_coterie);
         mIvBack = (ImageView) findViewById(R.id.personal_back);
-        mIvAvator = (RoundImageView) findViewById(R.id.personal_avator);
+        mIvAvatar = (RoundImageView) findViewById(R.id.personal_avatar);
         mTvUsername = (TextView) findViewById(R.id.personal_username);
         mIvLogout = (ImageView) findViewById(R.id.personal_logout);
         mBtnLogin = (Button) findViewById(R.id.personal_login);
         mGridView = (GridView) findViewById(R.id.personal_gridview);
-        mBtnBalance = (Button) findViewById(R.id.personal_balance);
-        mBtnPurse = (Button) findViewById(R.id.personal_purse);
-        mBtnPoint = (Button) findViewById(R.id.personal_point);
+        mDeposit = (TextView) findViewById(R.id.personal_deposit);
+//        mBtnPurse = (Button) findViewById(R.id.personal_purse);
+        mPoint = (TextView) findViewById(R.id.personal_point);
     }
 
     private void initView() {
@@ -125,36 +132,27 @@ public class PersonalActivity extends BaseFragmentActivity implements OnItemClic
         mIvLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SessionKeeper.writeSession(PersonalActivity.this, "");
-                mIvAvator.setVisibility(View.GONE);
-                mTvUsername.setVisibility(View.GONE);
-                mBtnLogin.setVisibility(View.VISIBLE);
-                isLogin = false;
+                AlertDialog.Builder builder = new AlertDialog.Builder(PersonalActivity.this);
+                builder.setMessage("确定要退出吗？");
+                builder.setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        SessionKeeper.writeSession(PersonalActivity.this, "");
+                        mIvAvatar.setVisibility(View.GONE);
+                        mTvUsername.setVisibility(View.GONE);
+                        mBtnLogin.setVisibility(View.VISIBLE);
+                        mDeposit.setVisibility(View.INVISIBLE);
+                        mPoint.setVisibility(View.INVISIBLE);
+                        isLogin = false;
+                    }
+                });
+                builder.setPositiveButton("取消", null);
+                builder.create().show();
+
             }
         });
 
         mGridView.setOnItemClickListener(this);
-
-        mBtnBalance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
-        mBtnPoint.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
-        mBtnPurse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
     }
 
     private void loadUserInfo() {
@@ -178,9 +176,14 @@ public class PersonalActivity extends BaseFragmentActivity implements OnItemClic
         BitmapUtils util = new BitmapUtils(this, this.getCacheDir().getAbsolutePath());
         util.configDefaultLoadingImage(R.drawable.default_load_image);
         util.configDefaultLoadFailedImage(R.drawable.default_load_image);
-        util.display(mIvAvator, mUser.getAvator());
+        util.display(mIvAvatar, mUser.getAvator());
+        mIvAvatar.setOnClickListener(this);
         mTvUsername.setText(mUser.getUsername());
-        mIvAvator.setVisibility(View.VISIBLE);
+        mDeposit.setText(mUser.getPredepoit());
+        mDeposit.setVisibility(View.VISIBLE);
+        mPoint.setText(mUser.getPoint());
+        mPoint.setVisibility(View.VISIBLE);
+        mIvAvatar.setVisibility(View.VISIBLE);
         mTvUsername.setVisibility(View.VISIBLE);
         mBtnLogin.setVisibility(View.GONE);
         isLogin = true;
@@ -232,9 +235,6 @@ public class PersonalActivity extends BaseFragmentActivity implements OnItemClic
                     mLayout.setVisibility(View.GONE);
                     mMyCoterie.setVisibility(View.VISIBLE);
 
-//                    Bundle bundle = new Bundle();
-//                    bundle.putSerializable("user", mUser);
-//                    openActivity(CoterieActivity.class, bundle);
                     return;
                 }
                 Bundle bundle = new Bundle();
@@ -251,6 +251,9 @@ public class PersonalActivity extends BaseFragmentActivity implements OnItemClic
         switch (view.getId()) {
             case R.id.personal_back :
                 backDown();
+                break;
+            case R.id.personal_avatar :
+                openActivityForResult(ProfileActivity.class, PROFILE_REQUEST_CODE);
                 break;
         }
     }
@@ -270,7 +273,7 @@ public class PersonalActivity extends BaseFragmentActivity implements OnItemClic
             super(context, mDatas, resId);
         }
 
-        @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+        @SuppressLint("NewApi")
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             ViewHolder holder = ViewHolder.get(convertView, mContext, mResId, parent, position);

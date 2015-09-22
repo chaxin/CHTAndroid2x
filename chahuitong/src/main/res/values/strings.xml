@@ -58,7 +58,7 @@
     <string name="username">用户名</string>
     <string name="forgot_password"><u>忘记密码?</u></string>
     <string name="email">邮箱</string>
-    <string name="confirm">再次输入密码</string>
+    <string name="confirm_password">再次输入密码</string>
     <string name="register_now">立即注册</string>
 
     <string name="title_activity_personal">PersonalActivity</string>
@@ -76,7 +76,7 @@
     <!-- 2.0 -->
     <!-- 首页 -->
     <string name="home_market">茶 市</string>
-    <string name="home_Forum">论 坛</string>
+    <string name="home_Forum">社 区</string>
     <string name="home_news">资 讯</string>
     <string name="shop">商 城</string>
     <string name="hill">山头</string>
@@ -89,9 +89,20 @@
     <string name="publish_product">发布商品</string>
 
     <!-- 个人中心 -->
-    <string name="personal_purse">红包</string>
-    <string name="personal_point">积分</string>
-    <string name="personal_balance">余额</string>
+    <string name="personal_purse">红包：</string>
+    <string name="personal_point">积分：</string>
+    <string name="personal_balance">余额：</string>
+
+    <string name="profile">个人资料</string>
+    <string name="avatar">头像</string>
+    <string name="real_name">真实姓名</string>
+    <string name="nickname">昵称</string>
+    <string name="sex">性别</string>
+    <string name="born_date">出生日期</string>
+    <string name="manage_address">我的收货地址</string>
+    <string name="change_password">修改密码</string>
+    <string name="security">账户安全</string>
+
 
     <!-- 社区 -->
     <string name="more">更多</string>
@@ -106,4 +117,10 @@
     <string name="topic_desc">广而有趣的话题交流</string>
     <string name="everyday_topic">每日一话</string>
     <string name="comment">评论</string>
+    <string name="write_comment">回复评论</string>
+
+    <!-- 其他 -->
+    <string name="commit">提交</string>
+    <string name="save">保存</string>
+    <string name="confirm">确定</string>
 </resources>

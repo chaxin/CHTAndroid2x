@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black" >
+    android:background="@android:color/black"
+    >
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_image_brower"
@@ -21,51 +22,5 @@
         android:padding="4dp"
         android:text="1/9"
         android:textColor="@android:color/white" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:padding="16dp" >
-
-        <Button
-            android:id="@+id/btn_save"
-            android:layout_width="56dp"
-            android:layout_height="36dp"
-            android:background="@drawable/stroke_gray"
-            android:gravity="center"
-            android:padding="4dp"
-            android:text="保存"
-            android:textColor="@android:color/white" />
-
-        <Button
-            android:id="@+id/btn_original_image"
-            android:layout_width="56dp"
-            android:layout_height="36dp"
-            android:layout_marginLeft="16dp"
-            android:background="@drawable/stroke_gray"
-            android:gravity="center"
-            android:text="原图"
-            android:textColor="@android:color/white" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1" />
-
-        <TextView
-            android:id="@+id/tv_like"
-            android:textSize="@dimen/text_title"
-            android:layout_width="wrap_content"
-            android:layout_height="36dp"
-            android:background="@drawable/stroke_gray"
-            android:drawableLeft="@drawable/preview_unlike_btn"
-            android:drawablePadding="8dp"
-            android:gravity="center"
-            android:padding="8dp"
-            android:text="赞"
-            android:textColor="@android:color/white" />
-    </LinearLayout>
 
 </RelativeLayout>

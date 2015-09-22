@@ -10,10 +10,7 @@ import android.view.KeyEvent;
 
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.config.Constants;
-import com.damenghai.chahuitong.config.SessionKeeper;
-import com.damenghai.chahuitong.ui.activity.LoginActivity;
-import com.damenghai.chahuitong.utils.L;
-import com.tencent.bugly.crashreport.CrashReport;
+import com.damenghai.chahuitong.ui.activity.HomeActivity;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.socialize.controller.UMServiceFactory;
 import com.umeng.socialize.controller.UMSocialService;
@@ -22,11 +19,10 @@ import com.umeng.socialize.sso.SinaSsoHandler;
 import com.umeng.socialize.sso.UMQQSsoHandler;
 import com.umeng.socialize.sso.UMSsoHandler;
 import com.umeng.socialize.weixin.controller.UMWXHandler;
-import com.umeng.update.UmengUpdateAgent;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class BaseActivity extends Activity {
+public abstract class BaseActivity extends Activity {
     protected SharedPreferences sp;
 
     // 友盟分享成员变量
@@ -41,6 +37,7 @@ public class BaseActivity extends Activity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         initUmengShare();
+
     }
 
     // 初始化友盟分享
@@ -56,18 +53,20 @@ public class BaseActivity extends Activity {
         wxCircleHandler.addToSocialSDK();
 
         // 分享给qq好友，参数1为当前Activity，参数2为开发者在QQ互联申请的APP ID，参数3为开发者在QQ互联申请的APP kEY.
-        UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(this, "100424468",
-                "c7394704798a158208a74ab60104f0ba");
+        UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(this, "1104563629", "rJbMttJCa47MBsCk");
         qqSsoHandler.addToSocialSDK();
 
         //分享到qq空间，参数1为当前Activity，参数2为开发者在QQ互联申请的APP ID，参数3为开发者在QQ互联申请的APP kEY.
-        QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(this, "100424468",
-                "c7394704798a158208a74ab60104f0ba");
+        QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(this, "1104563629", "rJbMttJCa47MBsCk");
         qZoneSsoHandler.addToSocialSDK();
 
         //设置新浪SSO handler
         mController.getConfig().setSsoHandler(new SinaSsoHandler());
     }
+
+    protected abstract void findViewById();
+
+    protected abstract void initView();
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -175,11 +174,11 @@ public class BaseActivity extends Activity {
      * @param clazz
      * @param requestCode
      */
-    protected void openResultActivity(Class<? extends Activity> clazz, int requestCode) {
-        openResultActivity(clazz, requestCode, null);
+    protected void openActivityForResult(Class<? extends Activity> clazz, int requestCode) {
+        openActivityForResult(clazz, requestCode, null);
     }
 
-    protected void openResultActivity(Class<? extends Activity> clazz, int requestCode, Bundle bundle) {
+    protected void openActivityForResult(Class<? extends Activity> clazz, int requestCode, Bundle bundle) {
         Intent intent = new Intent(this, clazz);
         if(bundle != null) intent.putExtras(bundle);
         startActivityForResult(intent, requestCode);
@@ -189,5 +188,12 @@ public class BaseActivity extends Activity {
     protected void finishActivity() {
         this.finish();
         this.overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+    }
+
+    protected void goHome() {
+        Intent intent = new Intent(this, HomeActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
     }
 }
