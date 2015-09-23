@@ -1,11 +1,10 @@
 package com.damenghai.chahuitong.ui.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.StatusesAdapter;
-import com.damenghai.chahuitong.api.HodorAPI;
+import com.damenghai.chahuitong.api.HodorRequest;
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.bean.Status;
 import com.damenghai.chahuitong.request.VolleyRequest;
@@ -15,7 +14,6 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnLastItemVisibleListener;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.umeng.socialize.sso.UMSsoHandler;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -76,7 +74,7 @@ public class StatusesActivity extends BaseActivity implements OnRefreshListener,
     }
 
     private void loadData(final int page) {
-        HodorAPI.statusShow(page, new VolleyRequest() {
+        HodorRequest.statusShow(page, new VolleyRequest() {
             @Override
             public void onListSuccess(JSONArray array) {
                 super.onListSuccess(array);

@@ -80,6 +80,11 @@ public class NewWebView extends RelativeLayout {
                     ((Activity) context).startActivityForResult(intent, LOGIN_IN_REQUEST_CODE);
                     return true;
                 }
+//                else if(url.contains("buynum")) {
+//                    Intent intent = new Intent(context, PaymentActivity.class);
+//                    context.startActivity(intent);
+//                    return true;
+//                }
                 Intent intent = new Intent(context, WebViewActivity.class);
                 intent.putExtra("url", url);
                 context.startActivity(intent);

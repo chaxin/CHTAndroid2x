@@ -1,5 +1,6 @@
 package com.damenghai.chahuitong.view;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
@@ -15,13 +16,21 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import com.damenghai.chahuitong.R;
-import com.damenghai.chahuitong.utils.T;
+import com.damenghai.chahuitong.api.NewsAPI;
+import com.damenghai.chahuitong.response.JsonObjectListener;
+import com.damenghai.chahuitong.utils.ShareManager;
 import com.damenghai.chahuitong.view.AbScrollView.OnDismissListener;
+import com.umeng.socialize.controller.UMSocialService;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by Sgun on 15/8/18.
  */
 public class ArticleWindow extends PopupWindow implements OnDismissListener, OnClickListener, OnTouchListener {
+    private Context mContext;
+
     private String mId;
 
     private View mView;
@@ -34,6 +43,8 @@ public class ArticleWindow extends PopupWindow implements OnDismissListener, OnC
 
     public ArticleWindow(Context context, String article_id) {
         super(context);
+
+        mContext = context;
 
         mId = article_id;
 
@@ -73,6 +84,8 @@ public class ArticleWindow extends PopupWindow implements OnDismissListener, OnC
 
         mWebView.loadUrl("http://www.chahuitong.com/wap/index.php/Home/News/detail/article_id/" + mId);
 
+        mWebView.getSettings().setJavaScriptEnabled(true);
+
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
@@ -97,9 +110,19 @@ public class ArticleWindow extends PopupWindow implements OnDismissListener, OnC
                 dismiss();
                 break;
             case R.id.article_share :
-
-
-
+                final UMSocialService controller = ShareManager.create(mContext);
+                NewsAPI.articleInfo(mId, new JsonObjectListener(mContext) {
+                    @Override
+                    public void onSuccess(JSONObject object) {
+                        try {
+                            controller.setShareContent(object.getString("article_title") + ", author:" + object.getString("article_author")
+                                    + ", http://www.chahuitong.com/wap/index.php/Home/News/detail/article_id/" + mId);
+                            controller.openShare((Activity) mContext, false);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
                 break;
         }
     }

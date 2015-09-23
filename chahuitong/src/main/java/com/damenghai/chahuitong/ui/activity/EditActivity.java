@@ -13,7 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 
 import com.damenghai.chahuitong.R;
-import com.damenghai.chahuitong.api.HodorAPI;
 import com.damenghai.chahuitong.api.TeaMarketAPI;
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.bean.Product;

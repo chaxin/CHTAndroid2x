@@ -18,7 +18,7 @@ import android.widget.RelativeLayout;
 
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.CommonAdapter;
-import com.damenghai.chahuitong.api.HodorAPI;
+import com.damenghai.chahuitong.api.HodorRequest;
 import com.damenghai.chahuitong.bean.Brand;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.ui.activity.WebViewActivity;
@@ -103,7 +103,7 @@ public class BrandFragment extends Fragment implements PullToRefreshBase.OnRefre
     private void loadDatas() {
         if(mCategory <= 0) mCategory = 1;
 
-        HodorAPI.brandShow(mCategory,new VolleyRequest() {
+        HodorRequest.brandShow(mCategory, new VolleyRequest() {
             @Override
             public void onSuccess(String response) {
                 super.onSuccess(response);

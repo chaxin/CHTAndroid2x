@@ -11,11 +11,10 @@ import android.widget.AdapterView;
 import com.damenghai.chahuitong.base.BaseFragment;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.CommonAdapter;
-import com.damenghai.chahuitong.api.HodorAPI;
+import com.damenghai.chahuitong.api.HodorRequest;
 import com.damenghai.chahuitong.bean.Comment;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.utils.DensityUtils;
-import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.T;
 import com.damenghai.chahuitong.utils.ViewHolder;
 import com.google.gson.Gson;
@@ -59,13 +58,13 @@ public class CommentFragment extends BaseFragment {
     }
 
     private void loadData() {
-        HodorAPI.myCommentShow(getActivity(), new VolleyRequest() {
+        HodorRequest.myCommentShow(getActivity(), new VolleyRequest() {
             @Override
             public void onSuccess(String response) {
                 super.onSuccess(response);
                 try {
                     JSONObject obj = new JSONObject(response);
-                    if(obj.getInt("code") == 200) {
+                    if (obj.getInt("code") == 200) {
                         JSONArray array = obj.getJSONArray("content");
                         for (int i = 0; i < array.length(); i++) {
                             Comment comment = new Gson().fromJson(array.get(i).toString(), Comment.class);

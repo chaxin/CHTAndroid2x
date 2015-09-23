@@ -10,7 +10,7 @@ import android.widget.ListView;
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.StatusCommentAdapter;
-import com.damenghai.chahuitong.api.HodorAPI;
+import com.damenghai.chahuitong.api.HodorRequest;
 import com.damenghai.chahuitong.bean.Comment;
 import com.damenghai.chahuitong.bean.Status;
 import com.damenghai.chahuitong.config.SessionKeeper;
@@ -97,11 +97,11 @@ public class CommentActivity extends BaseActivity {
     }
 
     private void loadData(final int page) {
-        HodorAPI.commentShow(mStatus.getContent_id(), new VolleyRequest() {
+        HodorRequest.commentShow(mStatus.getContent_id(), new VolleyRequest() {
             @Override
             public void onSuccess(String response) {
                 super.onSuccess(response);
-                if(page == 1) mData.clear();
+                if (page == 1) mData.clear();
 
                 try {
                     JSONObject obj = new JSONObject(response);

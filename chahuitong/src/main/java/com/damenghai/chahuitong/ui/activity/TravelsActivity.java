@@ -7,10 +7,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 
+import com.damenghai.chahuitong.api.HodorRequest;
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.TravelListAdapter;
-import com.damenghai.chahuitong.api.HodorAPI;
 import com.damenghai.chahuitong.bean.Travel;
 import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.request.VolleyRequest;
@@ -85,12 +85,12 @@ public class TravelsActivity extends BaseActivity implements OnItemClickListener
     }
 
     private void loadData(final int page) {
-        HodorAPI.travelShow(page, new VolleyRequest() {
+        HodorRequest.travelShow(page, new VolleyRequest() {
             @Override
             public void onListSuccess(JSONArray array) {
                 super.onListSuccess(array);
 
-                if(page == 1) mTravels.clear();
+                if (page == 1) mTravels.clear();
                 mCurrPage = page;
 
                 try {

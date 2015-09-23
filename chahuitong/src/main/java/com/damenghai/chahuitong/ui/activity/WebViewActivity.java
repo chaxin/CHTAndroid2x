@@ -22,9 +22,6 @@ public class WebViewActivity extends BaseActivity implements NewWebView.OnReceiv
 	private TopBar mTopBar;
 	private NewWebView mWebView;
 
-	// 友盟分享成员变量
-	final UMSocialService mController = UMServiceFactory.getUMSocialService("com.umeng.share");
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

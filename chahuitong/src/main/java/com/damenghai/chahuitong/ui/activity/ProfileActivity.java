@@ -179,8 +179,14 @@ public class ProfileActivity extends BaseActivity implements OnClickListener {
                 });
                 break;
             case R.id.profile_address_layout :
+                Bundle bundle = new Bundle();
+                bundle.putString("url", "http://www.chahuitong.com/wap/index.php/Home/Index/address");
+                openActivity(WebViewActivity.class, bundle);
                 break;
             case R.id.profile_security_layout :
+                Bundle security = new Bundle();
+                security.putString("url", "http://www.chahuitong.com/wap/index.php/Home/Index/changepw");
+                openActivity(WebViewActivity.class, security);
                 break;
             case R.id.profile_commit :
                 ProfileAPI.update(ProfileActivity.this, mLeader, new StringListener(ProfileActivity.this) {

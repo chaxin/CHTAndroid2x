@@ -30,7 +30,7 @@ public class ProfileAPI {
             context.startActivity(intent);
         } else {
             map.put("key", SessionKeeper.readSession(context));
-            HodorAPI.postRequest("http://www.chahuitong.com/wap/index.php/Home/Index/mermber_info_api", map, l);
+            HodorRequest.postRequest("http://www.chahuitong.com/wap/index.php/Home/Index/mermber_info_api", map, l);
         }
     }
 
@@ -50,7 +50,7 @@ public class ProfileAPI {
         Map<String, String> map = new HashMap<String, String>();
         map.put("key", SessionKeeper.readSession(context));
         map.put("content", content);
-        HodorAPI.postRequest("http://www.chahuitong.com/wap/index.php/Home/Index/info_update_api", map, l);
+        HodorRequest.postRequest("http://www.chahuitong.com/wap/index.php/Home/Index/info_update_api", map, l);
     }
 
 }

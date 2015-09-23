@@ -1,7 +1,6 @@
 package com.damenghai.chahuitong.ui.activity;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.FragmentManager;
@@ -9,7 +8,6 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -27,7 +25,8 @@ import android.widget.TextView;
 
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.CommonAdapter;
-import com.damenghai.chahuitong.api.HodorAPI;
+import com.damenghai.chahuitong.api.HodorRequest;
+import com.damenghai.chahuitong.api.PersonalAPI;
 import com.damenghai.chahuitong.base.BaseFragmentActivity;
 import com.damenghai.chahuitong.bean.Personal;
 import com.damenghai.chahuitong.bean.User;
@@ -156,7 +155,7 @@ public class PersonalActivity extends BaseFragmentActivity implements OnItemClic
     }
 
     private void loadUserInfo() {
-        HodorAPI.userInfo(mKey, new VolleyRequest() {
+        PersonalAPI.userInfo(mKey, new VolleyRequest() {
             @Override
             public void onSuccess(String response) {
                 super.onSuccess(response);
@@ -164,7 +163,7 @@ public class PersonalActivity extends BaseFragmentActivity implements OnItemClic
                     JSONObject object = new JSONObject(response);
                     JSONObject datas = object.getJSONObject("datas");
                     mUser = new Gson().fromJson(datas.getJSONObject("member_info").toString(), User.class);
-                    if(mUser != null) setUserInfo();
+                    if (mUser != null) setUserInfo();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -193,10 +192,14 @@ public class PersonalActivity extends BaseFragmentActivity implements OnItemClic
         mDatas.add(new Personal("我的订单", R.drawable.icon_personal_order, "http://www.chahuitong.com/wap/index.php/Home/Index/orderList"));
         mDatas.add(new Personal("购物车", R.drawable.icon_personal_cart, "http://www.chahuitong.com/wap/index.php/Home/Index/cart"));
         mDatas.add(new Personal("我的收藏", R.drawable.icon_personal_favorites, "http://www.chahuitong.com/wap/index.php/Home/Index/favorites"));
-        mDatas.add(new Personal("用户信息", R.drawable.icon_personal_info, "http://www.chahuitong.com/wap/index.php/Home/Index/myInfo"));
+
+        Personal profile = new Personal("用户信息",R.drawable.icon_personal_info, "");
+        profile.setClazz(ProfileActivity.class);
+        mDatas.add(profile);
+
         mDatas.add(new Personal("收货地址", R.drawable.icon_personal_address, "http://www.chahuitong.com/wap/index.php/Home/Index/address"));
-        mDatas.add(new Personal("我的发布", R.drawable.icon_personal_publish, "http://www.chahuitong.com/mobile/app/b2b/index.php/Home/Index/myList"));
-        mDatas.add(new Personal("通知中心", R.drawable.icon_personal_msg, "http://www.chahuitong.com/wap/index.php/Home/Index/msg "));
+        mDatas.add(new Personal("我的发布", R.drawable.icon_personal_publish, ""));
+        mDatas.add(new Personal("通知中心", R.drawable.icon_personal_msg, "http://www.chahuitong.com/wap/index.php/Home/Index/msg"));
         mDatas.add(new Personal("圈子", R.drawable.icon_personal_friends, "coterie"));
         mDatas.add(new Personal("评价", R.drawable.icon_personal_comment, "http://www.chahuitong.com/wap/index.php/Home/Index/message"));
     }
@@ -219,12 +222,12 @@ public class PersonalActivity extends BaseFragmentActivity implements OnItemClic
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         String url = mDatas.get(i).getUrl();
-        if (url != null && !url.equals("")) {
+        Class<? extends Activity> clazz = mDatas.get(i).getClazz();
+        if(clazz != null) {
+            openActivity(clazz);
+        } else if (url != null && !url.equals("")) {
             if(isLogin) {
-                if(url.contains("myList")) {
-                    openActivity(MyTeaMarketActivity.class);
-                    return;
-                } else if(url.contains("coterie")) {
+                if(url.contains("coterie")) {
                     FragmentManager fm = getFragmentManager();
                     FragmentTransaction ft = fm.beginTransaction();
                     mFragment = new CoterieFragment();

@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.StatusesAdapter;
-import com.damenghai.chahuitong.api.HodorAPI;
+import com.damenghai.chahuitong.api.HodorRequest;
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.bean.Leader;
 import com.damenghai.chahuitong.bean.Status;
@@ -112,13 +112,13 @@ public class LeaderActivity extends BaseActivity implements OnClickListener, OnL
 
     private void loadData(final int page) {
         if (mLeader == null) return;
-        HodorAPI.leaderStatus(mLeader.getMember_id(), page, new VolleyRequest() {
+        HodorRequest.leaderStatus(mLeader.getMember_id(), page, new VolleyRequest() {
             @Override
             public void onListSuccess(JSONArray array) {
                 super.onListSuccess(array);
                 mCurrpage = page;
 
-                if(page == 1) mData.clear();
+                if (page == 1) mData.clear();
 
                 try {
                     for (int i = 0; i < array.length(); i++) {
@@ -142,7 +142,7 @@ public class LeaderActivity extends BaseActivity implements OnClickListener, OnL
 
     @Override
     public void onClick(View view) {
-        HodorAPI.addFollow(this, mLeader.getMember_id(), new VolleyRequest() {
+        HodorRequest.addFollow(this, mLeader.getMember_id(), new VolleyRequest() {
             @Override
             public void onSuccess(String response) {
                 super.onSuccess(response);

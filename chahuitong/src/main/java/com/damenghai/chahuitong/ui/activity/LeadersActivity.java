@@ -7,12 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.damenghai.chahuitong.api.HodorRequest;
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.CommonAdapter;
-import com.damenghai.chahuitong.api.HodorAPI;
 import com.damenghai.chahuitong.bean.Leader;
-import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.listener.FollowListener;
 import com.damenghai.chahuitong.listener.UnFollowListener;
 import com.damenghai.chahuitong.request.VolleyRequest;
@@ -95,23 +94,23 @@ public class LeadersActivity extends BaseActivity implements OnRefreshListener, 
     }
 
     private void loadData(final int page) {
-        HodorAPI.followShow(this, page, new VolleyRequest() {
+        HodorRequest.followShow(this, page, new VolleyRequest() {
             @Override
             public void onSuccess(String response) {
                 super.onSuccess(response);
 
                 mCurrentPage = page;
 
-                if(page == 1) {
+                if (page == 1) {
                     mDatas.clear();
                 }
 
                 try {
                     JSONObject obj = new JSONObject(response);
                     JSONArray array = obj.getJSONArray("content");
-                    for(int i=0; i<array.length(); i++) {
+                    for (int i = 0; i < array.length(); i++) {
                         Leader leader = new Gson().fromJson(array.get(i).toString(), Leader.class);
-                        if(!mDatas.contains(leader)) mDatas.add(leader);
+                        if (!mDatas.contains(leader)) mDatas.add(leader);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -7,15 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
+import com.damenghai.chahuitong.api.HodorRequest;
 import com.damenghai.chahuitong.base.BaseFragment;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.CommonAdapter;
-import com.damenghai.chahuitong.api.HodorAPI;
 import com.damenghai.chahuitong.bean.Leader;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.ui.activity.LeaderActivity;
 import com.damenghai.chahuitong.utils.DensityUtils;
-import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.T;
 import com.damenghai.chahuitong.utils.ViewHolder;
 import com.google.gson.Gson;
@@ -75,7 +74,7 @@ public class LeaderFragment extends BaseFragment {
     }
 
     private void initData() {
-        HodorAPI.followShow(getActivity(), 0, new VolleyRequest() {
+        HodorRequest.followShow(getActivity(), 0, new VolleyRequest() {
             @Override
             public void onSuccess(String response) {
                 super.onSuccess(response);
@@ -142,7 +141,7 @@ public class LeaderFragment extends BaseFragment {
 
         @Override
         public void onClick(View view) {
-            HodorAPI.addFollow(mContext, leader.getMember_id(), new VolleyRequest() {
+            HodorRequest.addFollow(mContext, leader.getMember_id(), new VolleyRequest() {
                 @Override
                 public void onSuccess(String response) {
                     super.onSuccess(response);
@@ -177,7 +176,7 @@ public class LeaderFragment extends BaseFragment {
 
         @Override
         public void onClick(View view) {
-            HodorAPI.removeFollow(mContext, leader.getMember_id(), new VolleyRequest() {
+            HodorRequest.removeFollow(mContext, leader.getMember_id(), new VolleyRequest() {
                 @Override
                 public void onSuccess(String response) {
                     super.onSuccess(response);

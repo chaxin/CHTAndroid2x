@@ -6,9 +6,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.damenghai.chahuitong.api.HodorRequest;
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
-import com.damenghai.chahuitong.api.HodorAPI;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.utils.T;
 import com.damenghai.chahuitong.view.TopBar;
@@ -69,7 +69,7 @@ public class JoinEventActivity extends BaseActivity implements View.OnClickListe
     }
 
     private void commitData(String phone) {
-        HodorAPI.joinTravel(this, mID, phone, new VolleyRequest() {
+        HodorRequest.joinTravel(this, mID, phone, new VolleyRequest() {
             @Override
             public void onSuccess(String response) {
                 super.onSuccess();

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -18,7 +17,7 @@ import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.CommonAdapter;
 import com.damenghai.chahuitong.adapter.StatusesAdapter;
 import com.damenghai.chahuitong.adapter.TravelViewPagerAdapter;
-import com.damenghai.chahuitong.api.HodorAPI;
+import com.damenghai.chahuitong.api.HodorRequest;
 import com.damenghai.chahuitong.base.BaseFragmentActivity;
 import com.damenghai.chahuitong.bean.Leader;
 import com.damenghai.chahuitong.bean.Status;
@@ -184,13 +183,13 @@ public class ForumActivity extends BaseFragmentActivity implements View.OnClickL
 
     private void loadData() {
         // 获取今日新声
-        HodorAPI.getRequest("http://www.chahuitong.com/wap/index.php/Home/Discuz/last_news_api", new VolleyRequest() {
+        HodorRequest.getRequest("http://www.chahuitong.com/wap/index.php/Home/Discuz/last_news_api", new VolleyRequest() {
             @Override
             public void onSuccess(String response) {
                 super.onSuccess(response);
                 try {
                     JSONObject obj = new JSONObject(response);
-                    if(obj.getInt("code") != 404) {
+                    if (obj.getInt("code") != 404) {
                         Status status = new Gson().fromJson(obj.getString("content"), Status.class);
                         mTopicTitle.setText(status.getTitle());
                         mTopicText.setText(status.getText());
@@ -209,15 +208,15 @@ public class ForumActivity extends BaseFragmentActivity implements View.OnClickL
             }
         });
 
-        HodorAPI.getRequest("http://www.chahuitong.com/wap/index.php/Home/discuz/get_allperson_active_api", new VolleyRequest() {
+        HodorRequest.getRequest("http://www.chahuitong.com/wap/index.php/Home/discuz/get_allperson_active_api", new VolleyRequest() {
             @Override
             public void onSuccess(String response) {
                 super.onSuccess(response);
                 try {
                     JSONObject obj = new JSONObject(response);
-                    if(obj.getInt("code") != 404) {
+                    if (obj.getInt("code") != 404) {
                         JSONArray array = obj.getJSONArray("content");
-                        for(int i=0; i<array.length(); i++) {
+                        for (int i = 0; i < array.length(); i++) {
                             Travel travel = new Gson().fromJson(array.getString(i), Travel.class);
                             mTravels.add(travel);
                         }
@@ -230,17 +229,17 @@ public class ForumActivity extends BaseFragmentActivity implements View.OnClickL
             }
         });
 
-        HodorAPI.getRequest("http://www.chahuitong.com/wap/index.php/Home/Discuz/get_allperson_content_api", new VolleyRequest() {
+        HodorRequest.getRequest("http://www.chahuitong.com/wap/index.php/Home/Discuz/get_allperson_content_api", new VolleyRequest() {
             @Override
             public void onSuccess(String response) {
                 super.onSuccess(response);
                 try {
                     JSONObject obj = new JSONObject(response);
-                    if(obj.getInt("code") != 404) {
+                    if (obj.getInt("code") != 404) {
                         JSONArray array = obj.getJSONArray("content");
-                        for(int i=0; i<array.length(); i++) {
+                        for (int i = 0; i < array.length(); i++) {
                             Status status = new Gson().fromJson(array.getString(i), Status.class);
-                            if(!mStatuses.contains(status)) mStatuses.add(status);
+                            if (!mStatuses.contains(status)) mStatuses.add(status);
                         }
                     } else {
                         T.showShort(ForumActivity.this, obj.getString("content"));

@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.damenghai.chahuitong.R;
-import com.damenghai.chahuitong.api.HodorAPI;
+import com.damenghai.chahuitong.api.HodorRequest;
 import com.damenghai.chahuitong.bean.Leader;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.utils.T;
@@ -38,7 +38,7 @@ public class FollowListener implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        HodorAPI.addFollow(mContext, mLeader.getMember_id(), new VolleyRequest() {
+        HodorRequest.addFollow(mContext, mLeader.getMember_id(), new VolleyRequest() {
             @Override
             public void onSuccess(String response) {
                 super.onSuccess(response);
@@ -47,12 +47,12 @@ public class FollowListener implements View.OnClickListener {
                     if (obj.getInt("code") == 404) {
                         T.showShort(mContext, obj.getString("content"));
                     } else {
-                        if(mHolder != null) {
+                        if (mHolder != null) {
                             mHolder.setText(R.id.leader_item_follow, "取消关注")
                                     .setTextColor(R.id.leader_item_follow, R.color.primary)
                                     .setTextDrawableLeft(R.id.leader_item_follow, R.drawable.icon_followed)
                                     .setTextOnClickListener(R.id.leader_item_follow, new UnFollowListener(mContext, mLeader, mHolder));
-                        } else if(mTv != null) {
+                        } else if (mTv != null) {
                             mTv.setText("取消关注");
                             mTv.setTextColor(mContext.getResources().getColor(R.color.primary));
                             Drawable drawable = mContext.getResources().getDrawable(R.drawable.icon_followed);

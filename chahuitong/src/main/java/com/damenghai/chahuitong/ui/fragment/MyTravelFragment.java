@@ -7,10 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
-import com.android.volley.VolleyError;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.CommonAdapter;
-import com.damenghai.chahuitong.api.HodorAPI;
+import com.damenghai.chahuitong.api.HodorRequest;
 import com.damenghai.chahuitong.base.BaseFragment;
 import com.damenghai.chahuitong.bean.Travel;
 import com.damenghai.chahuitong.request.VolleyRequest;
@@ -18,7 +17,6 @@ import com.damenghai.chahuitong.ui.activity.InitiateEventActivity;
 import com.damenghai.chahuitong.ui.activity.TravelActivity;
 import com.damenghai.chahuitong.utils.DateUtils;
 import com.damenghai.chahuitong.utils.DensityUtils;
-import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.T;
 import com.damenghai.chahuitong.utils.ViewHolder;
 import com.google.gson.Gson;
@@ -72,7 +70,7 @@ public class MyTravelFragment extends BaseFragment implements OnRefreshListener,
     }
 
     private void loadData(final int page) {
-        HodorAPI.myTravelShow(getActivity(), page, new VolleyRequest() {
+        HodorRequest.myTravelShow(getActivity(), page, new VolleyRequest() {
             @Override
             public void onSuccess(String response) {
                 super.onSuccess(response);
@@ -141,7 +139,7 @@ public class MyTravelFragment extends BaseFragment implements OnRefreshListener,
                     .setOnClickListener(R.id.travel_delete, new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            HodorAPI.deleteEvent(getActivity(), travel.getActive_id(), new VolleyRequest() {
+                            HodorRequest.deleteEvent(getActivity(), travel.getActive_id(), new VolleyRequest() {
                                 @Override
                                 public void onSuccess() {
                                     super.onSuccess();

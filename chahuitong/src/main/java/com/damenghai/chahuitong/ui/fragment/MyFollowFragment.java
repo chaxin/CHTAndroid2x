@@ -9,7 +9,7 @@ import android.widget.AdapterView;
 
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.CommonAdapter;
-import com.damenghai.chahuitong.api.HodorAPI;
+import com.damenghai.chahuitong.api.HodorRequest;
 import com.damenghai.chahuitong.base.BaseFragment;
 import com.damenghai.chahuitong.bean.Leader;
 import com.damenghai.chahuitong.request.VolleyRequest;
@@ -62,7 +62,7 @@ public class MyFollowFragment extends BaseFragment {
     }
 
     private void loadData() {
-        HodorAPI.myFollowShow(getActivity(), 1, new VolleyRequest() {
+        HodorRequest.myFollowShow(getActivity(), 1, new VolleyRequest() {
             @Override
             public void onSuccess(String response) {
                 super.onSuccess(response);

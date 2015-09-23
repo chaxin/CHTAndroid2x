@@ -16,10 +16,10 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.damenghai.chahuitong.api.HodorRequest;
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.AddImageGridAdapter;
-import com.damenghai.chahuitong.api.HodorAPI;
 import com.damenghai.chahuitong.bean.Travel;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.utils.ImageUtils;
@@ -192,7 +192,7 @@ public class InitiateEventActivity extends BaseActivity implements View.OnClickL
         }
         mTravel.setPics(images.toString());
 
-        HodorAPI.initiateEvent(this, mTravel, new VolleyRequest() {
+        HodorRequest.initiateEvent(this, mTravel, new VolleyRequest() {
             @Override
             public void onSuccess(String response) {
                 super.onSuccess(response);

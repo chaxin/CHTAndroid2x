@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.CommonAdapter;
-import com.damenghai.chahuitong.api.HodorAPI;
+import com.damenghai.chahuitong.api.NewsAPI;
 import com.damenghai.chahuitong.bean.Article;
 import com.damenghai.chahuitong.bean.response.ArticleResponse;
 import com.damenghai.chahuitong.request.VolleyRequest;
@@ -112,7 +112,7 @@ public class NewsFragment extends Fragment {
     }
 
     private void loadData(final int page) {
-        HodorAPI.newsShow(mContent, page, new VolleyRequest() {
+        NewsAPI.newsShow(mContent, page, new VolleyRequest() {
             @Override
             public void onSuccess(String response) {
                 super.onSuccess(response);

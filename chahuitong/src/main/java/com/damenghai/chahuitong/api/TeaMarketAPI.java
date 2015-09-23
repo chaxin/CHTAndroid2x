@@ -30,7 +30,7 @@ public class TeaMarketAPI {
         Map<String, String> map = new HashMap<String, String>();
         map.put("saleway", saleway);
         map.put("page", page + "");
-        HodorAPI.postRequest(Constants.API_MARKET_PRODUCT, map, l);
+        HodorRequest.postRequest(Constants.API_MARKET_PRODUCT, map, l);
     }
 
     /**
@@ -42,7 +42,7 @@ public class TeaMarketAPI {
         Map<String, String> map = new HashMap<String, String>();
         map.put("key", SessionKeeper.readSession(context));
         map.put("username", SessionKeeper.readUsername(context));
-        HodorAPI.postRequest("http://www.chahuitong.com/mobile/app/b2b/index.php/Home/index/myListapi", map, l);
+        HodorRequest.postRequest("http://www.chahuitong.com/mobile/app/b2b/index.php/Home/index/myListapi", map, l);
     }
 
     /**
@@ -53,7 +53,7 @@ public class TeaMarketAPI {
     public static void deleteMyProduct(int id, VolleyRequest l) {
         Map<String, String> map = new HashMap<String, String>();
         map.put("id", id + "");
-        HodorAPI.postRequest("http://www.chahuitong.com/mobile/app/b2b/index.php/Home/index/deleteapi", map, l);
+        HodorRequest.postRequest("http://www.chahuitong.com/mobile/app/b2b/index.php/Home/index/deleteapi", map, l);
     }
 
     /**
@@ -69,6 +69,6 @@ public class TeaMarketAPI {
         map.put("key", SessionKeeper.readSession(context));
         map.put("username", SessionKeeper.readUsername(context));
         map.put("content", json);
-        HodorAPI.postRequest("http://www.chahuitong.com/mobile/app/b2b/index.php/Home/index/EditorApi/", map, l);
+        HodorRequest.postRequest("http://www.chahuitong.com/mobile/app/b2b/index.php/Home/index/EditorApi/", map, l);
     }
 }
