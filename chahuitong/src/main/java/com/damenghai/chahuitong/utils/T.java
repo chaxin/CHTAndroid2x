@@ -8,8 +8,7 @@ import android.widget.Toast;
  */
 public class T {
 
-    private T()
-    {
+    private T() {
 		/* cannot be instantiated */
         throw new UnsupportedOperationException("cannot be instantiated");
     }

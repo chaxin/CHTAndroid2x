@@ -10,17 +10,23 @@ import android.widget.TextView;
 
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
-import com.damenghai.chahuitong.api.HodorAPI;
+import com.damenghai.chahuitong.api.HodorRequest;
+import com.damenghai.chahuitong.bean.Banner;
 import com.damenghai.chahuitong.bean.Goods;
 import com.damenghai.chahuitong.bean.response.RecommendResponse;
 import com.damenghai.chahuitong.request.VolleyRequest;
+import com.damenghai.chahuitong.response.JsonArrayListener;
+import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.view.BannerViewPager;
 import com.google.gson.Gson;
 import com.lidroid.xutils.BitmapUtils;
 import com.viewpagerindicator.LinePageIndicator;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class HomeActivity extends BaseActivity implements View.OnClickListener {
     /**
@@ -33,11 +39,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
      */
     private final String GOODS_DETAIL = "http://www.chahuitong.com/wap/index.php/Home/Index/goods?goods_id=";
 
-    /**
-     * Banner图片根路径
-     */
-    private final String BANNER_URL = "http://www.chahuitong.com/data/upload/mobile/special/s0/";
-
     private BannerViewPager mBanner;
     private LinePageIndicator mIndicator;
     private Button mBtnMarket;
@@ -48,6 +49,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     private ImageView mIvProduct;
     private TextView mTitle, mDesc, mPrice, mFavoritesOne;
     private LinearLayout mLayout;
+
+    private ArrayList<Banner> mBanners;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,21 +85,37 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     }
 
     public void initView() {
+        mBanners = new ArrayList<Banner>();
+
         mBtnMarket.setOnClickListener(this);
         mBtnForum.setOnClickListener(this);
         mBtnNews.setOnClickListener(this);
         mBtnShop.setOnClickListener(this);
         mBtnPersonal.setOnClickListener(this);
 
-        mBanner.setImageUrl(BANNER_URL, "s0_04895059675997715.jpg,s0_04895059874744164.jpg,s0_04895060498121693.jpg");
         mIndicator.setSelectedColor(android.R.color.white);
         mIndicator.setUnselectedColor(R.color.text_caption);
         mIndicator.setLineWidth(50);
-        mBanner.setIndicator(mIndicator);
     }
 
     private void loadData() {
-        HodorAPI.getRequest("http://www.chahuitong.com/wap/index.php/Home/Index/homePromotionGoods", new VolleyRequest() {
+        HodorRequest.getRequest("http://www.chahuitong.com/wap/index.php/Home/Index/homepic_api", new JsonArrayListener(HomeActivity.this) {
+            @Override
+            public void onSuccess(JSONArray array) {
+                for(int i=0; i<array.length(); i++) {
+                    try {
+                        Banner banner = new Gson().fromJson(array.getString(i), Banner.class);
+                        mBanners.add(banner);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                mBanner.setImageUrl("http://www.chahuitong.com/wap/Public/upload/", mBanners);
+                mBanner.setIndicator(mIndicator);
+            }
+        });
+
+        HodorRequest.getRequest("http://www.chahuitong.com/wap/index.php/Home/Index/homePromotionGoods", new VolleyRequest() {
             @Override
             public void onSuccess(String response) {
                 RecommendResponse recommend = new Gson().fromJson(response, RecommendResponse.class);
@@ -114,7 +133,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                         openActivity(WebViewActivity.class, bundleGoods1);
                     }
                 });
-                HodorAPI.favorites(goods.getGoods_id(), new VolleyRequest() {
+                HodorRequest.favorites(goods.getGoods_id(), new VolleyRequest() {
                     @Override
                     public void onSuccess(String response) {
                         try {

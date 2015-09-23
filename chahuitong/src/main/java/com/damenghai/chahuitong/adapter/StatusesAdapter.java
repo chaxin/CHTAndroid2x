@@ -1,6 +1,5 @@
 package com.damenghai.chahuitong.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
@@ -11,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.damenghai.chahuitong.R;
-import com.damenghai.chahuitong.api.HodorAPI;
+import com.damenghai.chahuitong.api.HodorRequest;
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.base.BaseFragmentActivity;
 import com.damenghai.chahuitong.bean.ImageUrls;
@@ -21,7 +20,6 @@ import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.ui.activity.CommentActivity;
 import com.damenghai.chahuitong.ui.activity.ImageBrowserActivity;
 import com.damenghai.chahuitong.ui.activity.LoginActivity;
-import com.damenghai.chahuitong.ui.activity.StatusesActivity;
 import com.damenghai.chahuitong.utils.ImageConfigHelper;
 import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.T;
@@ -35,7 +33,6 @@ import com.umeng.socialize.media.UMImage;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,7 +72,7 @@ public class StatusesAdapter extends CommonAdapter<Status> {
                     .setTextOnClickListener(R.id.status_delete, new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            HodorAPI.deleteStatus(status.getContent_id(), SessionKeeper.readSession(mContext),
+                            HodorRequest.deleteStatus(status.getContent_id(), SessionKeeper.readSession(mContext),
                                     SessionKeeper.readUsername(mContext), new VolleyRequest() {
                                         @Override
                                         public void onSuccess(String response) {
@@ -173,7 +170,7 @@ public class StatusesAdapter extends CommonAdapter<Status> {
 
                         @Override
                         public void onComplete(SHARE_MEDIA share_media, int i, SocializeEntity socializeEntity) {
-                            HodorAPI.statusShare(status.getContent_id(), new VolleyRequest() {
+                            HodorRequest.statusShare(status.getContent_id(), new VolleyRequest() {
                                 @Override
                                 public void onSuccess() {
                                     super.onSuccess();
@@ -198,7 +195,7 @@ public class StatusesAdapter extends CommonAdapter<Status> {
 
                         @Override
                         public void onComplete(SHARE_MEDIA share_media, int i, SocializeEntity socializeEntity) {
-                            HodorAPI.statusShare(status.getContent_id(), new VolleyRequest() {
+                            HodorRequest.statusShare(status.getContent_id(), new VolleyRequest() {
                                 @Override
                                 public void onSuccess() {
                                     super.onSuccess();
@@ -231,7 +228,7 @@ public class StatusesAdapter extends CommonAdapter<Status> {
                     Intent intent = new Intent(mContext, LoginActivity.class);
                     mContext.startActivity(intent);
                 } else {
-                    HodorAPI.statusLike(mContext, status.getContent_id(), new VolleyRequest() {
+                    HodorRequest.statusLike(mContext, status.getContent_id(), new VolleyRequest() {
                         @Override
                         public void onSuccess(String response) {
                             super.onSuccess(response);

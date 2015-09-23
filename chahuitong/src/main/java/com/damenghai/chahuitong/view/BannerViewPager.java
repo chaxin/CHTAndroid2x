@@ -1,6 +1,7 @@
 package com.damenghai.chahuitong.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.PagerAdapter;
@@ -15,8 +16,12 @@ import android.widget.ImageView.ScaleType;
 import android.widget.RelativeLayout;
 
 import com.damenghai.chahuitong.R;
+import com.damenghai.chahuitong.bean.Banner;
 import com.damenghai.chahuitong.bean.Product;
+import com.damenghai.chahuitong.ui.activity.WebViewActivity;
+import com.damenghai.chahuitong.utils.L;
 import com.lidroid.xutils.BitmapUtils;
+import com.viewpagerindicator.LinePageIndicator;
 import com.viewpagerindicator.PageIndicator;
 
 import java.util.ArrayList;
@@ -45,6 +50,7 @@ public class BannerViewPager extends RelativeLayout implements OnPageChangeListe
      */
     private boolean isChange = false;
 
+	private List<Banner> mBanners;
 	private List<ImageView> mImageViews;
 	private ViewPager mViewPager;
 	private MyAdapter mAdapter;
@@ -75,7 +81,7 @@ public class BannerViewPager extends RelativeLayout implements OnPageChangeListe
 
 		mImageViews = new ArrayList<ImageView>();
 		mViewPager = (ViewPager) findViewById(R.id.id_custom_banner);
-		mAdapter = new MyAdapter();
+		mAdapter = new MyAdapter(context);
 
 		startScrollThread();
 	}
@@ -94,32 +100,6 @@ public class BannerViewPager extends RelativeLayout implements OnPageChangeListe
 
 			timer.schedule(task, 4000);
 		}
-	}
-
-	private class MyAdapter extends PagerAdapter {	
-		
-		@Override
-		public int getCount() {
-			return mImageViews.size();
-		}
-
-		@Override
-		public boolean isViewFromObject(View arg0, Object arg1) {
-			return arg0 == arg1;
-		}
-
-		@Override
-		public ImageView instantiateItem(ViewGroup container, int position) {
-			ImageView iv = mImageViews.get(position);
-            container.addView(iv);
-			return iv;
-		}
-
-		@Override
-		public void destroyItem(ViewGroup container, int position, Object object) {
-			container.removeView(mImageViews.get(position));
-		}
-
 	}
 
 	@Override
@@ -155,40 +135,120 @@ public class BannerViewPager extends RelativeLayout implements OnPageChangeListe
 		if(timer != null) timer.cancel();
 	}
 
-	public void setImageUrl(String rootURL, String name) {
-        if(name == null) return;
+	public void setImageUrl(ArrayList<Banner> name) {
+		setImageUrl("", name);
+	}
 
-        String[] urls = name.split(",");
+	/**
+	 * 设置轮播图片地址
+	 *
+	 * @param rootURL
+	 * 					图片根路径
+	 * @param banners
+	 * 					图片集合
+	 */
+	public void setImageUrl(String rootURL, ArrayList<Banner> banners) {
+        if(banners == null) return;
+
         BANNER_URL = rootURL;
-        PAGER_COUNT = urls.length;
-        if(PAGER_COUNT != 1) addImageView(urls[PAGER_COUNT - FIRST_ITEM]);
-        for(int i=0; i<urls.length; i++) {
-            addImageView(urls[i]);
+        PAGER_COUNT = banners.size();
+		mBanners = banners;
+
+        if(PAGER_COUNT != 1) addImageView(banners.get(PAGER_COUNT - FIRST_ITEM).getImage());
+        for(Banner banner : banners) {
+            addImageView(banner.getImage());
 		}
-        if(PAGER_COUNT != 1) addImageView(urls[0]);
+        if(PAGER_COUNT != 1) addImageView(banners.get(0).getImage());
 		
 		mViewPager.setAdapter(mAdapter);
 		mViewPager.setCurrentItem(mCurrent, false);
         mViewPager.setOnPageChangeListener(this);
 	}
 
-    public void setImageUrl(String name) {
-        setImageUrl("", name);
-    }
+	public void setImageUrl(String names) {
+		setImageUrl("", names);
+	}
+
+	public void setImageUrl(String rootURL, String names) {
+		if(names == null) return;
+
+		String[] urls = names.split(",");
+		BANNER_URL = rootURL;
+		PAGER_COUNT = urls.length;
+		if(PAGER_COUNT != 1) addImageView(urls[PAGER_COUNT - FIRST_ITEM]);
+		for(int i=0; i<urls.length; i++) {
+			addImageView(urls[i]);
+		}
+		if(PAGER_COUNT != 1) addImageView(urls[0]);
+
+		mViewPager.setAdapter(mAdapter);
+		mViewPager.setCurrentItem(mCurrent, false);
+		mViewPager.setOnPageChangeListener(this);
+	}
 
     public void setIndicator(PageIndicator indicator) {
         if(PAGER_COUNT != 1) indicator.setViewPager(mViewPager, true);
 		else indicator.setViewPager(mViewPager, false);
         indicator.setCurrentItem(mCurrent);
+		if(indicator instanceof LinePageIndicator) {
+			LinePageIndicator linePageIndicator = (LinePageIndicator) indicator;
+			linePageIndicator.setSelectedColor(getResources().getColor(R.color.primary));
+			linePageIndicator.setUnselectedColor(getResources().getColor(R.color.background_pressed));
+		}
         indicator.setOnPageChangeListener(this);
     }
 
     private void addImageView(String imageUrl) {
-        BitmapUtils bitmapUtils = new BitmapUtils(getContext());
         ImageView imageView = new ImageView(getContext());
         imageView.setScaleType(ScaleType.CENTER_CROP);
+		BitmapUtils bitmapUtils = new BitmapUtils(getContext());
         bitmapUtils.display(imageView, BANNER_URL + imageUrl);
         mImageViews.add(imageView);
     }
+
+	private class MyAdapter extends PagerAdapter {
+		private Context mContext;
+
+		public MyAdapter(Context context) {
+			mContext = context;
+		}
+
+		@Override
+		public int getCount() {
+			return mImageViews.size();
+		}
+
+		@Override
+		public boolean isViewFromObject(View arg0, Object arg1) {
+			return arg0 == arg1;
+		}
+
+		@Override
+		public ImageView instantiateItem(ViewGroup container, final int position) {
+			ImageView iv = mImageViews.get(position);
+
+			if(mBanners != null) {
+				iv.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						if(position < mBanners.size() - 2) {
+							Intent intent = new Intent(mContext, WebViewActivity.class);
+							intent.putExtra("url", mBanners.get(position).getLink());
+							mContext.startActivity(intent);
+						}
+					}
+				});
+			}
+
+			container.addView(iv);
+			return iv;
+		}
+
+		@Override
+		public void destroyItem(ViewGroup container, int position, Object object) {
+			container.removeView(mImageViews.get(position));
+		}
+
+	}
 
 }

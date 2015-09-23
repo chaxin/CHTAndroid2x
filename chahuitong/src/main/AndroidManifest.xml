@@ -122,12 +122,12 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".ui.activity.PersonalActivity"
             android:theme="@style/GrayTextPrimaryIndicators" />
-        <activity
-            android:name=".base.BaseActivity"
-            android:label="@string/title_activity_base" />
+
         <activity
             android:name=".ui.activity.HomeActivity"
-            android:label="@string/title_activity_home" />
+            android:label="@string/title_activity_home"
+            android:theme="@style/PrimaryTextIndicators"
+            />
 
         <activity
             android:name=".ui.activity.MarketActivity"
@@ -149,9 +149,6 @@
             android:name=".ui.activity.PublishActivity"
             android:windowSoftInputMode="adjustResize|stateHidden"
             />
-        <activity
-            android:name=".ui.activity.MyTeaMarketActivity"
-            android:theme="@style/PrimaryTextIndicators" />
         <activity android:name=".ui.activity.LeadersActivity" />
         <activity android:name=".ui.activity.TopicsActivity" />
         <activity android:name=".ui.activity.TopicActivity" />

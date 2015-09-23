@@ -10,10 +10,10 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.damenghai.chahuitong.api.HodorRequest;
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.AddImageGridAdapter;
-import com.damenghai.chahuitong.api.HodorAPI;
 import com.damenghai.chahuitong.bean.Status;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.utils.DateUtils;
@@ -118,7 +118,7 @@ public class WriteStatusActivity extends BaseActivity implements AdapterView.OnI
                 status.setImage(images.toString());
             }
 
-            HodorAPI.uploadStatus(this, status, new VolleyRequest() {
+            HodorRequest.uploadStatus(this, status, new VolleyRequest() {
                 @Override
                 public void onSuccess(String response) {
                     super.onSuccess(response);

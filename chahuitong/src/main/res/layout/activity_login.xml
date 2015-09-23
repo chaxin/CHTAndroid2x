@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/background"
-    android:id="@+id/login_layout"
+    android:id="@+id/login_root"
     >
 
     <RelativeLayout
@@ -37,17 +37,28 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="12dp"
             />
-
-        <LinearLayout
+        
+        <RadioGroup
+            android:id="@+id/login_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
 
-            <Button
-                style="@style/log_tab"
-                android:id="@+id/id_tab_login"
+            <RadioButton
+                android:id="@+id/tab_login"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:drawableBottom="@drawable/triangle_indicator_selector"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_body"
                 android:text="@string/login_in"
+                android:checked="true"
                 />
 
             <View
@@ -55,19 +66,30 @@
                 android:layout_height="18dp"
                 android:background="@android:color/white" />
 
-            <Button
-                style="@style/log_tab"
-                android:id="@+id/id_tab_register"
+            <RadioButton
+                android:id="@+id/tab_register"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:drawableBottom="@drawable/triangle_indicator_selector"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_body"
                 android:text="@string/register"
                 />
 
-        </LinearLayout>
+        </RadioGroup>
 
     </RelativeLayout>
 
     <LinearLayout
-        style="@style/log_layout"
-        android:id="@+id/id_login_layout"
+        android:id="@+id/login_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginBottom="50dp"
         >
 
         <LinearLayout
@@ -106,7 +128,8 @@
             android:text="@string/forgot_password"
             android:textColor="@color/light_gray" />
 
-        <View
+        <TextView
+            android:id="@+id/test_text"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -118,82 +141,13 @@
             android:text="@string/login_in" />
     </LinearLayout>
 
-    <LinearLayout
-        style="@style/log_layout"
-        android:id="@+id/id_register_layout"
+    <FrameLayout
+        android:id="@+id/register_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:visibility="gone"
-        >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/register_phone"
-                style="@style/log_editText"
-                android:drawableLeft="@drawable/icon_username"
-                android:hint="您的手机号码"
-                android:inputType="phone"
-                android:maxLength="11"
-                />
-
-            <View style="@style/log_divider" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-                <EditText
-                    android:id="@+id/register_code"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    style="@style/log_editText"
-                    android:drawableLeft="@drawable/icon_password"
-                    android:hint="输入验证码"
-                    android:inputType="number"
-                    android:maxLength="6"
-                    />
-
-                <Button
-                    android:id="@+id/register_send"
-                    android:layout_width="80dp"
-                    android:layout_height="32dp"
-                    android:text="发送验证码"
-                    android:background="@color/primary_light"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/text_body"
-                    android:gravity="center"
-                    android:enabled="false"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    />
-            </LinearLayout>
-
-            <View style="@style/log_divider" />
-
-            <EditText
-                android:id="@+id/register_password"
-                style="@style/log_editText"
-                android:drawableLeft="@drawable/icon_password"
-                android:hint="@string/password"
-                android:inputType="textPassword" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            />
-
-        <Button
-            android:id="@+id/id_btn_register"
-            style="@style/CommonButton"
-            android:text="@string/register_now" />
-
-    </LinearLayout>
+        />
 
     <ImageView
         android:layout_width="240dp"
