@@ -75,6 +75,7 @@
         <item name="android:textColor">@color/primary</item>
         <item name="android:textSize">@dimen/text_title</item>
         <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginLeft">30dp</item>
     </style>
 
     <!-- 发布产品页输入框 -->

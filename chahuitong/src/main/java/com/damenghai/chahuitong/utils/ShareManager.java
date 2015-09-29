@@ -50,6 +50,22 @@ public class ShareManager {
         return  mController;
     }
 
+    /**
+     * 设置分享内容
+     *
+     * @param shareContent
+     *                      哪个平台
+     * @param context
+     *                      上下文
+     * @param imageUrl
+     *                      图片地址
+     * @param url
+     *                      跳转链接
+     * @param title
+     *                      分享标题
+     * @param content
+     *                      分享内容
+     */
     public static void setShareContent(BaseShareContent shareContent, Context context, String imageUrl, String url, String title, String content) {
         if(!TextUtils.isEmpty(url)) {
             shareContent.setTargetUrl(url);
@@ -66,6 +82,20 @@ public class ShareManager {
         mController.setShareMedia(shareContent);
     }
 
+    /**
+     * 设置分享内容
+     *
+     * @param context
+     *                  上下文
+     * @param imageUrl
+     *                  图片地址
+     * @param url
+     *                  分享链接
+     * @param title
+     *                  分享标题
+     * @param content
+     *                  分享内容
+     */
     public static void setShareContent(Context context, String imageUrl, String url, String title, String content) {
         if(mController != null) {
             //微信
@@ -83,6 +113,12 @@ public class ShareManager {
             //qq空间
             QZoneShareContent qzone = new QZoneShareContent();
             setShareContent(qzone, context, imageUrl, url, title, content);
+        }
+    }
+
+    public static void openShare(Activity activity) {
+        if(mController != null) {
+            mController.openShare(activity, false);
         }
     }
 }

@@ -11,6 +11,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.RelativeLayout;
@@ -49,6 +50,8 @@ public class BannerViewPager extends RelativeLayout implements OnPageChangeListe
      * 用来记录当前pager状态是否改变
      */
     private boolean isChange = false;
+
+	private boolean mLoop = true;
 
 	private List<Banner> mBanners;
 	private List<ImageView> mImageViews;
@@ -115,15 +118,17 @@ public class BannerViewPager extends RelativeLayout implements OnPageChangeListe
 	}
 
 	@Override
-	public void onPageSelected(int arg0) {
+	public void onPageSelected(int position) {
 		isChange = true;
-		if(arg0 > PAGER_COUNT) {
-			mCurrent = FIRST_ITEM;
-		} else if(arg0 < FIRST_ITEM) {
-			mCurrent = PAGER_COUNT;
-		} else {
-			mCurrent = arg0;
-		}
+        if(mLoop) {
+            if (position > PAGER_COUNT) {
+                mCurrent = FIRST_ITEM;
+            } else if (position < FIRST_ITEM) {
+                mCurrent = PAGER_COUNT;
+            } else {
+                mCurrent = position;
+            }
+        }
 		if(timer != null) {
 			timer.cancel();
 		}
@@ -169,28 +174,54 @@ public class BannerViewPager extends RelativeLayout implements OnPageChangeListe
 		setImageUrl("", names);
 	}
 
+	/**
+	 * 设置Banner的图片地址，默认开启循环
+	 *
+	 * @param rootURL
+	 * @param names
+	 */
 	public void setImageUrl(String rootURL, String names) {
-		if(names == null) return;
-
-		String[] urls = names.split(",");
-		BANNER_URL = rootURL;
-		PAGER_COUNT = urls.length;
-		if(PAGER_COUNT != 1) addImageView(urls[PAGER_COUNT - FIRST_ITEM]);
-		for(int i=0; i<urls.length; i++) {
-			addImageView(urls[i]);
-		}
-		if(PAGER_COUNT != 1) addImageView(urls[0]);
-
-		mViewPager.setAdapter(mAdapter);
-		mViewPager.setCurrentItem(mCurrent, false);
-		mViewPager.setOnPageChangeListener(this);
+		setImageUrl(rootURL, names, true);
 	}
 
+    /**
+     * 设置Banner图片地址并设置是否循环
+     *
+     * @param rootURL
+     * @param names
+     * @param loop
+     */
+    public void setImageUrl(String rootURL, String names, boolean loop) {
+        if(names == null) return;
+
+        String[] urls = names.split(",");
+        BANNER_URL = rootURL;
+        PAGER_COUNT = urls.length;
+        mLoop = loop;
+
+        if(PAGER_COUNT != 1 && loop) addImageView(urls[PAGER_COUNT - FIRST_ITEM]);
+        for (String url : urls) {
+            addImageView(url);
+        }
+        if(PAGER_COUNT != 1 && loop) addImageView(urls[0]);
+
+        mViewPager.setAdapter(mAdapter);
+        if(loop) mViewPager.setCurrentItem(mCurrent, false);
+        mViewPager.setOnPageChangeListener(this);
+    }
+
+	/**
+	 * 设置指示器
+	 *
+	 * @param indicator
+	 */
     public void setIndicator(PageIndicator indicator) {
-        if(PAGER_COUNT != 1) indicator.setViewPager(mViewPager, true);
+		if(PAGER_COUNT != 1 && mLoop) {
+            indicator.setViewPager(mViewPager, true);
+            indicator.setCurrentItem(mCurrent);
+            indicator.setOnPageChangeListener(this);
+        }
 		else indicator.setViewPager(mViewPager, false);
-        indicator.setCurrentItem(mCurrent);
-        indicator.setOnPageChangeListener(this);
     }
 
     private void addImageView(String imageUrl) {
@@ -226,7 +257,13 @@ public class BannerViewPager extends RelativeLayout implements OnPageChangeListe
 				iv.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View view) {
-						if(position < mBanners.size() - 2) {
+						if(mLoop) {
+							if(position < mBanners.size() - 2) {
+								Intent intent = new Intent(mContext, WebViewActivity.class);
+								intent.putExtra("url", mBanners.get(position).getLink());
+								mContext.startActivity(intent);
+							}
+						} else {
 							Intent intent = new Intent(mContext, WebViewActivity.class);
 							intent.putExtra("url", mBanners.get(position).getLink());
 							mContext.startActivity(intent);

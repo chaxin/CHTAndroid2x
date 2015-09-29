@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
+import com.damenghai.chahuitong.api.StatusAPI;
 import com.damenghai.chahuitong.base.BaseFragment;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.CommonAdapter;
@@ -58,7 +59,7 @@ public class CommentFragment extends BaseFragment {
     }
 
     private void loadData() {
-        HodorRequest.myCommentShow(getActivity(), new VolleyRequest() {
+        StatusAPI.myCommentShow(getActivity(), new VolleyRequest() {
             @Override
             public void onSuccess(String response) {
                 super.onSuccess(response);

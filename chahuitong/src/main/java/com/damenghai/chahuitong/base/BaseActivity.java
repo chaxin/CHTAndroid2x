@@ -46,10 +46,12 @@ public abstract class BaseActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        /**用于微博分享的回调 */
-        UMSsoHandler ssoHandler = ShareManager.mController.getConfig().getSsoHandler(requestCode) ;
-        if(ssoHandler != null){
-            ssoHandler.authorizeCallBack(requestCode, resultCode, data);
+        /* 用于微博分享的回调 */
+        if(ShareManager.mController != null) {
+            UMSsoHandler ssoHandler = ShareManager.mController.getConfig().getSsoHandler(requestCode);
+            if (ssoHandler != null) {
+                ssoHandler.authorizeCallBack(requestCode, resultCode, data);
+            }
         }
     }
 

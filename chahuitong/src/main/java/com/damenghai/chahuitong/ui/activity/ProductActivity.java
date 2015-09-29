@@ -19,7 +19,7 @@ public class ProductActivity extends BaseActivity implements OnLeftClickListener
 		OnClickListener {
 	private Product mProduct;
 	private TopBar mTopBar;
-	private TextView mTitle, mBrand, mPrice, mName, mYear, mQuantity, mAddress,
+	private TextView mBrand, mPrice, mName, mYear, mQuantity, mAddress,
 			mPhone, mDesc, mDate;
     private BannerViewPager mBanner;
     private Button mContact;
@@ -43,7 +43,6 @@ public class ProductActivity extends BaseActivity implements OnLeftClickListener
 	protected void findViewById() {
 		mTopBar = (TopBar) findViewById(R.id.id_product_topBar);
 		mBanner = (BannerViewPager) findViewById(R.id.id_product_img);
-		mTitle = (TextView) findViewById(R.id.id_product_title);
 		mBrand = (TextView) findViewById(R.id.id_product_brand);
 		mPrice = (TextView) findViewById(R.id.id_product_price);
 		mName = (TextView) findViewById(R.id.id_product_name);
@@ -67,19 +66,19 @@ public class ProductActivity extends BaseActivity implements OnLeftClickListener
         if (mProduct == null) return;
 
 		if(mProduct.getImgUrls() != null) {
-			mBanner.setImageUrl(Constants.IMAGE_URL, mProduct.getImgUrls());
+			mBanner.setImageUrl(Constants.IMAGE_URL, mProduct.getImgUrls(), false);
+			mBanner.stopScroll();
 			mBanner.setIndicator(mIndicator);
 		}
 		mBrand.setText(mProduct.getBrand());
 		mName.setText(mProduct.getName());
-		mTitle.setText(mProduct.getTitle());
 		mPrice.setText(mProduct.getPrice());
 		mYear.setText(mProduct.getYear());
 		mQuantity.setText(mProduct.getQuantity() + "");
 		mAddress.setText(mProduct.getAddress());
 		mPhone.setText(mProduct.getPhone());
 		mDesc.setText(mProduct.getDesc());
-		mDate.setText(mProduct.getDate());
+		mDate.setText("发布时间 " + mProduct.getDate());
 	}
 
 	@Override

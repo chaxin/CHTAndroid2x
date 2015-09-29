@@ -1,5 +1,7 @@
 package com.damenghai.chahuitong.bean;
 
+import android.text.TextUtils;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -150,7 +152,7 @@ public class Status implements Serializable {
     }
 
     public String getThumbImage() {
-        if(!image.equals("")) {
+        if(TextUtils.isEmpty(image)) {
             if(!image.contains(",")) return "http://www.chahuitong.com/data/upload/qunzi/" + image;
             else {
                 return "http://www.chahuitong.com/data/upload/qunzi/" + image.substring(0, image.indexOf(","));

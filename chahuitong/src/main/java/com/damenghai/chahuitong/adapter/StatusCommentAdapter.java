@@ -2,11 +2,13 @@ package com.damenghai.chahuitong.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.bean.Comment;
+import com.damenghai.chahuitong.bean.Leader;
 import com.damenghai.chahuitong.ui.activity.WriteCommentActivity;
 import com.damenghai.chahuitong.utils.StringUtils;
 import com.damenghai.chahuitong.utils.ViewHolder;
@@ -38,7 +40,9 @@ public class StatusCommentAdapter extends CommonAdapter<Comment> {
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, WriteCommentActivity.class);
                 intent.putExtra("status_id", comment.getContent_id());
-                intent.putExtra("reply_to", comment.getMemberInfo().getMember_name());
+                if(comment.getMemberInfo() != null && !TextUtils.isEmpty(comment.getMemberInfo().getMember_name())) {
+                    intent.putExtra("reply_to", comment.getMemberInfo().getMember_name());
+                }
                 mContext.startActivity(intent);
             }
         });

@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.StatusesAdapter;
 import com.damenghai.chahuitong.api.HodorRequest;
+import com.damenghai.chahuitong.api.StatusAPI;
 import com.damenghai.chahuitong.base.BaseFragment;
 import com.damenghai.chahuitong.bean.Status;
 import com.damenghai.chahuitong.request.VolleyRequest;
@@ -60,7 +61,7 @@ public class MyStatusFragment extends BaseFragment implements OnRefreshListener,
     }
 
     private void loadDatas(final int page) {
-        HodorRequest.myStatusShow(getActivity(), page, new VolleyRequest() {
+        StatusAPI.myStatusShow(getActivity(), page, new VolleyRequest() {
             @Override
             public void onListSuccess(JSONArray array) {
                 super.onListSuccess(array);

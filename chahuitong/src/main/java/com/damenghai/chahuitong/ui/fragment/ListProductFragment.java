@@ -19,6 +19,7 @@ import com.damenghai.chahuitong.bean.Product;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.ui.activity.ProductActivity;
 import com.damenghai.chahuitong.utils.DateUtils;
+import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.ViewHolder;
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -72,7 +73,7 @@ public class ListProductFragment extends BaseFragment implements OnItemClickList
 
         initView();
 
-		loadDatas(1);
+		loadData(1);
 
 		return mView;
 	}
@@ -88,13 +89,13 @@ public class ListProductFragment extends BaseFragment implements OnItemClickList
         mListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                loadDatas(1);
+                loadData(1);
             }
         });
         mListView.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
             @Override
             public void onLastItemVisible() {
-                loadDatas(mCurrentPage + 1);
+                loadData(mCurrentPage + 1);
             }
         });
         mListView.setOnItemClickListener(ListProductFragment.this);
@@ -106,12 +107,14 @@ public class ListProductFragment extends BaseFragment implements OnItemClickList
      *
      * @param page
      */
-	private void loadDatas(final int page) {
+	private void loadData(final int page) {
         TeaMarketAPI.productsShow(mSaleway + "", page, new VolleyRequest() {
             @Override
             public void onSuccess(String response) {
                 mLoading.setVisibility(View.GONE);
                 mListView.setVisibility(View.VISIBLE);
+
+                L.d(response);
 
                 mCurrentPage = page;
 

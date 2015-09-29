@@ -12,6 +12,7 @@ import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
 import android.widget.ScrollView;
 
+import com.damenghai.chahuitong.utils.DensityUtils;
 import com.damenghai.chahuitong.utils.L;
 
 
@@ -51,7 +52,6 @@ public class AbScrollView extends ScrollView {
 		super.onFinishInflate();
 		if (getChildCount() > 0) {
 			inner = getChildAt(0);
-
 		}
 	}
 
@@ -137,11 +137,9 @@ public class AbScrollView extends ScrollView {
             });
 
             inner.startAnimation(ta);
-        }
-        else {
+        } else if(isNeedMove()){
             // 开启移动动画
-            TranslateAnimation ta = new TranslateAnimation(0, 0, inner.getTop(),
-                    normal.top);
+            TranslateAnimation ta = new TranslateAnimation(0, 0, inner.getTop() - normal.top, 0);
             ta.setDuration(200);
             inner.startAnimation(ta);
             // 设置回到正常的布局位置
@@ -157,7 +155,6 @@ public class AbScrollView extends ScrollView {
 
 	// 是否需要移动布局
 	public boolean isNeedMove() {
-
 		int offset = inner.getMeasuredHeight() - getHeight();
 		int scrollY = getScrollY();
 		return scrollY == 0;

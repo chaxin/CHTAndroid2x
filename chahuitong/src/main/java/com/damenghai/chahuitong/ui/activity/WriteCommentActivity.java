@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.damenghai.chahuitong.api.StatusAPI;
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.api.HodorRequest;
@@ -65,7 +66,7 @@ public class WriteCommentActivity extends BaseActivity implements View.OnClickLi
         String text = mText.getText().toString();
         if(TextUtils.isEmpty(text)) T.showShort(this, "内容不能为空");
         else {
-            HodorRequest.uploadComment(this, mStatusID, text, mReply, new VolleyRequest() {
+            StatusAPI.uploadComment(this, mStatusID, text, mReply, new VolleyRequest() {
                 @Override
                 public void onSuccess() {
                     super.onSuccess();

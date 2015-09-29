@@ -254,6 +254,7 @@ public class PublishActivity extends BaseActivity implements OnClickListener {
 			final String quantity = mQuantity.getText().toString();
 			String address = mAddress.getText().toString();
 			String phone = mPhone.getText().toString();
+			String content = mDescBuy.getText().toString();
 
 			if(mProduct != null && mProduct.getId() > 0 && mIsEdit) {
 				params.addBodyParameter("id", mProduct.getId() + "");
@@ -269,6 +270,7 @@ public class PublishActivity extends BaseActivity implements OnClickListener {
 			params.addBodyParameter("weight", quantity);
 			params.addBodyParameter("address", address);
 			params.addBodyParameter("phone", phone);
+			params.addBodyParameter("content", content);
 
 			if(mProductImage != null) {
 				for(int i=0; i<mProductImage.size(); i++) {

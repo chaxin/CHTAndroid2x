@@ -18,10 +18,17 @@
             android:id="@+id/control_tv_share"
             style="@style/TextViewBody"
             android:drawableLeft="@drawable/icon_forum_share"
+            android:drawablePadding="4dp"
             android:gravity="center"
             android:text="分享" />
 
     </LinearLayout>
+
+    <View
+        android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:background="@color/stroke"
+        />
 
     <LinearLayout
         android:id="@+id/control_comment"
@@ -36,9 +43,16 @@
             android:id="@+id/control_tv_comment"
             style="@style/TextViewBody"
             android:drawableLeft="@drawable/icon_forum_write"
+            android:drawablePadding="4dp"
             android:gravity="center"
             android:text="评论" />
     </LinearLayout>
+
+    <View
+        android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:background="@color/stroke"
+        />
 
     <LinearLayout
         android:id="@+id/control_like"
@@ -53,6 +67,7 @@
             android:id="@+id/control_tv_like"
             style="@style/TextViewBody"
             android:drawableLeft="@drawable/icon_forum_like"
+            android:drawablePadding="4dp"
             android:gravity="center"
             android:text="赞" />
     </LinearLayout>

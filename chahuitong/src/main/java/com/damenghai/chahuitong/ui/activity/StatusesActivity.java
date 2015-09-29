@@ -1,6 +1,8 @@
 package com.damenghai.chahuitong.ui.activity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.StatusesAdapter;
@@ -24,7 +26,7 @@ import java.util.ArrayList;
 /**
  * Created by Sgun on 15/8/23.
  */
-public class StatusesActivity extends BaseActivity implements OnRefreshListener, OnLastItemVisibleListener {
+public class StatusesActivity extends BaseActivity implements OnRefreshListener, OnLastItemVisibleListener, AdapterView.OnItemClickListener {
     private TopBar mTopBar;
     private PullToRefreshListView mLv;
 
@@ -70,6 +72,7 @@ public class StatusesActivity extends BaseActivity implements OnRefreshListener,
         mStatuses = new ArrayList<Status>();
         mAdapter = new StatusesAdapter(this, mStatuses, R.layout.listview_item_status, true);
         mLv.setAdapter(mAdapter);
+        mLv.setOnItemClickListener(this);
         mLv.setOnRefreshListener(this);
         mLv.setOnLastItemVisibleListener(this);
     }
@@ -110,5 +113,12 @@ public class StatusesActivity extends BaseActivity implements OnRefreshListener,
     @Override
     public void onLastItemVisible() {
         loadData(mCurrPage + 1);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("status", mStatuses.get(i - 1));
+        openActivity(StatusDetailActivity.class, bundle);
     }
 }

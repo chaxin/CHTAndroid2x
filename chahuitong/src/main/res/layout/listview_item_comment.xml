@@ -14,7 +14,7 @@
         android:id="@+id/comment_avatar"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/test_leader_avatar"
+        android:src="@drawable/avatar_default"
         />
 
     <LinearLayout
@@ -35,7 +35,7 @@
                 android:id="@+id/comment_user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="陈奕迅"
+                android:text="匿名"
                 android:textSize="@dimen/text_body"
                 android:textStyle="bold"
                 />
@@ -63,7 +63,7 @@
             android:id="@+id/comment_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="茶，属于山茶科，为常绿灌木或小乔木植物，植株高达1-6米，"
+            android:text="晒一晒正文"
             android:textSize="@dimen/text_body"
             android:textColor="@color/text_body"
             android:lineSpacingExtra="3dp"

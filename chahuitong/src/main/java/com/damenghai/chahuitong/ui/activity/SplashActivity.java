@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.config.Constants;
+import com.pgyersdk.update.PgyUpdateManager;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.umeng.update.UmengUpdateAgent;
 
@@ -15,10 +16,13 @@ public class SplashActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-        // 设置任意网络环境下都提示更新
-        UmengUpdateAgent.setUpdateOnlyWifi(false);
-        // 友盟自动检测更新
-        UmengUpdateAgent.update(this);
+//        // 设置任意网络环境下都提示更新
+//        UmengUpdateAgent.setUpdateOnlyWifi(false);
+//        // 友盟自动检测更新
+//        UmengUpdateAgent.update(this);
+
+		// 蒲公英内测更新
+		PgyUpdateManager.register(this);
 
         // bugly初始化
 //        CrashReport.initCrashReport(getApplicationContext(), "101172467", false);

@@ -14,16 +14,20 @@
         hodor:titleText="@string/product_detail"
         hodor:titleTextColor="@android:color/white"
         hodor:leftSrc="@drawable/btn_back_item_selector"
-        hodor:titleTextSize="@dimen/small_middle_text_size" />
+        hodor:titleTextSize="@dimen/small_middle_text_size"
+        />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:background="@android:color/white"
+            >
 
             <com.damenghai.chahuitong.view.BannerViewPager
                 android:id="@+id/id_product_img"
@@ -41,203 +45,193 @@
                 hodor:snap="true"
                 />
 
-            <TextView
-                android:id="@+id/id_product_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="8dp"
-                android:textSize="17sp"
-                android:textStyle="bold" />
-
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:background="@android:color/white"
+                >
 
                 <TextView
                     android:id="@+id/id_label_brand"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="35dp"
-                    android:layout_marginTop="20dp"
+                    style="@style/TextViewBody"
                     android:text="@string/brand"
-                    android:textSize="16sp" />
+                    />
 
                 <TextView
                     android:id="@+id/id_product_brand"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/TextViewBody"
+                    android:textColor="@android:color/black"
                     android:layout_alignBottom="@id/id_label_brand"
-                    android:layout_marginLeft="42dp"
+                    android:layout_marginLeft="48dp"
                     android:layout_toRightOf="@id/id_label_brand"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:id="@+id/id_product_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@id/id_label_brand"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="35dp"
-                    android:text="@string/price"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:id="@+id/id_label_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@id/id_product_brand"
-                    android:layout_marginRight="10dp"
-                    android:layout_toLeftOf="@id/id_product_price"
-                    android:text="@string/price"
-                    android:textSize="16sp" />
+                    />
 
                 <TextView
                     android:id="@+id/id_label_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/TextViewBody"
                     android:layout_alignLeft="@id/id_label_brand"
                     android:layout_below="@id/id_label_brand"
                     android:layout_marginTop="20dp"
                     android:text="@string/item_name"
-                    android:textSize="16sp" />
+                    />
 
                 <TextView
                     android:id="@+id/id_product_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/TextViewBody"
                     android:layout_alignBottom="@id/id_label_name"
                     android:layout_alignLeft="@id/id_product_brand"
                     android:layout_toRightOf="@id/id_label_brand"
-                    android:text="@string/item_name"
-                    android:textSize="15sp" />
+                    android:textColor="@android:color/black"
+                    />
 
                 <TextView
-                    android:id="@+id/id_label_year"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/id_label_price"
+                    style="@style/TextViewBody"
                     android:layout_alignLeft="@id/id_label_name"
                     android:layout_below="@id/id_label_name"
                     android:layout_marginTop="20dp"
+                    android:text="@string/price"
+                    />
+
+                <TextView
+                    android:id="@+id/id_product_price"
+                    style="@style/TextViewBody"
+                    android:textColor="@android:color/black"
+                    android:layout_alignLeft="@id/id_product_name"
+                    android:layout_below="@id/id_product_name"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/price"
+                    />
+
+                <TextView
+                    android:id="@+id/id_label_year"
+                    style="@style/TextViewBody"
+                    android:layout_alignLeft="@id/id_label_price"
+                    android:layout_below="@id/id_label_price"
+                    android:layout_marginTop="20dp"
                     android:text="@string/years"
-                    android:textSize="16sp" />
+                    />
 
                 <TextView
                     android:id="@+id/id_product_year"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/TextViewBody"
+                    android:textColor="@android:color/black"
                     android:layout_alignBottom="@id/id_label_year"
                     android:layout_alignLeft="@id/id_product_brand"
                     android:layout_toRightOf="@id/id_label_year"
                     android:text="@string/years"
-                    android:textSize="15sp" />
+                    />
 
                 <TextView
                     android:id="@+id/id_label_quantity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/TextViewBody"
                     android:layout_alignLeft="@id/id_label_year"
                     android:layout_below="@id/id_label_year"
                     android:layout_marginTop="20dp"
                     android:text="@string/quantity"
-                    android:textSize="16sp" />
+                    />
 
                 <TextView
                     android:id="@+id/id_product_quantity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/TextViewBody"
+                    android:textColor="@android:color/black"
                     android:layout_alignBottom="@id/id_label_quantity"
                     android:layout_alignLeft="@id/id_product_brand"
                     android:layout_toRightOf="@id/id_label_quantity"
                     android:text="@string/quantity"
-                    android:textSize="15sp" />
+                    />
 
                 <TextView
                     android:id="@+id/id_label_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/TextViewBody"
                     android:layout_alignLeft="@id/id_label_quantity"
                     android:layout_below="@id/id_label_quantity"
                     android:layout_marginTop="20dp"
-                    android:text="所在地"
-                    android:textSize="16sp" />
+                    android:text="所在城市"
+                    />
 
                 <TextView
                     android:id="@+id/id_product_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/TextViewBody"
+                    android:textColor="@android:color/black"
                     android:layout_alignBottom="@id/id_label_address"
                     android:layout_alignLeft="@id/id_product_brand"
                     android:layout_toRightOf="@id/id_label_address"
                     android:text="@string/address"
-                    android:textSize="15sp" />
+                    />
 
                 <TextView
                     android:id="@+id/id_label_phone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/TextViewBody"
                     android:layout_alignLeft="@id/id_label_address"
                     android:layout_below="@id/id_label_address"
                     android:layout_marginTop="20dp"
                     android:text="@string/phone_num"
-                    android:textSize="16sp" />
+                    />
 
                 <TextView
                     android:id="@+id/id_product_phone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/TextViewBody"
+                    android:textColor="@android:color/black"
                     android:layout_alignBottom="@id/id_label_phone"
-                    android:layout_marginLeft="10dp"
+                    android:layout_alignLeft="@id/id_product_address"
                     android:layout_toRightOf="@id/id_label_phone"
                     android:text="@string/phone_num"
-                    android:textSize="15sp" />
+                    />
 
-                <TextView
-                    android:id="@+id/id_product_desc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_alignLeft="@id/id_label_brand"
-                    android:layout_alignRight="@id/id_product_price"
-                    android:layout_below="@id/id_product_phone"
-                    android:layout_marginTop="15dp"
-                    android:background="@color/edittext_backgroud"
-                    android:padding="5dp"
-                    android:text="@string/product_buy_desction" />
             </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/stroke" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal" >
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:background="@android:color/white"
+                >
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/add_time"
-                    android:layout_marginRight="12dp"
+                    style="@style/TextViewCaption"
+                    android:text="详细描述"
                     />
 
                 <TextView
-                    android:id="@+id/id_product_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/gray" />
+                    android:id="@+id/id_product_desc"
+                    style="@style/TextViewBody"
+                    android:paddingTop="8dp"
+                    android:text="@string/product_buy_desction"
+                    />
+
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/stroke"
+                />
+
+            <TextView
+                android:id="@+id/id_product_date"
+                style="@style/TextViewCaption"
+                android:text="发布时间:2015-06-11"
+                android:padding="8dp"
+                android:layout_gravity="center_horizontal"
+                />
 
             <Button
                 android:id="@+id/id_contact"
-                android:layout_width="210dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="25dp"
-                android:background="@drawable/btn_submit_selector"
-                android:padding="6dp"
+                style="@style/CommonButton"
                 android:text="@string/contact_saler"
-                android:textColor="@android:color/white"
-                android:textSize="13sp" />
+                />
+
         </LinearLayout>
     </ScrollView>
 

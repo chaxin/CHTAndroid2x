@@ -11,28 +11,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginLeft="30dp"
         >
 
         <LinearLayout
             style="@style/publish_product_row">
+
             <TextView
                 android:id="@+id/publish_brand"
                 android:text="@string/brand"
                 style="@style/publish_product_label"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
                 />
 
             <EditText
                 android:id="@+id/id_input_brand"
-		        android:focusable="true"
-		        android:focusableInTouchMode="true"
                 android:hint="@string/brand_hint"
                 style="@style/publish_product_input"
-                >
-            	<requestFocus />
-            </EditText>
+                />
         </LinearLayout>
 
         <View style="@style/divider" />
@@ -61,6 +55,7 @@
             android:layout_marginTop="10dp"
 		    hodor:labelName="@string/years"
 		    hodor:textMarginRight="70dp"
+            android:paddingLeft="30dp"
 		    />
 
         <View style="@style/divider" />
@@ -90,6 +85,7 @@
             android:layout_marginTop="10dp"
             hodor:labelName="@string/detail"
             hodor:textMarginRight="42dp"
+            android:paddingLeft="30dp"
             />
 
         <View style="@style/divider" />
@@ -160,7 +156,9 @@
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
 		    android:layout_marginRight="30dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
 		    android:lines="5"
 		    android:gravity="top|left" 
 		    android:inputType="textMultiLine"
@@ -172,15 +170,13 @@
 		    android:maxWidth="180dip"
 		    android:background="@color/edittext_backgroud"
             android:textSize="@dimen/text_title"
-            >
-        </EditText>
+            />
 
         <LinearLayout
             android:id="@+id/upload_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginRight="30dp"
             >
             <ImageView
                 android:id="@+id/id_upload_img1"
@@ -208,13 +204,8 @@
             
         <Button
 	        android:id="@+id/id_btn_submit"
-	        android:layout_width="match_parent"
-	        android:layout_height="40dp"
-	        android:background="@drawable/btn_submit_selector"
+            style="@style/CommonButton"
 	        android:text="@string/publish"
-	        android:textSize="18sp"
-	        android:textColor="@android:color/white"
-            android:layout_marginRight="30dp"
 	        />
         
     </LinearLayout>

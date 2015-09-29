@@ -15,15 +15,15 @@ import android.widget.TextView;
 
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.api.HodorRequest;
-import com.damenghai.chahuitong.base.BaseActivity;
-import com.damenghai.chahuitong.base.BaseFragmentActivity;
+import com.damenghai.chahuitong.api.StatusAPI;
 import com.damenghai.chahuitong.bean.ImageUrls;
 import com.damenghai.chahuitong.bean.Status;
 import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.request.VolleyRequest;
-import com.damenghai.chahuitong.ui.activity.CommentActivity;
+import com.damenghai.chahuitong.ui.activity.StatusDetailActivity;
 import com.damenghai.chahuitong.ui.activity.ImageBrowserActivity;
 import com.damenghai.chahuitong.ui.activity.LoginActivity;
+import com.damenghai.chahuitong.ui.activity.WriteCommentActivity;
 import com.damenghai.chahuitong.utils.ImageConfigHelper;
 import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.ShareManager;
@@ -83,7 +83,7 @@ public class StatusesAdapter extends CommonAdapter<Status> {
                                     .setNegativeButton("确定", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    HodorRequest.deleteStatus(status.getContent_id(), SessionKeeper.readSession(mContext),
+                                    StatusAPI.deleteStatus(status.getContent_id(), SessionKeeper.readSession(mContext),
                                             SessionKeeper.readUsername(mContext), new VolleyRequest() {
                                                 @Override
                                                 public void onSuccess(String response) {
@@ -159,7 +159,7 @@ public class StatusesAdapter extends CommonAdapter<Status> {
 
     // 设置三个功能按钮
     protected void setControl(final ViewHolder holder, final Status status) {
-        LinearLayout statusComment = holder.getView(R.id.control_comment);
+        final LinearLayout statusComment = holder.getView(R.id.control_comment);
         LinearLayout statusShare = holder.getView(R.id.control_share);
         LinearLayout statusLike = holder.getView(R.id.control_like);
         statusShare.setOnClickListener(new View.OnClickListener() {
@@ -189,7 +189,7 @@ public class StatusesAdapter extends CommonAdapter<Status> {
 
                         @Override
                         public void onComplete(SHARE_MEDIA share_media, int i, SocializeEntity socializeEntity) {
-                            HodorRequest.statusShare(status.getContent_id(), new VolleyRequest() {
+                            StatusAPI.statusShare(status.getContent_id(), new VolleyRequest() {
                                 @Override
                                 public void onSuccess() {
                                     super.onSuccess();
@@ -202,19 +202,26 @@ public class StatusesAdapter extends CommonAdapter<Status> {
                 }
             }
         });
+
         statusComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(SessionKeeper.readSession(mContext).equals("")) {
                     Intent intent = new Intent(mContext, LoginActivity.class);
                     mContext.startActivity(intent);
-                } else {
-                    Intent intent = new Intent(mContext, CommentActivity.class);
+                } else if(status.getComment() != 0){
+                    Intent intent = new Intent(mContext, StatusDetailActivity.class);
+                    intent.putExtra("scroll2comment", true);
                     intent.putExtra("status", status);
+                    mContext.startActivity(intent);
+                } else {
+                    Intent intent = new Intent(mContext, WriteCommentActivity.class);
+                    intent.putExtra("status_id", status.getContent_id());
                     mContext.startActivity(intent);
                 }
             }
         });
+
         statusLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -222,10 +229,11 @@ public class StatusesAdapter extends CommonAdapter<Status> {
                     Intent intent = new Intent(mContext, LoginActivity.class);
                     mContext.startActivity(intent);
                 } else {
-                    HodorRequest.statusLike(mContext, status.getContent_id(), new VolleyRequest() {
+                    StatusAPI.statusLike(mContext, status.getContent_id(), new VolleyRequest() {
                         @Override
                         public void onSuccess(String response) {
                             super.onSuccess(response);
+
                             try {
                                 JSONObject obj = new JSONObject(response);
                                 if (obj.getInt("code") != 404) {
