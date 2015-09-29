@@ -1,21 +1,16 @@
 package com.damenghai.chahuitong.ui.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.config.SessionKeeper;
+import com.damenghai.chahuitong.utils.ShareManager;
 import com.damenghai.chahuitong.view.NewWebView;
 import com.damenghai.chahuitong.view.TopBar;
 import com.damenghai.chahuitong.view.TopBar.OnLeftClickListener;
-import com.umeng.socialize.controller.UMServiceFactory;
 import com.umeng.socialize.controller.UMSocialService;
-import com.umeng.socialize.sso.QZoneSsoHandler;
-import com.umeng.socialize.sso.UMQQSsoHandler;
-import com.umeng.socialize.sso.UMSsoHandler;
-import com.umeng.socialize.weixin.controller.UMWXHandler;
 
 public class WebViewActivity extends BaseActivity implements NewWebView.OnReceivedTitle {
 	private String mUrl, mTitle;
@@ -29,7 +24,6 @@ public class WebViewActivity extends BaseActivity implements NewWebView.OnReceiv
 
 		findViewById();
 		initView();
-		initUmengShare();
 	}
 
 	private void checkLogin() {
@@ -68,15 +62,17 @@ public class WebViewActivity extends BaseActivity implements NewWebView.OnReceiv
 
 		if(mUrl.contains("goods")) {
 			mTopBar.setRightSrc(R.drawable.icon_share);// 设置分享内容
+			final UMSocialService controller = ShareManager.create(WebViewActivity.this);
+			ShareManager.setShareContent(WebViewActivity.this, "", mUrl, mTitle, "");
 
 			mTopBar.setOnRightClickListener(new TopBar.onRightClickListener() {
 				@Override
 				public void onRightClick() {
 					if(mTitle != null) {
-						mController.setShareContent(mTitle + "，" + mUrl);
+						controller.setShareContent(mTitle + "，" + mUrl);
 					}
 					// 是否只有已登录用户才能打开分享选择页
-					mController.openShare(WebViewActivity.this, false);
+					controller.openShare(WebViewActivity.this, false);
 				}
 			});
 		} else {

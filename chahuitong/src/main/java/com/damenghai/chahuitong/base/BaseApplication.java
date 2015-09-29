@@ -5,6 +5,7 @@ import android.app.Application;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.damenghai.chahuitong.R;
+import com.pgyersdk.crash.PgyCrashManager;
 import com.umeng.socialize.sso.QZoneSsoHandler;
 import com.umeng.socialize.sso.SinaSsoHandler;
 import com.umeng.socialize.sso.UMQQSsoHandler;
@@ -29,6 +30,7 @@ public class BaseApplication extends Application {
                         .build()
         );
 
+        PgyCrashManager.register(this);
     }
 
     public static RequestQueue getRequestQueue() {

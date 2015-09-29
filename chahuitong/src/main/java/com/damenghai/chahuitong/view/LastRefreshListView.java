@@ -1,0 +1,82 @@
+package com.damenghai.chahuitong.view;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.View;
+import android.widget.AbsListView;
+import android.widget.ListView;
+
+import com.damenghai.chahuitong.R;
+import com.damenghai.chahuitong.utils.L;
+import com.lidroid.xutils.view.annotation.event.OnScroll;
+
+/**
+ * Created by Sgun on 15/9/24.
+ */
+public class LastRefreshListView extends ListView implements AbsListView.OnScrollListener {
+    private View mFooter;
+
+    private int mLastItem;
+    private int mTotalItemCount;
+    private Context mContext;
+    private OnLastRefreshListener mListener;
+
+    public LastRefreshListView(Context context) {
+        this(context, null, 0);
+    }
+
+    public LastRefreshListView(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public LastRefreshListView(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+
+        mContext = context;
+
+        addFooter();
+
+        setOnScrollListener(this);
+    }
+
+    public void refreshComplete() {
+        removeFooter();
+    }
+
+    public void setOnLastRefreshListener(OnLastRefreshListener l) {
+        mListener = l;
+    }
+
+    private void addFooter() {
+        mFooter = inflate(mContext, R.layout.load_more_footer, null);
+        mFooter.setVisibility(GONE);
+        addFooterView(mFooter);
+    }
+
+    private void removeFooter() {
+        if(getFooterViewsCount() == 1) {
+            mFooter.setVisibility(GONE);
+        }
+    }
+
+    @Override
+    public void onScrollStateChanged(AbsListView absListView, int state) {
+        if(state == SCROLL_STATE_IDLE && mLastItem == mTotalItemCount) {
+            mFooter.setVisibility(VISIBLE);
+            if(mListener != null) {
+                mListener.onRefresh();
+            }
+        }
+    }
+
+    @Override
+    public void onScroll(AbsListView absListView, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+        mLastItem = firstVisibleItem + visibleItemCount;
+        mTotalItemCount = totalItemCount;
+    }
+
+    public interface OnLastRefreshListener {
+        void onRefresh();
+    }
+
+}

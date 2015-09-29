@@ -221,9 +221,9 @@ public class EditActivity extends BaseActivity implements OnClickListener {
             for(int i=0; i<mImages.size(); i++) {
                 StringBuilder builder = new StringBuilder();
                 if(i == mImages.size() - 1) {
-                    builder.append(ImageUtils.getBase64FromUri(mImages.get(i), EditActivity.this));
+                    builder.append(ImageUtils.getBase64FromUri(EditActivity.this, mImages.get(i)));
                 } else {
-                    builder.append(ImageUtils.getBase64FromUri(mImages.get(i), EditActivity.this) + ",");
+                    builder.append(ImageUtils.getBase64FromUri(EditActivity.this, mImages.get(i)) + ",");
                 }
                 product.setPic(builder.toString());
             }

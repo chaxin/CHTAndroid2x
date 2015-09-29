@@ -2,18 +2,19 @@ package com.damenghai.chahuitong.api;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.damenghai.chahuitong.response.IResponseListener;
 import com.damenghai.chahuitong.base.BaseApplication;
-import com.damenghai.chahuitong.bean.Status;
 import com.damenghai.chahuitong.bean.Travel;
 import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.request.VolleyRequest;
+import com.damenghai.chahuitong.response.IResponseListener;
 import com.damenghai.chahuitong.ui.activity.LoginActivity;
 import com.google.gson.Gson;
 
@@ -27,6 +28,8 @@ import java.util.Map;
  * Created by Sgun on 15/8/13.
  */
 public class HodorRequest {
+    static Handler mMainLooperHandler = new Handler(Looper.getMainLooper());
+
     /**
      * 以Get方式请求网络数据
      *
@@ -38,26 +41,30 @@ public class HodorRequest {
     public static void getRequest(String url, final VolleyRequest l) {
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
-            public void onResponse(String response) {
-                l.onAllDone();
-                l.onSuccess(response);
-                try {
-                    JSONObject obj = new JSONObject(response);
-                    if(obj.getInt("code") != 404) {
-                        l.onSuccess();
-                        l.onListSuccess(obj.getJSONArray("content"));
-                    } else {
-                        l.onError(obj.getString("content"));
+            public void onResponse(final String response) {
+                mMainLooperHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        l.onAllDone();
+                        l.onSuccess(response);
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (obj.getInt("code") != 404) {
+                                l.onSuccess();
+                                l.onListSuccess(obj.getJSONArray("content"));
+                            } else {
+                                l.onError(obj.getString("content"));
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                });
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                l.onAllDone();
-                l.onError(error.toString());
+
             }
         });
 
@@ -95,6 +102,38 @@ public class HodorRequest {
             }
         });
 
+        BaseApplication.getRequestQueue().add(request);
+    }
+
+    public static void postRequestOnMainThread(String url, final Map<String, String> params, final VolleyRequest l) {
+        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                l.onAllDone();
+                l.onSuccess(response);
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    if(obj.getInt("code") != 404) {
+                        l.onSuccess();
+                        l.onListSuccess(obj.getJSONArray("content"));
+                    }
+                    else l.onError(obj.getString("content"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                l.onAllDone();
+//                l.onError(error);
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                return params;
+            }
+        };
         BaseApplication.getRequestQueue().add(request);
     }
 
@@ -457,47 +496,6 @@ public class HodorRequest {
         map.put("key", key);
         map.put("username", username);
         postRequest("http://www.chahuitong.com/wap/index.php/home/discuz/active_editor_api", map, l);
-    }
-
-    /**
-     * 查看领袖发表微博列表
-     *
-     * @param id
-     * @param l
-     */
-    public static void leaderStatus(int id, int page, VolleyRequest l) {
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("member_id", id + "");
-        map.put("page", page + "");
-        postRequest("http://www.chahuitong.com/wap/index.php/Home/Discuz/member_content_api", map, l);
-     }
-
-    /**
-     * 微博列表
-     *
-     * @param page
-     * @param l
-     */
-    public static void statusShow(int page, VolleyRequest l) {
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("page", page + "");
-        postRequest("http://www.chahuitong.com/wap/index.php/Home/Discuz/get_allperson_content_api", map, l);
-    }
-
-    /**
-     * 发表新微博
-     *
-     * @param context
-     * @param status
-     * @param l
-     */
-    public static void uploadStatus(Context context, Status status, VolleyRequest l) {
-        String content = new Gson().toJson(status);
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("key", SessionKeeper.readSession(context));
-        map.put("username", SessionKeeper.readUsername(context));
-        map.put("content", content);
-        postRequest("http://www.chahuitong.com/wap/index.php/Home/Discuz/save_content_api", map, l);
     }
 
 }

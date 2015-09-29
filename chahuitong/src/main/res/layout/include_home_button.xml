@@ -4,6 +4,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/stroke"
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -21,7 +27,7 @@
             android:id="@+id/divider"
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:background="@color/gray" />
+            android:background="@color/stroke" />
 
         <Button
             style="@style/HomeButton"
@@ -34,7 +40,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/gray" />
+        android:background="@color/stroke" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,7 +58,7 @@
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:background="@color/gray" />
+            android:background="@color/stroke" />
 
         <Button
             style="@style/HomeButton"
@@ -61,5 +67,10 @@
             android:drawableTop="@drawable/icon_home_shop"
             />
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/stroke" />
 
 </LinearLayout>

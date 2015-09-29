@@ -171,9 +171,10 @@ public class ViewHolder {
 		return this;
 	}
 
-	public ViewHolder setImageUri(int viewId, Uri uri) {
+	public ViewHolder displayImageUri(int viewId, Uri uri) {
 		ImageView iv = getView(viewId);
-		iv.setImageURI(uri);
+		BitmapUtils utils = new BitmapUtils(mContext);
+		utils.display(iv, ImageUtils.getRealPathFromURI(uri, mContext), ImageConfigHelper.getImageConfig(mContext));
 		return this;
 	}
 

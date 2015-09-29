@@ -25,7 +25,7 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-    <uses-permission android:name="android.permission.WRITE_APN_SETTINGS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- 允许程序录制音频 -->
 
     <application
         android:allowBackup="true"
@@ -41,6 +41,10 @@
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="${UMENG_CHANNEL_VALUE}" />
+        <meta-data
+            android:name="PGYER_APPID"
+            android:value="a26f64e5c6de1dd906ce428ef40d5358" >
+        </meta-data>
 
         <service
             android:name="com.umeng.update.net.DownloadingService"
@@ -120,7 +124,8 @@
         <activity
             android:name=".ui.activity.LoginActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ui.activity.PersonalActivity"
+        <activity
+            android:name=".ui.activity.PersonalActivity"
             android:theme="@style/GrayTextPrimaryIndicators" />
 
         <activity
@@ -162,7 +167,10 @@
         <activity android:name=".ui.activity.JoinEventActivity" />
         <activity android:name=".ui.activity.TravelActivity" />
         <activity android:name=".ui.activity.InitiateEventActivity" />
-        <activity android:name=".ui.activity.WriteCommentActivity" />
+        <activity
+            android:name=".ui.activity.WriteCommentActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            />
 
         <activity android:name=".ui.activity.PaymentActivity" >
         </activity>
@@ -171,6 +179,7 @@
         <activity android:name=".ui.activity.ModifyActivity" />
 
         <activity android:name="com.unionpay.uppay.PayActivity" />
+        <activity android:name="com.pgyersdk.activity.FeedbackActivity"/>
     </application>
 
 </manifest>

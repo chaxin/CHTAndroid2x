@@ -22,7 +22,7 @@
             <EditText
                 android:id="@+id/register_phone"
                 style="@style/log_editText"
-                android:drawableLeft="@drawable/icon_username"
+                android:drawableLeft="@drawable/icon_mobile"
                 android:hint="您的手机号码"
                 android:inputType="phone"
                 android:maxLength="11"
@@ -40,7 +40,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     style="@style/log_editText"
-                    android:drawableLeft="@drawable/icon_password"
+                    android:drawableLeft="@drawable/icon_code"
                     android:hint="输入验证码"
                     android:inputType="number"
                     android:maxLength="6"

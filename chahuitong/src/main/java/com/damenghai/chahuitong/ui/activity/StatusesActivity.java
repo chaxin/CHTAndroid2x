@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.StatusesAdapter;
 import com.damenghai.chahuitong.api.HodorRequest;
+import com.damenghai.chahuitong.api.StatusAPI;
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.bean.Status;
 import com.damenghai.chahuitong.request.VolleyRequest;
@@ -74,7 +75,7 @@ public class StatusesActivity extends BaseActivity implements OnRefreshListener,
     }
 
     private void loadData(final int page) {
-        HodorRequest.statusShow(page, new VolleyRequest() {
+        StatusAPI.statusShow(page, new VolleyRequest() {
             @Override
             public void onListSuccess(JSONArray array) {
                 super.onListSuccess(array);

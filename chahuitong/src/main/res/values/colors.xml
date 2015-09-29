@@ -8,14 +8,16 @@
     <color name="primary_light">#78c8c0</color>
 
     <color name="background">#ffefefef</color>
+    <color name="background_alpha">#49000000</color>
     <color name="background_pressed">#e8e8e8</color>
     <color name="background_light">#f8f8f8</color>
     <color name="bg_agray">#49dddddd</color>
 
     <color name="stroke">#c9c9c9</color>
+
     <color name="text_body">#585858</color>
     <color name="text_caption">#999999</color>
-    <color name="txxt_at_blue">#507daf</color>
+    <color name="text_at_blue">#507daf</color>
 
     <color name="gray">#ccc</color>
     <color name="light_gray">#999</color>

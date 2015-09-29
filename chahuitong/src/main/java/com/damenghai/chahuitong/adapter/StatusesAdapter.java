@@ -1,7 +1,11 @@
 package com.damenghai.chahuitong.adapter;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
@@ -22,12 +26,14 @@ import com.damenghai.chahuitong.ui.activity.ImageBrowserActivity;
 import com.damenghai.chahuitong.ui.activity.LoginActivity;
 import com.damenghai.chahuitong.utils.ImageConfigHelper;
 import com.damenghai.chahuitong.utils.L;
+import com.damenghai.chahuitong.utils.ShareManager;
 import com.damenghai.chahuitong.utils.T;
 import com.damenghai.chahuitong.utils.ViewHolder;
 import com.damenghai.chahuitong.view.WrapHeightGridView;
 import com.lidroid.xutils.BitmapUtils;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.bean.SocializeEntity;
+import com.umeng.socialize.controller.UMSocialService;
 import com.umeng.socialize.controller.listener.SocializeListeners;
 import com.umeng.socialize.media.UMImage;
 
@@ -57,7 +63,7 @@ public class StatusesAdapter extends CommonAdapter<Status> {
 
         // 设置信息显示
         holder.setText(R.id.status_text, status.getText())
-                .setText(R.id.status_source, status.getCreated_at() + "  来自" + status.getSource())
+                .setText(R.id.status_source, status.getCreated_at() + "  来自" + (status.getSource() == null ? "Android客户端" : status.getSource()))
                 .setText(R.id.control_tv_share, status.getShare() + "")
                 .setText(R.id.control_tv_like, status.getView() + "")
                 .setText(R.id.control_tv_comment, status.getComment() + "");
@@ -72,26 +78,33 @@ public class StatusesAdapter extends CommonAdapter<Status> {
                     .setTextOnClickListener(R.id.status_delete, new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            HodorRequest.deleteStatus(status.getContent_id(), SessionKeeper.readSession(mContext),
-                                    SessionKeeper.readUsername(mContext), new VolleyRequest() {
-                                        @Override
-                                        public void onSuccess(String response) {
-                                            super.onSuccess(response);
-                                            try {
-                                                JSONObject obj = new JSONObject(response);
-                                                int code = obj.getInt("code");
-                                                if (code == 404) {
-                                                    T.showShort(mContext, obj.getString("content"));
-                                                } else {
-                                                    T.showShort(mContext, "删除成功");
-                                                    mDatas.remove(holder.getPosition());
-                                                    notifyDataSetChanged();
+                            AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
+                            dialog.setMessage("确定删除？")
+                                    .setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    HodorRequest.deleteStatus(status.getContent_id(), SessionKeeper.readSession(mContext),
+                                            SessionKeeper.readUsername(mContext), new VolleyRequest() {
+                                                @Override
+                                                public void onSuccess(String response) {
+                                                    super.onSuccess(response);
+                                                    try {
+                                                        JSONObject obj = new JSONObject(response);
+                                                        int code = obj.getInt("code");
+                                                        if (code == 404) {
+                                                            T.showShort(mContext, obj.getString("content"));
+                                                        } else {
+                                                            T.showShort(mContext, "删除成功");
+                                                            mDatas.remove(holder.getPosition());
+                                                            notifyDataSetChanged();
+                                                        }
+                                                    } catch (JSONException e) {
+                                                        e.printStackTrace();
+                                                    }
                                                 }
-                                            } catch (JSONException e) {
-                                                e.printStackTrace();
-                                            }
-                                        }
-                                    });
+                                            });
+                                }
+                            }).setPositiveButton("取消", null).create().show();
                         }
                     });
         }
@@ -155,39 +168,20 @@ public class StatusesAdapter extends CommonAdapter<Status> {
                 if(SessionKeeper.readSession(mContext).equals("")) {
                     Intent intent = new Intent(mContext, LoginActivity.class);
                     mContext.startActivity(intent);
-                }else if(mContext instanceof BaseActivity) {
-                    BaseActivity activity = (BaseActivity) mContext;
-                    activity.mController.setShareContent(status.getText() + ", http://t.cn/RyU8vSP");
-                    if (status.getThumbImage() != null && !status.getThumbImage().equals(""))
-                        activity.mController.setShareImage(new UMImage(mContext, status.getThumbImage()));
-                    else if(status.getMemberInfo() != null && !status.getMemberInfo().getMember_avatar().equals(""))
-                        activity.mController.setShareImage(new UMImage(mContext, status.getMemberInfo().getMember_avatar()));
-                    activity.mController.openShare(activity, new SocializeListeners.SnsPostListener() {
-                        @Override
-                        public void onStart() {
-                            L.d("开始分享");
-                        }
+                }else {
+                    UMSocialService controller = ShareManager.create(mContext);
+                    ShareManager.setShareContent(mContext,
+                            !TextUtils.isEmpty(status.getThumbImage()) ? status.getThumbImage() : "",
+                            "http://t.cn/RyU8vSP",
+                            status.getTitle(),
+                            status.getText());
 
-                        @Override
-                        public void onComplete(SHARE_MEDIA share_media, int i, SocializeEntity socializeEntity) {
-                            HodorRequest.statusShare(status.getContent_id(), new VolleyRequest() {
-                                @Override
-                                public void onSuccess() {
-                                    super.onSuccess();
-                                    int shareCount = Integer.parseInt(((TextView) holder.getView(R.id.control_tv_share)).getText().toString());
-                                    holder.setText(R.id.control_tv_share, shareCount + 1 + "");
-                                }
-                            });
-                        }
-                    });
-                } else if(mContext instanceof BaseFragmentActivity) {
-                    BaseFragmentActivity activity = (BaseFragmentActivity) mContext;
-                    activity.mController.setShareContent(status.getText() + ", http://t.cn/RyU8vSP");
-                    if (status.getThumbImage() != null && !status.getThumbImage().equals(""))
-                        activity.mController.setShareImage(new UMImage(mContext, status.getThumbImage()));
-                    else if(status.getMemberInfo() != null && !status.getMemberInfo().getMember_avatar().equals(""))
-                        activity.mController.setShareImage(new UMImage(mContext, status.getMemberInfo().getMember_avatar()));
-                    activity.mController.openShare(activity, new SocializeListeners.SnsPostListener() {
+                    controller.setShareContent(status.getText() + ", http://t.cn/RyU8vSP");
+                    if (!TextUtils.isEmpty(status.getThumbImage()))
+                        controller.setShareImage(new UMImage(mContext, status.getThumbImage()));
+                    else if(status.getMemberInfo() != null && !TextUtils.isEmpty(status.getMemberInfo().getMember_avatar()))
+                        controller.setShareImage(new UMImage(mContext, status.getMemberInfo().getMember_avatar()));
+                    controller.openShare((Activity) mContext, new SocializeListeners.SnsPostListener() {
                         @Override
                         public void onStart() {
                             L.d("开始分享");

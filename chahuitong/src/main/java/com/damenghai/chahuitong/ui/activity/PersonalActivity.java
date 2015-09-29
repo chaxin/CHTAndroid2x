@@ -14,8 +14,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.GridView;
@@ -25,7 +25,6 @@ import android.widget.TextView;
 
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.CommonAdapter;
-import com.damenghai.chahuitong.api.HodorRequest;
 import com.damenghai.chahuitong.api.PersonalAPI;
 import com.damenghai.chahuitong.base.BaseFragmentActivity;
 import com.damenghai.chahuitong.bean.Personal;
@@ -33,11 +32,13 @@ import com.damenghai.chahuitong.bean.User;
 import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.ui.fragment.CoterieFragment;
-import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.ViewHolder;
 import com.damenghai.chahuitong.view.RoundImageView;
 import com.google.gson.Gson;
 import com.lidroid.xutils.BitmapUtils;
+import com.pgyersdk.feedback.PgyFeedback;
+import com.pgyersdk.feedback.PgyFeedbackShakeManager;
+import com.pgyersdk.views.PgyerDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -106,6 +107,9 @@ public class PersonalActivity extends BaseFragmentActivity implements OnItemClic
     }
 
     private void initView() {
+        // 以对话框的形式弹出
+        PgyFeedbackShakeManager.register(PersonalActivity.this);
+
         mKey = SessionKeeper.readSession(this);
         if(!mKey.equals("")) {
             loadUserInfo();
@@ -198,10 +202,10 @@ public class PersonalActivity extends BaseFragmentActivity implements OnItemClic
         mDatas.add(profile);
 
         mDatas.add(new Personal("收货地址", R.drawable.icon_personal_address, "http://www.chahuitong.com/wap/index.php/Home/Index/address"));
-        mDatas.add(new Personal("我的发布", R.drawable.icon_personal_publish, ""));
         mDatas.add(new Personal("通知中心", R.drawable.icon_personal_msg, "http://www.chahuitong.com/wap/index.php/Home/Index/msg"));
-        mDatas.add(new Personal("圈子", R.drawable.icon_personal_friends, "coterie"));
+        mDatas.add(new Personal("社区", R.drawable.icon_personal_friends, "coterie"));
         mDatas.add(new Personal("评价", R.drawable.icon_personal_comment, "http://www.chahuitong.com/wap/index.php/Home/Index/message"));
+        mDatas.add(new Personal("意见反馈", R.drawable.icon_personal_feedback, "feedback"));
     }
 
     private void backDown() {
@@ -237,12 +241,15 @@ public class PersonalActivity extends BaseFragmentActivity implements OnItemClic
 
                     mLayout.setVisibility(View.GONE);
                     mMyCoterie.setVisibility(View.VISIBLE);
-
-                    return;
+                } else if(url.contains("feedback")) {
+                    // 以对话框的形式弹出
+                    PgyerDialog.setDialogTitleBackgroundColor("#1b8b80");
+                    PgyFeedback.getInstance().showDialog(PersonalActivity.this);
+                } else {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("url", url);
+                    openActivity(WebViewActivity.class, bundle);
                 }
-                Bundle bundle = new Bundle();
-                bundle.putString("url", url);
-                openActivity(WebViewActivity.class, bundle);
             } else {
                 openActivityForResult(LoginActivity.class, LOGIN_REQUEST_CODE);
             }

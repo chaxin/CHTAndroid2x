@@ -13,8 +13,6 @@ import android.widget.TextView;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.ui.activity.LeaderActivity;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -69,7 +67,7 @@ public class StringUtils {
 
         @Override
         public void updateDrawState(TextPaint ds) {
-            ds.setColor(mContext.getResources().getColor(R.color.txxt_at_blue));
+            ds.setColor(mContext.getResources().getColor(R.color.text_at_blue));
             ds.setUnderlineText(false);
         }
     }

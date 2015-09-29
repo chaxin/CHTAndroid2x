@@ -123,7 +123,7 @@ public class ProfileActivity extends BaseActivity implements OnClickListener {
             if(resultCode == Activity.RESULT_CANCELED || data == null) return;
             Uri uri = data.getData();
             mAvatar.setImageURI(uri);
-            mLeader.setMember_avatar(ImageUtils.getBase64FromUri(uri, ProfileActivity.this));
+            mLeader.setMember_avatar(ImageUtils.getBase64FromUri(ProfileActivity.this, uri));
         } else if(requestCode == NAME_REQUEST_CODE) {
             if(resultCode == Activity.RESULT_CANCELED || data == null) return;
             String text = data.getStringExtra("text");

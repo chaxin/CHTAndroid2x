@@ -1,18 +1,12 @@
 package com.damenghai.chahuitong.adapter;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
-import android.os.Build;
 import android.view.View;
-import android.widget.GridView;
 import android.widget.RelativeLayout;
 
 import com.damenghai.chahuitong.R;
-import com.damenghai.chahuitong.utils.ImageUtils;
-import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.ViewHolder;
 import com.damenghai.chahuitong.view.WrapHeightGridView;
 
@@ -50,7 +44,7 @@ public class AddImageGridAdapter extends CommonAdapter<Uri> {
             holder.setImageResource(R.id.gridview_item_image, R.drawable.icon_addpic_unfocused)
                     .setVisibility(R.id.iv_delete_image, View.GONE);
         } else {
-            holder.setImageUri(R.id.gridview_item_image, uri)
+            holder.displayImageUri(R.id.gridview_item_image, uri)
                     .setVisibility(R.id.iv_delete_image, View.VISIBLE)
                     .setOnClickListener(R.id.iv_delete_image, new View.OnClickListener() {
                         @Override

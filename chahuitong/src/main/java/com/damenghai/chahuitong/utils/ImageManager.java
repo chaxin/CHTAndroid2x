@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.CursorLoader;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -150,10 +151,8 @@ public class ImageManager {
 		mView = v;
 		mBu = new BitmapUtils(mContext);
 		mBu.configDefaultBitmapConfig(Bitmap.Config.RGB_565);
-		if (!mPath.equals("")) {
+		if (!TextUtils.isEmpty(mPath)) {
 			mBu.display(v, mPath);
-		} else if (mBitmap != null) {
-
 		}
 	}
 

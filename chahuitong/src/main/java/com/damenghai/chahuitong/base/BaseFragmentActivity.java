@@ -9,6 +9,8 @@ import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
 
 import com.damenghai.chahuitong.R;
+import com.pgyersdk.activity.FeedbackActivity;
+import com.pgyersdk.feedback.PgyFeedbackShakeManager;
 import com.umeng.socialize.controller.UMServiceFactory;
 import com.umeng.socialize.controller.UMSocialService;
 import com.umeng.socialize.sso.QZoneSsoHandler;
@@ -23,9 +25,6 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  */
 public class BaseFragmentActivity extends FragmentActivity {
 
-    // 友盟分享成员变量
-    final public UMSocialService mController = UMServiceFactory.getUMSocialService("com.umeng.share");
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,33 +32,28 @@ public class BaseFragmentActivity extends FragmentActivity {
         // 设置竖屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        initUmengShare();
     }
 
-    // 初始化友盟分享
-    public void initUmengShare() {
-        String appID = "wx58ea4f88c26aa4b0";
-        String appSecret = "1999b86ded76a858588083ac46615b8d";
-        // 添加微信平台
-        UMWXHandler wxHandler = new UMWXHandler(this,appID,appSecret);
-        wxHandler.addToSocialSDK();
-        // 添加微信朋友圈
-        UMWXHandler wxCircleHandler = new UMWXHandler(this,appID,appSecret);
-        wxCircleHandler.setToCircle(true);
-        wxCircleHandler.addToSocialSDK();
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-        // 分享给qq好友，参数1为当前Activity，参数2为开发者在QQ互联申请的APP ID，参数3为开发者在QQ互联申请的APP kEY.
-        UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(this, "100424468",
-                "c7394704798a158208a74ab60104f0ba");
-        qqSsoHandler.addToSocialSDK();
+        // 自定义摇一摇的灵敏度，默认为950，数值越小灵敏度越高。
+        PgyFeedbackShakeManager.setShakingThreshold(1200);
 
-        //分享到qq空间，参数1为当前Activity，参数2为开发者在QQ互联申请的APP ID，参数3为开发者在QQ互联申请的APP kEY.
-        QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(this, "100424468",
-                "c7394704798a158208a74ab60104f0ba");
-        qZoneSsoHandler.addToSocialSDK();
+        // 以Activity的形式打开，这种情况下必须在AndroidManifest.xml配置FeedbackActivity
+        // 打开沉浸式,默认为false
+        // FeedbackActivity.setBarImmersive(true);
+        PgyFeedbackShakeManager.register(this, false);
 
-        //设置新浪SSO handler
-        mController.getConfig().setSsoHandler(new SinaSsoHandler());
+        // 设置顶部导航栏和底部bar的颜色
+        FeedbackActivity.setBarBackgroundColor("#1b8b80");
+
+        // 设置顶部按钮和底部按钮按下时的反馈色
+        FeedbackActivity.setBarButtonPressedColor("#166f66");
+
+        // 设置颜色选择器的背景色
+        FeedbackActivity.setColorPickerBackgroundColor("#1b8b80");
     }
 
     @Override

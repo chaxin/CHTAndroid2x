@@ -16,14 +16,11 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import com.damenghai.chahuitong.R;
-import com.damenghai.chahuitong.api.NewsAPI;
-import com.damenghai.chahuitong.response.JsonObjectListener;
+import com.damenghai.chahuitong.bean.Article;
 import com.damenghai.chahuitong.utils.ShareManager;
 import com.damenghai.chahuitong.view.AbScrollView.OnDismissListener;
 import com.umeng.socialize.controller.UMSocialService;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.umeng.socialize.media.UMImage;
 
 /**
  * Created by Sgun on 15/8/18.
@@ -31,6 +28,7 @@ import org.json.JSONObject;
 public class ArticleWindow extends PopupWindow implements OnDismissListener, OnClickListener, OnTouchListener {
     private Context mContext;
 
+    private Article mArticle;
     private String mId;
 
     private View mView;
@@ -41,12 +39,13 @@ public class ArticleWindow extends PopupWindow implements OnDismissListener, OnC
     private ImageView mBtnClose;
     private ImageView mBtnShare;
 
-    public ArticleWindow(Context context, String article_id) {
+    public ArticleWindow(Context context, Article article) {
         super(context);
 
+        if(context == null && article == null) return;
         mContext = context;
-
-        mId = article_id;
+        mArticle = article;
+        mId = article.getId();
 
         LayoutInflater inflater = LayoutInflater.from(context);
         mView = inflater.inflate(R.layout.article_detail_pop, null);
@@ -111,18 +110,17 @@ public class ArticleWindow extends PopupWindow implements OnDismissListener, OnC
                 break;
             case R.id.article_share :
                 final UMSocialService controller = ShareManager.create(mContext);
-                NewsAPI.articleInfo(mId, new JsonObjectListener(mContext) {
-                    @Override
-                    public void onSuccess(JSONObject object) {
-                        try {
-                            controller.setShareContent(object.getString("article_title") + ", author:" + object.getString("article_author")
-                                    + ", http://www.chahuitong.com/wap/index.php/Home/News/detail/article_id/" + mId);
-                            controller.openShare((Activity) mContext, false);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
+
+                //设置点击分享内容的跳转链接
+                String url = "http://www.chahuitong.com/wap/index.php/Home/News/detail/article_id/" + mId;
+                String imageUrl = (mArticle.getImage().getName().contains("upload")
+                        ? "http://www.chahuitong.com/data/upload/cms/article/1/" :
+                        "http://www.chahuitong.com/data/upload/cms/article/60/") + mArticle.getImage().getName();
+                ShareManager.setShareContent(mContext, imageUrl, url,mArticle.getTitle(), mArticle.getAbstract());
+                controller.setShareContent( url + mArticle.getTitle() + mArticle.getAbstract());
+                controller.setShareMedia(new UMImage(mContext, imageUrl));
+                controller.openShare((Activity) mContext, false);
+
                 break;
         }
     }

@@ -150,7 +150,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     @Override
     public void onClick(View view) {
-
         switch (view.getId()) {
             case R.id.id_btn_login_in :
                 if (mLoginUsername.length() <= 0) {
@@ -179,7 +178,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                                     SessionKeeper.writeSession(LoginActivity.this, datas.getString("key"));
                                     SessionKeeper.writeUsername(LoginActivity.this, datas.getString("username"));
                                     setResult(Activity.RESULT_OK);
-                                    L.d("text:" + response);
                                     finishActivity();
                                 } else {
                                     T.showShort(LoginActivity.this, "登录失败");
@@ -256,7 +254,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
                                         L.d("uid: " + mPassword + ", username:" + username);
 
-                                        UserAPI.createAccount(mPassword, username, mPassword, new VolleyRequest() {
+                                        UserAPI.createAccount("sina", username, mPassword, new VolleyRequest() {
                                             @Override
                                             public void onSuccess(String response) {
                                                 super.onSuccess(response);

@@ -18,6 +18,7 @@ import com.damenghai.chahuitong.api.NewsAPI;
 import com.damenghai.chahuitong.bean.Article;
 import com.damenghai.chahuitong.bean.response.ArticleResponse;
 import com.damenghai.chahuitong.request.VolleyRequest;
+import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.view.ArticleWindow;
 import com.damenghai.chahuitong.utils.ViewHolder;
 import com.google.gson.Gson;
@@ -106,7 +107,7 @@ public class NewsFragment extends Fragment {
         plv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                showWindow(mDatas.get(i - 2).getId());
+                showWindow(mDatas.get(i - 2));
             }
         });
     }
@@ -116,6 +117,7 @@ public class NewsFragment extends Fragment {
             @Override
             public void onSuccess(String response) {
                 super.onSuccess(response);
+
                 if (page == 0) {
                     mDatas.clear();
                 }
@@ -167,13 +169,13 @@ public class NewsFragment extends Fragment {
         mHeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showWindow(article.getId());
+                showWindow(article);
             }
         });
     }
 
-    private void showWindow(String id) {
-        ArticleWindow popupWindow = new ArticleWindow(getActivity(), id);
+    private void showWindow(Article article) {
+        ArticleWindow popupWindow = new ArticleWindow(getActivity(), article);
         popupWindow.setAnimationStyle(R.style.PopupWindowAnim);
         popupWindow.showAtLocation(getActivity().findViewById(R.id.article_rl), Gravity.CENTER, 0, 0);
     }
@@ -195,7 +197,9 @@ public class NewsFragment extends Fragment {
             holder.setText(R.id.news_item_title, article.getTitle())
                     .setText(R.id.news_item_date, article.getTime())
                     .setText(R.id.news_item_desc, article.getAbstract())
-                    .loadDefaultImage(R.id.news_item_image, "http://www.chahuitong.com/data/upload/cms/article/60/" + article.getImage().getName());
+                    .loadDefaultImage(R.id.news_item_image, (article.getImage().getName().contains("upload")
+                            ? "http://www.chahuitong.com/data/upload/cms/article/1/" :
+                            "http://www.chahuitong.com/data/upload/cms/article/60/") + article.getImage().getName());
         }
     }
 }

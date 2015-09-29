@@ -7,13 +7,8 @@
 
     <com.damenghai.chahuitong.view.TopBar
         android:id="@+id/comment_bar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/top_bar_height"
-        android:background="@color/primary"
+        style="@style/CommonTopBar"
         app:titleText="@string/write_comment"
-        app:titleTextSize="@dimen/small_middle_text_size"
-        app:titleTextColor="@android:color/white"
-        app:leftSrc="@drawable/btn_back_item_selector"
         />
 
     <com.handmark.pulltorefresh.library.PullToRefreshListView
@@ -23,10 +18,18 @@
         android:layout_weight="1"
         android:cacheColorHint="@android:color/transparent"
         android:listSelector="@android:color/transparent"
-        android:divider="@color/background"
-        android:dividerHeight="4dp"
+        android:divider="@color/stroke"
+        android:dividerHeight="1px"
         android:clickable="false"
         />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/stroke"
+        />
+
+    <include layout="@layout/include_forum_controlbar" />
 
     <Button
         android:id="@+id/write_comment"
@@ -36,6 +39,7 @@
         android:textColor="@android:color/white"
         style="@style/TextViewBody"
         android:background="@drawable/correct_primary2dark_sel"
+        android:visibility="gone"
         />
 
 </LinearLayout>

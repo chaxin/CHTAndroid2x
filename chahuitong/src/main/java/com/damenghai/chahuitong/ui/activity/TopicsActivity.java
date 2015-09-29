@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.damenghai.chahuitong.adapter.StatusesAdapter;
 import com.damenghai.chahuitong.api.HodorRequest;
+import com.damenghai.chahuitong.api.StatusAPI;
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.bean.Leader;
@@ -83,7 +84,7 @@ public class TopicsActivity extends BaseActivity implements OnLastItemVisibleLis
     }
 
     private void loadData(final int page) {
-        HodorRequest.leaderStatus(1, page, new VolleyRequest() {
+        StatusAPI.leaderStatus(1, page, new VolleyRequest() {
             @Override
             public void onSuccess(String response) {
                 super.onSuccess(response);

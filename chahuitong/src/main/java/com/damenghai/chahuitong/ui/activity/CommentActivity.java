@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
@@ -28,12 +30,18 @@ import java.util.ArrayList;
 
 /**
  * 评论
+ *
  * Created by Sgun on 15/8/25.
  */
 public class CommentActivity extends BaseActivity {
     private final int REQUEST_CODE_WRITE = 0x200;
 
     private Status mStatus;
+
+    private View mHeader;
+    private ImageView mAvatar;
+    private TextView mUser;
+    private TextView mSource;
 
     private TopBar mTopBar;
     private PullToRefreshListView mPlv;
@@ -58,6 +66,9 @@ public class CommentActivity extends BaseActivity {
 
     @Override
     protected void findViewById() {
+        mHeader = View.inflate(CommentActivity.this, R.layout.include_status_header, null);
+        mAvatar = (ImageView) mHeader.findViewById(R.id.status_avatar);
+
         mTopBar = (TopBar) findViewById(R.id.comment_bar);
         mPlv = (PullToRefreshListView) findViewById(R.id.comment_lv);
         mWrite = (Button) findViewById(R.id.write_comment);
@@ -65,15 +76,23 @@ public class CommentActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        mTopBar.setOnLeftClickListener(new TopBar.OnLeftClickListener() {
+        mTopBar.setOnButtonClickListener(new TopBar.OnButtonClickListener() {
             @Override
             public void onLeftClick() {
                 finishActivity();
             }
+
+            @Override
+            public void onRightClick() {
+
+            }
         });
+
+        mHeader.findViewById(R.id.status_controller).setVisibility(View.GONE);
 
         mData = new ArrayList<Comment>();
         mAdapter = new StatusCommentAdapter(this, mData, R.layout.listview_item_comment);
+        mPlv.getRefreshableView().addHeaderView(mHeader);
         mPlv.setAdapter(mAdapter);
         mPlv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
@@ -94,6 +113,10 @@ public class CommentActivity extends BaseActivity {
                 }
             }
         });
+    }
+
+    private void setStatus() {
+
     }
 
     private void loadData(final int page) {

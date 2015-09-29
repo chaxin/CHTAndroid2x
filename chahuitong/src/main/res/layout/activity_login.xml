@@ -103,7 +103,7 @@
                 style="@style/log_editText"
                 android:id="@+id/id_input_username"
                 android:inputType="number"
-                android:drawableLeft="@drawable/icon_username"
+                android:drawableLeft="@drawable/icon_mobile"
                 android:hint="手机号码"
                 android:maxLength="11"
                 />

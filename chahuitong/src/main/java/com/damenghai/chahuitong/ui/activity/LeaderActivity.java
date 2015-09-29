@@ -9,19 +9,20 @@ import android.widget.TextView;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.StatusesAdapter;
 import com.damenghai.chahuitong.api.HodorRequest;
+import com.damenghai.chahuitong.api.StatusAPI;
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.bean.Leader;
 import com.damenghai.chahuitong.bean.Status;
 import com.damenghai.chahuitong.listener.FollowListener;
 import com.damenghai.chahuitong.listener.UnFollowListener;
 import com.damenghai.chahuitong.request.VolleyRequest;
+import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.T;
+import com.damenghai.chahuitong.view.LastRefreshListView;
+import com.damenghai.chahuitong.view.LastRefreshListView.OnLastRefreshListener;
 import com.damenghai.chahuitong.view.RoundImageView;
+import com.damenghai.chahuitong.view.TopBar;
 import com.google.gson.Gson;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.OnLastItemVisibleListener;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.lidroid.xutils.BitmapUtils;
 
 import org.json.JSONArray;
@@ -33,21 +34,23 @@ import java.util.ArrayList;
 /**
  * Created by Sgun on 15/8/25.
  */
-public class LeaderActivity extends BaseActivity implements OnClickListener, OnLastItemVisibleListener, OnRefreshListener {
+public class LeaderActivity extends BaseActivity implements OnClickListener, OnLastRefreshListener {
     private Leader mLeader;
 
     private View mHeader;
 
+    private TopBar mTopBar;
     private RoundImageView mAvatar;
     private TextView mName;
     private TextView mTitle;
     private TextView mFollowers;
     private TextView mFollow;
-    private PullToRefreshListView mPlv;
+    private LastRefreshListView mLlv;
 
     private ArrayList<Status> mData;
     private StatusesAdapter mAdapter;
-    private int mCurrpage;
+
+    private int mCurrentPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,22 +69,36 @@ public class LeaderActivity extends BaseActivity implements OnClickListener, OnL
     @Override
     protected void findViewById() {
         mHeader = View.inflate(this, R.layout.include_leader_header, null);
+        mTopBar = (TopBar) findViewById(R.id.leader_bar);
         mAvatar = (RoundImageView) mHeader.findViewById(R.id.leader_avatar);
         mName = (TextView) mHeader.findViewById(R.id.leader_detail_name);
         mTitle = (TextView) mHeader.findViewById(R.id.leader_detail_title);
         mFollowers = (TextView) mHeader.findViewById(R.id.leader_detail_followers);
         mFollow = (TextView) mHeader.findViewById(R.id.leader_detail_follow);
-        mPlv = (PullToRefreshListView) findViewById(R.id.leader_lv_detail);
+        mLlv = (LastRefreshListView) findViewById(R.id.leader_lv_detail);
     }
 
     @Override
     protected void initView() {
+        mTopBar.setOnLeftClickListener(new TopBar.OnLeftClickListener() {
+            @Override
+            public void onLeftClick() {
+                finishActivity();
+            }
+        });
+
+        mTopBar.setOnRightClickListener(new TopBar.onRightClickListener() {
+            @Override
+            public void onRightClick() {
+                goHome();
+            }
+        });
+
         mData = new ArrayList<Status>();
         mAdapter = new StatusesAdapter(this, mData, R.layout.listview_item_status, false);
-        mPlv.setAdapter(mAdapter);
-        mPlv.getRefreshableView().addHeaderView(mHeader);
-        mPlv.setOnLastItemVisibleListener(this);
-        mPlv.setOnRefreshListener(this);
+        mLlv.setAdapter(mAdapter);
+        mLlv.addHeaderView(mHeader);
+        mLlv.setOnLastRefreshListener(this);
 
         if (mLeader != null) {
             mName.setText(mLeader.getMember_name());
@@ -112,11 +129,12 @@ public class LeaderActivity extends BaseActivity implements OnClickListener, OnL
 
     private void loadData(final int page) {
         if (mLeader == null) return;
-        HodorRequest.leaderStatus(mLeader.getMember_id(), page, new VolleyRequest() {
+        StatusAPI.leaderStatus(mLeader.getMember_id(), page, new VolleyRequest() {
             @Override
             public void onListSuccess(JSONArray array) {
                 super.onListSuccess(array);
-                mCurrpage = page;
+
+                mCurrentPage = page;
 
                 if (page == 1) mData.clear();
 
@@ -135,7 +153,7 @@ public class LeaderActivity extends BaseActivity implements OnClickListener, OnL
             @Override
             public void onAllDone() {
                 super.onAllDone();
-                mPlv.onRefreshComplete();
+                mLlv.refreshComplete();
             }
         });
     }
@@ -148,7 +166,7 @@ public class LeaderActivity extends BaseActivity implements OnClickListener, OnL
                 super.onSuccess(response);
                 try {
                     JSONObject obj = new JSONObject(response);
-                    T.showShort(LeaderActivity.this, obj.getInt("code") == 404 ? obj.getString("cotent") : "关注成功");
+                    T.showShort(LeaderActivity.this, obj.getInt("code") == 404 ? obj.getString("content") : "关注成功");
                     if (obj.getInt("code") != 404) {
                         mFollow.setText("已关注");
                         mFollow.setTextColor(getResources().getColor(R.color.background));
@@ -157,22 +175,11 @@ public class LeaderActivity extends BaseActivity implements OnClickListener, OnL
                     e.printStackTrace();
                 }
             }
-
-            @Override
-            public void onAllDone() {
-                super.onAllDone();
-                mPlv.onRefreshComplete();
-            }
         });
     }
 
     @Override
-    public void onLastItemVisible() {
-        loadData(mCurrpage);
-    }
-
-    @Override
-    public void onRefresh(PullToRefreshBase refreshView) {
-        loadData(1);
+    public void onRefresh() {
+        loadData(mCurrentPage + 1);
     }
 }

@@ -1,6 +1,7 @@
 package com.damenghai.chahuitong.api;
 
 import com.damenghai.chahuitong.request.VolleyRequest;
+import com.damenghai.chahuitong.utils.L;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -67,6 +68,9 @@ public class UserAPI {
         map.put("key", "804451dc13014b1c785fb73b1617b760");
         map.put("username", username);
         map.put("password", password);
+
+        L.d("op: " + id + "username: " + username + ", password: " + password);
+
         HodorRequest.postRequest("http://www.chahuitong.com/wap/index.php/Home/Index/account_create_api", map, l);
     }
 }

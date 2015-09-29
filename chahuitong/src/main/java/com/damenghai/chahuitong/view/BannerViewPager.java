@@ -190,11 +190,6 @@ public class BannerViewPager extends RelativeLayout implements OnPageChangeListe
         if(PAGER_COUNT != 1) indicator.setViewPager(mViewPager, true);
 		else indicator.setViewPager(mViewPager, false);
         indicator.setCurrentItem(mCurrent);
-		if(indicator instanceof LinePageIndicator) {
-			LinePageIndicator linePageIndicator = (LinePageIndicator) indicator;
-			linePageIndicator.setSelectedColor(getResources().getColor(R.color.primary));
-			linePageIndicator.setUnselectedColor(getResources().getColor(R.color.background_pressed));
-		}
         indicator.setOnPageChangeListener(this);
     }
 

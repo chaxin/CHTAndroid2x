@@ -36,7 +36,7 @@ public class ProductActivity extends BaseActivity implements OnLeftClickListener
 
 		initView();
 
-		initDatas();
+		initData();
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class ProductActivity extends BaseActivity implements OnLeftClickListener
 		mContact.setOnClickListener(this);
 	}
 
-	private void initDatas() {
+	private void initData() {
         if (mProduct == null) return;
 
 		if(mProduct.getImgUrls() != null) {

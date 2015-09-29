@@ -2,6 +2,9 @@ package com.damenghai.chahuitong.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Base64;
+
+import java.io.ByteArrayOutputStream;
 
 public class CommonTool
 {
@@ -83,9 +86,12 @@ public class CommonTool
         // inJustDecodeBounds设为true可不用把图片加载到内存就能获取图片信息
         newOpts.inJustDecodeBounds = true;
         // 此时bm返回空
-        Bitmap bitmap = BitmapFactory.decodeFile(path,newOpts);
+        Bitmap bitmap = BitmapFactory.decodeFile(path, newOpts);
 
-        // 获取图片宽度和高度
+//        L.d("before compress height:" + bitmap.getHeight() + ", width: " + bitmap.getWidth()
+//                    + ", size:" + bitmap.getHeight() * bitmap.getRowBytes());
+
+            // 获取图片宽度和高度
         int outWidth = newOpts.outWidth;
         int outHeight = newOpts.outHeight;
         // 设置一个缩放基数
@@ -130,18 +136,18 @@ public class CommonTool
 //		return base64;
 //	}
 //
-//	/**
-//	 *
-//	 * 把Bitmap转换成Base64
-//	 *
-//	 */
-// 	public static String getBase64FromBitmap(Bitmap bitmap, int bitmapQuality)
-// 	{
-// 		ByteArrayOutputStream bStream = new ByteArrayOutputStream();
-// 		bitmap.compress(CompressFormat.PNG, bitmapQuality, bStream);
-// 		byte[] bytes = bStream.toByteArray();
-// 		return Base64.encodeToString(bytes, Base64.DEFAULT);
-// 	}
+	/**
+	 *
+	 * 把Bitmap转换成Base64
+	 *
+	 */
+ 	public static String getBase64FromBitmap(Bitmap bitmap, int bitmapQuality)
+ 	{
+ 		ByteArrayOutputStream bStream = new ByteArrayOutputStream();
+ 		bitmap.compress(Bitmap.CompressFormat.PNG, bitmapQuality, bStream);
+ 		byte[] bytes = bStream.toByteArray();
+ 		return Base64.encodeToString(bytes, Base64.DEFAULT);
+ 	}
 //
 //	/**
 //	 * 把Base64转换成Bitmap

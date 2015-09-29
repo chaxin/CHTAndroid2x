@@ -2,27 +2,37 @@ package com.damenghai.chahuitong.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.umeng.socialize.controller.UMServiceFactory;
 import com.umeng.socialize.controller.UMSocialService;
+import com.umeng.socialize.media.BaseShareContent;
+import com.umeng.socialize.media.QQShareContent;
+import com.umeng.socialize.media.QZoneShareContent;
+import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.sso.QZoneSsoHandler;
 import com.umeng.socialize.sso.SinaSsoHandler;
 import com.umeng.socialize.sso.UMQQSsoHandler;
 import com.umeng.socialize.weixin.controller.UMWXHandler;
+import com.umeng.socialize.weixin.media.CircleShareContent;
+import com.umeng.socialize.weixin.media.WeiXinShareContent;
 
 /**
  * Created by Sgun on 15/9/22.
  */
 public class ShareManager {
-    public static UMSocialService create(Context context) {
-        UMSocialService controller = UMServiceFactory.getUMSocialService("com.umeng.share");
+    public static UMSocialService mController;
 
+    public static UMSocialService create(Context context) {
+        if(mController == null) {
+            mController = UMServiceFactory.getUMSocialService("com.umeng.share");
+        }
         // 添加微信平台
-        UMWXHandler wxHandler = new UMWXHandler(context,"wx58ea4f88c26aa4b0","1999b86ded76a858588083ac46615b8d");
+        UMWXHandler wxHandler = new UMWXHandler(context,"wx967daebe835fbeac","5fa9e68ca3970e87a1f83e563c8dcbce");
         wxHandler.addToSocialSDK();
 
         // 添加微信朋友圈
-        UMWXHandler wxCircleHandler = new UMWXHandler(context,"wx58ea4f88c26aa4b0","1999b86ded76a858588083ac46615b8d");
+        UMWXHandler wxCircleHandler = new UMWXHandler(context,"wx967daebe835fbeac","5fa9e68ca3970e87a1f83e563c8dcbce");
         wxCircleHandler.setToCircle(true);
         wxCircleHandler.addToSocialSDK();
 
@@ -35,8 +45,44 @@ public class ShareManager {
         qZoneSsoHandler.addToSocialSDK();
 
         //设置新浪SSO handler
-        controller.getConfig().setSsoHandler(new SinaSsoHandler());
+        mController.getConfig().setSsoHandler(new SinaSsoHandler());
 
-        return  controller;
+        return  mController;
+    }
+
+    public static void setShareContent(BaseShareContent shareContent, Context context, String imageUrl, String url, String title, String content) {
+        if(!TextUtils.isEmpty(url)) {
+            shareContent.setTargetUrl(url);
+        }
+        if(!TextUtils.isEmpty(title)) {
+            shareContent.setTitle(title);
+        }
+        if(!TextUtils.isEmpty(content)) {
+            shareContent.setShareContent(content);
+        }
+        if(!TextUtils.isEmpty(imageUrl)) {
+            shareContent.setShareImage(new UMImage(context, imageUrl));
+        }
+        mController.setShareMedia(shareContent);
+    }
+
+    public static void setShareContent(Context context, String imageUrl, String url, String title, String content) {
+        if(mController != null) {
+            //微信
+            WeiXinShareContent weixinContent = new WeiXinShareContent();
+            setShareContent(weixinContent, context, imageUrl, url, title, content);
+
+            //朋友圈
+            CircleShareContent circleMedia = new CircleShareContent();
+            setShareContent(circleMedia, context, imageUrl, url, title, content);
+
+            //qq好友
+            QQShareContent qqShareContent = new QQShareContent();
+            setShareContent(qqShareContent, context, imageUrl, url, title, content);
+
+            //qq空间
+            QZoneShareContent qzone = new QZoneShareContent();
+            setShareContent(qzone, context, imageUrl, url, title, content);
+        }
     }
 }

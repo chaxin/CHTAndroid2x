@@ -48,7 +48,6 @@ android {
     packagingOptions {
         exclude 'META-INF/LICENSE.txt'
     }
-
 }
 
 repositories {
@@ -61,25 +60,26 @@ dependencies {
     compile files('libs/dom4j-1.6.1.jar')
     compile files('libs/UPPayPluginEx.jar')
     compile files('libs/UPPayAssistEx.jar')
-}
-
-allprojects {
-    repositories {
-        mavenCentral()
-    }
+    compile files('libs/bugly_1.2.3.6__release.jar')
+    compile files('libs/umeng-update-v2.6.0.1.jar')
+    compile files('libs/xUtils-2.6.14.jar')
+    compile project(':social_sdk_library_project')
+    compile project(':view_pager_indicator_library')
+    compile project(':pull_to_refresh')
+    compile files('libs/pgyer_sdk_2.2.2.jar')
 }
 
 dependencies {
-    compile files('libs/umeng-update-v2.6.0.1.jar')
-    compile files('libs/xUtils-2.6.14.jar')
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'com.android.support:support-v4:22.2.0'
     compile 'com.android.support:percent:22.2.0'
     compile 'com.umeng.analytics:analytics:latest.integration'
     compile 'com.mcxiaoke.volley:library:1.0.18'
     compile 'com.google.code.gson:gson:2.3'
-    compile project(':social_sdk_library_project')
-    compile files('libs/bugly_1.2.3.6__release.jar')
-    compile project(':view_pager_indicator_library')
-    compile project(':pull_to_refresh')
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+    }
 }

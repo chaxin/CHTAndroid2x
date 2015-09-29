@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -22,6 +23,7 @@ import com.damenghai.chahuitong.base.BaseFragmentActivity;
 import com.damenghai.chahuitong.bean.Leader;
 import com.damenghai.chahuitong.bean.Status;
 import com.damenghai.chahuitong.bean.Travel;
+import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.ui.fragment.LeaderFragment;
 import com.damenghai.chahuitong.utils.T;
@@ -268,7 +270,11 @@ public class ForumActivity extends BaseFragmentActivity implements View.OnClickL
                 openActivity(StatusesActivity.class);
                 break;
             case R.id.iv_write_status :
-                openActivity(WriteStatusActivity.class);
+                if(TextUtils.isEmpty(SessionKeeper.readSession(ForumActivity.this))) {
+                    openActivity(LoginActivity.class);
+                } else {
+                    openActivity(WriteStatusActivity.class);
+                }
                 break;
             default :
                 openActivity(TravelActivity.class);

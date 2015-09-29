@@ -16,11 +16,10 @@
 
         <TextView
             android:id="@+id/control_tv_share"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextViewBody"
             android:drawableLeft="@drawable/icon_forum_share"
             android:gravity="center"
-            android:text="20333" />
+            android:text="分享" />
 
     </LinearLayout>
 
@@ -35,11 +34,10 @@
 
         <TextView
             android:id="@+id/control_tv_comment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextViewBody"
             android:drawableLeft="@drawable/icon_forum_write"
             android:gravity="center"
-            android:text="20333" />
+            android:text="评论" />
     </LinearLayout>
 
     <LinearLayout
@@ -53,11 +51,10 @@
 
         <TextView
             android:id="@+id/control_tv_like"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextViewBody"
             android:drawableLeft="@drawable/icon_forum_like"
             android:gravity="center"
-            android:text="20333" />
+            android:text="赞" />
     </LinearLayout>
 
 </LinearLayout>

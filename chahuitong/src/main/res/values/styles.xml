@@ -5,7 +5,7 @@
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
 
     -->
-    <style name="AppBaseTheme" parent="android:Theme.Holo.Light"/>
+    <style name="AppBaseTheme" parent="android:Theme.Holo.Light.NoActionBar"/>
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
@@ -90,7 +90,6 @@
     <!-- 茶市发布产品页 -->
 
     <!--2.0-->
-
     <style name="DialogLoadding" parent="android:Theme.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowFrame">@null</item>
@@ -114,46 +113,6 @@
         <item name="android:paddingTop">16dp</item>
         <item name="android:drawablePadding">-1dp</item>
         <item name="android:minHeight">32dp</item>
-    </style>
-
-    <!-- 标题样式 -->
-    <style name="TextViewTitle">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/text_title</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <!-- 段落文本样式 -->
-    <style name="TextViewBody">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/text_body</item>
-        <item name="android:textColor">@color/text_body</item>
-    </style>
-
-    <style name="TextViewCaption">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/text_caption</item>
-        <item name="android:textColor">@color/text_caption</item>
-    </style>
-
-    <style name="CommonButton">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">34dp</item>
-        <item name="android:layout_margin">18dp</item>
-        <item name="android:background">@drawable/correct_primary2dark_sel</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">@dimen/text_body</item>
-        <item name="android:layout_alignParentBottom">true</item>
-    </style>
-
-    <style name="CommonEditText" parent="TextViewBody">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">40dp</item>
-        <item name="android:layout_weight">2</item>
-        <item name="android:background">@android:color/transparent</item>
     </style>
 
     <!-- 产品标题 -->

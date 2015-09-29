@@ -98,21 +98,31 @@ public class ImageUtils {
 	 * @param uri 路径
 	 * @return Base64
 	 */
-	public static String getBase64FromUri(Uri uri, Context context)
+	public static String getBase64FromUri(Context context, Uri uri)
 	{
-		String base64="";
-		try
-		{
-			File file = new File(getRealPathFromURI(uri, context));
-			byte[] buffer = new byte[(int) file.length() + 100];
-			@SuppressWarnings("resource")
-			int length = new FileInputStream(file).read(buffer);
-			base64 = Base64.encodeToString(buffer, 0, length, Base64.DEFAULT);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-        return base64;
+        File file = new File(getRealPathFromURI(uri, context));
+        return getBase64FromFile(file);
 	}
+
+    /**
+     * 通过路径生成Base64文件
+     * @param file 路径
+     * @return Base64
+     */
+    public static String getBase64FromFile(File file)
+    {
+        String base64="";
+        try
+        {
+            byte[] buffer = new byte[(int) file.length() + 100];
+            @SuppressWarnings("resource")
+            int length = new FileInputStream(file).read(buffer);
+            base64 = Base64.encodeToString(buffer, 0, length, Base64.DEFAULT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return base64;
+    }
 
     /**
      * 格式以Content开头的Uri转换成File开头的文件路径
@@ -121,7 +131,7 @@ public class ImageUtils {
      *            以content开头的Uri
      * @return 以File开头的文件路径
      */
-    private static String getRealPathFromURI(Uri contentUri, Context context) {
+    public static String getRealPathFromURI(Uri contentUri, Context context) {
         String[] proj = { MediaStore.Images.Media.DATA };
         CursorLoader loader = new CursorLoader(context, contentUri, proj,
                 null, null, null);

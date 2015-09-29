@@ -20,6 +20,7 @@ import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.view.BannerViewPager;
 import com.google.gson.Gson;
 import com.lidroid.xutils.BitmapUtils;
+import com.pgyersdk.feedback.PgyFeedbackShakeManager;
 import com.viewpagerindicator.LinePageIndicator;
 
 import org.json.JSONArray;
@@ -92,10 +93,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         mBtnNews.setOnClickListener(this);
         mBtnShop.setOnClickListener(this);
         mBtnPersonal.setOnClickListener(this);
-
-        mIndicator.setSelectedColor(android.R.color.white);
-        mIndicator.setUnselectedColor(R.color.text_caption);
-        mIndicator.setLineWidth(50);
     }
 
     private void loadData() {

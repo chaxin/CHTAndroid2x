@@ -46,5 +46,18 @@
         android:layout_centerVertical="true"
         android:visibility="gone"
         />
+
+    <TextView
+        android:id="@+id/right_text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text="发送"
+        android:textSize="@dimen/text_title"
+        android:gravity="center"
+        android:visibility="gone"
+        />
+
 </RelativeLayout>
 

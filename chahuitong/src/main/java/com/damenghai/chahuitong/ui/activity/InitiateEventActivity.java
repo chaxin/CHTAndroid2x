@@ -186,7 +186,7 @@ public class InitiateEventActivity extends BaseActivity implements View.OnClickL
     public void commit() {
         StringBuilder images = new StringBuilder();
         for(int i=0; i<mImages.size(); i++) {
-            String imageBase64 = ImageUtils.getBase64FromUri(mImages.get(i), this);
+            String imageBase64 = ImageUtils.getBase64FromUri(this, mImages.get(i));
             if(i != mImages.size() - 1) images.append(imageBase64 + ",");
             else images.append(imageBase64);
         }
