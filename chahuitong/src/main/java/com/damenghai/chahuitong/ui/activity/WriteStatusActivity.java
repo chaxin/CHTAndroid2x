@@ -1,8 +1,8 @@
 package com.damenghai.chahuitong.ui.activity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,29 +11,21 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.damenghai.chahuitong.api.HodorRequest;
 import com.damenghai.chahuitong.api.StatusAPI;
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.AddImageGridAdapter;
 import com.damenghai.chahuitong.bean.Status;
-import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.request.VolleyRequest;
-import com.damenghai.chahuitong.utils.CommonTool;
 import com.damenghai.chahuitong.utils.DateUtils;
 import com.damenghai.chahuitong.utils.ImageUtils;
-import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.T;
 import com.damenghai.chahuitong.utils.UploadImageUtils;
 import com.damenghai.chahuitong.view.TopBar;
 import com.damenghai.chahuitong.view.WrapHeightGridView;
-import com.google.gson.Gson;
 
 import java.io.File;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Sgun on 15/8/31.
@@ -102,7 +94,7 @@ public class WriteStatusActivity extends BaseActivity implements AdapterView.OnI
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        if(i == mDatas.size()) {
+        if(i != 9 && i == mDatas.size()) {
             ImageUtils.showImagePickDialog(this);
         }
     }
@@ -114,6 +106,11 @@ public class WriteStatusActivity extends BaseActivity implements AdapterView.OnI
         String time = DateUtils.getCurrentTime();
         if(TextUtils.isEmpty(content)) T.showShort(this, "内容不能为空");
         else {
+            ProgressDialog dialog = new ProgressDialog(WriteStatusActivity.this);
+            dialog.setMessage("正在发送...");
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.show();
+
             status.setText(content);
             status.setCreated_at(time);
 
@@ -135,7 +132,7 @@ public class WriteStatusActivity extends BaseActivity implements AdapterView.OnI
                 status.setImage(images.toString());
             }
 
-            StatusAPI.uploadStatus(WriteStatusActivity.this, status, new VolleyRequest() {
+            StatusAPI.uploadStatus(WriteStatusActivity.this, status, new VolleyRequest(dialog) {
                 @Override
                 public void onSuccess() {
                     super.onSuccess();

@@ -80,17 +80,15 @@ public class LeaderActivity extends BaseActivity implements OnClickListener, OnL
 
     @Override
     protected void initView() {
-        mTopBar.setOnLeftClickListener(new TopBar.OnLeftClickListener() {
+        mTopBar.setOnButtonClickListener(new TopBar.OnButtonClickListener() {
             @Override
             public void onLeftClick() {
                 finishActivity();
             }
-        });
 
-        mTopBar.setOnRightClickListener(new TopBar.onRightClickListener() {
             @Override
             public void onRightClick() {
-                goHome();
+
             }
         });
 

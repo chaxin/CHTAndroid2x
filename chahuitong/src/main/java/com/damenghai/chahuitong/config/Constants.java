@@ -7,12 +7,6 @@ public interface Constants {
     String SHARED_PREFERERENCE_NAME = "chahuitong_prefs";
 
     /**
-     * 服务器接口根路径
-     */
-    String API_URL = "http://www.chahuitong.com/mobile";
-
-
-    /**
      * 茶市地址
      */
      String MARKET_URL = "/app/b2b/index.php/Home/";

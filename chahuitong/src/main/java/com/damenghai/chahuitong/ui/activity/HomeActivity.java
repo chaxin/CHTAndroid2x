@@ -1,6 +1,7 @@
 package com.damenghai.chahuitong.ui.activity;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,6 +18,7 @@ import com.damenghai.chahuitong.bean.response.RecommendResponse;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.response.JsonArrayListener;
 import com.damenghai.chahuitong.utils.L;
+import com.damenghai.chahuitong.utils.T;
 import com.damenghai.chahuitong.view.BannerViewPager;
 import com.google.gson.Gson;
 import com.lidroid.xutils.BitmapUtils;
@@ -39,6 +41,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
      * 产品页根路径
      */
     private final String GOODS_DETAIL = "http://www.chahuitong.com/wap/index.php/Home/Index/goods?goods_id=";
+
+    private long mBackTime = 0L;
 
     private BannerViewPager mBanner;
     private LinePageIndicator mIndicator;
@@ -121,7 +125,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 utils.display(mIvProduct, IMAGE_URL + goods.getImageUrl());
                 mTitle.setText(goods.getName());
                 mDesc.setText(goods.getDescription());
-                mPrice.setText(("￥" + goods.getPrice()));
+                mPrice.setText("￥" + goods.getPrice());
                 mLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -175,4 +179,16 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         mIvProduct.setLayoutParams(params);
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK) {
+            if(System.currentTimeMillis() - mBackTime < 2000) {
+                finish();
+            } else {
+                T.showShort(HomeActivity.this, "再按一次退出茶汇通");
+                mBackTime = System.currentTimeMillis();
+            }
+        }
+        return true;
+    }
 }

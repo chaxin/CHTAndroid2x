@@ -8,7 +8,7 @@
     <color name="primary_light">#78c8c0</color>
 
     <color name="background">#ffefefef</color>
-    <color name="background_alpha">#49000000</color>
+    <color name="background_alpha">#99333333</color>
     <color name="background_pressed">#e8e8e8</color>
     <color name="background_light">#f8f8f8</color>
     <color name="bg_agray">#49dddddd</color>

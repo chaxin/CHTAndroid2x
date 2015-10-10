@@ -15,18 +15,30 @@ import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.config.Constants;
 import com.damenghai.chahuitong.ui.activity.HomeActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GuideViewPagerAdapter extends PagerAdapter {
 	private List<View> mViews;
-	private Activity mActivity;
-	
-	public GuideViewPagerAdapter(List<View> mViews, Activity mActivity) {
+    private int[] mRes;
+	private Context mContext;
+
+	public GuideViewPagerAdapter(Context context, int[] res) {
 		super();
-		this.mViews = mViews;
-		this.mActivity = mActivity;
+		this.mContext = context;
+        this.mRes = res;
+        initView();
 	}
-	
+
+    private void initView() {
+        mViews = new ArrayList<View>();
+
+        for(int i=0; i<mRes.length; i++) {
+            View view = View.inflate(mContext, R.layout.pager_guide, null);
+            mViews.add(view);
+        }
+    }
+
 	@Override
 	public void destroyItem(ViewGroup container, int position, Object object) {
 		container.removeView(mViews.get(position));
@@ -35,19 +47,23 @@ public class GuideViewPagerAdapter extends PagerAdapter {
 	@Override
 	public Object instantiateItem(ViewGroup container, int position) {
 		View view = mViews.get(position);
-		container.addView(view);
-		if(position == mViews.size() - 1) {
-			ImageView imgStart = (ImageView) container.findViewById(R.id.start_btn);
-			imgStart.setOnClickListener(new OnClickListener() {
+
+		ImageView iv = (ImageView) view.findViewById(R.id.guide_image);
+        iv.setImageDrawable(mContext.getResources().getDrawable(mRes[position]));
+
+		if(position == mRes.length - 1) {
+			iv.setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View v) {
 					setGuided();
 					goMain();
 				}
-				
+
 			});
 		}
+
+		container.addView(view);
 		return view;
 	}
 
@@ -65,15 +81,17 @@ public class GuideViewPagerAdapter extends PagerAdapter {
 	}
 
 	private void setGuided() {
-		SharedPreferences preferences = mActivity.getSharedPreferences(Constants.SHARED_PREFERERENCE_NAME, Context.MODE_PRIVATE);
+		SharedPreferences preferences = mContext.getSharedPreferences(Constants.SHARED_PREFERERENCE_NAME, Context.MODE_PRIVATE);
 		Editor editor = preferences.edit();
 		editor.putBoolean("isFirstIn", false);
 		editor.commit();
 	}
 	
 	private void goMain() {
-		Intent intent = new Intent(mActivity, HomeActivity.class);
-		mActivity.startActivity(intent);
-		mActivity.finish();
+        Activity activity = (Activity) mContext;
+		Intent intent = new Intent(mContext, HomeActivity.class);
+		mContext.startActivity(intent);
+        activity.overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
+		activity.finish();
 	}
 }

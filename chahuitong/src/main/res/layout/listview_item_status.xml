@@ -9,6 +9,18 @@
     <include layout="@layout/include_status_user" />
 
     <TextView
+        android:id="@+id/status_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_title"
+        android:textStyle="bold"
+        android:paddingLeft="17dp"
+        android:paddingRight="17dp"
+        android:text="标题标题标题"
+        android:visibility="gone"
+        />
+
+    <TextView
         android:id="@+id/status_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

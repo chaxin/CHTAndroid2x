@@ -3,6 +3,7 @@ package com.damenghai.chahuitong.ui.fragment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.Editable;
@@ -17,9 +18,9 @@ import android.widget.EditText;
 
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.api.UserAPI;
-import com.damenghai.chahuitong.base.BaseFragment;
 import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.request.VolleyRequest;
+import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.T;
 
 import org.dom4j.Document;
@@ -29,10 +30,16 @@ import org.dom4j.Element;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import cn.bmob.im.BmobUserManager;
+import cn.bmob.im.bean.BmobChatUser;
+import cn.bmob.v3.BmobInstallation;
+import cn.bmob.v3.listener.SaveListener;
+
 /**
  * Created by Sgun on 15/9/23.
  */
 public class RegisterFragment extends Fragment implements OnClickListener, TextWatcher {
+    private BmobUserManager mUserManager;
     private int mCode;
     private CountTimer mTimer;
     
@@ -42,6 +49,13 @@ public class RegisterFragment extends Fragment implements OnClickListener, TextW
     private EditText mEtPhone;
     private EditText mEtCode;
     private Button mBtSend;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mUserManager = BmobUserManager.getInstance(getActivity());
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -130,51 +144,93 @@ public class RegisterFragment extends Fragment implements OnClickListener, TextW
                 getCode();
                 break;
             case R.id.id_btn_register :
-                String mobile = mEtPhone.getText().toString();
-                String password = mEtPassword.getText().toString();
-                String code = mEtCode.getText().toString();
-
-                if(TextUtils.isEmpty(mobile) || mobile.length() != 11) {
-                    T.showShort(getActivity(), "请填写正确的手机号码");
-                    return;
-                }
-                if(TextUtils.isEmpty(password)) {
-                    T.showShort(getActivity(), "请填写密码");
-                    return;
-                }
-                if(TextUtils.isEmpty(code)) {
-                    T.showShort(getActivity(), "请填写手机号后获取验证码");
-                    return;
-                }
-
-                if(!code.equals(mCode + "")) {
-                    T.showShort(getActivity(), "验证码错误");
-                    return;
-                }
-
-                UserAPI.register(mobile, password, new VolleyRequest() {
-                    @Override
-                    public void onSuccess(String response) {
-                        super.onSuccess(response);
-                        try {
-                            JSONObject obj = new JSONObject(response);
-                            if (obj.getInt("code") == 200) {
-                                T.showShort(getActivity(), "注册成功");
-                                SessionKeeper.writeSession(getActivity(), obj.getString("key"));
-                                SessionKeeper.writeUsername(getActivity(), "username");
-                                getActivity().setResult(Activity.RESULT_OK);
-                                getActivity().finish();
-                            } else {
-                                T.showShort(getActivity(), obj.getString("content"));
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-
+                register();
                 break;
         }
+    }
+
+    private void register() {
+        final String mobile = mEtPhone.getText().toString();
+        final String password = mEtPassword.getText().toString();
+        String code = mEtCode.getText().toString();
+
+        if(TextUtils.isEmpty(mobile) || mobile.length() != 11) {
+            T.showShort(getActivity(), "请填写正确的手机号码");
+            return;
+        }
+        if(TextUtils.isEmpty(password)) {
+            T.showShort(getActivity(), "请填写密码");
+            return;
+        }
+        if(TextUtils.isEmpty(code)) {
+            T.showShort(getActivity(), "请填写手机号后获取验证码");
+            return;
+        }
+
+        if(!code.equals(mCode + "")) {
+            T.showShort(getActivity(), "验证码错误");
+            return;
+        }
+
+        final ProgressDialog progress = new ProgressDialog(getActivity());
+        progress.setMessage("正在注册...");
+        progress.setCanceledOnTouchOutside(false);
+        progress.show();
+
+        UserAPI.register(mobile, password, new VolleyRequest() {
+            @Override
+            public void onSuccess(String response) {
+                super.onSuccess(response);
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    if (obj.getInt("code") == 200) {
+                        SessionKeeper.writeSession(getActivity(), obj.getString("key"));
+                        SessionKeeper.writeUsername(getActivity(), "username");
+
+                        //由于每个应用的注册所需的资料都不一样，故IM sdk未提供注册方法，用户可按照bmod SDK的注册方式进行注册。
+                        //注册的时候需要注意两点：1、User表中绑定设备id和type，2、设备表中绑定username字段
+                        final BmobChatUser bu = new BmobChatUser();
+                        bu.setMobilePhoneNumber(mobile);
+                        bu.setUsername(mobile);
+                        bu.setPassword(password);
+                        //将user和设备id进行绑定aa
+                        bu.setDeviceType("android");
+                        bu.setInstallId(BmobInstallation.getInstallationId(getActivity()));
+                        bu.signUp(getActivity(), new SaveListener() {
+
+                            @Override
+                            public void onSuccess() {
+                                // TODO Auto-generated method stub
+                                progress.dismiss();
+                                T.showShort(getActivity(), "注册成功");
+                                // 将设备与username进行绑定
+                                mUserManager.bindInstallationForRegister(bu.getUsername());
+                                //更新地理位置信息
+//                updateUserLocation();
+
+                                getActivity().setResult(Activity.RESULT_OK);
+                                getActivity().finish();
+
+                            }
+
+                            @Override
+                            public void onFailure(int arg0, String arg1) {
+                                // TODO Auto-generated method stub
+                                L.d(arg1);
+                                T.showShort(getActivity(), "注册失败:" + arg1);
+                                progress.dismiss();
+                            }
+                        });
+
+                    } else {
+                        T.showShort(getActivity(), obj.getString("content"));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
     }
 
     /* 定义一个倒计时的内部类 */

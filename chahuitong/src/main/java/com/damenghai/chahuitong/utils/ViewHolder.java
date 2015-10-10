@@ -174,7 +174,7 @@ public class ViewHolder {
 	public ViewHolder displayImageUri(int viewId, Uri uri) {
 		ImageView iv = getView(viewId);
 		BitmapUtils utils = new BitmapUtils(mContext);
-		utils.display(iv, ImageUtils.getRealPathFromURI(uri, mContext), ImageConfigHelper.getImageConfig(mContext));
+		utils.display(iv, (uri.toString().contains("file")) ? uri.toString() : ImageUtils.getRealPathFromURI(uri, mContext), ImageConfigHelper.getImageConfig(mContext));
 		return this;
 	}
 

@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ScrollView;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.CommonAdapter;
 import com.damenghai.chahuitong.adapter.StatusesAdapter;
+import com.damenghai.chahuitong.adapter.TravelListAdapter;
 import com.damenghai.chahuitong.adapter.TravelViewPagerAdapter;
 import com.damenghai.chahuitong.api.HodorRequest;
 import com.damenghai.chahuitong.base.BaseFragmentActivity;
@@ -26,6 +28,7 @@ import com.damenghai.chahuitong.bean.Travel;
 import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.ui.fragment.LeaderFragment;
+import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.T;
 import com.damenghai.chahuitong.utils.ViewHolder;
 import com.damenghai.chahuitong.view.TopBar;
@@ -165,6 +168,7 @@ public class ForumActivity extends BaseFragmentActivity implements View.OnClickL
         mStatuses = new ArrayList<Status>();
         mStatusAdapter = new StatusesAdapter(ForumActivity.this, mStatuses, R.layout.listview_item_status, true);
         mStatusList.setAdapter(mStatusAdapter);
+        mStatusList.setOnItemClickListener(this);
         mStatusList.setFocusable(false);
 
         // 更多按钮点击事件监听
@@ -192,7 +196,7 @@ public class ForumActivity extends BaseFragmentActivity implements View.OnClickL
                 try {
                     JSONObject obj = new JSONObject(response);
                     if (obj.getInt("code") != 404) {
-                        Status status = new Gson().fromJson(obj.getString("content"), Status.class);
+                        final Status status = new Gson().fromJson(obj.getString("content"), Status.class);
                         mTopicTitle.setText(status.getTitle());
                         mTopicText.setText(status.getText());
                         mTopicCount.setText("已有" + status.getComment() + "人参加");
@@ -203,6 +207,15 @@ public class ForumActivity extends BaseFragmentActivity implements View.OnClickL
 
                         Leader leader = new Gson().fromJson(obj.getString("memberInfo"), Leader.class);
                         mTopicHost.setText("话题主理人：" + leader.getMember_name());
+
+                        findViewById(R.id.forum_topic_layout).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Bundle bundle = new Bundle();
+                                bundle.putSerializable("status", status);
+                                openActivity(StatusDetailActivity.class, bundle);
+                            }
+                        });
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -284,9 +297,16 @@ public class ForumActivity extends BaseFragmentActivity implements View.OnClickL
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("travel", mTravels.get(i + 3));
-        openActivity(TravelActivity.class, bundle);
+        Adapter adapter = adapterView.getAdapter();
+        if(adapter instanceof TravelListViewAdapter) {
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("travel", mTravels.get(i + 3));
+            openActivity(TravelActivity.class, bundle);
+        } else if(adapter instanceof StatusesAdapter) {
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("status", mStatuses.get(i));
+            openActivity(StatusDetailActivity.class, bundle);
+        }
     }
 
     private class LeaderViewPagerAdapter extends FragmentPagerAdapter {

@@ -6,14 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.StatusesAdapter;
-import com.damenghai.chahuitong.api.HodorRequest;
 import com.damenghai.chahuitong.api.StatusAPI;
 import com.damenghai.chahuitong.base.BaseFragment;
 import com.damenghai.chahuitong.bean.Status;
 import com.damenghai.chahuitong.request.VolleyRequest;
+import com.damenghai.chahuitong.ui.activity.StatusDetailActivity;
 import com.damenghai.chahuitong.utils.DensityUtils;
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -29,8 +30,8 @@ import java.util.ArrayList;
 /**
  * Created by Sgun on 15/8/26.
  */
-public class MyStatusFragment extends BaseFragment implements OnRefreshListener, OnLastItemVisibleListener {
-    private ArrayList<Status> mDatas;
+public class MyStatusFragment extends BaseFragment implements OnRefreshListener, OnLastItemVisibleListener, OnItemClickListener {
+    private ArrayList<Status> mData;
     private StatusesAdapter mAdapter;
     private PullToRefreshListView mListView;
     private int mCurrPage;
@@ -42,37 +43,38 @@ public class MyStatusFragment extends BaseFragment implements OnRefreshListener,
 
         mListView = (PullToRefreshListView) mView.findViewById(R.id.commond_listview);
         mListView.getRefreshableView().setDividerHeight(DensityUtils.dp2px(getActivity(), 4));
-        mDatas = new ArrayList<Status>();
-        mAdapter = new StatusesAdapter(getActivity(), mDatas, R.layout.listview_item_status, false);
+        mData = new ArrayList<Status>();
+        mAdapter = new StatusesAdapter(getActivity(), mData, R.layout.listview_item_status, false);
         mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("status", mDatas.get(i));
+                bundle.putSerializable("status", mData.get(i));
             }
         });
         mListView.setOnLastItemVisibleListener(this);
         mListView.setOnRefreshListener(this);
+        mListView.setOnItemClickListener(this);
 
-        loadDatas(1);
+        loadData(1);
 
         return mView;
     }
 
-    private void loadDatas(final int page) {
+    private void loadData(final int page) {
         StatusAPI.myStatusShow(getActivity(), page, new VolleyRequest() {
             @Override
             public void onListSuccess(JSONArray array) {
                 super.onListSuccess(array);
-                if (page == 1) mDatas.clear();
+                if (page == 1) mData.clear();
 
                 mCurrPage = page;
 
                 try {
                     for (int i = 0; i < array.length(); i++) {
                         Status status = new Gson().fromJson(array.get(i).toString(), Status.class);
-                        if (!mDatas.contains(status)) mDatas.add(status);
+                        if (!mData.contains(status)) mData.add(status);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -91,11 +93,18 @@ public class MyStatusFragment extends BaseFragment implements OnRefreshListener,
 
     @Override
     public void onLastItemVisible() {
-        loadDatas(mCurrPage);
+        loadData(mCurrPage);
     }
 
     @Override
     public void onRefresh(PullToRefreshBase refreshView) {
-        loadDatas(1);
+        loadData(1);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("status", mData.get(i - 1));
+        openActivity(StatusDetailActivity.class, bundle);
     }
 }

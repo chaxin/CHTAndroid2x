@@ -8,13 +8,12 @@
     <com.damenghai.chahuitong.view.WrapHeightGridView
         android:id="@+id/wrap_gridview_images"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:numColumns="3"
         android:horizontalSpacing="6dp"
+        android:verticalSpacing="6dp"
         android:scrollbars="none"
         android:listSelector="@android:color/transparent"
-        android:background="@android:color/white"
-        android:gravity="center"
         />
 
     <ImageView

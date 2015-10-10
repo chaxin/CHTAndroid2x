@@ -114,8 +114,6 @@ public class ListProductFragment extends BaseFragment implements OnItemClickList
                 mLoading.setVisibility(View.GONE);
                 mListView.setVisibility(View.VISIBLE);
 
-                L.d(response);
-
                 mCurrentPage = page;
 
                 if (page == 1) {

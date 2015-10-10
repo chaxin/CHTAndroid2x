@@ -101,91 +101,91 @@ public class MainActivity extends BaseActivity {
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, final int checkedId) {
-                switch (checkedId) {
-                    case R.id.home_tab_main:
-                        addFragment(checkedId, WEB_ROOT);
-                        mTopBar.setLeftVisibility(View.VISIBLE);
-                        mTopBar.setRightVisibility(View.GONE);
-                        mTopBar.setTitle("");
-                        mTopBar.setTitleBackgroud(R.drawable.title_logo);
-                        mTopBar.setBackgroundResource(R.color.primary);
-                        mTopBar.setLeftSrc(R.drawable.btn_menu_item_selector);
-                        mTopBar.setOnLeftClickListener(new OnLeftClickListener() {
-
-                            @Override
-                            public void onLeftClick() {
-                                ((RadioButton) findViewById(R.id.home_tab_category)).setChecked(true);
-                            }
-
-                        });
-                        break;
-                    case R.id.home_tab_brand:
-                        mTopBar.setTitle("品牌");
-                        mTopBar.setTitleTextColor(getResources().getColor(android.R.color.white));
-                        mTopBar.setLeftVisibility(View.GONE);
-                        mTopBar.setRightVisibility(View.GONE);
-                        mTopBar.setBackgroundResource(R.color.primary);
-                        addFragment(checkedId, WEB_BRAND);
-                        break;
-                    case R.id.home_tab_category:
-                        mTopBar.setTitle("所有分类");
-                        mTopBar.setTitleTextColor(getResources().getColor(android.R.color.white));
-                        mTopBar.setLeftVisibility(View.GONE);
-                        mTopBar.setRightVisibility(View.GONE);
-                        mTopBar.setBackgroundResource(R.color.primary);
-                        addFragment(checkedId, WEB_CATEGORY);
-                        break;
-                    case R.id.home_tab_cart:
-                        mTopBar.setTitle("购物车");
-                        mTopBar.setTitleTextColor(getResources().getColor(android.R.color.white));
-                        mTopBar.setLeftVisibility(View.GONE);
-                        mTopBar.setRightVisibility(View.GONE);
-                        mTopBar.setBackgroundResource(R.color.primary);
-                        addFragment(checkedId,WEB_CART);
-                        break;
-                    case R.id.home_tab_member:
-                        mTopBar.setTitle("我的");
-                        mTopBar.setTitleTextColor(getResources().getColor(android.R.color.white));
-                        mTopBar.setTitleTextColor(getResources().getColor(R.color.personal_top_bar_title));
-                        mTopBar.setBackgroundColor(getResources().getColor(R.color.personal_top_bar_bg));
-                        mTopBar.setLeftVisibility(View.VISIBLE);
-                        mTopBar.setRightVisibility(View.VISIBLE);
-                        mTopBar.setLeftSrc(R.drawable.icon_email);
-                        mTopBar.setRightSrc(R.drawable.icon_logout_normal);
-                        mTopBar.setOnLeftClickListener(new OnLeftClickListener() {
-                            @Override
-                            public void onLeftClick() {
-                                Bundle bundle = new Bundle();
-                                bundle.putString("url", "http://www.chahuitong.com/wap/index.php/Home/Index/msg");
-                                openActivity(WebViewActivity.class, bundle);
-                            }
-                        });
-                        mTopBar.setOnRightClickListener(new TopBar.onRightClickListener() {
-                            @Override
-                            public void onRightClick() {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                                builder.setMessage("是否退出登录").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        SharedPreferences mSp = getSharedPreferences(Constants.SHARED_PREFERERENCE_NAME, Context.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = mSp.edit();
-                                        editor.putString("key", "");
-                                        editor.commit();
-                                        if (mCurrentTab != null) {
-                                            mCurrentTab.removeCookie();
-                                        }
-                                        removeFragment(R.id.home_tab_cart);
-                                        removeFragment(R.id.home_tab_member);
-                                        setCurrentItem(ITEM_MAIN);
-                                    }
-
-                                }).setNegativeButton("取消", null);
-                                builder.create().show();
-                            }
-                        });
-                        addFragment(checkedId, WEB_MEMBER);
-                        break;
-                }
+//                switch (checkedId) {
+//                    case R.id.home_tab_main:
+//                        addFragment(checkedId, WEB_ROOT);
+//                        mTopBar.setLeftVisibility(View.VISIBLE);
+//                        mTopBar.setRightVisibility(View.GONE);
+//                        mTopBar.setTitle("");
+//                        mTopBar.setTitleBackgroud(R.drawable.title_logo);
+//                        mTopBar.setBackgroundResource(R.color.primary);
+//                        mTopBar.setLeftSrc(R.drawable.btn_menu_item_selector);
+//                        mTopBar.setOnLeftClickListener(new OnLeftClickListener() {
+//
+//                            @Override
+//                            public void onLeftClick() {
+//                                ((RadioButton) findViewById(R.id.home_tab_category)).setChecked(true);
+//                            }
+//
+//                        });
+//                        break;
+//                    case R.id.home_tab_brand:
+//                        mTopBar.setTitle("品牌");
+//                        mTopBar.setTitleTextColor(getResources().getColor(android.R.color.white));
+//                        mTopBar.setLeftVisibility(View.GONE);
+//                        mTopBar.setRightVisibility(View.GONE);
+//                        mTopBar.setBackgroundResource(R.color.primary);
+//                        addFragment(checkedId, WEB_BRAND);
+//                        break;
+//                    case R.id.home_tab_category:
+//                        mTopBar.setTitle("所有分类");
+//                        mTopBar.setTitleTextColor(getResources().getColor(android.R.color.white));
+//                        mTopBar.setLeftVisibility(View.GONE);
+//                        mTopBar.setRightVisibility(View.GONE);
+//                        mTopBar.setBackgroundResource(R.color.primary);
+//                        addFragment(checkedId, WEB_CATEGORY);
+//                        break;
+//                    case R.id.home_tab_cart:
+//                        mTopBar.setTitle("购物车");
+//                        mTopBar.setTitleTextColor(getResources().getColor(android.R.color.white));
+//                        mTopBar.setLeftVisibility(View.GONE);
+//                        mTopBar.setRightVisibility(View.GONE);
+//                        mTopBar.setBackgroundResource(R.color.primary);
+//                        addFragment(checkedId,WEB_CART);
+//                        break;
+//                    case R.id.home_tab_member:
+//                        mTopBar.setTitle("我的");
+//                        mTopBar.setTitleTextColor(getResources().getColor(android.R.color.white));
+//                        mTopBar.setTitleTextColor(getResources().getColor(R.color.personal_top_bar_title));
+//                        mTopBar.setBackgroundColor(getResources().getColor(R.color.personal_top_bar_bg));
+//                        mTopBar.setLeftVisibility(View.VISIBLE);
+//                        mTopBar.setRightVisibility(View.VISIBLE);
+//                        mTopBar.setLeftSrc(R.drawable.icon_email);
+//                        mTopBar.setRightSrc(R.drawable.icon_logout_normal);
+//                        mTopBar.setOnLeftClickListener(new OnLeftClickListener() {
+//                            @Override
+//                            public void onLeftClick() {
+//                                Bundle bundle = new Bundle();
+//                                bundle.putString("url", "http://www.chahuitong.com/wap/index.php/Home/Index/msg");
+//                                openActivity(WebViewActivity.class, bundle);
+//                            }
+//                        });
+//                        mTopBar.setOnRightClickListener(new TopBar.onRightClickListener() {
+//                            @Override
+//                            public void onRightClick() {
+//                                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+//                                builder.setMessage("是否退出登录").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(DialogInterface dialog, int which) {
+//                                        SharedPreferences mSp = getSharedPreferences(Constants.SHARED_PREFERERENCE_NAME, Context.MODE_PRIVATE);
+//                                        SharedPreferences.Editor editor = mSp.edit();
+//                                        editor.putString("key", "");
+//                                        editor.commit();
+//                                        if (mCurrentTab != null) {
+//                                            mCurrentTab.removeCookie();
+//                                        }
+//                                        removeFragment(R.id.home_tab_cart);
+//                                        removeFragment(R.id.home_tab_member);
+//                                        setCurrentItem(ITEM_MAIN);
+//                                    }
+//
+//                                }).setNegativeButton("取消", null);
+//                                builder.create().show();
+//                            }
+//                        });
+//                        addFragment(checkedId, WEB_MEMBER);
+//                        break;
+//                }
             }
         });
 

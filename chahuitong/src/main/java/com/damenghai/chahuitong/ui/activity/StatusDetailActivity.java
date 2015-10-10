@@ -25,6 +25,7 @@ import com.damenghai.chahuitong.bean.Status;
 import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.utils.ImageConfigHelper;
+import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.ShareManager;
 import com.damenghai.chahuitong.view.TopBar;
 import com.damenghai.chahuitong.view.WrapHeightGridView;
@@ -55,6 +56,7 @@ public class StatusDetailActivity extends BaseActivity implements View.OnClickLi
     private ImageView mAvatar;
     private TextView mUser;
     private TextView mSource;
+    private TextView mTitle;
     private TextView mText;
     private TextView mCommentCount;
     private PullToRefreshListView mPlv;
@@ -89,6 +91,7 @@ public class StatusDetailActivity extends BaseActivity implements View.OnClickLi
         mAvatar = (ImageView) mHeader.findViewById(R.id.status_avatar);
         mUser = (TextView) mHeader.findViewById(R.id.status_user);
         mSource = (TextView) mHeader.findViewById(R.id.status_source);
+        mTitle = (TextView) mHeader.findViewById(R.id.status_title);
         mText = (TextView) mHeader.findViewById(R.id.status_text);
         mCommentCount = (TextView) mHeader.findViewById(R.id.comment_count);
 
@@ -147,6 +150,10 @@ public class StatusDetailActivity extends BaseActivity implements View.OnClickLi
                 BitmapUtils utils = new BitmapUtils(this);
                 utils.display(mAvatar, leader.getMember_avatar(), ImageConfigHelper.getAvatarConfig(StatusDetailActivity.this));
                 mUser.setText(leader.getMember_name());
+            }
+            if(!TextUtils.isEmpty(mStatus.getTitle())) {
+                mTitle.setText(mStatus.getTitle());
+                mTitle.setVisibility(View.VISIBLE);
             }
             mSource.setText((TextUtils.isEmpty(mStatus.getCreated_at()) ? "" : mStatus.getCreated_at()) + "  来自" + (TextUtils.isEmpty(mStatus.getSource()) ? "Android客户端" : mStatus.getSource()));
             mText.setText(TextUtils.isEmpty(mStatus.getText()) ? "" : mStatus.getText());

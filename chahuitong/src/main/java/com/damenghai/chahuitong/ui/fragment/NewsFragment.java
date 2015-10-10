@@ -25,6 +25,9 @@ import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -198,8 +201,9 @@ public class NewsFragment extends Fragment {
                     .setText(R.id.news_item_date, article.getTime())
                     .setText(R.id.news_item_desc, article.getAbstract())
                     .loadDefaultImage(R.id.news_item_image, (article.getImage().getName().contains("upload")
-                            ? "http://www.chahuitong.com/data/upload/cms/article/1/" :
-                            "http://www.chahuitong.com/data/upload/cms/article/60/") + article.getImage().getName());
+                            ? "http://www.chahuitong.com/data/upload/cms/article/"
+                            : "http://www.chahuitong.com/data/upload/cms/article/")
+                            + article.getImage().getPath() + "/" + article.getImage().getName());
         }
     }
 }

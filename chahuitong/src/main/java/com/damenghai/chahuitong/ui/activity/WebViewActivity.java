@@ -1,5 +1,6 @@
 package com.damenghai.chahuitong.ui.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -12,7 +13,7 @@ import com.damenghai.chahuitong.view.TopBar;
 import com.damenghai.chahuitong.view.TopBar.OnLeftClickListener;
 import com.umeng.socialize.controller.UMSocialService;
 
-public class WebViewActivity extends BaseActivity implements NewWebView.OnReceivedTitle {
+public class WebViewActivity extends Activity implements NewWebView.OnReceivedTitle {
 	private String mUrl, mTitle;
 	private TopBar mTopBar;
 	private NewWebView mWebView;
@@ -35,13 +36,11 @@ public class WebViewActivity extends BaseActivity implements NewWebView.OnReceiv
         }
 	}
 
-	@Override
 	protected void findViewById() {
 		mTopBar = (TopBar) findViewById(R.id.topBar);
 		mWebView = (NewWebView) findViewById(R.id.new_webview);
 	}
 
-	@Override
 	protected void initView() {
 		Intent intent = getIntent();
 		Bundle extra = intent.getExtras();
@@ -56,7 +55,8 @@ public class WebViewActivity extends BaseActivity implements NewWebView.OnReceiv
 		mTopBar.setOnLeftClickListener(new OnLeftClickListener() {
 			@Override
 			public void onLeftClick() {
-				finishActivity();
+				finish();
+				overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
 			}
 		});
 

@@ -8,7 +8,7 @@
     <com.damenghai.chahuitong.view.TopBar
         android:id="@+id/comment_bar"
         style="@style/CommonTopBar"
-        app:titleText="晒一晒正文"
+        app:titleText="正文"
         />
 
     <com.handmark.pulltorefresh.library.PullToRefreshListView

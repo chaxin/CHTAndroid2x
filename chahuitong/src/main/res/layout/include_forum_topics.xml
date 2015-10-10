@@ -37,6 +37,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/forum_topic_layout"
         android:layout_width="match_parent"
         android:layout_height="118dp"
         android:padding="14dp"

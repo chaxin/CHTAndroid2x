@@ -1,14 +1,11 @@
 package com.damenghai.chahuitong.ui.activity;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
@@ -18,63 +15,40 @@ import android.widget.LinearLayout;
 
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.GuideViewPagerAdapter;
+import com.damenghai.chahuitong.base.BaseActivity;
+import com.viewpagerindicator.CirclePageIndicator;
 
-public class GuideActivity extends Activity implements OnPageChangeListener  {
-	private ViewPager mVp;
-	private PagerAdapter mAdapter;
-	
-	private List<View> mViews;
-	private ImageView[] mDots;
-	private LinearLayout ll;
-	
-	private int mCurrentIndex;
-	
-	@Override
+public class GuideActivity extends BaseActivity implements OnPageChangeListener  {
+	private ViewPager mViewPager;
+    private CirclePageIndicator mIndicator;
+
+    private int[] mRes;
+
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		setContentView(R.layout.guide);
-		
-		initViews();
-		initDots();
-	}
-	
-	private void initViews() {
-		mViews = new ArrayList<View>();
+//		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		setContentView(R.layout.activity_guide);
 
-		LayoutInflater inflater = LayoutInflater.from(this);
-		
-		mViews.add(inflater.inflate(R.layout.guide_new_first, null));
-		mViews.add(inflater.inflate(R.layout.guide_new_second, null));
-		mViews.add(inflater.inflate(R.layout.guide_new_third, null));
-		mViews.add(inflater.inflate(R.layout.guide_new_fourth, null));
-		mViews.add(inflater.inflate(R.layout.guide_new_fifth, null));
-		
-		mVp = (ViewPager) findViewById(R.id.viewPager_guide);
-		mAdapter = new GuideViewPagerAdapter(mViews,GuideActivity.this);
-		mVp.setAdapter(mAdapter);
-		mVp.setOnPageChangeListener(this);
+        findViewById();
+
+		initView();
 	}
-	
-	private void initDots() {
-		ll = (LinearLayout) findViewById(R.id.ll);
-		mDots = new ImageView[mViews.size()];
-		mCurrentIndex = 0;
-		
-		for(int i=0; i<mViews.size(); i++) {
-			mDots[i] = (ImageView) ll.getChildAt(i);
-			mDots[i].setEnabled(true);
-		}
-		
-		mDots[mCurrentIndex].setEnabled(false);
-	}
-	
-	private void setCurrentDot(int position) {
-		if(position<0 || position>mViews.size() || position==mCurrentIndex) return;
-		mDots[mCurrentIndex].setEnabled(true);
-		mDots[position].setEnabled(false);
-		mCurrentIndex = position;
-	}
+
+    @Override
+    protected void findViewById() {
+        mViewPager = (ViewPager) findViewById(R.id.guide_vp);
+        mIndicator = (CirclePageIndicator) findViewById(R.id.guide_indicator);
+    }
+
+    @Override
+    protected void initView() {
+        mRes = new int[]{R.drawable.guide_03, R.drawable.guide_04, R.drawable.guide_05};
+        GuideViewPagerAdapter adapter = new GuideViewPagerAdapter(GuideActivity.this, mRes);
+        mViewPager.setAdapter(adapter);
+        mIndicator.setViewPager(mViewPager);
+        mViewPager.addOnPageChangeListener(this);
+    }
 
 	//当滑动状态改变时调用
 	@Override
@@ -88,23 +62,18 @@ public class GuideActivity extends Activity implements OnPageChangeListener  {
 
 	//当页面选中时调用
 	@Override
-	public void onPageSelected(int arg0) {
+	public void onPageSelected(int position) {
 		//设置指示器在淡入淡出
-		if(arg0 == mViews.size()-1) {
-			AnimationSet animationSet = new AnimationSet(true);
+		if(position == mRes.length-1) {
 			AlphaAnimation alphaAnim = new AlphaAnimation(1, 0);
 			alphaAnim.setDuration(700);
-			animationSet.addAnimation(alphaAnim);
-			ll.startAnimation(animationSet);
-			ll.setVisibility(View.INVISIBLE);
-		} else if(ll.getVisibility() == View.INVISIBLE) {
-			AnimationSet animationSet = new AnimationSet(true);
+			mIndicator.startAnimation(alphaAnim);
+            mIndicator.setVisibility(View.INVISIBLE);
+		} else if(mIndicator.getVisibility() == View.INVISIBLE) {
 			AlphaAnimation alphaAnim = new AlphaAnimation(0, 1);
 			alphaAnim.setDuration(700);
-			animationSet.addAnimation(alphaAnim);
-			ll.startAnimation(animationSet);
-			ll.setVisibility(View.VISIBLE);
+            mIndicator.startAnimation(alphaAnim);
+            mIndicator.setVisibility(View.VISIBLE);
 		}
-		setCurrentDot(arg0);
 	}
 }

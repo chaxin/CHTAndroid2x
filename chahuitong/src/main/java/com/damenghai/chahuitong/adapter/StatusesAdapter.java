@@ -62,6 +62,10 @@ public class StatusesAdapter extends CommonAdapter<Status> {
         setImages(holder, status);
 
         // 设置信息显示
+        if(!TextUtils.isEmpty(status.getTitle())) {
+            holder.setText(R.id.status_title, status.getTitle())
+                    .setVisibility(R.id.status_title, View.VISIBLE);
+        }
         holder.setText(R.id.status_text, status.getText())
                 .setText(R.id.status_source, status.getCreated_at() + "  来自" + (status.getSource() == null ? "Android客户端" : status.getSource()))
                 .setText(R.id.control_tv_share, status.getShare() + "")

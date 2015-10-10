@@ -81,7 +81,7 @@ public class PaymentActivity extends BaseActivity implements Runnable, Handler.C
 //                                        dialog.dismiss();
 //                                    }
 //                                });
-//                        builder.create().show();
+//                        builder.create().showProfile();
 //                    }
 ////                } catch (JSONException e) {
 ////                    e.printStackTrace();

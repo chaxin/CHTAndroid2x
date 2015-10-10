@@ -67,12 +67,14 @@ dependencies {
     compile project(':view_pager_indicator_library')
     compile project(':pull_to_refresh')
     compile files('libs/pgyer_sdk_2.2.2.jar')
+    compile files('libs/BmobIM_V1.1.9beta_20150820.jar')
+    compile files('libs/BmobSDK_V3.4.3_0820.jar')
 }
 
 dependencies {
     compile 'de.greenrobot:eventbus:2.4.0'
-    compile 'com.android.support:support-v4:22.2.0'
-    compile 'com.android.support:percent:22.2.0'
+    compile 'com.android.support:support-v4:23.0.1'
+    compile 'com.android.support:percent:23.0.1'
     compile 'com.umeng.analytics:analytics:latest.integration'
     compile 'com.mcxiaoke.volley:library:1.0.18'
     compile 'com.google.code.gson:gson:2.3'

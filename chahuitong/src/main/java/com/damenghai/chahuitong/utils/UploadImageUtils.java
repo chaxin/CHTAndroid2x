@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * Created by Sgun on 15/9/24.
@@ -18,7 +19,16 @@ import java.net.URI;
 public class UploadImageUtils {
 
     public static File revisionPostImageSize(Context context, Uri picUri) {
-        File file = new File(ImageUtils.getRealPathFromURI(picUri, context));
+        File file = null;
+        if(picUri.toString().contains("file")) {
+            try {
+                file = new File(new URI(picUri.toString()));
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+        } else {
+            file = new File(ImageUtils.getRealPathFromURI(picUri, context));
+        }
         return revisionPostImageSize(context, file.getAbsolutePath());
     }
 

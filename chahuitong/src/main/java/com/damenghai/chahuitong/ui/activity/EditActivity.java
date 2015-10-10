@@ -21,7 +21,6 @@ import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.utils.ImageUtils;
 import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.view.CustomSpinner;
-import com.damenghai.chahuitong.view.FlippingLoadingDialog;
 import com.damenghai.chahuitong.view.TopBar;
 import com.lidroid.xutils.BitmapUtils;
 
@@ -194,7 +193,6 @@ public class EditActivity extends BaseActivity implements OnClickListener {
 	}
 
 	private class submitOnClickListener implements OnClickListener {
-		private FlippingLoadingDialog pd;
 
 		@Override
 		public void onClick(View v) {

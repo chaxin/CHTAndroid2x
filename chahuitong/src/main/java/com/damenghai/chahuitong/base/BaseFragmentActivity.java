@@ -31,29 +31,11 @@ public class BaseFragmentActivity extends FragmentActivity {
 
         // 设置竖屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
-        // 自定义摇一摇的灵敏度，默认为950，数值越小灵敏度越高。
-        PgyFeedbackShakeManager.setShakingThreshold(1200);
-
-        // 以Activity的形式打开，这种情况下必须在AndroidManifest.xml配置FeedbackActivity
-        // 打开沉浸式,默认为false
-        // FeedbackActivity.setBarImmersive(true);
-        PgyFeedbackShakeManager.register(this, false);
-
-        // 设置顶部导航栏和底部bar的颜色
-        FeedbackActivity.setBarBackgroundColor("#1b8b80");
-
-        // 设置顶部按钮和底部按钮按下时的反馈色
-        FeedbackActivity.setBarButtonPressedColor("#166f66");
-
-        // 设置颜色选择器的背景色
-        FeedbackActivity.setColorPickerBackgroundColor("#1b8b80");
     }
 
     @Override

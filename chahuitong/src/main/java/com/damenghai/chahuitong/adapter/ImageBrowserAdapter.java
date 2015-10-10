@@ -15,6 +15,7 @@ import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.bean.ImageUrls;
 import com.damenghai.chahuitong.utils.DisplayUtils;
 import com.damenghai.chahuitong.utils.L;
+import com.damenghai.chahuitong.utils.T;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
 import com.lidroid.xutils.bitmap.callback.BitmapLoadCallBack;
@@ -30,9 +31,9 @@ public class ImageBrowserAdapter extends PagerAdapter {
     private ArrayList<ImageUrls> mImageUrlses;
     private ArrayList<View> mViews;
 
-    public ImageBrowserAdapter(Context mContext, ArrayList<ImageUrls> mImageUrlses) {
+    public ImageBrowserAdapter(Context mContext, ArrayList<ImageUrls> imageUrls) {
         this.mContext = mContext;
-        this.mImageUrlses = mImageUrlses;
+        this.mImageUrlses = imageUrls;
         initView();
     }
 
@@ -73,7 +74,7 @@ public class ImageBrowserAdapter extends PagerAdapter {
 
             @Override
             public void onLoadFailed(ImageView imageView, String s, Drawable drawable) {
-
+                T.showShort(mContext, "加载失败");
             }
         });
 

@@ -7,14 +7,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.damenghai.chahuitong.R;
+import com.damenghai.chahuitong.api.UserAPI;
 import com.damenghai.chahuitong.response.StringListener;
-import com.damenghai.chahuitong.api.ProfileAPI;
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.bean.Leader;
 import com.damenghai.chahuitong.utils.DateUtils;
@@ -86,7 +87,7 @@ public class ProfileActivity extends BaseActivity implements OnClickListener {
     }
 
     private void loadData() {
-        ProfileAPI.show(ProfileActivity.this, new StringListener(ProfileActivity.this) {
+        UserAPI.showProfile(ProfileActivity.this, new StringListener(ProfileActivity.this) {
             @Override
             public void onSuccess(String response) {
                 Leader leader = new Gson().fromJson(response, Leader.class);
@@ -102,7 +103,7 @@ public class ProfileActivity extends BaseActivity implements OnClickListener {
         utils.display(mAvatar, leader.getMember_avatar(), ImageConfigHelper.getAvatarConfig(this));
         mName.setText(leader.getMember_truename());
         mNickname.setText(leader.getMember_name());
-        mSex.setText(leader.getMember_sex().equals("1") ? "男" : "女");
+        mSex.setText(!TextUtils.isEmpty(leader.getMember_sex()) ? (leader.getMember_sex().equals("1") ? "男" : "女") : "");
         mBorn.setText(leader.getMember_birthday());
     }
 
@@ -189,7 +190,7 @@ public class ProfileActivity extends BaseActivity implements OnClickListener {
                 openActivity(WebViewActivity.class, security);
                 break;
             case R.id.profile_commit :
-                ProfileAPI.update(ProfileActivity.this, mLeader, new StringListener(ProfileActivity.this) {
+                UserAPI.updateProfile(ProfileActivity.this, mLeader, new StringListener(ProfileActivity.this) {
                     @Override
                     public void onSuccess(String response) {
                         T.showShort(ProfileActivity.this, "修改成功");
