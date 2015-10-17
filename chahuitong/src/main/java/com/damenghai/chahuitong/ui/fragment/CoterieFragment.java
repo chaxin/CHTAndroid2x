@@ -49,7 +49,7 @@ public class CoterieFragment extends Fragment {
     }
 
     private class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final String[] TITLES = new String[]{"关注", "晒一晒", "茶聚聚", "评论"};
+        private final String[] TITLES = new String[]{"关注", getActivity().getResources().getString(R.string.timeline), "茶客聚聚", "评论"};
         private ArrayList<android.support.v4.app.Fragment> mFragments = new ArrayList<android.support.v4.app.Fragment>();
 
         public ViewPagerAdapter(FragmentManager fm) {

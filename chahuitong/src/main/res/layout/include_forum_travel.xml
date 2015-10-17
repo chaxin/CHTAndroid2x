@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:paddingLeft="10dp"
-            android:text="@string/travel_for_tea"
+            android:text="@string/event"
             android:textColor="@color/primary"
             android:textSize="@dimen/text_title"
             android:textStyle="bold" />

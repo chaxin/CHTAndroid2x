@@ -11,10 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height"
         android:background="@color/primary"
-        app:titleText="我要晒"
+        app:titleText="发布"
         app:titleTextSize="@dimen/text_title"
         app:titleTextColor="@android:color/white"
-        app:leftSrc="@drawable/back_btn_normal"
+        app:leftSrc="@drawable/back_text_normal"
         />
 
     <ScrollView

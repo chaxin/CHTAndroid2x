@@ -89,7 +89,7 @@ public class EditActivity extends BaseActivity implements OnClickListener {
             mPrice.setText(mProduct.getPrice() != null ? mProduct.getPrice() : "");
             mQuantity.setText(mProduct.getQuantity() + "");
             mAddress.setText(mProduct.getAddress() != null ? mProduct.getAddress() : "");
-            mDescBuy.setText(mProduct.getPrice() != null ? mProduct.getPrice() : "");
+            mDescBuy.setText(mProduct.getDesc() != null ? mProduct.getDesc() : "");
             mPhone.setText(mProduct.getPhone());
         }
 
@@ -213,7 +213,7 @@ public class EditActivity extends BaseActivity implements OnClickListener {
             product.setYear(year);
             product.setPrice(price);
             product.setArrow_order(detail.equals("是") ? "1" : "0");
-            product.setQuantity(Integer.parseInt(quantity));
+            product.setQuantity(quantity);
             product.setAddress(address);
             product.setPhone(phone);
             for(int i=0; i<mImages.size(); i++) {
@@ -226,7 +226,7 @@ public class EditActivity extends BaseActivity implements OnClickListener {
                 product.setPic(builder.toString());
             }
 
-            TeaMarketAPI.EditProduct(EditActivity.this, product, new VolleyRequest() {
+            TeaMarketAPI.editProduct(EditActivity.this, product, new VolleyRequest() {
                 @Override
                 public void onSuccess(String response) {
                     super.onSuccess(response);

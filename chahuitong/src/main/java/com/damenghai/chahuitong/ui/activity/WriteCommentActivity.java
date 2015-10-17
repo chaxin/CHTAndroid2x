@@ -11,9 +11,13 @@ import com.damenghai.chahuitong.api.StatusAPI;
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.api.HodorRequest;
+import com.damenghai.chahuitong.bean.event.AddCommentEvent;
 import com.damenghai.chahuitong.request.VolleyRequest;
+import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.T;
 import com.damenghai.chahuitong.view.TopBar;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by Sgun on 15/9/5.
@@ -71,8 +75,15 @@ public class WriteCommentActivity extends BaseActivity implements View.OnClickLi
                 public void onSuccess() {
                     super.onSuccess();
                     T.showShort(WriteCommentActivity.this, "评论成功");
+                    EventBus.getDefault().post(new AddCommentEvent(mStatusID));
                     setResult(Activity.RESULT_OK);
                     finishActivity();
+                }
+
+                @Override
+                public void onError(String error) {
+                    super.onError(error);
+                    T.showShort(WriteCommentActivity.this, error);
                 }
             });
         }

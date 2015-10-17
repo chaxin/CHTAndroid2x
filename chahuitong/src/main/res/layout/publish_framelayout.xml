@@ -99,18 +99,10 @@
             <EditText
                 android:id="@+id/id_input_quantity"
                 android:hint="@string/quantity_hint"
-                android:inputType="number"
+                android:inputType="textMultiLine"
                 style="@style/publish_product_input"
                 >
-            </EditText>            
-            
-			<TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/piece"
-                android:layout_marginRight="20dp"
-                android:textSize="@dimen/text_title"
-                />
+            </EditText>
 			
         </LinearLayout>
 
@@ -147,6 +139,23 @@
                 android:maxLength="11"
                 >
             </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/publish_product_row"
+            >
+
+            <TextView
+                android:text="联系人"
+                style="@style/publish_product_label"
+                />
+
+            <EditText
+                style="@style/publish_product_input"
+                android:id="@+id/publish_input_contact"
+                android:inputType="text"
+                android:hint="称呼或姓名"
+                />
         </LinearLayout>
 
         <View style="@style/divider" />

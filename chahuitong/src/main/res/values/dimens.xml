@@ -28,4 +28,6 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     -->
     <dimen name="widget_margin">8dp</dimen>
 
+    <dimen name="base_scrollview_top_height">50.0dip</dimen>
+    <dimen name="margin_chat_top">5dip</dimen>
 </resources>

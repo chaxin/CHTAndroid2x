@@ -24,11 +24,14 @@ import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.android.volley.VolleyError;
+import com.damenghai.chahuitong.api.HodorRequest;
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.bean.Product;
 import com.damenghai.chahuitong.config.Constants;
 import com.damenghai.chahuitong.config.SessionKeeper;
+import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.utils.ImageManager;
 import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.T;
@@ -43,6 +46,8 @@ import com.lidroid.xutils.http.client.HttpRequest;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PublishActivity extends BaseActivity implements OnClickListener {
 	private final int CAMERA_REQUEST_CODE = 1;
@@ -55,7 +60,7 @@ public class PublishActivity extends BaseActivity implements OnClickListener {
     private LinearLayout mInfo;
 	private TopBar mTopBar;
 	private RadioGroup mTabButtonGroup;
-	private EditText mBrand, mName, mPrice, mQuantity, mAddress, mPhone, mDescBuy;
+	private EditText mBrand, mName, mPrice, mQuantity, mAddress, mPhone, mDescBuy, mContact;
 	private CustomSpinner mYearSpinner, mDetailSpinner;
 
 	private ImageView mIvFrist, mIvSecond, mIvThird;
@@ -95,7 +100,9 @@ public class PublishActivity extends BaseActivity implements OnClickListener {
 		mPhone = (EditText) findViewById(R.id.id_input_phone); //手机号码
 		mYearSpinner = (CustomSpinner) findViewById(R.id.id_spinner_years); //年份下拉框
 		mDetailSpinner = (CustomSpinner) findViewById(R.id.id_spinner_detail); //是否详谈下拉框
+		mContact = (EditText) findViewById(R.id.publish_input_contact);
 		mDescBuy = (EditText) findViewById(R.id.id_product_desc);
+
 		//添加图片
 		mIvFrist = (ImageView) findViewById(R.id.id_upload_img1);
 		mIvSecond = (ImageView) findViewById(R.id.id_upload_img2);
@@ -121,15 +128,15 @@ public class PublishActivity extends BaseActivity implements OnClickListener {
 			}
 		});
 
-
 		if(mProduct != null) {
 			mBrand.setText(mProduct.getBrand() != null ? mProduct.getBrand() : "");
 			mName.setText(mProduct.getName() != null ? mProduct.getName() : "");
 			mPrice.setText(mProduct.getPrice() != null ? mProduct.getPrice() : "");
-			mQuantity.setText(mProduct.getQuantity() + "");
+			mQuantity.setText(mProduct.getQuantity() != null ? mProduct.getQuantity() : "");
 			mAddress.setText(mProduct.getAddress() != null ? mProduct.getAddress() : "");
-			mDescBuy.setText(mProduct.getPrice() != null ? mProduct.getPrice() : "");
+			mDescBuy.setText(mProduct.getDesc() != null ? mProduct.getDesc() : "");
 			mPhone.setText(mProduct.getPhone());
+            mContact.setText(mProduct.getContact() != null ? mProduct.getContact() : "");
 		}
 
 		mTopBar.setOnLeftClickListener(new TopBar.OnLeftClickListener() {
@@ -256,9 +263,7 @@ public class PublishActivity extends BaseActivity implements OnClickListener {
 			String phone = mPhone.getText().toString();
 			String content = mDescBuy.getText().toString();
 
-			if(mProduct != null && mProduct.getId() > 0 && mIsEdit) {
-				params.addBodyParameter("id", mProduct.getId() + "");
-			}
+            if(mProduct != null) params.addBodyParameter("id", mProduct.getId() != null ? mProduct.getId() : "");
 			params.addBodyParameter("key", SessionKeeper.readSession(PublishActivity.this));
 			params.addBodyParameter("username", SessionKeeper.readUsername(PublishActivity.this));
 			params.addBodyParameter("saleway", mSaleway);
@@ -270,6 +275,7 @@ public class PublishActivity extends BaseActivity implements OnClickListener {
 			params.addBodyParameter("weight", quantity);
 			params.addBodyParameter("address", address);
 			params.addBodyParameter("phone", phone);
+            params.addBodyParameter("contact", mContact.getText().toString());
 			params.addBodyParameter("content", content);
 
 			if(mProductImage != null) {
@@ -289,38 +295,28 @@ public class PublishActivity extends BaseActivity implements OnClickListener {
 			        @Override
 			        public void onStart() {
 			        	pd = new ProgressDialog(PublishActivity.this);
-			            pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 			            pd.setMessage("上传中....");
-			            pd.setCancelable(false);
+			            pd.setCanceledOnTouchOutside(false);
 			            pd.show();
 			        }
 
 			        @Override
-			        public void onLoading(long total, long current, boolean isUploading) {
-			            if (isUploading) {
-			            	pd.setProgress((int) ((current * 1.0/total)*100));
-			            } else {
-			            	pd.dismiss();
-			            }
-			        }
+			        public void onLoading(long total, long current, boolean isUploading) {}
 
 			        @Override
 			        public void onSuccess(ResponseInfo<String> responseInfo) {
-			        	new AlertDialog.Builder(PublishActivity.this).setMessage("上传成功").setPositiveButton("确定", null).show();
-						finish();
-			        	pd.dismiss();
+			            // 删除缓存
+                        if(mProductImage != null) {
+                            for(int i=0; i<mProductImage.size(); i++) {
+                                int key = mProductImage.keyAt(i);
+                                ImageManager pi = mProductImage.get(key);
+                                pi.deleteTempFile();
+                            }
+                            mProductImage.clear();
+                        }
 
-			        	//把图片选择图片的控件恢复成默认图片
-			        	if(mProductImage != null) {
-			        		for(int i=0; i<mProductImage.size(); i++) {
-			        			int key = mProductImage.keyAt(i);
-			        			ImageManager pi = mProductImage.get(key);
-			        			pi.displayDefault();
-			        			pi.deleteTempFile();
-			        		}
-			        		mProductImage.clear();
-			        	}
-
+                        pd.dismiss();
+                        finish();
 			        }
 
 			        @Override
@@ -330,7 +326,10 @@ public class PublishActivity extends BaseActivity implements OnClickListener {
 			        		new AlertDialog.Builder(PublishActivity.this).setTitle("上传失败").setMessage("文件不存在请重新选择").setPositiveButton("确定", null).show();
 			        		return;
 			        	}
-			        	new AlertDialog.Builder(PublishActivity.this).setTitle(error.getExceptionCode() + ":" + msg).setMessage("请检查网络").setPositiveButton("确定", null).show();
+			        	new AlertDialog.Builder(PublishActivity.this)
+                                .setTitle(error.getExceptionCode() + ":" + msg)
+                                .setMessage("请检查网络")
+                                .setPositiveButton("确定", null).show();
 			        }
 			});
 

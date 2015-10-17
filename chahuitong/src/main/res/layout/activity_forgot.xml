@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <com.damenghai.chahuitong.view.TopBar
+        android:id="@+id/forgot_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_bar_height"
+        android:background="@color/primary"
+        app:titleText="重置密码"
+        app:leftSrc="@drawable/back_text_normal"
+        app:rightSrc="@drawable/home_text_normal"
+        />
+
+    <EditText
+        android:id="@+id/forgot_mobile"
+        style="@style/log_editText"
+        android:drawableLeft="@drawable/icon_mobile"
+        android:hint="您的手机号码"
+        android:inputType="phone"
+        android:maxLength="11"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/stroke"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <EditText
+            android:id="@+id/forgot_code"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/log_editText"
+            android:drawableLeft="@drawable/icon_code"
+            android:hint="输入验证码"
+            android:inputType="number"
+            android:maxLength="6"
+            />
+
+        <Button
+            android:id="@+id/forgot_send"
+            android:layout_width="80dp"
+            android:layout_height="32dp"
+            android:text="发送验证码"
+            android:background="@color/primary_light"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_body"
+            android:gravity="center"
+            android:enabled="false"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:onClick="onClick"
+            />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+    <Button
+        android:id="@+id/forgot_commit"
+        style="@style/CommonButton"
+        android:text="@string/commit"
+        android:onClick="onClick"
+        />
+
+</LinearLayout>

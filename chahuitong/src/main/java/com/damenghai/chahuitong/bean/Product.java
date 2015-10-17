@@ -5,23 +5,22 @@ import com.damenghai.chahuitong.config.Constants;
 import java.io.Serializable;
 
 public class Product implements Serializable {
-    private int id;
+    private String id;
     private String brand;
     private String name;
     private String year;
     private String address;
     private String price;
-    private int weight;
-    private int timeout;
+    private String weight;
     private String arrow_order;
     private String phone;
     private String pic;
     private String saleway;
-    private String unit;
     private int recommend;
     private String addtime;
     private String depic;
     private String content;
+    private String contact;
 
     public String getArrow_order() {
         return arrow_order;
@@ -39,11 +38,11 @@ public class Product implements Serializable {
         this.pic = pic;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -87,14 +86,6 @@ public class Product implements Serializable {
         this.phone = phone;
     }
 
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -131,11 +122,11 @@ public class Product implements Serializable {
         this.year = year;
     }
 
-    public int getQuantity() {
+    public String getQuantity() {
         return weight;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(String quantity) {
         this.weight = quantity;
     }
 
@@ -161,6 +152,14 @@ public class Product implements Serializable {
 
     public void setDesc(String desc) {
         this.content = desc;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 
 }

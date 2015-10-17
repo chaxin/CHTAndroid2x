@@ -41,7 +41,7 @@ public class MyStatusFragment extends BaseFragment implements OnRefreshListener,
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View mView = inflater.inflate(R.layout.fragment_list, null);
 
-        mListView = (PullToRefreshListView) mView.findViewById(R.id.commond_listview);
+        mListView = (PullToRefreshListView) mView.findViewById(R.id.common_listview);
         mListView.getRefreshableView().setDividerHeight(DensityUtils.dp2px(getActivity(), 4));
         mData = new ArrayList<Status>();
         mAdapter = new StatusesAdapter(getActivity(), mData, R.layout.listview_item_status, false);

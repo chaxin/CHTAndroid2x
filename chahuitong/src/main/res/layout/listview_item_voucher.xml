@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_dotted_line_voucher_unused"
+    android:id="@+id/voucher_item_layout"
+    >
+
+    <ImageView
+        android:id="@+id/voucher_item_mark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_mark_vouch_unused"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        />
+
+    <ImageView
+        android:id="@+id/voucher_item_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/sign_voucher_expired"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="16dp"
+        android:visibility="gone"
+        />
+
+    <LinearLayout
+        android:id="@+id/voucher_item_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="24dp"
+        android:paddingBottom="20dp"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
+        android:gravity="center_horizontal"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/voucher_item_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="80"
+                android:paddingBottom="12dp"
+                android:textColor="@color/primary"
+                android:textSize="29sp"
+                />
+
+
+            <TextView
+                android:id="@+id/voucher_item_yuan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="元"
+                android:textSize="@dimen/text_title"
+                android:textColor="@color/primary"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/voucher_item_limit"
+            style="@style/TextViewBody"
+            android:text="【满300元使用】"
+            />
+    </LinearLayout>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="48dp"
+        android:background="@color/primary"
+        android:layout_toRightOf="@id/voucher_item_left"
+        android:layout_centerVertical="true"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_toRightOf="@id/voucher_item_left"
+        android:paddingTop="23dp"
+        android:paddingLeft="13dp"
+        android:paddingBottom="13dp"
+        >
+
+        <TextView
+            android:id="@+id/voucher_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="全场通用"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/text_title"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/voucher_item_valid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_body"
+            android:text="2015.10.14~2015.10.20"
+            android:textColor="@color/primary"
+            android:layout_marginTop="22dp"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

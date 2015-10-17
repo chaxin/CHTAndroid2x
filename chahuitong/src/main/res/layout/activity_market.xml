@@ -11,7 +11,7 @@
         android:layout_height="@dimen/top_bar_height"
         android:background="@color/primary"
         app:leftSrc="@drawable/back_text_normal"
-        app:rightSrc="@drawable/home_text_normal"
+        app:rightSrc="@drawable/icon_write"
         app:titleText="茶市"
         app:titleTextSize="@dimen/text_title"
         app:titleTextColor="@android:color/white"
@@ -32,32 +32,5 @@
         android:layout_below="@id/title_indicator"
         android:background="@color/background"
         />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="39dp"
-        android:layout_marginRight="15dp"
-        >
-
-        <ImageView
-            android:id="@+id/iv_scroll_top"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_scroll_top"
-            android:layout_marginBottom="7dp"
-            />
-
-        <ImageView
-            android:id="@+id/iv_publish_product"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_round_edit"
-            />
-
-    </LinearLayout>
 
 </RelativeLayout>

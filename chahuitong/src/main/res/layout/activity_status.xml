@@ -10,11 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height"
         android:background="@color/primary"
-        app:titleText="@string/statuses"
+        app:titleText="@string/timeline"
         app:titleTextSize="@dimen/text_title"
         app:titleTextColor="@android:color/white"
         app:leftSrc="@drawable/back_text_normal"
-        app:rightSrc="@drawable/home_text_normal"
+        app:rightSrc="@drawable/icon_write"
         />
 
     <com.handmark.pulltorefresh.library.PullToRefreshListView

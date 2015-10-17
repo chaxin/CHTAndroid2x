@@ -1,6 +1,9 @@
 package com.damenghai.chahuitong.ui.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -10,6 +13,7 @@ import com.damenghai.chahuitong.api.HodorRequest;
 import com.damenghai.chahuitong.api.StatusAPI;
 import com.damenghai.chahuitong.base.BaseActivity;
 import com.damenghai.chahuitong.bean.Status;
+import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.view.TopBar;
 import com.google.gson.Gson;
@@ -26,7 +30,9 @@ import java.util.ArrayList;
 /**
  * Created by Sgun on 15/8/23.
  */
-public class StatusesActivity extends BaseActivity implements OnRefreshListener, OnLastItemVisibleListener, AdapterView.OnItemClickListener {
+public class StatusesActivity extends BaseActivity implements OnRefreshListener, OnLastItemVisibleListener {
+    private int REQUEST_CODE_WRITE = 1;
+
     private TopBar mTopBar;
     private PullToRefreshListView mLv;
 
@@ -55,24 +61,25 @@ public class StatusesActivity extends BaseActivity implements OnRefreshListener,
 
     @Override
     protected void initView() {
-        mTopBar.setOnLeftClickListener(new TopBar.OnLeftClickListener() {
+        mTopBar.setOnButtonClickListener(new TopBar.OnButtonClickListener() {
             @Override
             public void onLeftClick() {
                 finishActivity();
             }
-        });
 
-        mTopBar.setOnRightClickListener(new TopBar.onRightClickListener() {
             @Override
             public void onRightClick() {
-                goHome();
+                if(!TextUtils.isEmpty(SessionKeeper.readSession(StatusesActivity.this))) {
+                    openActivityForResult(WriteStatusActivity.class, REQUEST_CODE_WRITE);
+                } else {
+                    openActivity(LoginActivity.class);
+                }
             }
         });
 
         mStatuses = new ArrayList<Status>();
         mAdapter = new StatusesAdapter(this, mStatuses, R.layout.listview_item_status, true);
         mLv.setAdapter(mAdapter);
-        mLv.setOnItemClickListener(this);
         mLv.setOnRefreshListener(this);
         mLv.setOnLastItemVisibleListener(this);
     }
@@ -106,6 +113,13 @@ public class StatusesActivity extends BaseActivity implements OnRefreshListener,
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == REQUEST_CODE_WRITE && resultCode == Activity.RESULT_OK) {
+            loadData(1);
+        }
+    }
+
+    @Override
     public void onRefresh(PullToRefreshBase refreshView) {
         loadData(1);
     }
@@ -115,10 +129,4 @@ public class StatusesActivity extends BaseActivity implements OnRefreshListener,
         loadData(mCurrPage + 1);
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("status", mStatuses.get(i - 1));
-        openActivity(StatusDetailActivity.class, bundle);
-    }
 }

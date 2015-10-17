@@ -33,12 +33,12 @@ public class BaseApplication extends Application {
         requestQueue = Volley.newRequestQueue(getApplicationContext());
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                        .setDefaultFontPath("fonts/msyh.ttf")
+                        .setDefaultFontPath("fonts/HYQIHEI-45S.OTF")
                         .setFontAttrId(R.attr.fontPath)
                         .build()
         );
 
-        PgyCrashManager.register(this);
+//        PgyCrashManager.register(this);
     }
 
     public static BaseApplication getInstance() {

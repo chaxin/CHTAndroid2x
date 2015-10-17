@@ -19,6 +19,7 @@ import com.damenghai.chahuitong.bean.Status;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.utils.DateUtils;
 import com.damenghai.chahuitong.utils.ImageUtils;
+import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.T;
 import com.damenghai.chahuitong.utils.UploadImageUtils;
 import com.damenghai.chahuitong.view.TopBar;
@@ -81,10 +82,14 @@ public class WriteStatusActivity extends BaseActivity implements AdapterView.OnI
                 if(resultCode == Activity.RESULT_CANCELED) return;
                 Uri uri = data.getData();
                 mDatas.add(uri);
+                L.d("uri:" + uri);
                 mAdapter.notifyDataSetChanged();
                 break;
             case ImageUtils.CAMERA_REQUEST_CODE :
-                if(resultCode == Activity.RESULT_CANCELED) ImageUtils.deleteImageUri(this);
+                if(resultCode == Activity.RESULT_CANCELED) {
+                    ImageUtils.deleteImageUri(this);
+                    return;
+                }
 
                 mDatas.add(ImageUtils.imageUri);
                 mAdapter.notifyDataSetChanged();
@@ -137,6 +142,7 @@ public class WriteStatusActivity extends BaseActivity implements AdapterView.OnI
                 public void onSuccess() {
                     super.onSuccess();
                     T.showShort(WriteStatusActivity.this, "发布成功");
+                    setResult(Activity.RESULT_OK);
                     finish();
                 }
             });

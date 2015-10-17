@@ -4,12 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 
+import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.StatusesAdapter;
-import com.damenghai.chahuitong.api.HodorRequest;
 import com.damenghai.chahuitong.api.StatusAPI;
 import com.damenghai.chahuitong.base.BaseActivity;
-import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.bean.Leader;
 import com.damenghai.chahuitong.bean.Status;
 import com.damenghai.chahuitong.bean.response.TopicResponse;
@@ -32,9 +32,9 @@ import java.util.List;
 /**
  * Created by Sgun on 15/8/23.
  */
-public class TopicsActivity extends BaseActivity implements OnLastItemVisibleListener, OnRefreshListener {
+public class TopicsActivity extends BaseActivity implements OnLastItemVisibleListener, OnRefreshListener, AdapterView.OnItemClickListener {
     private TopBar mTopBar;
-    private PullToRefreshListView mListView;
+    private PullToRefreshListView mPlv;
 
     private ArrayList<Status> mTopics;
     private ListViewAdapter mLvAdapter;
@@ -55,7 +55,7 @@ public class TopicsActivity extends BaseActivity implements OnLastItemVisibleLis
     @Override
     protected void findViewById() {
         mTopBar = (TopBar) findViewById(R.id.topics_top_bar);
-        mListView = (PullToRefreshListView) findViewById(R.id.topics_lv);
+        mPlv = (PullToRefreshListView) findViewById(R.id.topics_lv);
     }
 
     @Override
@@ -78,9 +78,9 @@ public class TopicsActivity extends BaseActivity implements OnLastItemVisibleLis
 
         mTopics = new ArrayList<Status>();
         mLvAdapter = new ListViewAdapter(this, mTopics, R.layout.listview_item_topic);
-        mListView.setAdapter(mLvAdapter);
-        mListView.setOnLastItemVisibleListener(this);
-        mListView.setOnRefreshListener(this);
+        mPlv.setAdapter(mLvAdapter);
+        mPlv.setOnLastItemVisibleListener(this);
+        mPlv.setOnRefreshListener(this);
     }
 
     private void loadData(final int page) {
@@ -108,7 +108,7 @@ public class TopicsActivity extends BaseActivity implements OnLastItemVisibleLis
             @Override
             public void onAllDone() {
                 super.onAllDone();
-                mListView.onRefreshComplete();
+                mPlv.onRefreshComplete();
             }
         });
     }
@@ -134,6 +134,13 @@ public class TopicsActivity extends BaseActivity implements OnLastItemVisibleLis
         loadData(mCurrPage);
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("status", mTopics.get(i - 1));
+        openActivity(StatusDetailActivity.class);
+    }
+
     private class ListViewAdapter extends StatusesAdapter {
         private boolean mIsSet = false;
 
@@ -142,7 +149,7 @@ public class TopicsActivity extends BaseActivity implements OnLastItemVisibleLis
         }
 
         @Override
-        public void convert(ViewHolder holder, Status status) {
+        public void convert(ViewHolder holder, final Status status) {
             setImages(holder, status);
 
             if(holder.getPosition() == 0 && !mIsSet) {
@@ -163,7 +170,15 @@ public class TopicsActivity extends BaseActivity implements OnLastItemVisibleLis
                     .setText(R.id.topic_item_user, "话题主理人：" + status.getMemberInfo().getMember_name())
                     .setText(R.id.control_tv_share, status.getShare() + "")
                     .setText(R.id.control_tv_comment, status.getComment() + "")
-                    .setText(R.id.control_tv_like, status.getView() + "");
+                    .setText(R.id.control_tv_like, status.getView() + "")
+                    .setOnClickListener(R.id.topic_item_latyou, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("status", status);
+                            openActivity(StatusDetailActivity.class, bundle);
+                        }
+                    });
 
             setControl(holder, status);
         }

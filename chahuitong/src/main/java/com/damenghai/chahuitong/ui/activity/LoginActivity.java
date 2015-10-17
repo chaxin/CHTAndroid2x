@@ -18,12 +18,16 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.api.UserAPI;
 import com.damenghai.chahuitong.base.BaseActivity;
+import com.damenghai.chahuitong.bean.Leader;
+import com.damenghai.chahuitong.bean.User;
 import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.request.VolleyRequest;
+import com.damenghai.chahuitong.response.StringListener;
 import com.damenghai.chahuitong.ui.fragment.RegisterFragment;
 import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.T;
@@ -40,13 +44,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Map;
+import java.util.Set;
 
 import cn.bmob.im.bean.BmobChatUser;
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobInstallation;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.LogInListener;
+import cn.bmob.v3.listener.OtherLoginListener;
 import cn.bmob.v3.listener.SaveListener;
 
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
-
     private LinearLayout mRoot;
     private ImageView mBtnBack;
 
@@ -57,6 +67,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     private EditText mLoginUsername, mLoginPassword;
     private Button mBtnLoginIn;
+    private TextView mForgot;
     private ImageView mBtnHome,mIvQQ,mWeibo;
 
     private UMSocialService mController;
@@ -99,6 +110,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         mLoginUsername = (EditText) findViewById(R.id.id_input_username);
         mLoginPassword = (EditText) findViewById(R.id.id_input_password);
         mBtnLoginIn = (Button) findViewById(R.id.id_btn_login_in);
+        mForgot = (TextView) findViewById(R.id.login_forgot);
 
         mIvQQ = (ImageView) findViewById(R.id.login_qq);
         mWeibo = (ImageView) findViewById(R.id.login_weibo);
@@ -137,6 +149,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             }
         });
 
+        mForgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openActivity(ForgotActivity.class);
+            }
+        });
+
         mGroup.setOnCheckedChangeListener(this);
 
         // 单击登录按钮
@@ -165,7 +184,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     dialog.setCanceledOnTouchOutside(false);
                     dialog.show();
 
-                    UserAPI.login(username, password, new VolleyRequest() {
+                    UserAPI.login(username, password, new VolleyRequest(dialog) {
                         @Override
                         public void onSuccess(String response) {
                             super.onSuccess(response);
@@ -174,9 +193,47 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
                                 if (obj.getInt("code") == 200) {
                                     JSONObject datas = obj.getJSONObject("datas");
-                                    loginSuccess(datas.getString("key"), datas.getString("username"), password, dialog);
+                                    SessionKeeper.writeSession(LoginActivity.this, datas.getString("key"));
+                                    SessionKeeper.writeUsername(LoginActivity.this, datas.getString("username"));
+
+                                    BmobChatUser user = new BmobChatUser();
+                                    user.setUsername(username);
+                                    user.setPassword(password);
+                                    mUserManager.login(user,new SaveListener() {
+
+                                        @Override
+                                        public void onSuccess() {
+                                            //更新用户的地理位置以及好友的资料，可自行到BaseActivity类中查看此方法的具体实现，建议添加
+//                                            updateUserInfos();
+                                            //省略其他代码
+                                            L.d("用户登陆成功");
+                                            setResult(Activity.RESULT_OK);
+                                            finishActivity();
+                                        }
+
+                                        @Override
+                                        public void onFailure(int code, String msg) {
+                                            T.showShort(LoginActivity.this, msg);
+                                        }
+                                    });
+//                                    BmobUser.loginByAccount(LoginActivity.this, username, password, new LogInListener<BmobUser>() {
+//
+//                                        @Override
+//                                        public void done(BmobUser user, BmobException e) {
+//                                            if (user != null) {
+//                                                L.d("用户登陆成功");
+//                                                setResult(Activity.RESULT_OK);
+//                                                finishActivity();
+//                                            }
+//                                            if(e != null) {
+//                                                L.d(e.getErrorCode() + e.toString());
+//                                            }
+//                                        }
+//
+//                                    });
+
                                 } else {
-                                    T.showShort(LoginActivity.this, "登录失败");
+                                    T.showShort(LoginActivity.this, obj.getString("content"));
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -208,8 +265,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     @Override
                     public void onComplete(Bundle value, SHARE_MEDIA platform) {
                         T.showShort(LoginActivity.this, "授权完成");
-
                         mPassword = value.getString("openid");
+                        final String access_token = value.getString("access_token");
+                        final String expires_in = value.getString("expires_in");
+
                         //获取相关授权信息
                         mController.getPlatformInfo(LoginActivity.this, SHARE_MEDIA.QQ, new SocializeListeners.UMDataListener() {
                             @Override
@@ -219,22 +278,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                             @Override
                             public void onComplete(int status, Map<String, Object> info) {
                                 if(status == 200 && info != null){
-                                    final String username = info.get("screen_name").toString();
-
-                                    UserAPI.createAccount("qq", username, mPassword, mPassword, new VolleyRequest() {
-                                        @Override
-                                        public void onSuccess(String response) {
-                                            super.onSuccess(response);
-                                            try {
-                                                JSONObject object = new JSONObject(response);
-                                                if(object.getInt("code") == 200) {
-                                                    loginSuccess(object.getString("key"), username, mPassword, dialog);
-                                                }
-                                            } catch (JSONException e) {
-                                                e.printStackTrace();
-                                            }
-                                        }
-                                    });
+                                    loginSuccess(info, "qq", access_token, expires_in, mPassword, dialog);
                                 }else{
                                     Log.d("TestData","发生错误："+status);
                                 }
@@ -254,41 +298,30 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 progressDialog.setCanceledOnTouchOutside(false);
                 progressDialog.show();
 
-                mController.doOauthVerify(LoginActivity.this, SHARE_MEDIA.SINA,new SocializeListeners.UMAuthListener() {
+                mController.doOauthVerify(LoginActivity.this, SHARE_MEDIA.SINA, new SocializeListeners.UMAuthListener() {
                     @Override
                     public void onError(SocializeException e, SHARE_MEDIA platform) {
                     }
+
                     @Override
                     public void onComplete(Bundle value, SHARE_MEDIA platform) {
                         if (value != null && !TextUtils.isEmpty(value.getString("uid"))) {
                             T.showShort(LoginActivity.this, "授权成功");
                             mPassword = value.getString("uid");
+                            final String access_token = value.getString("access_token");
+                            final String expires_in = value.getString("expires_in");
+
                             mController.getPlatformInfo(LoginActivity.this, SHARE_MEDIA.SINA, new SocializeListeners.UMDataListener() {
                                 @Override
-                                public void onStart() {}
+                                public void onStart() {
+                                }
 
                                 @Override
                                 public void onComplete(int status, Map<String, Object> info) {
                                     if (status == 200 && info != null) {
-                                        final String username = info.get("screen_name").toString();
-
-                                        UserAPI.createAccount("sina", username, mPassword, mPassword, new VolleyRequest() {
-                                            @Override
-                                            public void onSuccess(String response) {
-                                                super.onSuccess(response);
-                                                try {
-                                                    JSONObject object = new JSONObject(response);
-                                                    if(object.getInt("code") == 200) {
-                                                        loginSuccess(object.getString("key"), username, mPassword, progressDialog);
-                                                    }
-                                                } catch (JSONException e) {
-                                                    e.printStackTrace();
-                                                }
-                                            }
-
-                                        });
+                                        loginSuccess(info, "sina", access_token, expires_in, mPassword, progressDialog);
                                     } else {
-                                        L.d("TestData" + "发生错误：" + status);
+                                        L.d("发生错误：" + status);
                                     }
                                 }
                             });
@@ -305,31 +338,43 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         }
     }
 
-    private void loginSuccess(String key, String username, String password, final Dialog dialog) {
-        SessionKeeper.writeSession(LoginActivity.this, key);
-        SessionKeeper.writeUsername(LoginActivity.this, username);
+    private void loginSuccess(Map<String, Object> info, final String snsType, final String access_token, final String expires_in, final String primaryKey, final Dialog dialog) {
+        final String username = info.get("screen_name").toString();
 
-        BmobChatUser user = new BmobChatUser();
-        user.setUsername(username);
-        user.setPassword(password);
-
-        // TODO 第三方登录后需要判断有无注册Bmob才能登录
-        mUserManager.login(user, new SaveListener() {
+        UserAPI.createAccount(snsType, username, primaryKey, primaryKey, new VolleyRequest() {
             @Override
-            public void onSuccess() {
-                if (dialog != null) dialog.dismiss();
-                T.showShort(LoginActivity.this, "登录成功");
-                L.d("bmob username:" + mUserManager.getCurrentUserName());
+            public void onSuccess(String response) {
+                super.onSuccess(response);
+                try {
+                    JSONObject object = new JSONObject(response);
+                    if (object.getInt("code") == 200) {
+                        SessionKeeper.writeSession(LoginActivity.this, object.getString("key"));
+                        SessionKeeper.writeUsername(LoginActivity.this, username);
+
+                        BmobUser.BmobThirdUserAuth authInfo = new BmobUser.BmobThirdUserAuth(snsType.equals("sina") ? "weibo" : snsType, access_token, expires_in, primaryKey);
+                        BmobUser.loginWithAuthData(LoginActivity.this, authInfo, new OtherLoginListener() {
+
+                            @Override
+                            public void onSuccess(JSONObject userAuth) {
+                                T.showShort(LoginActivity.this, "登录成功");
+                            }
+
+                            @Override
+                            public void onFailure(int code, String msg) {
+                                T.showShort(LoginActivity.this, "登录错误，请退出重新登录");
+                            }
+
+                        });
+                        setResult(Activity.RESULT_OK);
+                        finishActivity();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
-            @Override
-            public void onFailure(int errorCode, String error) {
-
-                L.d("Bmob登录失败" + ", code:" + errorCode + ", error:" + error);
-            }
         });
-        setResult(Activity.RESULT_OK);
-        finishActivity();
+
     }
 
     @Override

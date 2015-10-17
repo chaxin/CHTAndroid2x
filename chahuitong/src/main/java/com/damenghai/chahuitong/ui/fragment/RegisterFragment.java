@@ -20,6 +20,7 @@ import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.api.UserAPI;
 import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.request.VolleyRequest;
+import com.damenghai.chahuitong.response.JsonObjectListener;
 import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.T;
 
@@ -122,8 +123,28 @@ public class RegisterFragment extends Fragment implements OnClickListener, TextW
     public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
         String phone = mEtPhone.getText().toString();
         if(phone.length() == 11) {
-            mBtSend.setBackground(getResources().getDrawable(R.drawable.draw_primary2dark_sel));
-            mBtSend.setEnabled(true);
+            UserAPI.isRegister(phone, new VolleyRequest() {
+                @Override
+                public void onSuccess(String response) {
+                    super.onSuccess(response);
+                    try {
+                        JSONObject object = new JSONObject(response);
+                        if(object.getInt("code") == 200) {
+                            mBtSend.setBackgroundResource(R.color.primary_light);
+                            mBtSend.setEnabled(false);
+                            T.showLong(getActivity(), "号码已被注册!");
+                        } else {
+                            mBtSend.setBackground(getResources().getDrawable(R.drawable.draw_primary2dark_sel));
+                            mBtSend.setEnabled(true);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+            });
+
         }
     }
 
@@ -215,8 +236,7 @@ public class RegisterFragment extends Fragment implements OnClickListener, TextW
 
                             @Override
                             public void onFailure(int arg0, String arg1) {
-                                // TODO Auto-generated method stub
-                                L.d(arg1);
+                                L.d(arg0);
                                 T.showShort(getActivity(), "注册失败:" + arg1);
                                 progress.dismiss();
                             }

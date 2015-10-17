@@ -23,6 +23,8 @@ import com.damenghai.chahuitong.view.BannerViewPager;
 import com.google.gson.Gson;
 import com.lidroid.xutils.BitmapUtils;
 import com.pgyersdk.feedback.PgyFeedbackShakeManager;
+import com.pgyersdk.update.PgyUpdateManager;
+import com.umeng.update.UmengUpdateAgent;
 import com.viewpagerindicator.LinePageIndicator;
 
 import org.json.JSONArray;
@@ -61,6 +63,14 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+//        // 设置任意网络环境下都提示更新
+//        UmengUpdateAgent.setUpdateOnlyWifi(false);
+//        // 友盟自动检测更新
+//        UmengUpdateAgent.update(this);
+
+        // 蒲公英内测更新
+//        PgyUpdateManager.register(this);
 
         findViewById();
 

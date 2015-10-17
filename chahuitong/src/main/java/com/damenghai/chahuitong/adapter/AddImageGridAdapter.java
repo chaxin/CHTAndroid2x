@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.damenghai.chahuitong.R;
@@ -24,7 +23,7 @@ public class AddImageGridAdapter extends CommonAdapter<Uri> {
 
     @Override
     public Uri getItem(int position) {
-        return position==mDatas.size() ? null : mDatas.get(position);
+        return position== mData.size() ? null : mData.get(position);
     }
 
     @Override
@@ -41,7 +40,7 @@ public class AddImageGridAdapter extends CommonAdapter<Uri> {
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, width);
         holder.getView(R.id.gridview_item_image).setLayoutParams(params);
 
-        if (holder.getPosition() == mDatas.size() && holder.getPosition() != 9) {
+        if (holder.getPosition() == mData.size() && holder.getPosition() != 9) {
             holder.setImageResource(R.id.gridview_item_image, R.drawable.icon_addpic_unfocused)
                     .setVisibility(R.id.iv_delete_image, View.GONE);
         } else {
@@ -50,7 +49,7 @@ public class AddImageGridAdapter extends CommonAdapter<Uri> {
                     .setOnClickListener(R.id.iv_delete_image, new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            mDatas.remove(holder.getPosition());
+                            mData.remove(holder.getPosition());
                             notifyDataSetChanged();
                         }
                     });
@@ -60,7 +59,7 @@ public class AddImageGridAdapter extends CommonAdapter<Uri> {
 
     @Override
     public int getCount() {
-        return mDatas.size() < 0 ? 1 : (mDatas.size() == 9 ? 9 : mDatas.size() + 1);
+        return mData.size() < 0 ? 1 : (mData.size() == 9 ? 9 : mData.size() + 1);
     }
 
 }

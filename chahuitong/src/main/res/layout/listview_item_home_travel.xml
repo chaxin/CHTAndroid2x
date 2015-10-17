@@ -42,7 +42,7 @@
             android:layout_marginLeft="18dp"
             android:layout_marginRight="7dp"
             android:layout_marginTop="7dp"
-            android:src="@drawable/test_leader_avatar" />
+            android:src="@drawable/avatar_default" />
 
         <TextView
             android:id="@+id/home_travel_user"

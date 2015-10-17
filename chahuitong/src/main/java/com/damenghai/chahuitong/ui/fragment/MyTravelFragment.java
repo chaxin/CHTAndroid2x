@@ -47,7 +47,7 @@ public class MyTravelFragment extends BaseFragment implements OnRefreshListener,
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_list, null);
 
-        mListView = (PullToRefreshListView) mView.findViewById(R.id.commond_listview);
+        mListView = (PullToRefreshListView) mView.findViewById(R.id.common_listview);
         mListView.getRefreshableView().setDividerHeight(DensityUtils.dp2px(getActivity(), 4));
         mDatas = new ArrayList<Travel>();
         mAdapter = new ListViewAdapter(getActivity(), mDatas, R.layout.listview_item_my_travel);
@@ -143,7 +143,7 @@ public class MyTravelFragment extends BaseFragment implements OnRefreshListener,
                                 @Override
                                 public void onSuccess() {
                                     super.onSuccess();
-                                    mDatas.remove(travel);
+                                    mData.remove(travel);
                                     notifyDataSetChanged();
                                     T.showShort(getActivity(), "删除成功");
                                 }

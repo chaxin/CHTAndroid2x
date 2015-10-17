@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -204,6 +205,21 @@ public class ViewHolder {
 			BitmapUtils util = new BitmapUtils(mContext, mContext.getCacheDir().getAbsolutePath());
 			if (getView(viewId) != null && !url.equals(""))
 				util.display(getView(viewId), url, ImageConfigHelper.getImageConfig(mContext));
+		}
+		return this;
+	}
+
+	/**
+	 * 在控件中显示网络图片
+	 * @param viewId 控件的ID
+	 * @param url 网络图片的完整url
+	 * @return 返回Holder对象可用于链式编程
+	 */
+	public ViewHolder loadImage(int viewId, String url, BitmapLoadCallBack<View> l) {
+		if(url != null) {
+			BitmapUtils util = new BitmapUtils(mContext, mContext.getCacheDir().getAbsolutePath());
+			if (getView(viewId) != null && !TextUtils.isEmpty(url))
+				util.display(getView(viewId), url, ImageConfigHelper.getImageConfig(mContext), l);
 		}
 		return this;
 	}

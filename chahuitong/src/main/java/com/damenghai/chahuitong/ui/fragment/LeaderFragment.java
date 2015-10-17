@@ -54,7 +54,7 @@ public class LeaderFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list, null);
 
-        mPlv = (PullToRefreshListView) view.findViewById(R.id.commond_listview);
+        mPlv = (PullToRefreshListView) view.findViewById(R.id.common_listview);
         mData = new ArrayList<Leader>();
         mAdapter = new ListViewAdapter(getActivity(), mData, R.layout.listview_item_leader);
         mPlv.setAdapter(mAdapter);
@@ -112,7 +112,7 @@ public class LeaderFragment extends BaseFragment {
 
         @Override
         public void convert(final ViewHolder holder, final Leader leader) {
-            holder.loadDefaultImage(R.id.leader_avatar, !leader.getMember_avatar().equals("null") ? leader.getMember_avatar() : "")
+            holder.loadAvatarImage(R.id.leader_avatar, !leader.getMember_avatar().equals("null") ? leader.getMember_avatar() : "")
                     .setText(R.id.leader_name, leader.getMember_name())
                     .setText(R.id.leader_title, leader.getRank().replaceAll("[</*[a-z]+>]", ""));
 

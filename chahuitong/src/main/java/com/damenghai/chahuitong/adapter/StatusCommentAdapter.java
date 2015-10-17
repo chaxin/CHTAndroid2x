@@ -10,6 +10,7 @@ import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.bean.Comment;
 import com.damenghai.chahuitong.bean.Leader;
 import com.damenghai.chahuitong.ui.activity.WriteCommentActivity;
+import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.StringUtils;
 import com.damenghai.chahuitong.utils.ViewHolder;
 
@@ -24,28 +25,48 @@ public class StatusCommentAdapter extends CommonAdapter<Comment> {
     }
 
     @Override
+    public int getCount() {
+        return mData.size() == 0 ? 1 : mData.size();
+    }
+
+    @Override
+    public Comment getItem(int position) {
+        return mData.size() == 0 ? null : mData.get(position);
+    }
+
+    @Override
     public void convert(ViewHolder holder, final Comment comment) {
-        if(comment.getMemberInfo() != null) {
-            holder.loadDefaultImage(R.id.comment_avatar, comment.getMemberInfo().getMember_avatar())
-                    .setText(R.id.comment_user, comment.getMemberInfo().getMember_name());
-        }
-        holder.setText(R.id.comment_time, comment.getComment_time())
-                .setText(R.id.comment_text, StringUtils.getSpannableContent(mContext,
-                        (TextView) holder.getView(R.id.comment_text),
-                                (comment.getReply_to() != null && comment.getReply_to().equals(""))
-                                ? comment.getComment()
-                                : "回复@" + comment.getReply_to() + ":" + comment.getComment()));
-        holder.getView(R.id.comment_rl).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(mContext, WriteCommentActivity.class);
-                intent.putExtra("status_id", comment.getContent_id());
-                if(comment.getMemberInfo() != null && !TextUtils.isEmpty(comment.getMemberInfo().getMember_name())) {
-                    intent.putExtra("reply_to", comment.getMemberInfo().getMember_name());
-                }
-                mContext.startActivity(intent);
+        if(mData.size() == 0) {
+            holder.setVisibility(R.id.comment_none, View.VISIBLE)
+                    .setVisibility(R.id.comment_avatar, View.GONE)
+                    .setVisibility(R.id.comment_user_info, View.GONE);
+        } else {
+            holder.setVisibility(R.id.comment_none, View.GONE)
+                    .setVisibility(R.id.comment_avatar, View.VISIBLE)
+                    .setVisibility(R.id.comment_user_info, View.VISIBLE);
+
+            if (comment.getMemberInfo() != null) {
+                holder.loadAvatarImage(R.id.comment_avatar, comment.getMemberInfo().getMember_avatar())
+                        .setText(R.id.comment_user, comment.getMemberInfo().getMember_name());
             }
-        });
+            holder.setText(R.id.comment_time, comment.getComment_time())
+                    .setText(R.id.comment_text, StringUtils.getSpannableContent(mContext,
+                            (TextView) holder.getView(R.id.comment_text),
+                            (comment.getReply_to() != null && comment.getReply_to().equals(""))
+                                    ? comment.getComment()
+                                    : "回复@" + comment.getReply_to() + ":" + comment.getComment()));
+            holder.getView(R.id.comment_rl).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(mContext, WriteCommentActivity.class);
+                    intent.putExtra("status_id", comment.getContent_id());
+                    if (comment.getMemberInfo() != null && !TextUtils.isEmpty(comment.getMemberInfo().getMember_name())) {
+                        intent.putExtra("reply_to", comment.getMemberInfo().getMember_name());
+                    }
+                    mContext.startActivity(intent);
+                }
+            });
+        }
     }
 
 }

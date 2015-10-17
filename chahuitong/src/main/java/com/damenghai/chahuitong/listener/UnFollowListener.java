@@ -8,12 +8,15 @@ import android.widget.TextView;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.api.HodorRequest;
 import com.damenghai.chahuitong.bean.Leader;
+import com.damenghai.chahuitong.bean.event.ChangeFansEvent;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.utils.T;
 import com.damenghai.chahuitong.utils.ViewHolder;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by Sgun on 15/9/17.
@@ -63,6 +66,7 @@ public class UnFollowListener implements View.OnClickListener {
 
                         mLeader.setBeInstered(0);
                         T.showShort(mContext, "取消成功");
+                        EventBus.getDefault().post(new ChangeFansEvent(ChangeFansEvent.Action.REMOVE));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

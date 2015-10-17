@@ -12,13 +12,15 @@ public class Travel implements Serializable {
     private String active_title;
     private String location;
     private String join_time;
-    private int last_time;
+    private String last_time;
     private String tplphone;
     private int free;
     private String content;
     private String pics;
     private String time;
+    private String number;
     private int uid;
+    private String object;
     private Leader memberInfo;
 
     public String getTitle() {
@@ -54,11 +56,11 @@ public class Travel implements Serializable {
         this.join_time = join_time;
     }
 
-    public int getDuration() {
+    public String getDuration() {
         return last_time;
     }
 
-    public void setDuration(int last_time) {
+    public void setDuration(String last_time) {
         this.last_time = last_time;
     }
 
@@ -110,12 +112,28 @@ public class Travel implements Serializable {
         this.time = time;
     }
 
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
     public Leader getMemberInfo() {
         return memberInfo;
     }
 
     public void setMemberInfo(Leader memberInfo) {
         this.memberInfo = memberInfo;
+    }
+
+    public String getObject() {
+        return object;
+    }
+
+    public void setObject(String object) {
+        this.object = object;
     }
 
     /**

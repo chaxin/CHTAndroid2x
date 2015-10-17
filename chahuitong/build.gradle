@@ -54,7 +54,9 @@ repositories {
     flatDir {
         dirs 'libs' //this way we can find the .aar file in libs folder
     }
+    jcenter()
 }
+
 dependencies {
     compile(name: 'calligraphy-2.1.0', ext: 'aar')
     compile files('libs/dom4j-1.6.1.jar')

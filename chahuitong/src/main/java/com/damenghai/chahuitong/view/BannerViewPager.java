@@ -20,6 +20,7 @@ import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.bean.Banner;
 import com.damenghai.chahuitong.bean.Product;
 import com.damenghai.chahuitong.ui.activity.WebViewActivity;
+import com.damenghai.chahuitong.utils.ImageConfigHelper;
 import com.damenghai.chahuitong.utils.L;
 import com.lidroid.xutils.BitmapUtils;
 import com.viewpagerindicator.LinePageIndicator;
@@ -50,6 +51,11 @@ public class BannerViewPager extends RelativeLayout implements OnPageChangeListe
      * 用来记录当前pager状态是否改变
      */
     private boolean isChange = false;
+
+	/**
+	 * 自动滚动的时间间隔
+	 */
+	private final int SCROLL_DURATION = 5000;
 
 	private boolean mLoop = true;
 
@@ -101,7 +107,7 @@ public class BannerViewPager extends RelativeLayout implements OnPageChangeListe
 				}
 			};
 
-			timer.schedule(task, 4000);
+			timer.schedule(task, SCROLL_DURATION);
 		}
 	}
 
@@ -207,7 +213,7 @@ public class BannerViewPager extends RelativeLayout implements OnPageChangeListe
 
         mViewPager.setAdapter(mAdapter);
         if(loop) mViewPager.setCurrentItem(mCurrent, false);
-        mViewPager.setOnPageChangeListener(this);
+        mViewPager.addOnPageChangeListener(this);
     }
 
 	/**
@@ -228,7 +234,7 @@ public class BannerViewPager extends RelativeLayout implements OnPageChangeListe
         ImageView imageView = new ImageView(getContext());
         imageView.setScaleType(ScaleType.CENTER_CROP);
 		BitmapUtils bitmapUtils = new BitmapUtils(getContext());
-        bitmapUtils.display(imageView, BANNER_URL + imageUrl);
+        bitmapUtils.display(imageView, BANNER_URL + imageUrl, ImageConfigHelper.getImageConfig(getContext()));
         mImageViews.add(imageView);
     }
 
@@ -258,9 +264,9 @@ public class BannerViewPager extends RelativeLayout implements OnPageChangeListe
 					@Override
 					public void onClick(View view) {
 						if(mLoop) {
-							if(position < mBanners.size() - 2) {
+							if(position - 1 < mBanners.size()) {
 								Intent intent = new Intent(mContext, WebViewActivity.class);
-								intent.putExtra("url", mBanners.get(position).getLink());
+								intent.putExtra("url", mBanners.get(position - 1).getLink());
 								mContext.startActivity(intent);
 							}
 						} else {

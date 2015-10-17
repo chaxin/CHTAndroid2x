@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.damenghai.chahuitong"
-    android:versionCode="34"
-    android:versionName="2.0" >
+    android:versionCode="37"
+    android:versionName="2.1.1" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -139,13 +139,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.MainActivity"
-            android:launchMode="singleTop"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".ui.activity.GuideActivity"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.activity.HomeActivity"
+            android:label="@string/title_activity_home"
+            android:theme="@style/PrimaryTextIndicators"
+            />
         <activity
             android:name=".ui.activity.WebViewActivity"
             android:theme="@style/AppTheme" />
@@ -167,13 +168,6 @@
         <activity
             android:name=".ui.activity.PersonalActivity"
             android:theme="@style/GrayTextPrimaryIndicators" />
-
-        <activity
-            android:name=".ui.activity.HomeActivity"
-            android:label="@string/title_activity_home"
-            android:theme="@style/PrimaryTextIndicators"
-            />
-
         <activity
             android:name=".ui.activity.MarketActivity"
             android:theme="@style/PrimaryTextIndicators" />
@@ -201,7 +195,6 @@
         <activity android:name=".ui.activity.StatusesActivity" />
         <activity android:name=".ui.activity.LeaderActivity" />
         <activity android:name=".ui.activity.StatusDetailActivity" />
-        <activity android:name=".ui.activity.CoterieActivity" />
         <activity android:name=".ui.activity.ImageBrowserActivity" />
         <activity android:name=".ui.activity.WriteStatusActivity" />
         <activity android:name=".ui.activity.JoinEventActivity" />
@@ -217,6 +210,11 @@
         <activity android:name=".ui.activity.EditActivity" />
         <activity android:name=".ui.activity.ProfileActivity" />
         <activity android:name=".ui.activity.ModifyActivity" />
+        <activity android:name=".ui.activity.MessageActivity" />
+        <activity android:name=".ui.activity.ForgotActivity" />
+        <activity android:name=".ui.activity.ResetPasswordActivity" />
+        <activity android:name=".ui.activity.VoucherActivity"
+                  android:theme="@style/PrimaryTextIndicators" />
 
         <activity android:name="com.unionpay.uppay.PayActivity" />
         <activity android:name="com.pgyersdk.activity.FeedbackActivity"/>

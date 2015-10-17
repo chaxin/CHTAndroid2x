@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
 
 import com.damenghai.chahuitong.R;
+import com.damenghai.chahuitong.utils.ShareManager;
 import com.pgyersdk.activity.FeedbackActivity;
 import com.pgyersdk.feedback.PgyFeedbackShakeManager;
 import com.umeng.socialize.controller.UMServiceFactory;
@@ -16,6 +17,7 @@ import com.umeng.socialize.controller.UMSocialService;
 import com.umeng.socialize.sso.QZoneSsoHandler;
 import com.umeng.socialize.sso.SinaSsoHandler;
 import com.umeng.socialize.sso.UMQQSsoHandler;
+import com.umeng.socialize.sso.UMSsoHandler;
 import com.umeng.socialize.weixin.controller.UMWXHandler;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -41,6 +43,19 @@ public class BaseFragmentActivity extends FragmentActivity {
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        /* 用于微博分享的回调 */
+        if(ShareManager.mController != null) {
+            UMSsoHandler ssoHandler = ShareManager.mController.getConfig().getSsoHandler(requestCode);
+            if (ssoHandler != null) {
+                ssoHandler.authorizeCallBack(requestCode, resultCode, data);
+            }
+        }
     }
 
     @Override

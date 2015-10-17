@@ -7,7 +7,7 @@
         android:id="@+id/travel_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/test_travel_image1"
+        android:src="@drawable/timeline_image_loading"
         android:scaleType="centerCrop"
         />
 

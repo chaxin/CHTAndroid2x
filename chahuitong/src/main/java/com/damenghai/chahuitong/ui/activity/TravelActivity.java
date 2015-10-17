@@ -23,9 +23,10 @@ public class TravelActivity extends BaseActivity implements View.OnClickListener
     private CirclePageIndicator mIndicator;
     private TextView mTitle;
     private TextView mLocation;
-    private TextView mCost;
+    private TextView mSchedule;
     private TextView mDuration;
     private TextView mTime;
+    private TextView mCount;
     private TextView mContent;
     private TextView mFee;
     private TextView mJoin;
@@ -49,9 +50,10 @@ public class TravelActivity extends BaseActivity implements View.OnClickListener
         mIndicator = (CirclePageIndicator) findViewById(R.id.travel_indicator);
         mTitle = (TextView) findViewById(R.id.travel_title);
         mLocation = (TextView) findViewById(R.id.travel_location);
-        mCost = (TextView) findViewById(R.id.travel_cost);
+        mSchedule = (TextView) findViewById(R.id.travel_schedule);
         mDuration = (TextView) findViewById(R.id.travel_duration);
         mTime = (TextView) findViewById(R.id.travel_time);
+        mCount = (TextView) findViewById(R.id.travel_count);
         mContent = (TextView) findViewById(R.id.travel_content);
         mFee = (TextView) findViewById(R.id.travel_fee);
         mJoin = (TextView) findViewById(R.id.btn_join);
@@ -59,14 +61,12 @@ public class TravelActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     protected void initView() {
-        mTopBar.setOnLeftClickListener(new TopBar.OnLeftClickListener() {
+        mTopBar.setOnButtonClickListener(new TopBar.OnButtonClickListener() {
             @Override
             public void onLeftClick() {
                 finishActivity();
             }
-        });
 
-        mTopBar.setOnRightClickListener(new TopBar.onRightClickListener() {
             @Override
             public void onRightClick() {
                 goHome();
@@ -79,9 +79,10 @@ public class TravelActivity extends BaseActivity implements View.OnClickListener
         mTopBar.setTitle(mTravel.getTitle());
         mTitle.setText(mTravel.getTitle());
         mLocation.setText(mTravel.getLocation());
-        mCost.setText("￥" + mTravel.getFee());
-        mDuration.setText("行程天数：" + mTravel.getDuration());
-        mTime.setText("行程时间：" + mTravel.getTime());
+        mSchedule.setText(getResources().getString(R.string.event_time) + mTravel.getDuration());
+        mDuration.setText(getResources().getString(R.string.event_target) + mTravel.getObject());
+        mTime.setText(getResources().getString(R.string.event_join_time) + mTravel.getJoin_time());
+        mCount.setText(getResources().getString(R.string.event_count) + mTravel.getNumber());
         mContent.setText(mTravel.getContent());
         mFee.setText("￥" + mTravel.getFee());
         mJoin.setOnClickListener(this);

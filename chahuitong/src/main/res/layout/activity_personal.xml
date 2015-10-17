@@ -60,7 +60,7 @@
                     android:text="@string/personal_balance"
                     android:textSize="@dimen/text_title"
                     android:textColor="@color/text_caption"
-                    android:paddingLeft="10dp"
+                    android:paddingLeft="8dp"
                     />
 
                 <TextView
@@ -96,7 +96,7 @@
                     android:textSize="@dimen/text_title"
                     android:textColor="@color/text_caption"
                     android:gravity="center"
-                    android:paddingLeft="10dp"
+                    android:paddingLeft="8dp"
                     android:background="@android:color/white"
                     />
 
@@ -113,20 +113,22 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/personal_purse"
+                android:id="@+id/personal_voucher"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/personal_purse"
+                android:text="@string/personal_voucher"
                 android:textSize="@dimen/text_title"
+                android:textColor="@color/text_caption"
                 android:drawableLeft="@drawable/icon_personal_purse"
                 android:gravity="center"
-                android:paddingLeft="25dp"
-                android:paddingRight="25dp"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
                 android:background="@drawable/draw_white2gray_sel"
-                android:visibility="gone"
+                android:singleLine="true"
+                android:onClick="onClick"
                 />
 
         </LinearLayout>

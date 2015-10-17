@@ -27,6 +27,7 @@ import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.utils.ImageConfigHelper;
 import com.damenghai.chahuitong.utils.L;
 import com.damenghai.chahuitong.utils.ShareManager;
+import com.damenghai.chahuitong.utils.T;
 import com.damenghai.chahuitong.view.TopBar;
 import com.damenghai.chahuitong.view.WrapHeightGridView;
 import com.google.gson.Gson;
@@ -97,7 +98,9 @@ public class StatusDetailActivity extends BaseActivity implements View.OnClickLi
 
         mTopBar = (TopBar) findViewById(R.id.comment_bar);
         mPlv = (PullToRefreshListView) findViewById(R.id.comment_lv);
+        mShare = (LinearLayout) findViewById(R.id.control_share);
         mWrite = (LinearLayout) findViewById(R.id.control_comment);
+        mLike = (LinearLayout) findViewById(R.id.control_like);
     }
 
     @Override
@@ -129,18 +132,9 @@ public class StatusDetailActivity extends BaseActivity implements View.OnClickLi
             }
         });
 
-        mWrite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!SessionKeeper.readSession(StatusDetailActivity.this).equals("")) {
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("status_id", mStatus.getContent_id());
-                    openActivityForResult(WriteCommentActivity.class, REQUEST_CODE_WRITE, bundle);
-                } else {
-                    openActivity(LoginActivity.class);
-                }
-            }
-        });
+        mShare.setOnClickListener(this);
+        mWrite.setOnClickListener(this);
+        mLike.setOnClickListener(this);
     }
 
     private void setInfo() {
@@ -210,6 +204,7 @@ public class StatusDetailActivity extends BaseActivity implements View.OnClickLi
             @Override
             public void onSuccess(String response) {
                 super.onSuccess(response);
+
                 if (page == 1) mData.clear();
 
                 try {
@@ -228,6 +223,7 @@ public class StatusDetailActivity extends BaseActivity implements View.OnClickLi
                     mPlv.getRefreshableView().setSelection(2);
                     mScroll2Comment = false;
                 }
+
             }
 
             @Override
@@ -242,8 +238,9 @@ public class StatusDetailActivity extends BaseActivity implements View.OnClickLi
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == Activity.RESULT_CANCELED) return;
 
-        if(resultCode == Activity.RESULT_OK) {
-            mPlv.setRefreshing();
+        if(requestCode == REQUEST_CODE_WRITE && resultCode == Activity.RESULT_OK) {
+            T.showShort(StatusDetailActivity.this, "评论成功");
+            loadData(1);
         }
     }
 
@@ -267,6 +264,18 @@ public class StatusDetailActivity extends BaseActivity implements View.OnClickLi
                 }
                 break;
             case R.id.control_like :
+                StatusAPI.statusLike(StatusDetailActivity.this, mStatus.getContent_id(), new VolleyRequest() {
+                    @Override
+                    public void onSuccess(String response) {
+                        super.onSuccess(response);
+                        try {
+                            JSONObject object = new JSONObject(response);
+                            T.showShort(StatusDetailActivity.this, object.getString("content"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
                 break;
         }
     }

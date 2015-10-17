@@ -6,13 +6,11 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import com.damenghai.chahuitong.api.StatusAPI;
 import com.damenghai.chahuitong.base.BaseFragment;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.CommonAdapter;
-import com.damenghai.chahuitong.api.HodorRequest;
 import com.damenghai.chahuitong.bean.Comment;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.utils.DensityUtils;
@@ -40,18 +38,18 @@ public class CommentFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View mView = inflater.inflate(R.layout.fragment_list, null);
 
-        PullToRefreshListView mListView = (PullToRefreshListView) mView.findViewById(R.id.commond_listview);
-        mListView.getRefreshableView().setDividerHeight(DensityUtils.dp2px(getActivity(), 4));
+        PullToRefreshListView mPlv = (PullToRefreshListView) mView.findViewById(R.id.common_listview);
+        mPlv.getRefreshableView().setDividerHeight(DensityUtils.dp2px(getActivity(), 4));
         mDatas = new ArrayList<Comment>();
         mAdapter = new ListViewAdapter(getActivity(), mDatas, R.layout.listview_item_comment);
-        mListView.setAdapter(mAdapter);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("topic", mDatas.get(i));
-            }
-        });
+        mPlv.setAdapter(mAdapter);
+//        mPlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Bundle bundle = new Bundle();
+//                bundle.putSerializable("topic", mData.get(i - 1));
+//            }
+//        });
 
         loadData();
 

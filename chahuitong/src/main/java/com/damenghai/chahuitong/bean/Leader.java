@@ -55,7 +55,7 @@ public class Leader implements Serializable {
     private String member_exppoints;
     private String inviter_id;
     private String chashi;
-    private String guanzhu;
+    private int guanzhu;
     private String rank;
 
     private int beInstered;
@@ -389,11 +389,11 @@ public class Leader implements Serializable {
         this.chashi = chashi;
     }
 
-    public String getGuanzhu() {
+    public int getGuanzhu() {
         return guanzhu;
     }
 
-    public void setGuanzhu(String guanzhu) {
+    public void setGuanzhu(int guanzhu) {
         this.guanzhu = guanzhu;
     }
 

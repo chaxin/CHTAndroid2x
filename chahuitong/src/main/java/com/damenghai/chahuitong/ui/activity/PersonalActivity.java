@@ -26,12 +26,14 @@ import android.widget.TextView;
 import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.CommonAdapter;
 import com.damenghai.chahuitong.api.PersonalAPI;
+import com.damenghai.chahuitong.base.BaseApplication;
 import com.damenghai.chahuitong.base.BaseFragmentActivity;
 import com.damenghai.chahuitong.bean.Personal;
 import com.damenghai.chahuitong.bean.User;
 import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.request.VolleyRequest;
 import com.damenghai.chahuitong.ui.fragment.CoterieFragment;
+import com.damenghai.chahuitong.utils.ImageConfigHelper;
 import com.damenghai.chahuitong.utils.ViewHolder;
 import com.damenghai.chahuitong.view.RoundImageView;
 import com.google.gson.Gson;
@@ -62,7 +64,7 @@ public class PersonalActivity extends BaseFragmentActivity implements OnItemClic
     private Button mBtnLogin;
     private GridView mGridView;
     private TextView mDeposit;
-//    private Button mBtnPurse;
+    private Button mBtnVoucher;
     private TextView mPoint;
     private ArrayList<Personal> mDatas;
     private Adapter mAdapter;
@@ -102,7 +104,7 @@ public class PersonalActivity extends BaseFragmentActivity implements OnItemClic
         mBtnLogin = (Button) findViewById(R.id.personal_login);
         mGridView = (GridView) findViewById(R.id.personal_gridview);
         mDeposit = (TextView) findViewById(R.id.personal_deposit);
-//        mBtnPurse = (Button) findViewById(R.id.personal_purse);
+        mBtnVoucher = (Button) findViewById(R.id.personal_voucher);
         mPoint = (TextView) findViewById(R.id.personal_point);
     }
 
@@ -146,6 +148,8 @@ public class PersonalActivity extends BaseFragmentActivity implements OnItemClic
                         mBtnLogin.setVisibility(View.VISIBLE);
                         mDeposit.setVisibility(View.INVISIBLE);
                         mPoint.setVisibility(View.INVISIBLE);
+                        mIvLogout.setVisibility(View.GONE);
+                        BaseApplication.getInstance().logout();
                         isLogin = false;
                     }
                 });
@@ -177,9 +181,7 @@ public class PersonalActivity extends BaseFragmentActivity implements OnItemClic
 
     private void setUserInfo() {
         BitmapUtils util = new BitmapUtils(this, this.getCacheDir().getAbsolutePath());
-        util.configDefaultLoadingImage(R.drawable.default_load_image);
-        util.configDefaultLoadFailedImage(R.drawable.default_load_image);
-        util.display(mIvAvatar, mUser.getAvator());
+        util.display(mIvAvatar, mUser.getAvator(), ImageConfigHelper.getAvatarConfig(PersonalActivity.this));
         mIvAvatar.setOnClickListener(this);
         mTvUsername.setText(mUser.getUsername());
         mDeposit.setText(mUser.getPredepoit());
@@ -189,6 +191,7 @@ public class PersonalActivity extends BaseFragmentActivity implements OnItemClic
         mIvAvatar.setVisibility(View.VISIBLE);
         mTvUsername.setVisibility(View.VISIBLE);
         mBtnLogin.setVisibility(View.GONE);
+        mIvLogout.setVisibility(View.VISIBLE);
         isLogin = true;
     }
 
@@ -264,6 +267,13 @@ public class PersonalActivity extends BaseFragmentActivity implements OnItemClic
                 break;
             case R.id.personal_avatar :
                 openActivityForResult(ProfileActivity.class, PROFILE_REQUEST_CODE);
+                break;
+            case R.id.personal_voucher :
+                if(!SessionKeeper.readSession(PersonalActivity.this).equals("")) {
+                    openActivity(VoucherActivity.class);
+                } else {
+                    openActivity(LoginActivity.class);
+                }
                 break;
         }
     }

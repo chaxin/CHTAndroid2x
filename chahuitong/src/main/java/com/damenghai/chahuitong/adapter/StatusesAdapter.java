@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,12 +15,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.damenghai.chahuitong.R;
-import com.damenghai.chahuitong.api.HodorRequest;
 import com.damenghai.chahuitong.api.StatusAPI;
 import com.damenghai.chahuitong.bean.ImageUrls;
 import com.damenghai.chahuitong.bean.Status;
 import com.damenghai.chahuitong.config.SessionKeeper;
 import com.damenghai.chahuitong.request.VolleyRequest;
+import com.damenghai.chahuitong.ui.activity.LeaderActivity;
+import com.damenghai.chahuitong.ui.activity.PersonalActivity;
 import com.damenghai.chahuitong.ui.activity.StatusDetailActivity;
 import com.damenghai.chahuitong.ui.activity.ImageBrowserActivity;
 import com.damenghai.chahuitong.ui.activity.LoginActivity;
@@ -65,19 +67,39 @@ public class StatusesAdapter extends CommonAdapter<Status> {
         if(!TextUtils.isEmpty(status.getTitle())) {
             holder.setText(R.id.status_title, status.getTitle())
                     .setVisibility(R.id.status_title, View.VISIBLE);
+        } else {
+            holder.setVisibility(R.id.status_title, View.GONE);
         }
         holder.setText(R.id.status_text, status.getText())
                 .setText(R.id.status_source, status.getCreated_at() + "  来自" + (status.getSource() == null ? "Android客户端" : status.getSource()))
                 .setText(R.id.control_tv_share, status.getShare() + "")
                 .setText(R.id.control_tv_like, status.getView() + "")
-                .setText(R.id.control_tv_comment, status.getComment() + "");
+                .setText(R.id.control_tv_comment, status.getComment() + "")
+                .setOnClickListener(R.id.status_layout, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("status", status);
+                        startActivity(StatusDetailActivity.class, bundle);
+                    }
+                });
 
         if(mShowUser) {
             holder.setVisibility(R.id.status_avatar, View.VISIBLE)
-                    .setVisibility(R.id.status_user, View.VISIBLE)
-                    .setText(R.id.status_user, status.getMemberInfo() != null ? status.getMemberInfo().getMember_name() : "")
-                    .loadAvatarImage(R.id.status_avatar, status.getMemberInfo() != null ? status.getMemberInfo().getMember_avatar() : "");
-        } else {
+                    .setVisibility(R.id.status_user, View.VISIBLE);
+            if(status.getMemberInfo() != null) {
+                holder.setText(R.id.status_user, status.getMemberInfo().getMember_name())
+                        .loadAvatarImage(R.id.status_avatar, status.getMemberInfo().getMember_avatar())
+                        .setOnClickListener(R.id.include_status_user, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Bundle bundle = new Bundle();
+                                bundle.putSerializable("leader", status.getMemberInfo());
+                                startActivity(LeaderActivity.class, bundle);
+                            }
+                        });
+            }
+        } else if(mContext instanceof PersonalActivity){
             holder.setVisibility(R.id.status_delete, View.VISIBLE)
                     .setTextOnClickListener(R.id.status_delete, new View.OnClickListener() {
                         @Override
@@ -85,30 +107,30 @@ public class StatusesAdapter extends CommonAdapter<Status> {
                             AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
                             dialog.setMessage("确定删除？")
                                     .setNegativeButton("确定", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    StatusAPI.deleteStatus(status.getContent_id(), SessionKeeper.readSession(mContext),
-                                            SessionKeeper.readUsername(mContext), new VolleyRequest() {
-                                                @Override
-                                                public void onSuccess(String response) {
-                                                    super.onSuccess(response);
-                                                    try {
-                                                        JSONObject obj = new JSONObject(response);
-                                                        int code = obj.getInt("code");
-                                                        if (code == 404) {
-                                                            T.showShort(mContext, obj.getString("content"));
-                                                        } else {
-                                                            T.showShort(mContext, "删除成功");
-                                                            mDatas.remove(holder.getPosition());
-                                                            notifyDataSetChanged();
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            StatusAPI.deleteStatus(status.getContent_id(), SessionKeeper.readSession(mContext),
+                                                    SessionKeeper.readUsername(mContext), new VolleyRequest() {
+                                                        @Override
+                                                        public void onSuccess(String response) {
+                                                            super.onSuccess(response);
+                                                            try {
+                                                                JSONObject obj = new JSONObject(response);
+                                                                int code = obj.getInt("code");
+                                                                if (code == 404) {
+                                                                    T.showShort(mContext, obj.getString("content"));
+                                                                } else {
+                                                                    T.showShort(mContext, "删除成功");
+                                                                    mData.remove(holder.getPosition());
+                                                                    notifyDataSetChanged();
+                                                                }
+                                                            } catch (JSONException e) {
+                                                                e.printStackTrace();
+                                                            }
                                                         }
-                                                    } catch (JSONException e) {
-                                                        e.printStackTrace();
-                                                    }
-                                                }
-                                            });
-                                }
-                            }).setPositiveButton("取消", null).create().show();
+                                                    });
+                                        }
+                                    }).setPositiveButton("取消", null).create().show();
                         }
                     });
         }
@@ -255,4 +277,14 @@ public class StatusesAdapter extends CommonAdapter<Status> {
             }
         });
     }
+
+    private void startActivity(Class<? extends Activity> clazz, Bundle bundle) {
+        Intent intent = new Intent(mContext, clazz);
+        if(bundle != null) {
+            intent.putExtras(bundle);
+        }
+        mContext.startActivity(intent);
+        ((Activity) mContext).overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
+    }
+
 }

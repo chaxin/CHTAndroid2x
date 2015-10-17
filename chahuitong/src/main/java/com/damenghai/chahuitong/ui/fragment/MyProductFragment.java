@@ -18,8 +18,8 @@ import com.damenghai.chahuitong.R;
 import com.damenghai.chahuitong.adapter.CommonAdapter;
 import com.damenghai.chahuitong.bean.Product;
 import com.damenghai.chahuitong.request.VolleyRequest;
-import com.damenghai.chahuitong.ui.activity.EditActivity;
 import com.damenghai.chahuitong.ui.activity.ProductActivity;
+import com.damenghai.chahuitong.ui.activity.PublishActivity;
 import com.damenghai.chahuitong.utils.DateUtils;
 import com.damenghai.chahuitong.utils.T;
 import com.damenghai.chahuitong.utils.ViewHolder;
@@ -118,13 +118,13 @@ public class MyProductFragment extends BaseFragment implements OnItemClickListen
                             builder.setNegativeButton("确定", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    TeaMarketAPI.deleteMyProduct(product.getId(), new VolleyRequest() {
+                                    TeaMarketAPI.deleteMyProduct(Integer.parseInt(product.getId()), new VolleyRequest() {
                                         @Override
                                         public void onSuccess(String response) {
                                             super.onSuccess(response);
                                             if (response.equals("1")) {
                                                 T.showShort(getActivity(), "删除成功");
-                                                mDatas.remove(product);
+                                                mData.remove(product);
                                                 notifyDataSetChanged();
                                             }
                                         }
@@ -140,7 +140,7 @@ public class MyProductFragment extends BaseFragment implements OnItemClickListen
                         public void onClick(View view) {
                             Bundle bundle = new Bundle();
                             bundle.putSerializable("product", product);
-                            openActivity(EditActivity.class, bundle);
+                            openActivity(PublishActivity.class, bundle);
                         }
                     });
         }

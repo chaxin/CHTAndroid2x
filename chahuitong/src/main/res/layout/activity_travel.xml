@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height"
         android:background="@color/primary"
-        app:titleText="布郞山"
         app:titleTextColor="@android:color/white"
         app:titleTextSize="@dimen/text_title"
         app:leftSrc="@drawable/back_text_normal"
@@ -57,7 +56,6 @@
                 android:id="@+id/travel_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="布朗山之旅"
                 android:textStyle="bold"
                 android:textSize="@dimen/text_title"
                 android:padding="16dp"
@@ -67,7 +65,6 @@
                 android:id="@+id/travel_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="西双版纳"
                 android:textSize="@dimen/text_title"
                 android:textColor="@color/text_body"
                 android:paddingLeft="24dp"
@@ -75,11 +72,11 @@
                 />
 
             <TextView
-                android:id="@+id/travel_cost"
+                android:id="@+id/travel_schedule"
                 android:layout_width="match_parent"
                 android:layout_height="43dp"
                 android:background="@color/background_light"
-                android:text="￥6000"
+                android:text="活动时间： 2015.05.3~2015.06.6"
                 android:textColor="@color/primary"
                 android:textSize="@dimen/text_title"
                 android:gravity="center_vertical"
@@ -118,7 +115,6 @@
                     android:id="@+id/travel_duration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="行程天数：5天"
                     android:drawableLeft="@drawable/icon_item"
                     android:drawablePadding="8dp"
                     android:paddingTop="10dp"
@@ -136,7 +132,6 @@
                     android:id="@+id/travel_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="行程时间：2015-08-01~2015-08-20"
                     android:drawableLeft="@drawable/icon_item"
                     android:drawablePadding="8dp"
                     android:paddingTop="10dp"
@@ -151,15 +146,13 @@
 
                 <TextView
                     style="@style/TextViewBody"
-                    android:id="@+id/travel_desc"
+                    android:id="@+id/travel_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="淘茶宣言：布郎山的优质自然条件与生态环境，吸取其精华"
                     android:drawableLeft="@drawable/icon_item"
                     android:drawablePadding="8dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:maxLines="2"
                     />
 
                 <View
@@ -167,7 +160,6 @@
                     android:layout_height="1dp"
                     android:background="@color/stroke"
                     />
-
                 <TextView
                     style="@style/TextViewBody"
                     android:id="@+id/travel_content"
@@ -203,7 +195,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/correct_primary2dark_sel"
+            android:background="@drawable/draw_primary2dark_sel"
             android:text="立即报名"
             android:textColor="@android:color/white"
             android:gravity="center"

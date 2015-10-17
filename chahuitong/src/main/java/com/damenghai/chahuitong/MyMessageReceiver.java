@@ -7,8 +7,7 @@ import android.text.TextUtils;
 
 import com.damenghai.chahuitong.base.BaseApplication;
 import com.damenghai.chahuitong.ui.activity.ChatActivity;
-import com.damenghai.chahuitong.ui.activity.HomeActivity;
-import com.damenghai.chahuitong.ui.activity.MainActivity;
+import com.damenghai.chahuitong.ui.activity.MessageActivity;
 import com.damenghai.chahuitong.utils.CollectionUtils;
 import com.damenghai.chahuitong.utils.NetworkUtils;
 
@@ -157,7 +156,7 @@ public class MyMessageReceiver extends BroadcastReceiver {
 								}
 							});
 							//显示通知
-//							showOtherNotify(context, username, toId,  username+"同意添加您为好友", MainActivity.class);
+//							showOtherNotify(context, username, toId,  username+"同意添加您为好友", HomeActivity.class);
 							//创建一个临时验证会话--用于在会话界面形成初始会话
 							BmobMsg.createAndSaveRecentAfterAgree(context, json);
 							
@@ -212,7 +211,7 @@ public class MyMessageReceiver extends BroadcastReceiver {
 		CharSequence tickerText = msg.getBelongUsername() + ":" + trueMsg;
 		String contentTitle = msg.getBelongUsername()+ " (" + mNewNum + "条新消息)";
 		
-		Intent intent = new Intent(context, ChatActivity.class);
+		Intent intent = new Intent(context, MessageActivity.class);
 		intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		
 		boolean isAllowVoice = BaseApplication.getInstance().getSpUtil().isAllowVoice();

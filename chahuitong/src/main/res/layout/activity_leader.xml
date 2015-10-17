@@ -10,7 +10,6 @@
     <com.damenghai.chahuitong.view.TopBar
         android:id="@+id/leader_bar"
         style="@style/CommonTopBar"
-        app:rightSrc="@drawable/icon_send_message"
         app:titleText="个人主页"
         />
 

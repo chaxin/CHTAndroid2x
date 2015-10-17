@@ -6,7 +6,7 @@
     >
 
     <com.handmark.pulltorefresh.library.PullToRefreshListView
-        android:id="@+id/commond_listview"
+        android:id="@+id/common_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@color/background"

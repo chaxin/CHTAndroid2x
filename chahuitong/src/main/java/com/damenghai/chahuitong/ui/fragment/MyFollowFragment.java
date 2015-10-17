@@ -40,7 +40,7 @@ public class MyFollowFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_list, null);
 
-        mPlv = (PullToRefreshListView) mView.findViewById(R.id.commond_listview);
+        mPlv = (PullToRefreshListView) mView.findViewById(R.id.common_listview);
         mData = new ArrayList<Leader>();
         mAdapter = new ListViewAdapter(getActivity(), mData, R.layout.listview_item_leader);
         mPlv.setAdapter(mAdapter);
