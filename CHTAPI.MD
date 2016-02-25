@@ -66,7 +66,7 @@
       }
 
 ### 1.登录
-URL：act=login
+URL：act=login  
 参数：
 
 >username 用户名  
@@ -84,7 +84,7 @@ URL：act=login
       }
 
 ### 2.注册
-URL: act=login&op=register_api
+URL: act=login&op=register_api  
 参数：
 >mobile   
 >password   
@@ -99,7 +99,7 @@ URL: act=login&op=register_api
       }
 
 ### 3.第三方登录
-URL: act=login&op=register_api
+URL: act=login&op=register_api  
 参数：
 >key  
 >client   
@@ -113,7 +113,7 @@ URL: act=login&op=register_api
       }
 
 ### 4.发送验证码
-URL: act=login&op=send_sms
+URL: act=login&op=send_sms  
 参数：
 >mobile  
 
@@ -124,14 +124,14 @@ URL: act=login&op=send_sms
       }
 
 ### 5.首页 
-URL: act=home&op=home_page_api
+URL: act=home&op=home_page_api  
 参数： 
 
 >key  
 >page   
 
 ### 6.商品详情
-URL(Get): act=goods&op=goods_detail
+URL(Get): act=goods&op=goods_detail 
 参数：
 
 >goods_id 商品编号    
@@ -184,7 +184,7 @@ URL(Get): act=goods&op=goods_detail
     }
 
 ### 7.商品介绍信息
-URL(Get): act=goods&op=goods_body
+URL(Get): act=goods&op=goods_body 
 参数：
 
 >goods_id 商品编号    
@@ -193,7 +193,7 @@ URL(Get): act=goods&op=goods_body
 
 
 ### 8.免费茶样往期
-URL(Get): act=goods_sample&op=overdue_goods
+URL(Get): act=goods_sample&op=overdue_goods 
 返回：
 
       {
@@ -201,7 +201,7 @@ URL(Get): act=goods_sample&op=overdue_goods
       }
 
 ### 9.免费茶样当前
-URL(Get)： act=goods_sample
+URL(Get)： act=goods_sample 
 返回：
 
     {
@@ -209,7 +209,7 @@ URL(Get)： act=goods_sample
     }
 
 ### 10.限时抢购今日
-URL： act=flash_sale&op=current_api
+URL： act=flash_sale&op=current_api 
 参数：
 
 >page 当前列表页数    
@@ -221,7 +221,7 @@ URL： act=flash_sale&op=current_api
     }
 
 ### 11.限时抢购明日
-URL： act=flash_sale&op=coming_api
+URL： act=flash_sale&op=coming_api  
 参数：
 
 >page 当前列表页数 
@@ -233,7 +233,7 @@ URL： act=flash_sale&op=coming_api
     }
 
 ### 12.茶艺师推荐
-URL: act=tasters_recommends
+URL: act=tasters_recommends 
 参数：
 
 >page 当前列表页数    
@@ -249,7 +249,7 @@ URL: act=tasters_recommends
     }
 
 ### 13.忘记密码
-URL: act=login&op=change_pwd
+URL: act=login&op=change_pwd  
 参数：
 
 >mobile 手机号码    
@@ -264,7 +264,7 @@ URL: act=login&op=change_pwd
     }
 
 ### 14.更改密码
-URL: act=member_index&op=update_member_pwd
+URL: act=member_index&op=update_member_pwd  
 参数：
 
 >key  登录状态下才能操作    
@@ -279,7 +279,7 @@ URL: act=member_index&op=update_member_pwd
     }
 
 ### 15.获取用户信息(v1)
-URL: act=member_index
+URL: act=member_index 
 参数：
 
 >key  登录令牌    
@@ -298,7 +298,7 @@ URL: act=member_index
     }
 
 ### 16.获取用户信息(v3)
-URL: act=member_index
+URL: act=member_index 
 参数：
 
 >key  登录令牌    
