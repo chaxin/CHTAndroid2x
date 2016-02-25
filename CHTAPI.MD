@@ -9,24 +9,32 @@
 
 4.不同版本返回的数据结构不一样。
 * v1.
+
   请求成功
+  
   {
     code: 200 响应码，固定为200
     datas:  数据实体
   }
+  
   请求失败
+  
   {
     code: 200
     datas: {
       error: "失败描述"
     }
   }
+  
 * v2.
+
   {
     code: 200 响应码，200时表示请求数据成功，404表示请求失败
     cotent: 数据实体
   }
+  
 * v3.
+  
   {
     code: 0 响应码，0表示获取数据失败，1表示获取成功
     msg:  请求结果的文本描述
@@ -37,10 +45,16 @@
 地址：act=login
 参数：
 
-> username
-> password
+>username 用户名
+>password 密码
+>client 客户端类型(android wap ios wechat)
 
 返回
+
   {
-    
+    code: 200
+    datas: {
+      username 用户名
+      key 登录令牌
+    }
   }
