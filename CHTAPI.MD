@@ -32,11 +32,14 @@
     msg:  请求结果的文本描述
     data: 数据实体
   }
+
 ### 1.登录
-地址：
+地址：act=login
 参数：
+
 > username
 > password
+
 返回
   {
     
