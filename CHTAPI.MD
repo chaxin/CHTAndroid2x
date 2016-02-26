@@ -554,6 +554,131 @@ URL: act=member_favorites&op=favorites_del
       datas: "1"
     }
 
+### 28.地址列表
+URL: act=member_address&op=address_list
+参数：
+
+>key 登录令牌    
+
+返回： 
+
+    {
+      code: 200,
+      datas: {
+        address_list: [
+          {
+            city_id 城市编号
+            area_id 地区编号
+            area_info 地址
+            address 详细地址
+            tel_phone 固定电话机
+            mob_phone 手机
+          },
+        ]
+      }
+    }
+
+### 29.地址详细信息
+URL: act=member_address&op=address_info   
+
+参数：
+
+>key 登录令牌    
+>address_id 地址编号    
+
+返回： 
+
+    {
+      code: 200,
+      datas: {
+        area_info 地址
+        address 详细地址
+        tel_phone 固定电话机
+        mob_phone 手机
+      }
+    }
+
+### 30.地址删除
+URL: act=member_address&op=address_del   
+
+参数：
+
+>key 登录令牌    
+>address_id 地址编号    
+
+返回： 
+
+    {
+      code: 200,
+      datas: "1"
+    }
+
+### 31.地址添加
+URL: act=member_address&op=address_add   
+
+参数：
+
+>key 登录令牌    
+>true_name 姓名
+>city_id 城市编号(地址联动的第二级)
+>area_id 地区编号(地址联动的第三级)
+>area_info 地区信息，例：天津 天津市 红桥区
+>address 地址信息，例：水游城8层
+>tel_phone 电话号码
+>mob_phone 手机
+
+返回： 
+
+    {
+      code: 200,
+      datas: {
+        address_id: "2" 新添加的地址ID
+      }
+    }
+
+### 32.地址编辑
+URL: act=member_address&op=address_edit   
+
+参数：
+
+>key 登录令牌    
+>address_id 地址编号
+>true_name 姓名
+>area_id 地区编号
+>city_id 城市编号
+>area_info 地区信息，例：天津 天津市 红桥区
+>address 地址信息，例：水游城8层
+>tel_phone 电话号码
+>mob_phone 手机
+
+返回： 
+
+    {
+      code: 200,
+      datas: "1"
+    }
+
+### 33.地区列表
+URL: act=member_address&op=area_list   
+
+参数：
+
+>key 当前登录令牌
+>area_id 地区编号(为空时默认返回一级分类)
+
+返回： 
+
+    {
+      code: 200,
+      datas: {
+        area_list[
+          {
+            area_id 地区编号
+            area_name 地区名称
+          },
+        ]
+      }
+    }
 
 
 
