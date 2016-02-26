@@ -201,7 +201,12 @@ URL(Get): act=goods_sample&op=overdue_goods
       }
 
 ### 9.免费茶样当前
-URL(Get)： act=goods_sample 
+URL： act=goods_sample 
+
+参数：
+
+>key 登录令牌，用于判断当前用户是否领取过
+
 返回：
 
     {
