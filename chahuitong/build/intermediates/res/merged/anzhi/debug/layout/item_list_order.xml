@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/order_item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/div_topbottom_bg"
+    android:orientation="vertical"
+    android:layout_marginBottom="16dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        >
+
+        <TextView
+            android:id="@+id/order_tv_store"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/text_title"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:id="@+id/order_tv_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_body"
+            android:textColor="@color/primary"
+            />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/stroke"
+        />
+
+    <com.damenghai.chahuitong2.view.WrapHeightListView
+        android:id="@+id/order_lv_goods"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/stroke"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="16dp"
+        android:gravity="right|center_vertical"
+        >
+
+        <TextView
+            android:id="@+id/order_tv_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_caption"
+            android:textColor="@color/text_caption"
+            android:layout_marginRight="8dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_total_pay"
+            android:textSize="@dimen/text_body"
+            android:textColor="@color/text_body"
+            />
+
+        <TextView
+            android:id="@+id/order_tv_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="￥40.5"
+            android:textSize="@dimen/text_title"
+            android:textColor="@color/primary"
+            />
+
+        <TextView
+            style="@style/TextViewCaption"
+            android:layout_marginLeft="8dp"
+            android:text="(免运费)"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/order_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="right"
+        android:paddingBottom="16dp"
+        android:paddingRight="16dp"
+        >
+
+        <Button
+            android:id="@+id/order_btn_left"
+            style="@style/Theme_BtnStrokeCornersGrayText"
+            android:text="@string/btn_cancel_order"
+            />
+
+        <Button
+            android:id="@+id/order_btn_right"
+            style="@style/Theme_BtnPrimaryCorners"
+            android:text="@string/btn_pay"
+            android:layout_marginLeft="16dp"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

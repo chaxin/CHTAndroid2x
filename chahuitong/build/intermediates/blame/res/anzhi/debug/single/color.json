@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/color/vpi__light_theme.xml",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/view_pager_indicator_library/unspecified/res/color/vpi__light_theme.xml"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/color/vpi__dark_theme.xml",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/view_pager_indicator_library/unspecified/res/color/vpi__dark_theme.xml"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/color/vpi__dark_theme.xml",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/view_pager_indicator_library/unspecified/res/color/vpi__dark_theme.xml"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/color/vpi__light_theme.xml",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/view_pager_indicator_library/unspecified/res/color/vpi__light_theme.xml"
+    }
+]

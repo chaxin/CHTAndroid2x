@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <com.damenghai.chahuitong2.view.TopBar
+        android:id="@+id/category_bar"
+        app:titleText="@string/shop"
+        style="@style/CommonTopBar"
+        />
+
+    <com.damenghai.chahuitong2.view.BannerViewPager
+        android:id="@+id/category_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+    <com.viewpagerindicator.UnderlinePageIndicator
+        android:id="@+id/category_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/background"
+        app:selectedColor="@color/primary"
+        />
+
+    <com.damenghai.chahuitong2.view.WrapHeightGridView
+        android:id="@+id/category_gv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="3"
+        android:paddingLeft="17dp"
+        android:paddingRight="17dp"
+        android:background="@android:color/white"
+        />
+
+</LinearLayout>

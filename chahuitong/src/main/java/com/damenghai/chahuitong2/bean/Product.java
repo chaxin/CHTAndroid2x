@@ -1,0 +1,183 @@
+package com.damenghai.chahuitong2.bean;
+
+import com.damenghai.chahuitong2.config.Constants;
+
+import java.io.Serializable;
+
+public class Product implements Serializable {
+    private String id;
+    private String brand;
+    private String name;
+    private String year;
+    private String address;
+    private String price;
+    private String weight;
+    private String arrow_order;
+    private String phone;
+    private String pic;
+    private String saleway;
+    private int recommend;
+    private String addtime;
+    private String depic;
+    private String content;
+    private String contact;
+    private String member_mobile;
+    private String member_name;
+
+    public String getArrow_order() {
+        return arrow_order;
+    }
+
+    public void setArrow_order(String arrow_order) {
+        this.arrow_order = arrow_order;
+    }
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public boolean isRecommend() {
+        return recommend != 0;
+    }
+
+    public void setRecommend(boolean recommend) {
+        this.recommend = recommend ? 1 : 0;
+    }
+
+    public String getSaleway() {
+        return saleway;
+    }
+
+    public void setSaleway(String saleway) {
+        this.saleway = saleway;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getImgUrls() {
+        return depic;
+    }
+
+    public void setImgUrls(String imgName) {
+        this.depic = imgName;
+    }
+
+    public String getImgUrl() {
+        return Constants.IMAGE_URL + pic;
+    }
+
+    public void setImgUrl(String imgName) {
+        this.pic = imgName;
+    }
+
+    public String getTitle() {
+        return brand + name;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getQuantity() {
+        return weight;
+    }
+
+    public void setQuantity(String quantity) {
+        this.weight = quantity;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getDate() {
+        return addtime;
+    }
+
+    public void setDate(String date) {
+        this.addtime = date;
+    }
+
+    public String getDesc() {
+        return content;
+    }
+
+    public void setDesc(String desc) {
+        this.content = desc;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public String getMember_mobile() {
+        return member_mobile;
+    }
+
+    public void setMember_mobile(String member_mobile) {
+        this.member_mobile = member_mobile;
+    }
+
+    public String getMember_name() {
+        return member_name;
+    }
+
+    public void setMember_name(String member_name) {
+        this.member_name = member_name;
+    }
+
+}

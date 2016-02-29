@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/draw_white2gray_sel"
+                android:padding="16dp">
+
+    <CheckBox
+        android:id="@+id/goods_cb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@null"
+        android:drawableLeft="@drawable/rbtn_primary2white_sel"
+        android:layout_marginRight="16dp"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        />
+
+    <ImageView
+        android:id="@+id/goods_iv_thumb"
+        android:layout_width="77dp"
+        android:layout_height="77dp"
+        android:background="@color/background"
+        android:padding="1dp"
+        android:src="@drawable/timeline_image_loading"
+        android:layout_toRightOf="@id/goods_cb"
+        />
+
+    <TextView
+        android:id="@+id/goods_tv_title"
+        style="@style/TextViewTitle"
+        android:layout_width="160dp"
+        android:layout_alignTop="@id/goods_iv_thumb"
+        android:layout_toRightOf="@id/goods_iv_thumb"
+        android:ellipsize="end"
+        android:paddingLeft="8dp"
+        android:paddingTop="2dp"
+        android:singleLine="true"
+        />
+
+    <TextView
+        android:id="@+id/goods_tv_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:paddingLeft="8dp"
+        android:paddingTop="2dp"
+        android:textColor="@color/primary"
+        android:textSize="@dimen/text_title"
+        />
+
+    <com.damenghai.chahuitong2.view.QuantityView
+        android:id="@+id/goods_count_view"
+        android:layout_width="106dp"
+        android:layout_height="34dp"
+        android:layout_alignBottom="@id/goods_iv_thumb"
+        android:layout_alignLeft="@id/goods_tv_title"
+        android:layout_marginLeft="8dp"
+        />
+
+    <TextView
+        android:id="@+id/goods_tv_count"
+        style="@style/TextViewCaption"
+        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@id/goods_iv_thumb"
+        />
+
+</RelativeLayout>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/background"
+              android:orientation="vertical"
+    >
+
+    <com.damenghai.chahuitong2.view.TopBar
+        android:id="@+id/pay_bar"
+        style="@style/CommonTopBar"
+        app:titleText="@string/title_pay"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:text="@string/label_pay_total"
+            android:textColor="@color/text_body"
+            android:textSize="@dimen/text_title"
+            />
+
+        <TextView
+            android:id="@+id/pay_tv_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_title"
+            android:textColor="@color/primary"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/div_topbottom_bg"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:id="@+id/pay_layout_alipay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:background="@drawable/draw_white2gray_sel"
+            android:onClick="toChange"
+            android:clickable="true"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/icon_pay_alipay"
+                android:contentDescription="@string/desc_alipay"
+                />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TextViewTitle"
+                    android:text="@string/text_alipay"
+                    />
+
+                <TextView
+                    style="@style/TextViewBody"
+                    android:singleLine="true"
+                    android:text="@string/text_alipay_body"
+                    />
+
+            </LinearLayout>
+
+            <RadioButton
+                android:id="@+id/pay_rbtn_alipay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:button="@null"
+                android:drawableRight="@drawable/rbtn_primary2white_sel"
+                android:checked="true"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="8dp"
+            android:background="@color/background"
+            />
+
+        <LinearLayout
+            android:id="@+id/pay_layout_wxpay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:background="@drawable/draw_white2gray_sel"
+            android:onClick="toChange"
+            android:clickable="true"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/icon_pay_weixin"
+                android:contentDescription="@string/desc_wxpay"
+                />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TextViewTitle"
+                    android:text="@string/text_wxpay"
+                    />
+
+                <TextView
+                    style="@style/TextViewBody"
+                    android:singleLine="true"
+                    android:text="@string/text_wxpay_body"
+                    />
+
+            </LinearLayout>
+
+            <RadioButton
+                android:id="@+id/pay_rbtn_wxpay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:button="@null"
+                android:drawableRight="@drawable/rbtn_primary2white_sel"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="8dp"
+            android:background="@color/background"
+            />
+
+        <LinearLayout
+            android:id="@+id/pay_layout_upmp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:background="@drawable/draw_white2gray_sel"
+            android:onClick="toChange"
+            android:clickable="true"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/icon_pay_upmp"
+                android:contentDescription="@string/desc_upmp"
+                />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TextViewTitle"
+                    android:text="@string/text_upmp"
+                    />
+
+                <TextView
+                    style="@style/TextViewBody"
+                    android:singleLine="true"
+                    android:text="@string/text_upmp_body"
+                    />
+
+            </LinearLayout>
+
+            <RadioButton
+                android:id="@+id/pay_rbtn_upmp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:button="@null"
+                android:drawableRight="@drawable/rbtn_primary2white_sel"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        style="@style/CommonButton"
+        android:text="@string/btn_ok"
+        android:onClick="toPay"
+        />
+</LinearLayout>

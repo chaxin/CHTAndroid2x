@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <com.damenghai.chahuitong2.view.TopBar
+        android:id="@+id/topic_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_bar_height"
+        android:background="@color/primary"
+        app:titleText="话题详情"
+        app:titleTextColor="@android:color/white"
+        app:titleTextSize="@dimen/text_title"
+        app:leftSrc="@drawable/back_text_normal"
+        app:rightSrc="@drawable/home_text_normal"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="普洱茶的神话，真的全都是靠炒出来的吗"
+                style="@style/TextViewTitle"
+                />
+
+            <TextView
+                style="@style/TextViewBody"
+                android:text="普洱茶像是一辆过山车，一会高峰，一会低谷，只是这个时候，它又滑
+向了低谷。很多人就产生一个怀疑，普洱茶是炒作出来的吗?我不认
+为。需求决定供给，不管是消费也好，收藏也好。很多人将普洱茶单纯
+地定义为一种饮品，认为只有喝进肚子里，才是它该干的。我只能说，
+持这种认识的人还处于人类的一种原始状态，只满足口腹之实，人活着
+的目的就是不饿死不渴死。我喜欢读一些文学的书，照这样的认识，我
+这样的人活着就是世界的祸害。因为文学填不饱肚子。是啊，猪牛羊，
+狮子老虎大象都不读书不听音乐，不也吃完青草肥肉后很快乐吗?相反
+倒是人类读了那么多书籍听了那么多的音乐，整天眉头紧锁。
+文科活着这个世上，如今很悲哀。人文价值的“无用之用”，有的人一辈
+子也不会明白，说了也是对牛弹琴。"
+                />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

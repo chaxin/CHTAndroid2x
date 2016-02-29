@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.damenghai.chahuitong2.view.TopBar
+        android:id="@+id/initiate_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_bar_height"
+        android:background="@color/primary"
+        app:titleText="报名"
+        app:titleTextColor="@android:color/white"
+        app:titleTextSize="@dimen/text_title"
+        app:leftSrc="@drawable/back_text_normal"
+        app:rightSrc="@drawable/home_text_normal"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:layout_below="@id/initiate_bar"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="姓名"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/text_body" />
+
+            <EditText
+                style="@style/CommonEditText"
+                android:id="@+id/info_name"
+                android:hint="请输入姓名"
+                />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/stroke"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@string/phone"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/text_body" />
+
+            <EditText
+                android:id="@+id/info_phone"
+                style="@style/CommonEditText"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:hint="请输入电话"
+                />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/stroke"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="报名人数"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/text_body" />
+
+            <EditText
+                android:id="@+id/info_count"
+                style="@style/CommonEditText"
+                android:inputType="number"
+                android:hint="请输入人数"
+                />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/stroke"
+            />
+
+        <EditText
+            android:id="@+id/info_comment"
+            style="@style/TextViewBody"
+            android:layout_width="match_parent"
+            android:layout_height="115dp"
+            android:inputType="textMultiLine"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/background"
+            android:layout_marginTop="17dp"
+            android:hint="可在此处添加其他附加信息..."
+            android:gravity="top"
+            />
+
+    </LinearLayout>
+
+    <Button
+        style="@style/CommonButton"
+        android:id="@+id/travel_tv_enroll"
+        android:text="提交"
+        />
+
+</RelativeLayout>

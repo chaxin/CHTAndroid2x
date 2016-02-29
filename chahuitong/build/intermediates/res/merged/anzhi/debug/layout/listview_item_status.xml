@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/draw_white2gray_sel"
+    android:id="@+id/status_layout"
+    >
+
+    <include
+        android:id="@+id/include_status_user"
+        layout="@layout/include_status_user" />
+
+    <TextView
+        android:id="@+id/status_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_title"
+        android:textStyle="bold"
+        android:paddingLeft="17dp"
+        android:paddingRight="17dp"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/status_text"
+        style="@style/TextViewBody"
+        android:padding="17dp"
+        android:text="洗洗茶碗，开始下午茶啦~！"
+        />
+
+    <include
+        android:id="@+id/status_images"
+        layout="@layout/include_gridview_images"
+        android:visibility="gone"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/background" />
+
+    <include
+        android:id="@+id/status_controller"
+        layout="@layout/include_forum_controlbar" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/background" />
+
+</LinearLayout>

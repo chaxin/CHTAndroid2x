@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:hodor="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    >
+
+    <com.damenghai.chahuitong2.view.TopBar
+        android:id="@+id/publish_topbar"
+        hodor:titleText="@string/publish_product"
+        style="@style/CommonTopBar"
+        />
+
+    <RadioGroup
+        android:id="@+id/tab_group"
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:layout_gravity="top"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/tab_sale"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:text="@string/sale"
+            android:textColor="@drawable/color_gray2primary_sel"
+            android:gravity="center"
+            android:background="@drawable/layerlist_indicator_sel"
+            android:checked="true"
+            />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/stroke"
+            />
+
+        <RadioButton
+            android:id="@+id/tab_buy"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:text="@string/buy"
+            android:textColor="@drawable/color_gray2primary_sel"
+            android:gravity="center"
+            android:background="@drawable/layerlist_indicator_sel"
+            />
+    </RadioGroup>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/stroke"
+        />
+
+    <include layout="@layout/publish_framelayout" />
+
+</LinearLayout>

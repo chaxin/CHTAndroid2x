@@ -1,0 +1,56 @@
+package com.damenghai.chahuitong2.bean;
+
+import android.text.TextUtils;
+
+/**
+ * Copyright (c) 2015. LiaoPeiKun Inc. All rights reserved.
+ */
+public class Ad {
+    private String id;
+    private String goods_link;
+    private String slogan;
+    private String class_id;
+    private String state;
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getClass_id() {
+        return class_id;
+    }
+
+    public void setClass_id(String class_id) {
+        this.class_id = class_id;
+    }
+
+    public String getSlogan() {
+        return slogan;
+    }
+
+    public void setSlogan(String slogan) {
+        this.slogan = slogan;
+    }
+
+    public String getGoods_link() {
+        return TextUtils.isEmpty(goods_link) ? "" : goods_link;
+    }
+
+    public void setGoods_link(String goods_link) {
+        this.goods_link = goods_link;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+}
+

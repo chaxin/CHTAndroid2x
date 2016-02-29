@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/article_rl">
+
+    <com.damenghai.chahuitong2.view.TopBar
+        android:id="@+id/news_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_bar_height"
+        android:background="@color/primary"
+        app:titleText="资讯"
+        app:titleTextColor="@android:color/white"
+        app:titleTextSize="@dimen/text_title"
+        app:leftSrc="@drawable/back_text_normal"
+        app:rightSrc="@drawable/home_text_normal"
+        />
+
+    <LinearLayout
+        android:id="@+id/news_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@android:color/white"
+        android:layout_below="@id/news_bar"
+        >
+
+        <Button
+            android:id="@+id/btn_hill"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/hill_logo"
+            android:background="@drawable/draw_white2gray_sel"
+            android:text="@string/hill"
+            android:textColor="@color/primary"
+            android:textSize="12sp"
+            android:layout_gravity="center"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
+            />
+
+        <com.viewpagerindicator.TabPageIndicator
+            android:id="@+id/news_indicator"
+            android:layout_width="0dp"
+            android:layout_height="34dp"
+            android:layout_weight="2"
+            />
+
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/news_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/news_ll"
+        />
+
+</RelativeLayout>

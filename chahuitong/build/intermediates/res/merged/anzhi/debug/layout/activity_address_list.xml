@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <com.damenghai.chahuitong2.view.TopBar
+        android:id="@+id/address_list_bar"
+        style="@style/CommonTopBar"
+        app:titleText="@string/text_address_list"
+        />
+
+    <LinearLayout
+        android:id="@+id/address_list_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@id/address_list_bar"
+        >
+
+        <ListView
+            android:id="@+id/address_list_lv"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:divider="@color/stroke"
+            android:dividerHeight="1dp"
+            />
+
+        <Button
+            android:id="@+id/address_list_add"
+            style="@style/CommonButton"
+            android:layout_marginTop="2dp"
+            android:onClick="toAddAddress"
+            android:text="@string/btn_add_address"
+            />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/address_list_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/address_list_bar"
+        android:visibility="gone"
+        />
+
+</RelativeLayout>

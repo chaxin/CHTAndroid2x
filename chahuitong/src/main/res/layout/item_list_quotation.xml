@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    >
+
+    <TextView
+        android:id="@+id/quotation_tv_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:textColor="@color/primary"
+        android:textSize="@dimen/text_title"
+        android:paddingLeft="16dp"
+        />
+
+    <TextView
+        android:id="@+id/quotation_tv_year"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="@dimen/text_title"
+        android:textColor="@color/text_body"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/quotation_tv_unit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="@dimen/text_title"
+        android:textColor="@color/text_body"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/quotation_tv_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="@dimen/text_title"
+        android:textColor="@color/text_body"
+        android:gravity="center"
+        />
+
+</LinearLayout>

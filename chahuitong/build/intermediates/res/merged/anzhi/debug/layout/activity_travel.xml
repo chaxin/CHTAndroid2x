@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <com.damenghai.chahuitong2.view.TopBar
+        android:id="@+id/event_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_bar_height"
+        android:background="@color/primary"
+        app:titleTextColor="@android:color/white"
+        app:titleTextSize="@dimen/text_title"
+        app:leftSrc="@drawable/back_text_normal"
+        app:rightSrc="@drawable/home_text_normal"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@android:color/white"
+            >
+
+            <com.damenghai.chahuitong2.view.BannerViewPager
+                android:id="@+id/travel_banner"
+                android:layout_width="match_parent"
+                android:layout_height="195dp"
+                android:scaleType="centerCrop"
+                />
+
+            <com.viewpagerindicator.CirclePageIndicator
+                android:id="@+id/travel_indicator"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:paddingTop="10dp"
+                app:pageColor="@color/background"
+                app:fillColor="@color/primary"
+                app:snap="true"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="@color/background"
+                />
+
+            <TextView
+                android:id="@+id/travel_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_title"
+                android:padding="16dp"
+                />
+
+            <TextView
+                android:id="@+id/travel_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_title"
+                android:textColor="@color/text_body"
+                android:paddingLeft="24dp"
+                android:paddingBottom="12dp"
+                />
+
+            <TextView
+                android:id="@+id/travel_schedule"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:background="@color/background_light"
+                android:text="活动时间： 2015.05.3~2015.06.6"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/text_title"
+                android:gravity="center_vertical"
+                android:paddingLeft="24dp"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/background"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="活动详情"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:padding="4dp"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/background"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="24dp"
+                >
+
+                <TextView
+                    style="@style/TextViewBody"
+                    android:id="@+id/travel_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/icon_item"
+                    android:drawablePadding="8dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/stroke"
+                    />
+
+                <TextView
+                    style="@style/TextViewBody"
+                    android:id="@+id/travel_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/icon_item"
+                    android:drawablePadding="8dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/stroke"
+                    />
+
+                <TextView
+                    style="@style/TextViewBody"
+                    android:id="@+id/travel_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/icon_item"
+                    android:drawablePadding="8dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/stroke"
+                    />
+                <TextView
+                    style="@style/TextViewBody"
+                    android:id="@+id/travel_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="33dp"
+                    android:layout_marginBottom="33dp"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/stroke"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/travel_tv_state"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_title"
+            />
+
+        <TextView
+            android:id="@+id/travel_tv_enroll"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/draw_primary2dark_sel"
+            android:text="立即报名"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

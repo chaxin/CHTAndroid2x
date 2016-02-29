@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--品牌分类-->
+    <string-array name="tab_categories">
+        <item>普洱茶</item>
+        <item>乌龙茶</item>
+        <item>红茶</item>
+        <item>绿茶</item>
+        <item>黑茶</item>
+        <item>花茶</item>
+        <item>白茶</item>
+        <item>茶具</item>
+        <item>其他"</item>
+    </string-array>
+    <!--品牌分类id-->
+    <string-array name="tab_category_ids">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>256</item>
+        <item>308</item>
+        <item>470</item>
+        <item>530</item>
+        <item>662</item>
+        <item>593</item>
+    </string-array>
+
+    <!--茶市标签-->
+    <string-array name="tab_tea_market">
+        <item>出售</item>
+        <item>求购</item>
+        <item>行情</item>
+        <item>我的发布</item>
+    </string-array>
+
+    <!--我的订单-->
+    <string-array name="tab_order_list">
+        <item>全部</item>
+        <item>待付款</item>
+        <item>待发货</item>
+        <item>待收货</item>
+        <item>待评价</item>
+    </string-array>
+
+    <!--我的订单-->
+    <string-array name="tab_order_list_id">
+        <item>""</item>
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>40</item>
+    </string-array>
+
+    <string-array name="alert_item_address">
+        <item>编辑</item>
+        <item>删除</item>
+        <item>设为默认</item>
+    </string-array>
+</resources>

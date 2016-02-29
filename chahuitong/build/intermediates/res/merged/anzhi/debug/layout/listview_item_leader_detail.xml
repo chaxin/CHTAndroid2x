@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/draw_white2gray_sel"
+    >
+
+    <TextView
+        android:id="@+id/status_detail_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_caption"
+        android:textColor="@color/text_caption"
+        android:text="56分钟  来自捡来的iphone6"
+        android:layout_margin="20dp"
+        />
+
+    <TextView
+        android:id="@+id/status_detail_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_body"
+        android:textColor="@color/text_body"
+        android:text="从纽约到柏林，什么都能少，唯一不能少的是壶好茶。"
+        android:layout_marginBottom="25dp"
+        android:paddingLeft="20dp"
+        />
+
+    <include layout="@layout/include_forum_controlbar" />
+
+</LinearLayout>

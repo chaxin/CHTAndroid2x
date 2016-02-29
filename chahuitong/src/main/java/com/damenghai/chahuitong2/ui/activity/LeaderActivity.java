@@ -1,0 +1,295 @@
+package com.damenghai.chahuitong2.ui.activity;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.TextView;
+
+import com.damenghai.chahuitong2.R;
+import com.damenghai.chahuitong2.adapter.StatusesAdapter;
+import com.damenghai.chahuitong2.api.StatusAPI;
+import com.damenghai.chahuitong2.api.AccountApi;
+import com.damenghai.chahuitong2.base.BaseActivity;
+import com.damenghai.chahuitong2.bean.ImageUrls;
+import com.damenghai.chahuitong2.bean.Leader;
+import com.damenghai.chahuitong2.bean.Status;
+import com.damenghai.chahuitong2.bean.event.ChangeFansEvent;
+import com.damenghai.chahuitong2.config.SessionKeeper;
+import com.damenghai.chahuitong2.request.VolleyRequest;
+import com.damenghai.chahuitong2.utils.ImageConfigHelper;
+import com.damenghai.chahuitong2.utils.L;
+import com.damenghai.chahuitong2.utils.T;
+import com.damenghai.chahuitong2.view.LastRefreshListView;
+import com.damenghai.chahuitong2.view.LastRefreshListView.OnLastRefreshListener;
+import com.damenghai.chahuitong2.view.RoundImageView;
+import com.damenghai.chahuitong2.view.TopBar;
+import com.google.gson.Gson;
+import com.lidroid.xutils.BitmapUtils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import cn.bmob.im.BmobUserManager;
+import cn.bmob.im.bean.BmobChatUser;
+import cn.bmob.v3.listener.FindListener;
+import de.greenrobot.event.EventBus;
+
+import static com.damenghai.chahuitong2.R.id.leader_header_statuses;
+
+/**
+ * Created by Sgun on 15/8/25.
+ */
+public class LeaderActivity extends BaseActivity implements OnLastRefreshListener, View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+    private Leader mLeader;
+    private BmobChatUser mChatUser;
+    private BmobUserManager mManager;
+
+    private TopBar mTopBar;
+    private LastRefreshListView mLlv;
+
+    private ArrayList<Status> mData;
+    private StatusesAdapter mAdapter;
+
+    private View mHeader;
+    private RoundImageView mAvatar;
+    private TextView mTvName;
+    private TextView mTvTitle;
+    private TextView mTvFans;
+    private TextView mTvFollowing;
+    private TextView mTvStatuses;
+    private Button mBtnChat;
+    private CheckBox mCbFollow;
+
+    private boolean mIsFollowed;
+    private int mCurrentPage;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_leader);
+
+        EventBus.getDefault().register(this);
+
+        mLeader = (Leader) getIntent().getSerializableExtra("leader");
+        mManager = BmobUserManager.getInstance(this);
+
+        bindView();
+
+        initView();
+
+        initBmobChat();
+
+        loadData(1);
+    }
+
+    @Override
+    protected void bindView() {
+        mHeader = View.inflate(this, R.layout.include_leader_header, null);
+        mAvatar = (RoundImageView) mHeader.findViewById(R.id.leader_avatar);
+        mTvName = (TextView) mHeader.findViewById(R.id.leader_detail_name);
+        mTvTitle = (TextView) mHeader.findViewById(R.id.leader_detail_title);
+        mTvFans = (TextView) mHeader.findViewById(R.id.leader_header_fans);
+        mTvFollowing = (TextView) mHeader.findViewById(R.id.leader_header_following);
+        mTvStatuses = (TextView) mHeader.findViewById(leader_header_statuses);
+        mBtnChat = (Button) mHeader.findViewById(R.id.leader_detail_chat);
+        mCbFollow = (CheckBox) mHeader.findViewById(R.id.leader_detail_follow);
+
+        mTopBar = (TopBar) findViewById(R.id.leader_bar);
+        mLlv = (LastRefreshListView) findViewById(R.id.leader_lv_detail);
+    }
+
+    @Override
+    protected void initView() {
+        mTopBar.setOnButtonClickListener(new TopBar.OnButtonClickListener() {
+            @Override
+            public void onLeftClick() {
+                finishActivity();
+            }
+
+            @Override
+            public void onRightClick() {
+                goHome();
+            }
+        });
+
+        mData = new ArrayList<Status>();
+        mAdapter = new StatusesAdapter(this, mData, R.layout.listview_item_status, false);
+        mLlv.setAdapter(mAdapter);
+        mLlv.addHeaderView(mHeader);
+        mLlv.setOnLastRefreshListener(this);
+
+        mCbFollow.setOnCheckedChangeListener(this);
+
+        mBtnChat.setEnabled(false);
+        mBtnChat.setOnClickListener(this);
+
+        if (mLeader != null) {
+            if(mLeader.getMember_name().equals(SessionKeeper.readUsername(this))) {
+                findViewById(R.id.leader_header_interact).setVisibility(View.GONE);
+            }
+
+            mTvName.setText(mLeader.getMember_name());
+            mTvTitle.setText(mLeader.getRank().replaceAll("</*[a-z]+>", ""));
+            mTvFans.setText(mLeader.getFans() + "\n粉丝");
+            mTvFollowing.setText(mLeader.getFollowing() + "\n关注");
+            mTvStatuses.setText(mLeader.getStatuses() + "\n茶趣");
+
+            if (mLeader.getBeInstered() > 0) {
+                mCbFollow.setChecked(true);
+                mIsFollowed = true;
+                mCbFollow.setText("已关注");
+            } else {
+                mIsFollowed = false;
+            }
+
+            if(!TextUtils.isEmpty(mLeader.getMember_avatar()) && !mLeader.getMember_avatar().equals("null")) {
+                BitmapUtils util = new BitmapUtils(this, this.getCacheDir().getAbsolutePath());
+                util.display(mAvatar, mLeader.getMember_avatar(), ImageConfigHelper.getAvatarConfig(this));
+                mAvatar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ArrayList<ImageUrls> urls = new ArrayList<ImageUrls>();
+                        ImageUrls url = new ImageUrls();
+                        url.setBmiddle_pic(mLeader.getMember_avatar());
+                        urls.add(url);
+
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("pic", urls);
+                        openActivity(ImageBrowserActivity.class, bundle);
+                    }
+                });
+            }
+        }
+    }
+
+    private void loadData(final int page) {
+        if (mLeader == null) return;
+        StatusAPI.leaderStatus(mLeader.getMember_id(), page, new VolleyRequest() {
+            @Override
+            public void onListSuccess(JSONArray array) {
+                super.onListSuccess(array);
+
+                mCurrentPage = page;
+
+                if (page == 1) mData.clear();
+
+                try {
+                    for (int i = 0; i < array.length(); i++) {
+                        Status status = new Gson().fromJson(array.get(i).toString(), Status.class);
+                        status.setMemberInfo(mLeader);
+                        if (!mData.contains(status)) mData.add(status);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                mAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onAllDone() {
+                super.onAllDone();
+                mLlv.refreshComplete();
+            }
+        });
+    }
+
+    private void initBmobChat() {
+        if(TextUtils.isEmpty(mLeader.getMember_mobile())) return;
+        mManager.queryUser(mLeader.getMember_mobile(), new FindListener<BmobChatUser>() {
+            @Override
+            public void onSuccess(List<BmobChatUser> list) {
+                if (list != null && list.size() > 0) {
+                    mChatUser = list.get(0);
+                    mBtnChat.setEnabled(true);
+                }
+            }
+
+            @Override
+            public void onError(int i, String s) {
+                L.d("获取Bmob用户错误" + s);
+            }
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
+    }
+
+    // 单击关注或取消关注时关注人数应该相应变化
+    public void onEventMainThread(ChangeFansEvent event) {
+        mLeader.setFans(mLeader.getFans() + event.getCount());
+        mTvFans.setText(mLeader.getFans() + "\n关注");
+    }
+
+    @Override
+    public void onRefresh() {
+        loadData(mCurrentPage + 1);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.leader_detail_chat :
+                if(TextUtils.isEmpty(SessionKeeper.readSession(LeaderActivity.this))) {
+                    openActivity(LoginActivity.class);
+                } else {
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("user", mChatUser);
+                    openActivity(ChatActivity.class, bundle);
+                }
+                break;
+        }
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+        if(isChecked) {
+            if(!mIsFollowed) {
+                AccountApi.addFollow(LeaderActivity.this, mLeader.getMember_id(), new VolleyRequest() {
+                    @Override
+                    public void onSuccess() {
+                        super.onSuccess();
+                        mCbFollow.setText("已关注");
+                        mIsFollowed = true;
+                        EventBus.getDefault().post(new ChangeFansEvent(mLeader.getMember_id(), 1));
+                        T.showShort(LeaderActivity.this, "关注成功");
+                    }
+                });
+            }
+        } else {
+            AlertDialog.Builder dialog = new AlertDialog.Builder(LeaderActivity.this);
+            dialog.setMessage("确定取消关注？")
+                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    AccountApi.removeFollow(LeaderActivity.this, mLeader.getMember_id(), new VolleyRequest() {
+                        @Override
+                        public void onSuccess() {
+                            mCbFollow.setText("关注");
+                            mIsFollowed = false;
+                            EventBus.getDefault().post(new ChangeFansEvent(mLeader.getMember_id(), -1));
+                            T.showShort(LeaderActivity.this, "取消成功");
+                        }
+                    });
+                }
+            }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    mIsFollowed = true;
+                    mCbFollow.setChecked(true);
+                }
+            }).show();
+        }
+    }
+}

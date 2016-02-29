@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:background="@color/white"
+              android:orientation="vertical"
+              android:paddingTop="16dp"
+    >
+
+    <TextView
+        style="@style/TextViewTitle"
+        android:layout_gravity="center"
+        android:paddingBottom="8dp"
+        android:text="选择购买数量"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/stroke"
+        />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:paddingTop="16dp"
+        >
+
+        <Button
+            android:id="@+id/dialog_btn_sub"
+            android:layout_width="36dp"
+            android:layout_height="34dp"
+            android:background="@drawable/count_left_sel"
+            android:gravity="center"
+            android:text="-"
+            android:textColor="@color/text_body"
+            android:textSize="@dimen/text_title"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/dialog_et_count"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:background="@drawable/count_middle"
+            android:gravity="center"
+            android:inputType="number"
+            android:textSize="@dimen/text_title"
+            />
+
+        <Button
+            android:id="@+id/dialog_btn_add"
+            android:layout_width="36dp"
+            android:layout_height="34dp"
+            android:background="@drawable/count_right_sel"
+            android:gravity="center"
+            android:text="+"
+            android:textColor="@color/text_body"
+            android:textSize="@dimen/text_title"
+            android:textStyle="bold"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        >
+
+        <Button
+            android:id="@+id/dialog_btn_cancel"
+            style="@style/Theme_BtnGrayCorners"
+            android:text="@string/btn_cancel"
+            />
+
+        <Button
+            android:id="@+id/dialog_btn_ok"
+            style="@style/Theme_BtnPrimaryCorners"
+            android:layout_marginLeft="8dp"
+            android:text="@string/btn_ok"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

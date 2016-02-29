@@ -1,0 +1,954 @@
+[
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/back_btn_normal.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/back_btn_normal.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_item_detail.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_item_detail.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/com_facebook_tooltip_black_background.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/com_facebook_tooltip_black_background.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/triangle_indicator_unselected.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/triangle_indicator_unselected.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_icon_voice6.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/chat_icon_voice6.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/triangle_indicator_unselected.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/triangle_indicator_unselected.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/third_party_login_in.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/third_party_login_in.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/messenger_bubble_large_white.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/messenger_bubble_large_white.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/voice_right3.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/voice_right3.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_keyboard_press.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/chat_keyboard_press.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_forum_favorites.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_forum_favorites.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/com_facebook_tooltip_blue_background.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/com_facebook_tooltip_blue_background.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/vpi__tab_selected_holo.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/view_pager_indicator_library/unspecified/res/drawable-hdpi-v4/vpi__tab_selected_holo.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/messenger_bubble_large_white.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/messenger_bubble_large_white.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_white_edit.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_white_edit.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_white_edit.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_white_edit.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_btn_send_normal.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/chat_btn_send_normal.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_forum_unfavorites.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_forum_unfavorites.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_my_event_delete.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_my_event_delete.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/vpi__tab_selected_focused_holo.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/view_pager_indicator_library/unspecified/res/drawable-hdpi-v4/vpi__tab_selected_focused_holo.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/edit_text_underline_focus.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/edit_text_underline_focus.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_socialize_nav_bar_bg_pad.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/umeng_socialize_nav_bar_bg_pad.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/indicator_arrow.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/pull_to_refresh/unspecified/res/drawable-hdpi-v4/indicator_arrow.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_mine_delete.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_mine_delete.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_voice_press.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/chat_voice_press.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_mine_edit.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_mine_edit.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/voice_right1.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/voice_right1.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/messenger_bubble_small_blue.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/messenger_bubble_small_blue.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_home_normal.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_home_normal.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/back_btn_normal.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/back_btn_normal.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_share.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_share.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_icon_voice4.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/chat_icon_voice4.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_update_btn_check_on_focused_holo_light.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/umeng_update_btn_check_on_focused_holo_light.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_update_close_bg_tap.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/umeng_update_close_bg_tap.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/vpi__tab_unselected_pressed_holo.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/view_pager_indicator_library/unspecified/res/drawable-hdpi-v4/vpi__tab_unselected_pressed_holo.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/com_facebook_close.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/com_facebook_close.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/product_list_item_bg.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/product_list_item_bg.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/voice_left.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/voice_left.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/android_list_idex.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/android_list_idex.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/splash_logo_pp.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/splash_logo_pp.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/default_ptr_flip.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/pull_to_refresh/unspecified/res/drawable-hdpi-v4/default_ptr_flip.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/product_list_item_bg.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/product_list_item_bg.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_comment_reply.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_comment_reply.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/publish_add_picture.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/publish_add_picture.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_item.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_item.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_socialize_oauth_check_on.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/umeng_socialize_oauth_check_on.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/voice_left2.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/voice_left2.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_keyboard_press.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/chat_keyboard_press.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_article_share.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_article_share.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/voice_left1.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/voice_left1.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_article_close.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_article_close.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/base_horizontal_line.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/base_horizontal_line.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_update_btn_check_on_holo_light.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/umeng_update_btn_check_on_holo_light.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_update_btn_check_off_pressed_holo_light.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/umeng_update_btn_check_off_pressed_holo_light.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_edit.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_edit.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/messenger_bubble_large_blue.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/messenger_bubble_large_blue.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_mine_detail.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_mine_detail.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_forum_share.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_forum_share.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/indicator_arrow.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/pull_to_refresh/unspecified/res/drawable-hdpi-v4/indicator_arrow.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/register_btn_back_normal.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/register_btn_back_normal.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/holo_gray_bg_top.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/holo_gray_bg_top.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/voice_right1.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/voice_right1.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/default_ptr_rotate.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/pull_to_refresh/unspecified/res/drawable-hdpi-v4/default_ptr_rotate.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_article_share.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_article_share.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_socialize_share_music.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/umeng_socialize_share_music.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_forum_favorites.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_forum_favorites.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_socialize_oauth_check_on.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/umeng_socialize_oauth_check_on.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_email.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_email.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_followed.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_followed.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_socialize_share_music.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/umeng_socialize_share_music.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_update_btn_check_on_focused_holo_light.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/umeng_update_btn_check_on_focused_holo_light.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_news_share.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_news_share.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_voice_normal.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/chat_voice_normal.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_socialize_share_pic.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/umeng_socialize_share_pic.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/back_btn_pressed.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/back_btn_pressed.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/ic_launcher.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_event_share.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_event_share.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/com_facebook_button_send_icon.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/com_facebook_button_send_icon.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/holo_gray_bg_top.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/holo_gray_bg_top.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_update_btn_check_off_holo_light.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/umeng_update_btn_check_off_holo_light.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/com_facebook_button_send_icon.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/com_facebook_button_send_icon.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/messenger_bubble_small_blue.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/messenger_bubble_small_blue.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/messenger_bubble_small_white.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/messenger_bubble_small_white.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_my_event_delete.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_my_event_delete.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_fail_resend_normal.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/chat_fail_resend_normal.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_btn_send_normal.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/chat_btn_send_normal.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_forum_write.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_forum_write.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_followed.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_followed.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/edit_text_underline_unfocus.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/edit_text_underline_unfocus.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/com_facebook_tooltip_blue_bottomnub.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/com_facebook_tooltip_blue_bottomnub.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_mine_edit.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_mine_edit.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_update_btn_check_on_pressed_holo_light.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/umeng_update_btn_check_on_pressed_holo_light.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/voice_right.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/voice_right.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/com_facebook_tooltip_black_xout.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/com_facebook_tooltip_black_xout.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/com_facebook_tooltip_black_topnub.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/com_facebook_tooltip_black_topnub.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/edit_text_underline_unfocus.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/edit_text_underline_unfocus.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_article_close.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_article_close.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/com_facebook_tooltip_black_xout.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/com_facebook_tooltip_black_xout.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/base_horizontal_line.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/base_horizontal_line.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/list_newmessage.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/list_newmessage.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/edit_text_underline_focus.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/edit_text_underline_focus.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_socialize_light_bar_bg_pad.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/umeng_socialize_light_bar_bg_pad.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/splash_logo_baidu.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/splash_logo_baidu.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/list_newmessage.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/list_newmessage.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_icon_voice2.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/chat_icon_voice2.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/vpi__tab_unselected_holo.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/view_pager_indicator_library/unspecified/res/drawable-hdpi-v4/vpi__tab_unselected_holo.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/com_facebook_tooltip_black_bottomnub.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/com_facebook_tooltip_black_bottomnub.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_fail_resend_press.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/chat_fail_resend_press.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/vpi__tab_unselected_focused_holo.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/view_pager_indicator_library/unspecified/res/drawable-hdpi-v4/vpi__tab_unselected_focused_holo.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/splash_logo_baidu.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/splash_logo_baidu.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_socialize_oauth_check_off.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/umeng_socialize_oauth_check_off.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_socialize_share_video.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/umeng_socialize_share_video.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_socialize_light_bar_bg_pad.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/umeng_socialize_light_bar_bg_pad.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_update_close_bg_normal.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/umeng_update_close_bg_normal.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_socialize_share_video.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/umeng_socialize_share_video.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/register_btn_back_normal.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/register_btn_back_normal.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/com_facebook_tooltip_blue_xout.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/com_facebook_tooltip_blue_xout.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_write.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_write.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/voice_left3.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/voice_left3.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/voice_left1.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/voice_left1.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/vpi__tab_selected_pressed_holo.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/view_pager_indicator_library/unspecified/res/drawable-hdpi-v4/vpi__tab_selected_pressed_holo.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_fail_resend_press.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/chat_fail_resend_press.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_icon_voice5.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/chat_icon_voice5.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/news_banner.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/news_banner.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_unfollowed.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_unfollowed.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_btn_add_normal.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/chat_btn_add_normal.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_fail_resend_normal.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/chat_fail_resend_normal.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_forum_write.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_forum_write.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/home_text_normal.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/home_text_normal.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/com_facebook_tooltip_black_background.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/com_facebook_tooltip_black_background.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/com_facebook_tooltip_blue_background.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/com_facebook_tooltip_blue_background.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_forum_like.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_forum_like.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_forum_share.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_forum_share.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_event_favorites.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_event_favorites.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_socialize_share_pic.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/umeng_socialize_share_pic.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/vpi__tab_selected_holo.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/view_pager_indicator_library/unspecified/res/drawable-hdpi-v4/vpi__tab_selected_holo.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_detail_favorites.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_detail_favorites.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_search.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_search.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_update_btn_check_off_focused_holo_light.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/umeng_update_btn_check_off_focused_holo_light.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_event_share.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_event_share.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_voice_press.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/chat_voice_press.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_socialize_oauth_check_off.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/umeng_socialize_oauth_check_off.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/voice_right2.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/voice_right2.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_voice_normal.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/chat_voice_normal.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_socialize_nav_bar_bg_pad.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/umeng_socialize_nav_bar_bg_pad.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/location_default.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/location_default.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_item.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_item.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/default_ptr_rotate.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/pull_to_refresh/unspecified/res/drawable-hdpi-v4/default_ptr_rotate.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_share.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_share.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_icon_voice1.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/chat_icon_voice1.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_update_btn_check_off_holo_light.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/umeng_update_btn_check_off_holo_light.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/default_load_image.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/default_load_image.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/back_text_normal.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/back_text_normal.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/com_facebook_tooltip_black_topnub.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/com_facebook_tooltip_black_topnub.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/messenger_bubble_large_blue.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/messenger_bubble_large_blue.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/voice_left2.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/voice_left2.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/com_facebook_tooltip_black_bottomnub.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/com_facebook_tooltip_black_bottomnub.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_icon_voice3.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/chat_icon_voice3.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_keyboard_normal.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/chat_keyboard_normal.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/vpi__tab_unselected_pressed_holo.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/view_pager_indicator_library/unspecified/res/drawable-hdpi-v4/vpi__tab_unselected_pressed_holo.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_forum_like.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_forum_like.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/voice_right.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/voice_right.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/com_facebook_button_icon.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/com_facebook_button_icon.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/messenger_bubble_small_white.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/messenger_bubble_small_white.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/vpi__tab_unselected_focused_holo.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/view_pager_indicator_library/unspecified/res/drawable-hdpi-v4/vpi__tab_unselected_focused_holo.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_keyboard_normal.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/chat_keyboard_normal.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/com_facebook_button_like_icon_selected.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/com_facebook_button_like_icon_selected.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_icon_voice3.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/chat_icon_voice3.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/com_facebook_tooltip_blue_bottomnub.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/com_facebook_tooltip_blue_bottomnub.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_search.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_search.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_mine_detail.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_mine_detail.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_detail_favorites.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_detail_favorites.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_update_close_bg_normal.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/umeng_update_close_bg_normal.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_update_btn_check_on_pressed_holo_light.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/umeng_update_btn_check_on_pressed_holo_light.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/vpi__tab_selected_pressed_holo.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/view_pager_indicator_library/unspecified/res/drawable-hdpi-v4/vpi__tab_selected_pressed_holo.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_coterie_delete.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_coterie_delete.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/btn_gain_drop.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/btn_gain_drop.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/splash_logo_taobao.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/splash_logo_taobao.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_btn_add_normal.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/chat_btn_add_normal.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/com_facebook_button_icon.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/com_facebook_button_icon.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/com_facebook_tooltip_blue_topnub.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/com_facebook_tooltip_blue_topnub.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/splash_logo_taobao.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/splash_logo_taobao.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/news_banner.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/news_banner.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/triangle_indicator_selected.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/triangle_indicator_selected.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_update_btn_check_off_focused_holo_light.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/umeng_update_btn_check_off_focused_holo_light.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/com_facebook_tooltip_blue_topnub.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/com_facebook_tooltip_blue_topnub.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_password.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_password.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_mine_delete.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_mine_delete.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/btn_gain_drop.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/btn_gain_drop.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_addpic_unfocused.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_addpic_unfocused.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_icon_voice6.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/chat_icon_voice6.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_addpic_unfocused.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_addpic_unfocused.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/voice_left3.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/voice_left3.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_item_detail.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_item_detail.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/voice_right3.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/voice_right3.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/back_text_normal.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/back_text_normal.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/triangle_indicator_selected.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/triangle_indicator_selected.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_coterie_delete.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_coterie_delete.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/default_ptr_flip.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/pull_to_refresh/unspecified/res/drawable-hdpi-v4/default_ptr_flip.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_update_btn_check_on_holo_light.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/umeng_update_btn_check_on_holo_light.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/vpi__tab_selected_focused_holo.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/view_pager_indicator_library/unspecified/res/drawable-hdpi-v4/vpi__tab_selected_focused_holo.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_icon_voice1.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/chat_icon_voice1.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_news_share.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_news_share.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_icon_voice4.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/chat_icon_voice4.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/messenger_button_send_round_shadow.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/messenger_button_send_round_shadow.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_home_normal.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_home_normal.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_write.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_write.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/third_party_login_in.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/third_party_login_in.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_logout_normal.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_logout_normal.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_email.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_email.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/com_facebook_button_like_icon_selected.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/com_facebook_button_like_icon_selected.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/android_list_idex.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/android_list_idex.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_forum_unfavorites.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_forum_unfavorites.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_update_close_bg_tap.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/umeng_update_close_bg_tap.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/default_load_image.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/default_load_image.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/location_default.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/location_default.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_edit.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_edit.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/back_btn_pressed.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/back_btn_pressed.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/vpi__tab_unselected_holo.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/exploded-aar/ChaHuiTong/view_pager_indicator_library/unspecified/res/drawable-hdpi-v4/vpi__tab_unselected_holo.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/ab_share_pack_light.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/ab_share_pack_light.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_comment_reply.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_comment_reply.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/voice_right2.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/voice_right2.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_password.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_password.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/splash_logo_pp.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/splash_logo_pp.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_unfollowed.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/icon_unfollowed.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/messenger_button_send_round_shadow.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/messenger_button_send_round_shadow.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/home_text_normal.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/home_text_normal.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_event_favorites.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_event_favorites.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_icon_voice2.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/chat_icon_voice2.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/com_facebook_tooltip_blue_xout.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/com_facebook_tooltip_blue_xout.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/com_facebook_close.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/exploded-aar/ChaHuiTong(old)/social_sdk_library_project/unspecified/res/drawable-hdpi-v4/com_facebook_close.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/publish_add_picture.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/publish_add_picture.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/ab_share_pack_light.9.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/ab_share_pack_light.9.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/umeng_update_btn_check_off_pressed_holo_light.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/umeng_update_btn_check_off_pressed_holo_light.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/icon_logout_normal.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/icon_logout_normal.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/chat_icon_voice5.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/chat_icon_voice5.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/voice_left.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/chahuitong/src/main/res/drawable-hdpi/voice_left.png"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/build/intermediates/res/merged/anzhi/debug/drawable-hdpi-v4/ic_launcher.png",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/chahuitong/src/main/res/drawable-hdpi/ic_launcher.png"
+    }
+]

@@ -1,0 +1,50 @@
+[
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/social_sdk_library_project/build/intermediates/res/merged/debug/layout-sw550dp-large-v13/umeng_socialize_titile_bar.xml",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/social_sdk_library_project/src/main/res/layout-sw550dp-large/umeng_socialize_titile_bar.xml"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/social_sdk_library_project/build/intermediates/res/merged/debug/layout-sw550dp-large-v13/umeng_socialize_titile_bar.xml",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/social_sdk_library_project/src/main/res/layout-sw550dp-large/umeng_socialize_titile_bar.xml"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/social_sdk_library_project/build/intermediates/res/merged/debug/layout-sw550dp-large-v13/umeng_socialize_ucenter.xml",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/social_sdk_library_project/src/main/res/layout-sw550dp-large/umeng_socialize_ucenter.xml"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/social_sdk_library_project/build/intermediates/res/merged/debug/layout-sw550dp-large-v13/umeng_socialize_post_comment.xml",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/social_sdk_library_project/src/main/res/layout-sw550dp-large/umeng_socialize_post_comment.xml"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/social_sdk_library_project/build/intermediates/res/merged/debug/layout-sw550dp-large-v13/umeng_socialize_post_comment.xml",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/social_sdk_library_project/src/main/res/layout-sw550dp-large/umeng_socialize_post_comment.xml"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/social_sdk_library_project/build/intermediates/res/merged/debug/layout-sw550dp-large-v13/umeng_socialize_full_alert_dialog.xml",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/social_sdk_library_project/src/main/res/layout-sw550dp-large/umeng_socialize_full_alert_dialog.xml"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/social_sdk_library_project/build/intermediates/res/merged/debug/layout-sw550dp-large-v13/umeng_socialize_ucenter.xml",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/social_sdk_library_project/src/main/res/layout-sw550dp-large/umeng_socialize_ucenter.xml"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/social_sdk_library_project/build/intermediates/res/merged/debug/layout-sw550dp-large-v13/umeng_socialize_post_share.xml",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/social_sdk_library_project/src/main/res/layout-sw550dp-large/umeng_socialize_post_share.xml"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/social_sdk_library_project/build/intermediates/res/merged/debug/layout-sw550dp-large-v13/umeng_socialize_post_share.xml",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/social_sdk_library_project/src/main/res/layout-sw550dp-large/umeng_socialize_post_share.xml"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/social_sdk_library_project/build/intermediates/res/merged/debug/layout-sw550dp-large-v13/umeng_socialize_oauth_dialog.xml",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/social_sdk_library_project/src/main/res/layout-sw550dp-large/umeng_socialize_oauth_dialog.xml"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/social_sdk_library_project/build/intermediates/res/merged/debug/layout-sw550dp-large-v13/umeng_socialize_oauth_dialog.xml",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/social_sdk_library_project/src/main/res/layout-sw550dp-large/umeng_socialize_oauth_dialog.xml"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/social_sdk_library_project/build/intermediates/res/merged/debug/layout-sw550dp-large-v13/umeng_socialize_full_alert_dialog.xml",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/social_sdk_library_project/src/main/res/layout-sw550dp-large/umeng_socialize_full_alert_dialog.xml"
+    }
+]

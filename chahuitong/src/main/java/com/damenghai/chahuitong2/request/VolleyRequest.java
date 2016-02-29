@@ -1,0 +1,47 @@
+package com.damenghai.chahuitong2.request;
+
+import android.app.Dialog;
+
+import org.json.JSONArray;
+
+/**
+ * Created by Sgun on 15/8/13.
+ */
+public class VolleyRequest {
+    private Dialog mDialog;
+
+    public VolleyRequest() {
+    }
+
+    public VolleyRequest(Dialog mDialog) {
+        this.mDialog = mDialog;
+    }
+
+    public void onSuccess() {
+        onAllDone();
+    }
+
+    public void onSuccess(String response) {
+        onAllDone();
+    }
+
+    public void onListSuccess(JSONArray array) {
+        onAllDone();
+    }
+
+    public void onError(String error) {
+        onAllDone();
+    }
+
+//    public void onError(VolleyError volleyError) {
+//        byte[] htmlBodyBytes = volleyError.networkResponse.data;
+//        L.d(new String(htmlBodyBytes));
+//    }
+
+    public void onAllDone() {
+        if(mDialog != null && mDialog.isShowing()) {
+            mDialog.dismiss();
+        }
+    }
+
+}

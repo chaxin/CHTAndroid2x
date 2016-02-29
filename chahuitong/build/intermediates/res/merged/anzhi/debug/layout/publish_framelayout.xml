@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:hodor="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/publish_info"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            style="@style/publish_product_row">
+
+            <TextView
+                android:id="@+id/publish_brand"
+                android:text="@string/brand"
+                style="@style/publish_product_label"
+                />
+
+            <EditText
+                android:id="@+id/id_input_brand"
+                android:hint="@string/brand_hint"
+                style="@style/publish_product_input"
+                />
+        </LinearLayout>
+
+        <View style="@style/divider" />
+
+        <LinearLayout style="@style/publish_product_row" >
+
+            <TextView
+                style="@style/publish_product_label"
+                android:text="@string/item_name"
+                />
+
+            <EditText
+                android:id="@+id/id_input_name"
+                android:hint="@string/item_name_hint"
+                style="@style/publish_product_input"
+                >
+            </EditText>
+        </LinearLayout>
+
+        <View style="@style/divider" />
+
+		<com.damenghai.chahuitong2.view.CustomSpinner
+		    android:id="@+id/id_spinner_years"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+		    hodor:labelName="@string/years"
+		    hodor:textMarginRight="70dp"
+            android:paddingLeft="30dp"
+		    />
+
+        <View style="@style/divider" />
+      
+        <LinearLayout style="@style/publish_product_row" >
+
+            <TextView
+                style="@style/publish_product_label"
+                android:text="@string/price"  />
+
+            <EditText
+                android:id="@+id/id_input_price"
+                android:hint="@string/price_hint"
+                android:inputType="number"
+                style="@style/publish_product_input" >
+            </EditText>
+
+            <TextView
+                style="@style/TextViewBody"
+                android:text="@string/yuan"
+                android:paddingRight="30dp"
+                />
+
+        </LinearLayout>
+
+        <View style="@style/divider" />
+
+        <LinearLayout style="@style/publish_product_row" >
+
+            <TextView
+                style="@style/publish_product_label"
+                android:text="@string/quantity"  />
+
+            <EditText
+                android:id="@+id/id_input_quantity"
+                android:hint="@string/quantity_hint"
+                android:inputType="textMultiLine"
+                style="@style/publish_product_input"
+                >
+            </EditText>
+			
+        </LinearLayout>
+
+        <View style="@style/divider" />
+        
+        <LinearLayout style="@style/publish_product_row" >
+
+            <TextView
+                style="@style/publish_product_label"
+                android:text="@string/address" />
+
+            <EditText
+                android:id="@+id/id_input_address"
+                android:hint="@string/address_hint"
+                style="@style/publish_product_input"
+                >
+            </EditText>
+        </LinearLayout>
+
+        <View style="@style/divider" />
+
+        <LinearLayout style="@style/publish_product_row" >
+
+            <TextView
+                android:text="@string/phone_num"
+                style="@style/publish_product_label"
+                />
+
+            <EditText
+                android:id="@+id/id_input_phone"
+                android:hint="@string/phone_num_hint"
+                style="@style/publish_product_input"
+                android:inputType="phone"
+                android:maxLength="11"
+                >
+            </EditText>
+        </LinearLayout>
+
+        <View style="@style/divider" />
+
+        <LinearLayout
+            style="@style/publish_product_row"
+            >
+
+            <TextView
+                android:text="联系人"
+                style="@style/publish_product_label"
+                />
+
+            <EditText
+                style="@style/publish_product_input"
+                android:id="@+id/publish_input_contact"
+                android:inputType="text"
+                android:hint="称呼或姓名"
+                />
+        </LinearLayout>
+
+        <View style="@style/divider" />
+   
+		<EditText 
+		    android:id="@+id/id_product_desc" 
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="16dp"
+		    android:lines="5"
+		    android:gravity="top|left"
+		    android:inputType="textMultiLine"
+		    android:scrollHorizontally="false" 
+		    android:hint="@string/product_sale_desction"
+		    android:paddingLeft="10dp"
+		    android:paddingTop="10dp"
+		    android:minWidth="10.0dip"
+		    android:maxWidth="180dip"
+		    android:background="@color/edittext_backgroud"
+            android:textSize="@dimen/text_title"
+            />
+
+        <LinearLayout
+            android:id="@+id/upload_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            >
+            <ImageView
+                android:id="@+id/id_upload_img1"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:src="@drawable/btn_publish_add_picture_selector"
+                android:onClick="toAddPicture"
+                />
+            <ImageView
+                android:id="@+id/id_upload_img2"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:src="@drawable/btn_publish_add_picture_selector"
+                android:onClick="toAddPicture"
+                />
+            <ImageView
+                android:id="@+id/id_upload_img3"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:src="@drawable/btn_publish_add_picture_selector"
+                android:onClick="toAddPicture"
+                />
+        </LinearLayout>
+            
+        <Button
+	        android:id="@+id/id_btn_submit"
+            style="@style/CommonButton"
+	        android:text="@string/publish"
+            android:layout_marginTop="16dp"
+            android:onClick="toPublish"
+	        />
+        
+    </LinearLayout>
+    
+</ScrollView>

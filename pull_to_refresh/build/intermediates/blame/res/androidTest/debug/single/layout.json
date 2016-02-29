@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/pull_to_refresh/build/intermediates/res/merged/androidTest/debug/layout/pull_to_refresh_header_vertical.xml",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/pull_to_refresh/build/intermediates/bundles/debug/res/layout/pull_to_refresh_header_vertical.xml"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong(old)/pull_to_refresh/build/intermediates/res/merged/androidTest/debug/layout/pull_to_refresh_header_horizontal.xml",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong(old)/pull_to_refresh/build/intermediates/bundles/debug/res/layout/pull_to_refresh_header_horizontal.xml"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/pull_to_refresh/build/intermediates/res/merged/androidTest/debug/layout/pull_to_refresh_header_vertical.xml",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/pull_to_refresh/build/intermediates/bundles/debug/res/layout/pull_to_refresh_header_vertical.xml"
+    },
+    {
+        "merged": "/Users/Sgun/StudioProject/ChaHuiTong/pull_to_refresh/build/intermediates/res/merged/androidTest/debug/layout/pull_to_refresh_header_horizontal.xml",
+        "source": "/Users/Sgun/StudioProject/ChaHuiTong/pull_to_refresh/build/intermediates/bundles/debug/res/layout/pull_to_refresh_header_horizontal.xml"
+    }
+]

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/div_topbottom_bg"
+    android:orientation="vertical"
+    android:layout_marginBottom="16dp"
+    >
+
+    <TextView
+        android:id="@+id/store_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/stroke"
+        />
+
+    <com.damenghai.chahuitong2.view.WrapHeightListView
+        android:id="@+id/store_lv_goods"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/stroke"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp"
+        >
+
+        <TextView
+            android:layout_width="34dp"
+            android:layout_height="14dp"
+            android:background="@drawable/correct_primary2dark_sel"
+            android:text="@string/text_freight"
+            android:textSize="@dimen/text_caption"
+            android:textColor="@color/white"
+            android:gravity="center"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="14dp"
+            android:layout_weight="1" />
+
+        <TextView
+            style="@style/TextViewCaption"
+            android:text="@string/text_carriage_free"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="right"
+        android:padding="16dp"
+        >
+
+        <TextView
+            android:id="@+id/store_tv_total_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="共1件商品："
+            android:gravity="center"
+            android:textColor="@color/text_caption"
+            android:textSize="@dimen/text_caption"
+            android:singleLine="true"
+            />
+
+        <TextView
+            android:id="@+id/store_tv_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="￥20"
+            android:textSize="@dimen/text_title"
+            android:textColor="@color/primary"
+            android:gravity="center"
+            android:singleLine="true"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
