@@ -1,0 +1,218 @@
+package com.damenghai.chahuitong.ui.activity;
+
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+
+import com.damenghai.chahuitong.R;
+import com.damenghai.chahuitong.api.OrderApi;
+import com.damenghai.chahuitong.base.BaseActivity;
+import com.damenghai.chahuitong.bean.Address;
+import com.damenghai.chahuitong.bean.Goods;
+import com.damenghai.chahuitong.bean.Store;
+import com.damenghai.chahuitong.pay.alipay.AlipayManager;
+import com.damenghai.chahuitong.pay.wxpay.WxpayManager;
+import com.damenghai.chahuitong.request.VolleyRequest;
+import com.damenghai.chahuitong.utils.L;
+import com.damenghai.chahuitong.utils.T;
+import com.damenghai.chahuitong.view.QuantityView;
+import com.google.gson.Gson;
+import com.lidroid.xutils.BitmapUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+/**
+ * Copyright (c) 2015. LiaoPeiKun Inc. All rights reserved.
+ */
+public class PayActivity extends BaseActivity {
+
+    private TextView mTvConsignee;
+
+    private TextView mTvAddress;
+
+    private RadioGroup mGroupPay;
+
+    private TextView mTvStore;
+
+    private ImageView mIvThumb;
+
+    private TextView mTvTitle;
+
+    private TextView mTvPrice;
+
+    private QuantityView mQuantity;
+
+    private TextView mTvFreight;
+
+    private TextView mTvStoreCount;
+
+    private TextView mTvStoreTotal;
+
+    private TextView mTvOrderFreight;
+
+    private TextView mTvOrderAmount;
+
+    private TextView mTvOrderTotal;
+
+    private String mGoodsId;
+    private int mPrice;
+    private String mAddressId;
+    private String mVatHash;
+    private String mFreightHash;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_pay);
+
+        mGoodsId = getIntent().getStringExtra("goods_id");
+
+        bindView();
+
+        initView();
+
+        loadData();
+    }
+
+    @Override
+    protected void bindView() {
+        mTvConsignee = (TextView) findViewById(R.id.order_tv_consignee);
+        mTvAddress = (TextView) findViewById(R.id.order_tv_address);
+        mGroupPay = (RadioGroup) findViewById(R.id.order_group_pay);
+
+        mTvStore = (TextView) findViewById(R.id.store_tv_name);
+        mTvTitle = (TextView) findViewById(R.id.store_tv_title);
+        mIvThumb = (ImageView) findViewById(R.id.store_iv_thumb);
+        mTvPrice = (TextView) findViewById(R.id.store_tv_price);
+        mQuantity = (QuantityView) findViewById(R.id.store_count_view);
+
+        mTvStoreCount = (TextView) findViewById(R.id.store_tv_total_count);
+        mTvStoreTotal = (TextView) findViewById(R.id.store_tv_total);
+
+        mTvOrderAmount = (TextView) findViewById(R.id.order_tv_amount);
+        mTvOrderFreight = (TextView) findViewById(R.id.order_tv_freight);
+        mTvOrderTotal = (TextView) findViewById(R.id.order_tv_total);
+    }
+
+    @Override
+    protected void initView() {
+        mQuantity.setOnCountChangedListener(new QuantityView.OnCountChangedListener() {
+            @Override
+            public void countChanged(int count) {
+                mTvStoreCount.setText("小计(共" + count + "件)");
+                mTvStoreTotal.setText("￥" + (count * mPrice));
+                mTvOrderAmount.setText("￥" + (count * mPrice));
+                mTvOrderTotal.setText("￥" + (count * mPrice));
+            }
+        });
+    }
+
+    private void loadData() {
+        String cartId = mGoodsId + "|1";
+        OrderApi.getOrderInfo(this, cartId, new VolleyRequest() {
+            @Override
+            public void onSuccess(String response) {
+                super.onSuccess(response);
+                try {
+                    JSONObject object = new JSONObject(response);
+                    L.d("obj" + object);
+                    if (object.getInt("code") == 200) {
+                        JSONObject datas = object.getJSONObject("datas");
+
+                        Address address = new Gson().fromJson(datas.getString("address_info"), Address.class);
+                        setAddressInfo(address);
+
+                        mFreightHash = datas.getString("freight_hash");
+
+                        mVatHash = datas.getString("vat_hash");
+
+                        JSONObject storeList = datas.getJSONObject("store_cart_list");
+                        Store store = new Gson().fromJson(storeList.getString("2"), Store.class);
+                        setStore(store);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+    }
+
+    private void setAddressInfo(Address address) {
+        mAddressId = address.getAddress_id();
+        mTvConsignee.setText(getResources().getString(R.string.label_consignee) + address.getTrue_name() + " " + address.getMob_phone());
+        mTvAddress.setText(getResources().getString(R.string.label_address) + address.getArea_info() + " " + address.getAddress());
+    }
+
+    private void setStore(Store store) {
+        mTvStore.setText(store.getStore_name());
+        ArrayList<Goods> goodsList = store.getGoods_list();
+        for (Goods goods : goodsList) {
+            mTvTitle.setText(goods.getName());
+            mPrice = TextUtils.isEmpty(goods.getGoods_price()) ? 0 : (int) Float.parseFloat(goods.getGoods_price());
+            mTvPrice.setText("￥" + mPrice);
+            mQuantity.setCount(goods.getGoods_num());
+            BitmapUtils utils = new BitmapUtils(this);
+            utils.display(mIvThumb, goods.getGoods_image_url());
+        }
+    }
+
+    public void toPay(View view) {
+        String cartId = mGoodsId + "|" + mQuantity.getCount();
+
+        OrderApi.getOrderNumber(this, cartId, mAddressId, mVatHash, mFreightHash, new VolleyRequest() {
+            @Override
+            public void onSuccess(String response) {
+                super.onSuccess(response);
+                L.d(response);
+            }
+        });
+
+        switch (view.getId()) {
+            case R.id.order_btn_pay :
+                switch (mGroupPay.getCheckedRadioButtonId()) {
+                    case R.id.order_rbtn_alipay :
+                        break;
+                    case R.id.order_rbtn_wxpay :
+                        break;
+                    case R.id.order_rbtn_upmp :
+                        break;
+                }
+                break;
+        }
+    }
+
+    // 支付宝支付
+    public void alipay(View view) {
+        AlipayManager mManager = AlipayManager.getInstance(this);
+        mManager.pay("测试的商品", "这是app测试商品", "0.01", new AlipayManager.AlipayListener() {
+            @Override
+            public void onSuccess() {
+                T.showShort(PayActivity.this, "支付成功");
+            }
+
+            @Override
+            public void onConfirming() {
+                T.showShort(PayActivity.this, "支付结果确认中");
+            }
+
+            @Override
+            public void onError() {
+                T.showShort(PayActivity.this, "支付失败");
+            }
+        });
+    }
+
+    // 微信支付
+    public void wepay(View view) {
+        WxpayManager manager = WxpayManager.getInstance(this);
+        manager.pay("这是微信支付测试", 0.01);
+    }
+
+}

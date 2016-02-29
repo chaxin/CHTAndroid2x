@@ -1,0 +1,141 @@
+package com.damenghai.chahuitong.ui.activity;
+
+import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.damenghai.chahuitong.R;
+import com.damenghai.chahuitong.api.UserAPI;
+import com.damenghai.chahuitong.base.BaseActivity;
+import com.damenghai.chahuitong.listener.MobileTextWatcher;
+import com.damenghai.chahuitong.request.VolleyRequest;
+import com.damenghai.chahuitong.utils.T;
+import com.damenghai.chahuitong.view.TopBar;
+
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
+
+/**
+ * Created by Sgun on 15/10/13.
+ */
+public class ForgotActivity extends BaseActivity implements View.OnClickListener {
+    private TopBar mTopBar;
+    private EditText mMobile;
+    private EditText mEtCode;
+    private Button mBtSend;
+
+    private int mCode;
+    private CountTimer mTimer;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_forgot);
+
+        bindView();
+
+        initView();
+    }
+
+    @Override
+    protected void bindView() {
+        mTopBar = (TopBar) findViewById(R.id.forgot_bar);
+        mMobile = (EditText) findViewById(R.id.forgot_mobile);
+        mEtCode = (EditText) findViewById(R.id.forgot_code);
+        mBtSend = (Button) findViewById(R.id.forgot_send);
+    }
+
+    @Override
+    protected void initView() {
+        mTopBar.setOnButtonClickListener(new TopBar.OnButtonClickListener() {
+            @Override
+            public void onLeftClick() {
+                finishActivity();
+            }
+
+            @Override
+            public void onRightClick() {
+                goHome();
+            }
+        });
+
+        mMobile.addTextChangedListener(new MobileTextWatcher(this, mMobile, mBtSend));
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.forgot_send :
+                if(mTimer == null) mTimer = new CountTimer(60000, 1000);
+                mTimer.start();
+                mBtSend.setBackgroundResource(R.color.primary_light);
+                getCode();
+                break;
+
+            case R.id.forgot_commit :
+                String code = mEtCode.getText().toString();
+                if(code.equals(mCode + "")) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("mobile", mMobile.getText().toString());
+                    openActivity(ResetPasswordActivity.class, bundle);
+                    finishActivity();
+                } else {
+                    T.showShort(ForgotActivity.this, "验证码错误");
+                }
+                break;
+        }
+
+    }
+
+    private void getCode() {
+        String mobile = mMobile.getText().toString();
+
+        mCode = (int)((Math.random()*9+1)*100000);
+
+        UserAPI.sendSMS(mobile, mCode, new VolleyRequest() {
+            @Override
+            public void onSuccess(String response) {
+                super.onSuccess(response);
+
+                try {
+                    Document doc = DocumentHelper.parseText(response);
+                    Element root = doc.getRootElement();
+
+                    String code = root.elementText("code");
+                    String msg = root.elementText("msg");
+
+                    if (!"2".equals(code)) {
+                        T.showShort(ForgotActivity.this, msg);
+                    }
+
+                    mBtSend.setOnClickListener(ForgotActivity.this);
+                } catch (DocumentException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    /* 定义一个倒计时的内部类 */
+    class CountTimer extends CountDownTimer {
+        public CountTimer(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        @Override
+        public void onTick(long l) {
+            mBtSend.setEnabled(false);
+            mBtSend.setText("(" + l/1000 + "秒)");
+        }
+
+        @Override
+        public void onFinish() {
+            mBtSend.setEnabled(true);
+            mBtSend.setText("发送验证码");
+        }
+    }
+}

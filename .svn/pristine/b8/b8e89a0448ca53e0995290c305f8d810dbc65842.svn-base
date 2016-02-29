@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.damenghai.chahuitong.view.TopBar
+        android:id="@+id/id_chat_topbar"
+        style="@style/CommonTopBar"
+        />
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/id_chat_lv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@null"
+        android:fadingEdgeLength="0dp"
+        android:fastScrollEnabled="true"
+        android:listSelector="@android:color/transparent"
+        android:paddingBottom="10dp"
+        android:transcriptMode="normal"
+        />
+
+    <include layout="@layout/include_chat_bottom_bar" />
+
+</LinearLayout>

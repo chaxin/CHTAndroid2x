@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--品牌分类-->
+    <string-array name="tab_categories">
+        <item>普洱茶</item>
+        <item>乌龙茶</item>
+        <item>红茶</item>
+        <item>绿茶</item>
+        <item>黑茶</item>
+        <item>花茶</item>
+        <item>白茶</item>
+        <item>茶具</item>
+        <item>其他"</item>
+    </string-array>
+    <!--品牌分类id-->
+    <integer-array name="tab_category_ids">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>256</item>
+        <item>308</item>
+        <item>470</item>
+        <item>530</item>
+        <item>662</item>
+        <item>593</item>
+    </integer-array>
+
+    <string-array name="tab_tea_market">
+        <item>行情</item>
+        <item>求购</item>
+        <item>出售</item>
+        <item>我的发布</item>
+    </string-array>
+</resources>

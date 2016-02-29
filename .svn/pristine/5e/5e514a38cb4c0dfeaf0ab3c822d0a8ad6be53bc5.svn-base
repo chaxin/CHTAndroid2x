@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/draw_white2gray_sel"
+    >
+
+    <include
+        android:id="@+id/status_images"
+        layout="@layout/include_gridview_images"
+        android:visibility="gone"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:layout_marginBottom="-16dp"
+        >
+
+        <TextView
+            android:id="@+id/topic_item_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="当今的普洱茶的收藏价值怎么样"
+            android:textSize="@dimen/text_title"
+            android:textStyle="bold"
+            android:singleLine="true"
+            android:ellipsize="end"
+            />
+
+        <TextView
+            android:id="@+id/topic_item_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="话题主理人：林林林"
+            android:textColor="@color/text_caption"
+            android:textSize="@dimen/text_caption"
+            android:gravity="center"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/topic_item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:padding="16dp"
+        android:maxLines="3"
+        android:text="近几年的普洱茶越来越被大家所熟知和接受，普洱茶的收藏也被大家纷纷提出，其实普洱茶在很早的时候就已经被各大收藏家收藏，现如今"
+        android:textColor="@color/text_body"
+        android:textSize="@dimen/text_body" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/stroke" />
+
+    <include layout="@layout/include_forum_controlbar" />
+
+</LinearLayout>

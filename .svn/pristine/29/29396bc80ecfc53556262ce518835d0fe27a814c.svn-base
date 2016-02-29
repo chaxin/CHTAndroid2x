@@ -1,0 +1,32 @@
+package com.damenghai.chahuitong.bean;
+
+public class Chat {
+	private String mDate;
+	private String mContent;
+	private int mType;
+
+	public Chat(String mDate, String mContent, int mType) {
+		super();
+		this.mDate = mDate;
+		this.mContent = mContent;
+		this.mType = mType;
+	}
+	public String getDate() {
+		return mDate;
+	}
+	public void setDate(String mDate) {
+		this.mDate = mDate;
+	}
+	public String getContent() {
+		return mContent;
+	}
+	public void setContent(String mContent) {
+		this.mContent = mContent;
+	}	
+	public int getType() {
+		return mType;
+	}
+	public void setType(int mType) {
+		this.mType = mType;
+	}
+}

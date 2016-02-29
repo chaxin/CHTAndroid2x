@@ -1,0 +1,76 @@
+package com.damenghai.chahuitong.ui.activity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.widget.ImageView;
+
+import com.damenghai.chahuitong.R;
+import com.damenghai.chahuitong.adapter.MarketFragmentAdapter;
+import com.damenghai.chahuitong.base.BaseFragmentActivity;
+import com.damenghai.chahuitong.config.SessionKeeper;
+import com.damenghai.chahuitong.view.TopBar;
+import com.umeng.analytics.MobclickAgent;
+import com.viewpagerindicator.TabPageIndicator;
+
+public class MarketActivity extends BaseFragmentActivity {
+	private TopBar mTopBar;
+	private ViewPager mViewPager;
+
+	private MarketFragmentAdapter mAdapter;
+	private TabPageIndicator mIndicator;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_market);
+
+		findViewById();
+
+		initView();
+	}
+
+	private void findViewById() {
+		mTopBar = (TopBar) findViewById(R.id.market_bar);
+		mViewPager = (ViewPager) findViewById(R.id.id_vp);
+		mIndicator = (TabPageIndicator) findViewById(R.id.title_indicator);
+	}
+
+	private void initView() {
+		mTopBar.setOnButtonClickListener(new TopBar.OnButtonClickListener() {
+			@Override
+			public void onLeftClick() {
+				finishActivity();
+			}
+
+			@Override
+			public void onRightClick() {
+				if (SessionKeeper.readSession(MarketActivity.this).equals("")) {
+					openActivity(LoginActivity.class);
+				} else {
+					openActivity(PublishActivity.class);
+				}
+			}
+		});
+
+		mAdapter = new MarketFragmentAdapter(getSupportFragmentManager());
+		mViewPager.setAdapter(mAdapter);
+		mIndicator.setViewPager(mViewPager);
+
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		MobclickAgent.onResume(this);
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		MobclickAgent.onPause(this);
+	}
+
+}

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/correct_white2gray_sel"
+    >
+
+    <com.damenghai.chahuitong.view.RoundImageView
+        android:id="@+id/leader_item_avatar"
+        android:layout_width="71dp"
+        android:layout_height="71dp"
+        android:src="@drawable/avatar_default"
+        android:layout_marginTop="14dp"
+        />
+
+    <TextView
+        android:id="@+id/leader_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_title"
+        android:textStyle="bold"
+        android:layout_margin="13dp"
+        />
+
+    <TextView
+        android:id="@+id/leader_item_favorites"
+        android:layout_width="71dp"
+        android:layout_height="20dp"
+        android:gravity="center"
+        android:text="关注"
+        android:textColor="@color/text_body"
+        android:textSize="@dimen/text_body"
+        android:background="@drawable/stroke_gray"
+        />
+
+    <TextView
+        android:id="@+id/leader_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_body"
+        android:textSize="@dimen/text_body"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="13dp"
+        android:paddingLeft="22dp"
+        android:paddingRight="14dp"
+        android:singleLine="true"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/background"
+        />
+
+    <TextView
+        android:id="@+id/leader_item_follow"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="加关注"
+        android:gravity="center"
+        android:drawableLeft="@drawable/icon_unfollowed"
+        />
+
+</LinearLayout>

@@ -1,0 +1,183 @@
+package com.damenghai.chahuitong.view;
+
+import android.content.Context;
+import android.os.Handler;
+import android.util.AttributeSet;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
+
+import com.damenghai.chahuitong.R;
+import com.damenghai.chahuitong.utils.CommonTool;
+import com.damenghai.chahuitong.utils.L;
+import com.damenghai.chahuitong.utils.RecorderDialogManager;
+import com.damenghai.chahuitong.utils.T;
+
+import cn.bmob.im.BmobRecordManager;
+import cn.bmob.im.inteface.OnRecordChangeListener;
+import cn.bmob.im.util.BmobLog;
+
+/**
+ * Created by Sgun on 15/10/26.
+ */
+public class AudioRecorderButton extends Button {
+    public final static int STATE_NORMAL = 1;
+    public final static int STATE_RECODING = 2;
+    public final static int STATE_WANT_TO_CANCEL = 3;
+    public final static int DISTANCE_Y_CANCEL = 50;
+
+    private String mTargetId;
+
+    private RecorderDialogManager mDialogManager;
+    private BmobRecordManager mRecordManager;
+
+    public int mCurState = STATE_NORMAL;
+    private boolean isRecording = false;
+
+    private Handler mHandler = new Handler();
+
+    private OnSendMessageListener mListener;
+
+    public interface OnSendMessageListener {
+        void sendMessage(String path, int time);
+    }
+
+    public AudioRecorderButton(Context context) {
+        this(context, null);
+    }
+
+    public AudioRecorderButton(final Context context, AttributeSet attrs) {
+        super(context, attrs);
+
+        mDialogManager = new RecorderDialogManager(context);
+        mRecordManager = BmobRecordManager.getInstance(context);
+        mRecordManager.setOnRecordChangeListener(new OnRecordChangeListener() {
+            @Override
+            public void onVolumnChanged(int level) {
+                if(mCurState == STATE_RECODING) {
+                    mDialogManager.updateVoiceLevel(level);
+                }
+            }
+
+            @Override
+            public void onTimeChanged(int time, String localPath) {
+                if(time > BmobRecordManager.MAX_RECORD_TIME) {
+                    if(isRecording) {
+                        setEnabled(false);
+                        if(mListener != null) {
+                            mListener.sendMessage(localPath, time);
+                        }
+                        mHandler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                setEnabled(true);
+                            }
+                        }, 1000);
+                        reset();
+                    }
+                }
+            }
+        });
+
+        setOnLongClickListener(new OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                mDialogManager.showRecordingDialog();
+                isRecording = true;
+                mRecordManager.startRecording(mTargetId);
+                return false;
+            }
+        });
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        int action = event.getAction();
+        int x = (int) event.getX();
+        int y = (int) event.getY();
+
+        switch (action) {
+            case MotionEvent.ACTION_DOWN :
+                if(!CommonTool.checkSdCard()) {
+                    T.showShort(getContext(), "发送语音需要sdcard支持！");
+                    return false;
+                }
+                changeState(STATE_RECODING);
+                break;
+            case MotionEvent.ACTION_MOVE :
+                if(isRecording) {
+                    if(wantToCancel(x, y)) {
+                        changeState(STATE_WANT_TO_CANCEL);
+                    } else {
+                        changeState(STATE_RECODING);
+                    }
+                }
+                break;
+            case MotionEvent.ACTION_UP :
+                if(mCurState == STATE_RECODING) {
+                    L.d("recording");
+                    int time = mRecordManager.stopRecording();
+                    if(time > 1) {
+                        BmobLog.i("voice", "发送语音");
+                        L.d("time: " + time);
+                        if(mListener != null) mListener.sendMessage(mRecordManager.getRecordFilePath(mTargetId), time);
+                    } else {
+                        mDialogManager.tooShort();
+                    }
+                } else if(mCurState == STATE_WANT_TO_CANCEL) {
+                    BmobLog.i("voice", "放弃发送");
+                    mRecordManager.cancelRecording();
+                }
+                reset();
+                break;
+        }
+
+        return super.onTouchEvent(event);
+    }
+
+    private void changeState(int state) {
+        if(mCurState != state) {
+            mCurState = state;
+            switch (state) {
+                case STATE_NORMAL :
+                    setText(R.string.recorder_normal);
+                    break;
+                case STATE_RECODING :
+                    setText(R.string.recorder_recording);
+                    if(isRecording) {
+                        mDialogManager.recording();
+                    }
+                    break;
+                case STATE_WANT_TO_CANCEL :
+                    setText(R.string.recorder_want_to_cancel);
+                    mDialogManager.wantToCancel();
+                    break;
+            }
+        }
+    }
+
+    private boolean wantToCancel(int x, int y) {
+        return x < 0 || x > getWidth() || y < -DISTANCE_Y_CANCEL || y > getHeight() + DISTANCE_Y_CANCEL;
+    }
+
+    private void reset() {
+        isRecording = false;
+        changeState(STATE_NORMAL);
+        mDialogManager.dismissDialog();
+    }
+
+    public void setTargetId(String targetId) {
+        mTargetId = targetId;
+    }
+
+    public void setOnSendMessageListener(OnSendMessageListener listener) {
+        if(listener != null) mListener = listener;
+    }
+
+    public void cancelRecord() {
+        if(mRecordManager != null && mRecordManager.isRecording()) {
+            mRecordManager.cancelRecording();
+        }
+    }
+
+}

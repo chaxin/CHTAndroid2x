@@ -1,0 +1,92 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.damenghai.chahuitong.ui.activity.HomeActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <com.damenghai.chahuitong.view.TopBar
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:background="@color/primary"
+            app:titleImage="@drawable/title_logo"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="21">
+
+            <com.damenghai.chahuitong.view.BannerViewPager
+                android:id="@+id/home_banner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+            <com.viewpagerindicator.LinePageIndicator
+                android:id="@+id/home_indicator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="5dp"
+                app:selectedColor="@android:color/white"
+                app:unselectedColor="@color/background_alpha"
+                app:lineWidth="19dp"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="17"
+            >
+
+            <include layout="@layout/include_home_button" />
+
+            <Button
+                android:id="@+id/home_personal"
+                android:layout_width="84dp"
+                android:layout_height="84dp"
+                android:paddingTop="10dp"
+                android:text="@string/home_personal"
+                android:textSize="@dimen/micro_middle_text_size"
+                android:textColor="@android:color/white"
+                android:layout_centerInParent="true"
+                android:background="@drawable/oval_primary2dark_sel"
+                android:drawableTop="@drawable/icon_home_personal"
+                android:drawablePadding="-16dp"
+                android:gravity="center"
+                />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            style="@style/LinearLayoutHomeProduct"
+            android:id="@+id/home_recommend_layout"
+            android:background="@drawable/draw_white2gray_sel"
+            >
+
+            <ImageView
+                style="@style/ImageViewHomeProduct"
+                android:id="@+id/home_iv_product"
+                />
+
+            <include
+                android:id="@+id/goods_one"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                layout="@layout/include_product_info" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

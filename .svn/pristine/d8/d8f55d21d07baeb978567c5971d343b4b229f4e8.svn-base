@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/travel_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/timeline_image_loading"
+        android:scaleType="centerCrop"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/travel_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="布郎山淘茶之旅"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_title"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <TextView
+            android:id="@+id/travel_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="行程时间：2015-09-01~2015-10-10\n行程天数：5天"
+            android:textColor="@android:color/white"
+            android:gravity="center_horizontal"
+            android:layout_margin="20dp"
+            />
+
+        <TextView
+            android:layout_width="93dp"
+            android:layout_height="26dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/stroke_white"
+            android:text="了解详情"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            />
+    </LinearLayout>
+
+</RelativeLayout>

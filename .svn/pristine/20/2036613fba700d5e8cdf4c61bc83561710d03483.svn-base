@@ -1,0 +1,181 @@
+<resources>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Holo.Light.NoActionBar"/>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <!-- 登录注册页输入框 -->
+    <style name="log_editText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:maxLength">11</item>
+        <item name="android:background">@null</item>
+        <item name="android:drawablePadding">20dp</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:textSize">@dimen/text_body</item>
+    </style>
+
+    <!-- 登录注册页分割线 -->
+    <style name="log_divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/divider_login</item>
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+    </style>
+
+    <!-- 茶市发布产品页 -->
+    <!-- 发布产品页分割线 -->
+    <style name="divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:background">@color/divider</item>
+    </style>
+
+    <!-- 每一行产品信息 -->
+    <style name="publish_product_row">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <!-- 发布产品页标签样式 -->
+    <style name="publish_product_label">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:textSize">@dimen/text_title</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginLeft">30dp</item>
+    </style>
+
+    <!-- 发布产品页输入框 -->
+    <style name="publish_product_input">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@null</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">@dimen/text_body</item>
+    </style>
+
+    <!-- 茶市发布产品页 -->
+
+    <!--2.0-->
+    <style name="DialogLoadding" parent="android:Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowSoftInputMode">adjustPan</item>
+    </style>
+
+    <!-- 首页按钮 -->
+    <style name="HomeButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">@dimen/micro_middle_text_size</item>
+        <item name="android:textColor">@color/text_caption</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@drawable/draw_white2gray_sel</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:drawablePadding">-1dp</item>
+        <item name="android:minHeight">32dp</item>
+    </style>
+
+    <!-- 产品标题 -->
+    <style name="ProductItemTitle" parent="TextViewTitle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:maxLength">15</item>
+    </style>
+
+    <!-- 首页描述 -->
+    <style name="TextViewDate">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">right</item>
+        <item name="android:textColor">@color/text_body</item>
+    </style>
+
+    <!-- 首页描述 -->
+    <style name="TextViewHomeDesc">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:textColor">@color/text_body</item>
+        <item name="android:lineSpacingMultiplier">1.1</item>
+    </style>
+
+    <!-- 首页产品总体布局 -->
+    <style name="LinearLayoutHomeProduct">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">12</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingRight">24dp</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+
+    <!-- 首页产品图片 -->
+    <style name="ImageViewHomeProduct">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:layout_marginRight">8dp</item>
+    </style>
+
+    <style name="GridView">
+        <item name="android:verticalSpacing">6dp</item>
+        <item name="android:horizontalSpacing">6dp</item>
+        <item name="android:paddingLeft">6dp</item>
+        <item name="android:paddingRight">6dp</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:listSelector">@color/background</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- 文章详情页进入和结束动画 -->
+    <style name="PopupWindowAnim">
+        <item name="android:windowEnterAnimation">@anim/slide_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_bottom_out</item>
+    </style>
+
+    <!-- 更多文本样式 -->
+    <style name="TextMore">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:text">@string/more</item>
+        <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:textColor">@color/text_body</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/draw_white2gray_sel</item>
+    </style>
+</resources>

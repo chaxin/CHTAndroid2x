@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/draw_white2gray_sel"
+    >
+
+    <TextView
+        android:id="@+id/home_travel_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:drawableRight="@drawable/test_icon_recommend"
+        android:gravity="center_vertical"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
+        android:text="武夷山淘茶之旅"
+        android:textSize="@dimen/text_caption"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/home_travel_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="18dp"
+        android:singleLine="true"
+        android:text="随着人们的生活水平越来越高，越来越多的人开始喝茶，而市场"
+        android:textColor="@color/text_body"
+        android:textSize="@dimen/text_caption" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/home_travel_avatar"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginTop="7dp"
+            android:src="@drawable/avatar_default" />
+
+        <TextView
+            android:id="@+id/home_travel_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="Air海尔"
+            android:textSize="@dimen/text_caption" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/home_travel_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingRight="18dp"
+            android:text="最后更新：5分钟前"
+            android:textColor="@color/text_caption"
+            android:textSize="@dimen/text_caption" />
+    </LinearLayout>
+</LinearLayout>

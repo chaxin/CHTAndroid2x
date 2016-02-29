@@ -1,0 +1,134 @@
+package com.damenghai.chahuitong.ui.activity;
+
+import android.annotation.TargetApi;
+import android.content.Context;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+
+import com.damenghai.chahuitong.R;
+import com.damenghai.chahuitong.base.BaseActivity;
+import com.damenghai.chahuitong.utils.DensityUtils;
+import com.damenghai.chahuitong.view.TopBar;
+import com.damenghai.chahuitong.view.WrapHeightGridView;
+
+/**
+ * Created by Sgun on 15/10/20.
+ */
+public class CategoryActivity extends BaseActivity implements AdapterView.OnItemClickListener {
+    private WrapHeightGridView mGv;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_category);
+
+
+        bindView();
+
+        initView();
+    }
+
+    @Override
+    protected void bindView() {
+        mGv = (WrapHeightGridView) findViewById(R.id.category_gv);
+    }
+
+    @Override
+    protected void initView() {
+        ((TopBar) findViewById(R.id.category_bar)).setOnButtonClickListener(new TopBar.OnButtonClickListener() {
+            @Override
+            public void onLeftClick() {
+                finishActivity();
+            }
+
+            @Override
+            public void onRightClick() {
+                goHome();
+            }
+        });
+
+        CategoryGridViewAdapter adapter = new CategoryGridViewAdapter(this, R.layout.gridview_item_image);
+        mGv.setAdapter(adapter);
+        mGv.setOnItemClickListener(this);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Bundle bundle = new Bundle();
+        bundle.putInt("position", i);
+        openActivity(ShopActivity.class, bundle);
+    }
+
+    private class CategoryGridViewAdapter extends BaseAdapter {
+        private final int[] CATEGORIES = new int[] {R.drawable.category_image_puer, R.drawable.category_image_wulong,
+                R.drawable.category_image_hongcha, R.drawable.category_image_lucha, R.drawable.category_image_heicha,
+                R.drawable.category_image_huangcha, R.drawable.category_image_baicha, R.drawable.category_image_chaju,
+                R.drawable.category_image_qita};
+
+        private Context mContext;
+        private int mRes;
+
+        public CategoryGridViewAdapter(Context context, int resId) {
+            this.mContext = context;
+            this.mRes = resId;
+        }
+
+        @Override
+        public int getCount() {
+            return CATEGORIES.length;
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return CATEGORIES[i];
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder holder;
+            if(convertView == null) {
+                convertView = View.inflate(mContext, mRes, null);
+
+                holder = new ViewHolder();
+                holder.iv = (ImageView) convertView.findViewById(R.id.gridview_item_image);
+
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+
+            WrapHeightGridView gv = (WrapHeightGridView) parent;
+
+            int numCol = gv.getNumColumns();
+            int width = (gv.getWidth() - gv.getHorizontalSpacing() * (numCol + 1)) / numCol;
+
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, width);
+            holder.iv.setLayoutParams(params);
+
+            int padding = DensityUtils.dp2px(mContext, 17);
+            holder.iv.setPadding(padding, padding, padding, padding);
+            holder.iv.setBackground(getResources().getDrawable(android.R.color.white));
+
+            holder.iv.setImageResource(CATEGORIES[position]);
+
+            return convertView;
+        }
+
+        private class ViewHolder {
+            ImageView iv;
+        }
+    }
+
+}

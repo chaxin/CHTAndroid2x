@@ -1,0 +1,23 @@
+package com.damenghai.chahuitong.adapter;
+
+import android.content.Context;
+
+import com.damenghai.chahuitong.bean.Store;
+import com.damenghai.chahuitong.utils.ViewHolder;
+
+import java.util.List;
+
+/**
+ * Copyright (c) 2015. LiaoPeiKun Inc. All rights reserved.
+ */
+public class StoreListAdapter extends BaseListAdapter<Store> {
+
+    public StoreListAdapter(Context context, List<Store> data, int resId) {
+        super(context, data, resId);
+    }
+
+    @Override
+    public void convert(ViewHolder holder, Store store) {
+
+    }
+}

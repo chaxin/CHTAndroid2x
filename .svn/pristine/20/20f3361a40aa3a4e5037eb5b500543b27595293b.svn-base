@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <com.damenghai.chahuitong.view.TopBar
+        android:id="@+id/write_status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_bar_height"
+        android:background="@color/primary"
+        app:titleText="发布"
+        app:titleTextSize="@dimen/text_title"
+        app:titleTextColor="@android:color/white"
+        app:leftSrc="@drawable/back_text_normal"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:paddingLeft="28dp"
+            android:paddingRight="28dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="20dp"
+            android:layout_weight="1"
+            >
+
+            <EditText
+                android:id="@+id/write_status_text"
+                android:layout_width="match_parent"
+                android:layout_height="115dp"
+                android:inputType="textMultiLine"
+                android:background="@android:color/transparent"
+                android:hint="说点什么吧..."
+                android:gravity="top"
+                />
+
+            <com.damenghai.chahuitong.view.WrapHeightGridView
+                android:id="@+id/gv_write_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:horizontalSpacing="8dp"
+                android:verticalSpacing="8dp"
+                android:listSelector="@android:color/transparent"
+                android:numColumns="3"
+                android:scrollbars="none"
+                android:visibility="gone"
+                />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/status_commit"
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:layout_margin="18dp"
+        android:text="晒出来"
+        android:textColor="@android:color/white"
+        android:background="@drawable/correct_primary2dark_sel"
+        />
+
+</LinearLayout>

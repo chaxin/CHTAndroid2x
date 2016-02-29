@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:hodor="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/id_product_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.damenghai.chahuitong.view.TopBar
+        android:id="@+id/id_product_topBar"
+        hodor:titleText="@string/product_detail"
+        style="@style/CommonTopBar"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@android:color/white"
+            >
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/id_product_img"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                />
+
+            <com.viewpagerindicator.CirclePageIndicator
+                android:id="@+id/product_indicator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                hodor:fillColor="@color/primary"
+                hodor:pageColor="@color/background"
+                hodor:snap="true"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:background="@android:color/white"
+                >
+
+                <TextView
+                    android:id="@+id/id_label_brand"
+                    style="@style/TextViewBody"
+                    android:text="@string/brand"
+                    />
+
+                <TextView
+                    android:id="@+id/id_product_brand"
+                    style="@style/TextViewBody"
+                    android:textColor="@android:color/black"
+                    android:layout_alignBottom="@id/id_label_brand"
+                    android:layout_marginLeft="48dp"
+                    android:layout_toRightOf="@id/id_label_brand"
+                    />
+
+                <TextView
+                    android:id="@+id/id_label_name"
+                    style="@style/TextViewBody"
+                    android:layout_alignLeft="@id/id_label_brand"
+                    android:layout_below="@id/id_label_brand"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/item_name"
+                    />
+
+                <TextView
+                    android:id="@+id/id_product_name"
+                    style="@style/TextViewBody"
+                    android:layout_alignBottom="@id/id_label_name"
+                    android:layout_alignLeft="@id/id_product_brand"
+                    android:layout_toRightOf="@id/id_label_brand"
+                    android:textColor="@android:color/black"
+                    />
+
+                <TextView
+                    android:id="@+id/id_label_price"
+                    style="@style/TextViewBody"
+                    android:layout_alignLeft="@id/id_label_name"
+                    android:layout_below="@id/id_label_name"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/price"
+                    />
+
+                <TextView
+                    android:id="@+id/id_product_price"
+                    style="@style/TextViewBody"
+                    android:textColor="@android:color/black"
+                    android:layout_alignLeft="@id/id_product_name"
+                    android:layout_below="@id/id_product_name"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/price"
+                    />
+
+                <TextView
+                    android:id="@+id/id_label_year"
+                    style="@style/TextViewBody"
+                    android:layout_alignLeft="@id/id_label_price"
+                    android:layout_below="@id/id_label_price"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/years"
+                    />
+
+                <TextView
+                    android:id="@+id/id_product_year"
+                    style="@style/TextViewBody"
+                    android:textColor="@android:color/black"
+                    android:layout_alignBottom="@id/id_label_year"
+                    android:layout_alignLeft="@id/id_product_brand"
+                    android:layout_toRightOf="@id/id_label_year"
+                    android:text="@string/years"
+                    />
+
+                <TextView
+                    android:id="@+id/id_label_quantity"
+                    style="@style/TextViewBody"
+                    android:layout_alignLeft="@id/id_label_year"
+                    android:layout_below="@id/id_label_year"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/quantity"
+                    />
+
+                <TextView
+                    android:id="@+id/id_product_quantity"
+                    style="@style/TextViewBody"
+                    android:textColor="@android:color/black"
+                    android:layout_alignBottom="@id/id_label_quantity"
+                    android:layout_alignLeft="@id/id_product_brand"
+                    android:layout_toRightOf="@id/id_label_quantity"
+                    android:text="@string/quantity"
+                    />
+
+                <TextView
+                    android:id="@+id/id_label_address"
+                    style="@style/TextViewBody"
+                    android:layout_alignLeft="@id/id_label_quantity"
+                    android:layout_below="@id/id_label_quantity"
+                    android:layout_marginTop="20dp"
+                    android:text="所在城市"
+                    />
+
+                <TextView
+                    android:id="@+id/id_product_address"
+                    style="@style/TextViewBody"
+                    android:textColor="@android:color/black"
+                    android:layout_alignBottom="@id/id_label_address"
+                    android:layout_alignLeft="@id/id_product_brand"
+                    android:layout_toRightOf="@id/id_label_address"
+                    android:text="@string/address"
+                    />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/stroke" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:background="@android:color/white"
+                >
+
+                <TextView
+                    style="@style/TextViewCaption"
+                    android:text="详细描述"
+                    />
+
+                <TextView
+                    android:id="@+id/id_product_desc"
+                    style="@style/TextViewBody"
+                    android:paddingTop="8dp"
+                    android:text="@string/product_buy_desction"
+                    />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/stroke"
+                />
+
+            <TextView
+                android:id="@+id/id_product_date"
+                style="@style/TextViewCaption"
+                android:text="发布时间:2015-06-11"
+                android:padding="8dp"
+                android:layout_gravity="center_horizontal"
+                />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:orientation="horizontal"
+        >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:background="@color/product_catact_background"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:id="@+id/product_from"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:text="廖先生"
+                />
+
+            <TextView
+                android:id="@+id/product_mobile_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:text="15375870891"
+                android:layout_marginTop="4dp"
+                />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/product_btn_mobile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="电话"
+            android:layout_weight="1"
+            android:background="@color/primary"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_body"
+            android:drawableTop="@drawable/icon_white_phone"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            />
+
+        <Button
+            android:id="@+id/product_btn_sms"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="短信"
+            android:layout_weight="1"
+            android:background="@color/primary"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_body"
+            android:drawableTop="@drawable/icon_white_sms"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            />
+
+        <Button
+            android:id="@+id/product_btn_chat"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="消息"
+            android:layout_weight="1"
+            android:background="@color/primary"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_body"
+            android:drawableTop="@drawable/icon_white_message"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

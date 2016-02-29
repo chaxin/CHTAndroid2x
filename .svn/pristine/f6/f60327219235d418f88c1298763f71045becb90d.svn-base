@@ -1,0 +1,125 @@
+package com.damenghai.chahuitong.utils;
+
+import android.app.Activity;
+import android.content.Context;
+import android.text.TextUtils;
+
+import com.damenghai.chahuitong.config.Config;
+import com.umeng.socialize.controller.UMServiceFactory;
+import com.umeng.socialize.controller.UMSocialService;
+import com.umeng.socialize.media.BaseShareContent;
+import com.umeng.socialize.media.QQShareContent;
+import com.umeng.socialize.media.QZoneShareContent;
+import com.umeng.socialize.media.UMImage;
+import com.umeng.socialize.sso.QZoneSsoHandler;
+import com.umeng.socialize.sso.SinaSsoHandler;
+import com.umeng.socialize.sso.UMQQSsoHandler;
+import com.umeng.socialize.weixin.controller.UMWXHandler;
+import com.umeng.socialize.weixin.media.CircleShareContent;
+import com.umeng.socialize.weixin.media.WeiXinShareContent;
+
+/**
+ * Created by Sgun on 15/9/22.
+ */
+public class ShareManager {
+    public static UMSocialService mController;
+
+    public static UMSocialService create(Context context) {
+        if(mController == null) {
+            mController = UMServiceFactory.getUMSocialService("com.umeng.share");
+        }
+        // 添加微信平台
+        UMWXHandler wxHandler = new UMWXHandler(context, Config.wxAppID, Config.wxAppSecret);
+        wxHandler.addToSocialSDK();
+
+        // 添加微信朋友圈
+        UMWXHandler wxCircleHandler = new UMWXHandler(context,Config.wxAppID, Config.wxAppSecret);
+        wxCircleHandler.setToCircle(true);
+        wxCircleHandler.addToSocialSDK();
+
+        // 分享给qq好友，参数1为当前Activity，参数2为开发者在QQ互联申请的APP ID，参数3为开发者在QQ互联申请的APP kEY.
+        UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler((Activity) context, Config.qqAppID, Config.qqAppSecret);
+        qqSsoHandler.addToSocialSDK();
+
+        //分享到qq空间，参数1为当前Activity，参数2为开发者在QQ互联申请的APP ID，参数3为开发者在QQ互联申请的APP kEY.
+        QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler((Activity) context, Config.qqAppID, Config.qqAppSecret);
+        qZoneSsoHandler.addToSocialSDK();
+
+        //设置新浪SSO handler
+        mController.getConfig().setSsoHandler(new SinaSsoHandler());
+
+        return  mController;
+    }
+
+    /**
+     * 设置分享内容
+     *
+     * @param shareContent
+     *                      哪个平台
+     * @param context
+     *                      上下文
+     * @param imageUrl
+     *                      图片地址
+     * @param url
+     *                      跳转链接
+     * @param title
+     *                      分享标题
+     * @param content
+     *                      分享内容
+     */
+    public static void setShareContent(BaseShareContent shareContent, Context context, String imageUrl, String url, String title, String content) {
+        if(!TextUtils.isEmpty(url)) {
+            shareContent.setTargetUrl(url);
+        }
+        if(!TextUtils.isEmpty(title)) {
+            shareContent.setTitle(title);
+        }
+        if(!TextUtils.isEmpty(content)) {
+            shareContent.setShareContent(content);
+        }
+        if(!TextUtils.isEmpty(imageUrl)) {
+            shareContent.setShareImage(new UMImage(context, imageUrl));
+        }
+        mController.setShareMedia(shareContent);
+    }
+
+    /**
+     * 设置分享内容
+     *
+     * @param context
+     *                  上下文
+     * @param imageUrl
+     *                  图片地址
+     * @param url
+     *                  分享链接
+     * @param title
+     *                  分享标题
+     * @param content
+     *                  分享内容
+     */
+    public static void setShareContent(Context context, String imageUrl, String url, String title, String content) {
+        if(mController != null) {
+            //微信
+            WeiXinShareContent weixinContent = new WeiXinShareContent();
+            setShareContent(weixinContent, context, imageUrl, url, title, content);
+
+            //朋友圈
+            CircleShareContent circleMedia = new CircleShareContent();
+            setShareContent(circleMedia, context, imageUrl, url, title, content);
+
+            //qq好友
+            QQShareContent qqShareContent = new QQShareContent();
+            setShareContent(qqShareContent, context, imageUrl, url, title, content);
+
+            //qq空间
+            QZoneShareContent qzone = new QZoneShareContent();
+            setShareContent(qzone, context, imageUrl, url, title, content);
+        }
+    }
+
+    public static void openShare(Activity activity) {
+        if(mController != null) {
+            mController.openShare(activity, false);
+        }
+    }
+}

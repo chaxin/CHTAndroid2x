@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/timeline"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/text_title"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/statuses_tv_more"
+            style="@style/TextMore"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/stroke"
+            android:layout_alignParentBottom="true"
+            />
+
+    </RelativeLayout>
+
+    <com.damenghai.chahuitong.view.WrapHeightListView
+        android:id="@+id/forum_statuses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/background_pressed"
+        android:dividerHeight="1dp"
+        />
+
+</LinearLayout>

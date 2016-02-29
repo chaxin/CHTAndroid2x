@@ -1,0 +1,62 @@
+package com.damenghai.chahuitong.ui.activity;
+
+import android.os.Bundle;
+import android.view.View;
+
+import com.damenghai.chahuitong.R;
+import com.damenghai.chahuitong.base.BaseActivity;
+import com.damenghai.chahuitong.pay.alipay.AlipayManager;
+import com.damenghai.chahuitong.pay.wxpay.WxpayManager;
+import com.damenghai.chahuitong.utils.T;
+
+/**
+ * Created by Sgun on 15/10/29.
+ */
+public class AlipayActivity extends BaseActivity {
+
+    private AlipayManager mManager;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_alipay);
+
+        mManager = AlipayManager.getInstance(this);
+    }
+
+    // 支付宝支付
+    public void alipay(View view) {
+        mManager.pay("测试的商品", "这是app测试商品", "0.01", new AlipayManager.AlipayListener() {
+            @Override
+            public void onSuccess() {
+                T.showShort(AlipayActivity.this, "支付成功");
+            }
+
+            @Override
+            public void onConfirming() {
+                T.showShort(AlipayActivity.this, "支付结果确认中");
+            }
+
+            @Override
+            public void onError() {
+                T.showShort(AlipayActivity.this, "支付失败");
+            }
+        });
+    }
+
+    // 微信支付
+    public void wepay(View view) {
+        WxpayManager manager = WxpayManager.getInstance(this);
+        manager.pay("这是微信支付测试", 0.01);
+    }
+
+    @Override
+    protected void bindView() {
+
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+}

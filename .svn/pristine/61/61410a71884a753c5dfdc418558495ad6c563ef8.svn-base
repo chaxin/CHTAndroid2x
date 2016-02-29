@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:background="@color/white"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_body"
+            android:text="@string/label_consignee_name"
+            android:layout_gravity="center"
+            />
+
+        <EditText
+            android:id="@+id/add_address_et_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="right"
+            android:hint="@string/hint_limit_name"
+            android:textSize="@dimen/text_body"
+            android:gravity="right"
+            android:background="@null"
+            android:maxLength="15"
+            android:inputType="textMultiLine"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/stroke"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_body"
+            android:text="@string/label_mobile_number"
+            android:layout_gravity="center"
+            />
+
+        <EditText
+            android:id="@+id/add_address_et_mobile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="right"
+            android:hint="@string/hint_limit_mobile"
+            android:textSize="@dimen/text_body"
+            android:gravity="right"
+            android:background="@null"
+            android:maxLength="11"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/stroke"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_body"
+            android:text="@string/label_area"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/add_address_et_area"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="right"
+            android:hint="@string/hint_please_choose"
+            android:textSize="@dimen/text_body"
+            android:gravity="right"
+            android:background="@null"
+            android:maxLength="15"
+            android:drawableRight="@drawable/icon_item_detail"
+            android:drawablePadding="4dp"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/stroke"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:background="@drawable/div_bottom_bg"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_body"
+            android:text="@string/label_detail_address"
+            android:layout_gravity="center"
+            />
+
+        <EditText
+            android:id="@+id/add_address_et_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="right"
+            android:hint="@string/hint_detail_address"
+            android:textSize="@dimen/text_body"
+            android:gravity="right"
+            android:background="@null"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/add_address_btn_save"
+        style="@style/CommonButton"
+        android:layout_marginTop="8dp"
+        android:text="@string/btn_save_address"
+        />
+
+</LinearLayout>

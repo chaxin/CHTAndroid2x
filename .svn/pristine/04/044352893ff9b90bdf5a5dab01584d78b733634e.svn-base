@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    >
+
+    <com.damenghai.chahuitong.view.TopBar
+        android:id="@+id/order_bar"
+        app:titleText="@string/title_order"
+        style="@style/CommonTopBar"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <FrameLayout
+                android:id="@+id/order_address_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:visibility="gone"
+                />
+
+            <LinearLayout
+                android:id="@+id/order_ll_address"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/div_topbottom_bg"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:onClick="toChangeAddress"
+                >
+
+                <TextView
+                    android:id="@+id/order_tv_consignee"
+                    style="@style/TextViewTitle"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingTop="8dp"
+                    android:singleLine="true"
+                    />
+
+                <TextView
+                    android:id="@+id/order_tv_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingBottom="8dp"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    />
+
+            </LinearLayout>
+
+            <RadioGroup
+                android:id="@+id/order_group_pay"
+                android:layout_width="match_parent"
+                android:layout_height="136dp"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:background="@drawable/div_topbottom_bg"
+                android:layout_marginTop="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:layout_marginBottom="16dp"
+                >
+
+                <RadioButton
+                    android:id="@+id/order_rbtn_alipay"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/text_alipay"
+                    android:textSize="@dimen/text_title"
+                    android:drawableRight="@drawable/rbtn_primary2white_sel"
+                    android:button="@null"
+                    android:checked="true"
+                    android:drawableLeft="@drawable/icon_pay_alipay"
+                    android:drawablePadding="8dp"
+                    android:paddingTop="4dp"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/stroke"
+                    />
+
+                <RadioButton
+                    android:id="@+id/order_rbtn_wxpay"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/text_wxpay"
+                    android:textSize="@dimen/text_title"
+                    android:drawableRight="@drawable/rbtn_primary2white_sel"
+                    android:button="@null"
+                    android:drawableLeft="@drawable/icon_pay_weixin"
+                    android:drawablePadding="8dp"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/stroke"
+                    />
+
+                <RadioButton
+                    android:id="@+id/order_rbtn_upmp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:drawableRight="@drawable/rbtn_primary2white_sel"
+                    android:button="@null"
+                    android:drawableLeft="@drawable/icon_pay_upmp"
+                    android:drawablePadding="8dp"
+                    android:text="@string/text_upmp"
+                    android:paddingBottom="4dp"
+                    android:textSize="@dimen/text_title"
+                    />
+
+            </RadioGroup>
+
+            <include layout="@layout/include_store_order" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_goods_total"
+                        />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="10dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/order_tv_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_freight"
+                        />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="10dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/order_tv_freight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="￥0"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_total"
+                        />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/order_tv_total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/div_topbottom_bg"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingRight="16dp"
+        android:gravity="right|center_vertical"
+        >
+
+        <TextView
+            style="@style/TextViewCaption"
+            android:text="@string/label_total_pay"
+            />
+
+        <TextView
+            android:id="@+id/order_tv_pay_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/text_title"
+            />
+
+        <Button
+            android:layout_width="117dp"
+            android:layout_height="40dp"
+            android:text="@string/text_pay"
+            android:background="@drawable/correct_primary2dark_sel"
+            android:textSize="@dimen/text_body"
+            android:textColor="@color/white"
+            android:layout_marginLeft="8dp"
+            android:onClick="toPay"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

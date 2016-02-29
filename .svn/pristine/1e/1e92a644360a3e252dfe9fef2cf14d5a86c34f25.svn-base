@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="PrimaryTextIndicators" parent="AppTheme">
+        <item name="vpiTabPageIndicatorStyle">@style/PrimaryTextTab</item>
+        <item name="vpiLinePageIndicatorStyle">@style/CustomLinePageIndicator</item>
+        <item name="vpiUnderlinePageIndicatorStyle">@style/CustomUnderlinePageIndicator</item>
+    </style>
+
+    <style name="WhiteTextTranIndicators" parent="AppTheme">
+        <item name="vpiTabPageIndicatorStyle">@style/WhiteTextTransTab</item>
+    </style>
+
+    <style name="GrayTextPrimaryIndicators" parent="AppTheme">
+        <item name="vpiTabPageIndicatorStyle">@style/GrayTextPrimaryTab</item>
+    </style>
+
+    <!-- 主色文本主色标签 -->
+    <style name="PrimaryTextTab" parent="Widget.TabPageIndicator">
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:background">@drawable/layerlist_primary_tab_sel</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:baselineAligned">false</item>
+    </style>
+
+    <!-- 首页线性指示器 -->
+    <style name="CustomLinePageIndicator">
+        <item name="strokeWidth">4dp</item>
+        <item name="lineWidth">30dp</item>
+        <item name="unselectedColor">#FF888888</item>
+        <item name="selectedColor">@color/primary</item>
+    </style>
+
+    <!--商城轮播图-->
+    <style name="CustomUnderlinePageIndicator">
+        <item name="selectedColor">@color/primary</item>
+        <item name="android:background">@color/background</item>
+    </style>
+
+    <!-- 白色文本暗主色背景 -->
+    <style name="WhiteTextTransTab" parent="Widget.TabPageIndicator">
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:background">@drawable/draw_primary2dark_sel</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <!-- 灰色文本主色标签 -->
+    <style name="GrayTextPrimaryTab">
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">11dip</item>
+        <item name="android:paddingRight">11dip</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@drawable/color_gray2primary_sel</item>
+        <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:background">@drawable/layerlist_primary_tab_sel</item>
+    </style>
+
+</resources>

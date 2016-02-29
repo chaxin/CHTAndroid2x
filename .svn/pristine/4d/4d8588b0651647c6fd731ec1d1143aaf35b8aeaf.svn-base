@@ -1,0 +1,85 @@
+package com.damenghai.chahuitong.ui.activity;
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+
+import com.damenghai.chahuitong.R;
+import com.damenghai.chahuitong.base.BaseFragmentActivity;
+import com.damenghai.chahuitong.ui.fragment.BrandFragment;
+import com.damenghai.chahuitong.view.TopBar;
+import com.viewpagerindicator.TabPageIndicator;
+
+/**
+ * Created by Sgun on 15/8/10.
+ */
+public class ShopActivity extends BaseFragmentActivity {
+    private Adapter mAdapter;
+    private ViewPager mViewpager;
+    private TabPageIndicator mIndicator;
+    private TopBar mTopBar;
+    private int mPosition;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_shop);
+
+        mPosition = getIntent().getIntExtra("position", 0);
+
+        findViewById();
+
+        initView();
+    }
+
+    private void findViewById() {
+        mViewpager = (ViewPager) findViewById(R.id.shop_viewpager);
+        mIndicator = (TabPageIndicator) findViewById(R.id.shop_indicator);
+        mTopBar = (TopBar) findViewById(R.id.shop_topbar);
+    }
+
+    private void initView() {
+        mTopBar.setOnButtonClickListener(new TopBar.OnButtonClickListener() {
+            @Override
+            public void onLeftClick() {
+                finishActivity();
+            }
+
+            @Override
+            public void onRightClick() {
+                goHome();
+            }
+        });
+
+        mAdapter = new Adapter(getSupportFragmentManager());
+        mViewpager.setAdapter(mAdapter);
+        mIndicator.setViewPager(mViewpager);
+        mViewpager.setCurrentItem(mPosition);
+    }
+
+    private class Adapter extends FragmentPagerAdapter {
+        private final int[] CATEGORY_ID = new int[] {1, 2, 3, 256, 308, 470, 530, 662, 593};
+        private final String[] TITLES = new String[] {"普洱茶", "乌龙茶", "红茶", "绿茶", "黑茶", "黄茶", "白茶", "茶具", "其他"};
+
+        public Adapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return BrandFragment.get(TITLES[position], CATEGORY_ID[position]);
+        }
+
+        @Override
+        public int getCount() {
+            return TITLES.length;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return TITLES[position];
+        }
+    }
+}

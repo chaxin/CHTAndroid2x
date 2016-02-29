@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:background="@drawable/draw_white2gray_sel"
+    android:id="@+id/address_item_layout"
+    >
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/address_tv_name"
+            style="@style/TextViewTitle"
+            />
+
+        <TextView
+            android:id="@+id/address_tv_mobile"
+            style="@style/TextViewBody"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            />
+
+        <TextView
+            android:id="@+id/address_tv_address"
+            style="@style/TextViewBody"
+            />
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/address_item_cb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:button="@drawable/rbtn_primary2white_sel"
+        android:visibility="gone"
+        />
+
+    <ImageView
+        android:id="@+id/address_iv_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_item_detail"
+        android:layout_gravity="center"
+        />
+
+</LinearLayout>

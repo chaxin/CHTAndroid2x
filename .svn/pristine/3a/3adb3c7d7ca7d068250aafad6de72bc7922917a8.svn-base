@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    >
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/address_tv_name"
+            style="@style/TextViewTitle"
+            android:text="廖培坤"
+            />
+
+        <TextView
+            android:id="@+id/address_tv_mobile"
+            style="@style/TextViewBody"
+            android:text="15375870891"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            />
+
+        <TextView
+            android:id="@+id/address_tv_address"
+            style="@style/TextViewBody"
+            android:text="高林社区190号"
+            />
+    </LinearLayout>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:button="@drawable/rbtn_primary2white_sel"
+        />
+
+</LinearLayout>

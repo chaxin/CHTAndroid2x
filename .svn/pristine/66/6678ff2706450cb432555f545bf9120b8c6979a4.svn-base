@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    >
+
+    <com.damenghai.chahuitong.view.TopBar
+        android:id="@+id/initiate_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_bar_height"
+        android:background="@color/primary"
+        app:titleText="发起活动"
+        app:titleTextSize="@dimen/text_title"
+        app:titleTextColor="@android:color/white"
+        app:leftSrc="@drawable/btn_back_item_selector"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/initiate_top"
+        android:scrollbars="none"
+        >
+
+        <LinearLayout
+            android:id="@+id/initiate_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="活动主题"
+                    android:textColor="@color/primary"
+                    android:textSize="@dimen/text_body" />
+
+                <EditText
+                    style="@style/CommonEditText"
+                    android:id="@+id/initiate_theme"
+                    android:hint="请输入主题"
+                    />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/stroke"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="开始日期"
+                    android:textColor="@color/primary"
+                    android:textSize="@dimen/text_body" />
+
+                <TextView
+                    android:id="@+id/initiate_start"
+                    style="@style/CommonEditText"
+                    android:hint="活动出发时间"
+                    android:gravity="center_vertical"
+                    />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/stroke"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="活动地点"
+                    android:textColor="@color/primary"
+                    android:textSize="@dimen/text_body" />
+
+                <EditText
+                    android:id="@+id/initiate_location"
+                    style="@style/CommonEditText"
+                    android:ems="10"
+                    android:hint="请输入地点"
+                    />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/stroke"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="活动对象"
+                    android:textColor="@color/primary"
+                    android:textSize="@dimen/text_body" />
+
+                <EditText
+                    android:id="@+id/initiate_duration"
+                    style="@style/CommonEditText"
+                    android:inputType="number"
+                    android:hint="适合什么样的人参加"
+                    />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/stroke"
+                />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="联系电话"
+                    android:textColor="@color/primary"
+                    android:textSize="@dimen/text_body" />
+
+                <EditText
+                    android:id="@+id/initiate_phone"
+                    style="@style/CommonEditText"
+                    android:inputType="phone"
+                    android:maxLength="11"
+                    android:hint="请输入联系电话"
+                    />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/stroke"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="联系人"
+                    android:textColor="@color/primary"
+                    android:textSize="@dimen/text_body" />
+
+                <EditText
+                    android:id="@+id/initiate_contact"
+                    style="@style/CommonEditText"
+                    android:inputType="phone"
+                    android:maxLength="11"
+                    android:hint="请输入联系电话"
+                    />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/stroke"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="活动经费"
+                    android:textColor="@color/primary"
+                    android:textSize="@dimen/text_body" />
+
+                <EditText
+                    android:id="@+id/initiate_cost"
+                    style="@style/CommonEditText"
+                    android:inputType="number"
+                    android:hint="输入0元即免费"
+                    />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/stroke"
+                />
+
+            <EditText
+                android:id="@+id/initiate_comment"
+                style="@style/TextViewBody"
+                android:layout_width="match_parent"
+                android:layout_height="115dp"
+                android:inputType="textMultiLine"
+                android:layout_gravity="center_horizontal"
+                android:background="@android:color/transparent"
+                android:layout_marginTop="17dp"
+                android:hint="建议添加活动提醒、费用项目明细..."
+                android:gravity="top"
+                />
+
+            <com.damenghai.chahuitong.view.WrapHeightGridView
+                android:id="@+id/initiate_images"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numColumns="3"
+                android:horizontalSpacing="7dp"
+                android:verticalSpacing="7dp"
+                android:paddingLeft="7dp"
+                android:paddingRight="7dp"
+                />
+
+            <Button
+                style="@style/CommonButton"
+                android:id="@+id/initiate_commit"
+                android:text="@string/publish"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

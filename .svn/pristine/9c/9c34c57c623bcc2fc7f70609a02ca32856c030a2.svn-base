@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="238dp"
+    android:background="@drawable/div_topbottom_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/store_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/stroke"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        >
+
+        <ImageView
+            android:id="@+id/store_iv_thumb"
+            android:layout_width="77dp"
+            android:layout_height="77dp"
+            android:src="@drawable/timeline_image_loading"
+            android:padding="1dp"
+            android:background="@color/background"
+            />
+
+        <TextView
+            android:id="@+id/store_tv_title"
+            android:layout_width="176dp"
+            style="@style/TextViewTitle"
+            android:layout_alignTop="@id/store_iv_thumb"
+            android:layout_toRightOf="@id/store_iv_thumb"
+            android:ellipsize="end"
+            android:paddingLeft="8dp"
+            android:paddingTop="2dp"
+            android:singleLine="true"
+            android:text="这是产品标题这是产品标题这是产品标题这是产品标题这是产品标题这是产品标题这是产品标题这是产品标题这是产品标题"
+            />
+
+        <TextView
+            android:id="@+id/store_tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingTop="2dp"
+            android:text="￥28.6"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/text_title"
+            android:layout_alignParentRight="true"
+            />
+
+        <com.damenghai.chahuitong.view.QuantityView
+            android:id="@+id/store_count_view"
+            android:layout_width="106dp"
+            android:layout_height="34dp"
+            android:layout_alignBottom="@id/store_iv_thumb"
+            android:layout_alignLeft="@id/store_tv_title"
+            android:layout_marginLeft="8dp"
+            />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/stroke"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp"
+        >
+
+        <TextView
+            android:layout_width="34dp"
+            android:layout_height="14dp"
+            android:background="@drawable/correct_primary2dark_sel"
+            android:text="@string/text_freight"
+            android:textSize="@dimen/text_caption"
+            android:textColor="@color/white"
+            android:gravity="center"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_weight="1" />
+
+        <TextView
+            style="@style/TextViewCaption"
+            android:text="@string/text_carriage_free"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="right"
+        android:padding="16dp"
+        >
+
+        <TextView
+            android:id="@+id/store_tv_total_count"
+            style="@style/TextViewCaption"
+            android:text="小计(共1件)"
+            />
+
+        <TextView
+            android:id="@+id/store_tv_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="￥20"
+            android:textSize="@dimen/text_title"
+            android:textColor="@color/primary"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
