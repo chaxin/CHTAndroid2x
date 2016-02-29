@@ -30,7 +30,7 @@
             android:textColor="@android:color/white"
             android:visibility="gone" />
 
-        <com.damenghai.chahuitong.view.RoundImageView
+        <com.damenghai.chahuitong2.view.RoundImageView
             android:id="@+id/personal_avatar"
             android:layout_width="70dp"
             android:layout_height="70dp"
@@ -52,6 +52,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/icon_personal_logout" />
+        android:src="@drawable/icon_personal_logout"
+        android:visibility="gone"
+        />
 
 </RelativeLayout>

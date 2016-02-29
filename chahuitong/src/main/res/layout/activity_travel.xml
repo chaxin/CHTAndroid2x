@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     >
 
-    <com.damenghai.chahuitong.view.TopBar
+    <com.damenghai.chahuitong2.view.TopBar
         android:id="@+id/event_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height"
@@ -18,8 +19,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/event_bar"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,7 +29,7 @@
             android:background="@android:color/white"
             >
 
-            <com.damenghai.chahuitong.view.BannerViewPager
+            <com.damenghai.chahuitong2.view.BannerViewPager
                 android:id="@+id/travel_banner"
                 android:layout_width="match_parent"
                 android:layout_height="195dp"
@@ -95,6 +96,7 @@
                 android:text="活动详情"
                 android:gravity="center"
                 android:textStyle="bold"
+                android:padding="4dp"
                 />
 
             <View
@@ -174,24 +176,31 @@
         </LinearLayout>
     </ScrollView>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/stroke"
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="58dp"
         android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
         >
+
         <TextView
-            android:id="@+id/travel_fee"
+            android:id="@+id/travel_tv_state"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
-            android:text="￥6000"
             android:background="@android:color/white"
             android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_title"
             />
 
         <TextView
-            android:id="@+id/btn_join"
+            android:id="@+id/travel_tv_enroll"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -200,6 +209,7 @@
             android:textColor="@android:color/white"
             android:gravity="center"
             />
+
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

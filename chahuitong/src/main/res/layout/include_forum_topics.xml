@@ -3,12 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="7dp"
-    android:background="@android:color/white"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:background="@android:color/white"
         >
 
         <TextView
@@ -42,6 +42,7 @@
         android:layout_height="118dp"
         android:padding="14dp"
         android:clickable="true"
+        android:background="@drawable/draw_white2gray_sel"
         >
 
         <ImageView
@@ -50,7 +51,7 @@
             android:layout_height="63dp"
             android:layout_marginRight="14dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/test_image_topic" />
+            android:src="@drawable/timeline_image_loading" />
 
         <TextView
             android:id="@+id/forum_topic_title"
@@ -59,7 +60,8 @@
             android:layout_alignTop="@id/forum_topic_image"
             android:layout_toRightOf="@id/forum_topic_image"
             android:paddingBottom="9dp"
-            android:text="当今普洱茶收藏价值怎么样?" />
+            android:singleLine="true"
+            />
 
         <TextView
             android:id="@+id/forum_topic_text"
@@ -68,11 +70,11 @@
             android:layout_alignLeft="@id/forum_topic_title"
             android:layout_below="@id/forum_topic_title"
             android:ellipsize="end"
-            android:maxLines="3"
+            android:maxLines="2"
             android:paddingRight="12dp"
-            android:text="近几年的普洱茶越来越被大家所熟知和接受，普洱茶的收藏也被大家纷纷提出，其实普洱茶在很早的时候就已经被各大收藏家收藏，现如今"
             android:textColor="@color/text_caption"
-            android:textSize="@dimen/text_caption" />
+            android:textSize="@dimen/text_caption"
+            />
 
         <TextView
             android:id="@+id/forum_topic_host"
@@ -80,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/forum_topic_image"
             android:layout_alignParentBottom="true"
-            android:text="话题主理人：杨丞琳"
+            android:text="话题主理人："
             android:textColor="@color/text_caption"
             android:textSize="@dimen/text_caption" />
 
@@ -90,7 +92,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:text="已有10034人参加"
             android:textColor="@color/text_caption"
             android:textSize="@dimen/text_caption" />
     </RelativeLayout>

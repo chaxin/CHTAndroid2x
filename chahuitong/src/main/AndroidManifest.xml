@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.damenghai.chahuitong"
-    android:versionCode="37"
-    android:versionName="2.1.1" >
-
-    <uses-sdk
-        android:minSdkVersion="14"
-        android:targetSdkVersion="21" />
+    package="com.damenghai.chahuitong2" >
 
     <!-- 读写SD卡 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -26,6 +20,8 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- 允许程序录制音频 -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <permission
         android:name="cn.bmob.permission.push"
         android:protectionLevel="normal" >
@@ -36,7 +32,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:name=".base.BaseApplication"
+        android:name="com.damenghai.chahuitong2.base.BaseApplication"
         android:theme="@style/AppTheme" >
 
         <!-- IM聊天所需的Push start-->
@@ -61,18 +57,12 @@
             </intent-filter>
         </receiver>
         <!--聊天消息接收器 -->
-        <receiver android:name=".MyMessageReceiver" >
+        <receiver android:name="com.damenghai.chahuitong2.MyMessageReceiver" >
             <intent-filter>
                 <action android:name="cn.bmob.push.action.MESSAGE" />
             </intent-filter>
         </receiver>
         <!-- IM聊天所需的Push end-->
-        <!-- 个性功能中的启动定时检测服务，可选功能 -->
-        <service android:name="cn.bmob.im.poll.BmobPollService">
-            <intent-filter>
-                <action android:name="cn.bmob.im.service.BmobPollService"/>
-            </intent-filter>
-        </service>
 
         <!-- ############# 友盟AppKey渠道ID自动更新 ############# -->
         <meta-data
@@ -125,10 +115,40 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
         </activity>
+        <activity
+            android:name="com.damenghai.chahuitong2.wxapi.WXEntryActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <!-- ###################注册SDK使用的Activity###################### -->
 
+        <!-- alipay sdk begin -->
         <activity
-            android:name=".ui.activity.SplashActivity"
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+
+        <!--微信支付回调-->
+        <activity
+            android:name="com.damenghai.chahuitong2.wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            />
+
+        <receiver
+            android:name="com.damenghai.chahuitong2.pay.wxpay.AppRegister">
+            <intent-filter>
+                <action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_REFRESH_WXAPP" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.damenghai.chahuitong2.ui.activity.SplashActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme" >
@@ -139,84 +159,94 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.GuideActivity"
+            android:name="com.damenghai.chahuitong2.ui.activity.GuideActivity"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.activity.HomeActivity"
+            android:name="com.damenghai.chahuitong2.ui.activity.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/PrimaryTextIndicators"
             />
         <activity
-            android:name=".ui.activity.WebViewActivity"
+            android:name="com.damenghai.chahuitong2.ui.activity.WebViewActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.activity.ProductActivity"
+            android:name="com.damenghai.chahuitong2.ui.activity.ProductActivity"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.activity.ContactActivity"
+            android:name="com.damenghai.chahuitong2.ui.activity.ContactActivity"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.activity.ChatActivity"
-            android:launchMode="singleTop"
+            android:name="com.damenghai.chahuitong2.ui.activity.ChatActivity"
+            android:windowSoftInputMode="stateUnspecified|adjustResize"
+            />
+        <activity
+            android:name="com.damenghai.chahuitong2.ui.activity.LoginActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.activity.LoginActivity"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".ui.activity.PersonalActivity"
+            android:name="com.damenghai.chahuitong2.ui.activity.PersonalActivity"
             android:theme="@style/GrayTextPrimaryIndicators" />
         <activity
-            android:name=".ui.activity.MarketActivity"
+            android:name="com.damenghai.chahuitong2.ui.activity.MarketActivity"
             android:theme="@style/PrimaryTextIndicators" />
         <activity
-            android:name=".ui.activity.ForumActivity"
+            android:name="com.damenghai.chahuitong2.ui.activity.ForumActivity"
             >
         </activity>
         <activity
-            android:name=".ui.activity.NewsActivity"
+            android:name="com.damenghai.chahuitong2.ui.activity.NewsActivity"
             android:theme="@style/PrimaryTextIndicators"
             />
         <activity
-            android:name=".ui.activity.ShopActivity"
+            android:name="com.damenghai.chahuitong2.ui.activity.ShopActivity"
             android:theme="@style/WhiteTextTranIndicators"
             >
         </activity>
         <activity
-            android:name=".ui.activity.PublishActivity"
+            android:name="com.damenghai.chahuitong2.ui.activity.CategoryActivity"
+            />
+        <activity
+            android:name="com.damenghai.chahuitong2.ui.activity.PublishActivity"
             android:windowSoftInputMode="adjustResize|stateHidden"
             />
-        <activity android:name=".ui.activity.LeadersActivity" />
-        <activity android:name=".ui.activity.TopicsActivity" />
-        <activity android:name=".ui.activity.TopicActivity" />
-        <activity android:name=".ui.activity.TravelsActivity" />
-        <activity android:name=".ui.activity.StatusesActivity" />
-        <activity android:name=".ui.activity.LeaderActivity" />
-        <activity android:name=".ui.activity.StatusDetailActivity" />
-        <activity android:name=".ui.activity.ImageBrowserActivity" />
-        <activity android:name=".ui.activity.WriteStatusActivity" />
-        <activity android:name=".ui.activity.JoinEventActivity" />
-        <activity android:name=".ui.activity.TravelActivity" />
-        <activity android:name=".ui.activity.InitiateEventActivity" />
+        <activity android:name="com.damenghai.chahuitong2.ui.activity.LeadersActivity" />
+        <activity android:name="com.damenghai.chahuitong2.ui.activity.TopicsActivity" />
+        <activity android:name="com.damenghai.chahuitong2.ui.activity.TravelsActivity" />
+        <activity android:name="com.damenghai.chahuitong2.ui.activity.StatusesActivity" />
+        <activity android:name="com.damenghai.chahuitong2.ui.activity.LeaderActivity" />
+        <activity android:name="com.damenghai.chahuitong2.ui.activity.StatusDetailActivity" />
+        <activity android:name="com.damenghai.chahuitong2.ui.activity.ImageBrowserActivity" />
+        <activity android:name="com.damenghai.chahuitong2.ui.activity.WriteStatusActivity" />
+        <activity android:name="com.damenghai.chahuitong2.ui.activity.JoinEventActivity" />
+        <activity android:name="com.damenghai.chahuitong2.ui.activity.TravelActivity" />
+        <activity android:name="com.damenghai.chahuitong2.ui.activity.InitiateEventActivity" />
         <activity
-            android:name=".ui.activity.WriteCommentActivity"
+            android:name="com.damenghai.chahuitong2.ui.activity.WriteCommentActivity"
             android:windowSoftInputMode="adjustUnspecified|stateHidden"
             />
 
-        <activity android:name=".ui.activity.PaymentActivity" >
+        <activity android:name="com.damenghai.chahuitong2.ui.activity.OrderActivity" >
         </activity>
-        <activity android:name=".ui.activity.EditActivity" />
-        <activity android:name=".ui.activity.ProfileActivity" />
-        <activity android:name=".ui.activity.ModifyActivity" />
-        <activity android:name=".ui.activity.MessageActivity" />
-        <activity android:name=".ui.activity.ForgotActivity" />
-        <activity android:name=".ui.activity.ResetPasswordActivity" />
-        <activity android:name=".ui.activity.VoucherActivity"
+        <activity android:name="com.damenghai.chahuitong2.ui.activity.ProfileActivity" />
+        <activity android:name="com.damenghai.chahuitong2.ui.activity.ModifyActivity" />
+        <activity android:name="com.damenghai.chahuitong2.ui.activity.MessageActivity" />
+        <activity android:name="com.damenghai.chahuitong2.ui.activity.ForgotActivity" />
+        <activity android:name="com.damenghai.chahuitong2.ui.activity.ResetPasswordActivity" />
+        <activity android:name="com.damenghai.chahuitong2.ui.activity.VoucherActivity"
                   android:theme="@style/PrimaryTextIndicators" />
+        <activity android:name="com.damenghai.chahuitong2.ui.activity.AreaActivity" />
+        <activity android:name="com.damenghai.chahuitong2.ui.activity.AddressListActivity" />
+        <activity android:name="com.damenghai.chahuitong2.ui.activity.CartActivity" />
+        <activity android:name="com.damenghai.chahuitong2.ui.activity.QuotationActivity" />
+        <activity android:name="com.damenghai.chahuitong2.ui.activity.PayActivity" />
+        <activity android:name="com.damenghai.chahuitong2.ui.activity.OrderDetailActivity" />
+        <activity
+            android:name="com.damenghai.chahuitong2.ui.activity.OrderListActivity"
+            android:theme="@style/PageIndicatorDefaults"
+            />
 
-        <activity android:name="com.unionpay.uppay.PayActivity" />
         <activity android:name="com.pgyersdk.activity.FeedbackActivity"/>
     </application>
 

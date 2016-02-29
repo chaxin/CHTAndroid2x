@@ -7,13 +7,13 @@
     android:background="@color/background"
     >
 
-    <com.damenghai.chahuitong.view.TopBar
+    <com.damenghai.chahuitong2.view.TopBar
         android:id="@+id/leader_bar"
         style="@style/CommonTopBar"
         app:titleText="个人主页"
         />
 
-    <com.damenghai.chahuitong.view.LastRefreshListView
+    <com.damenghai.chahuitong2.view.LastRefreshListView
         android:id="@+id/leader_lv_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

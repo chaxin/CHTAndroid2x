@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <com.damenghai.chahuitong.view.TopBar
+    <com.damenghai.chahuitong2.view.TopBar
         android:id="@+id/id_contact_topbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height"
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginRight="10dp"
-            android:background="@drawable/color_primary2dark_sel"
+            android:background="@drawable/draw_primary2dark_sel"
             android:padding="6dp"
             android:text="@string/phone"
             android:textColor="@android:color/white"
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/color_primary2dark_sel"
+            android:background="@drawable/draw_primary2dark_sel"
             android:padding="6dp"
             android:text="@string/submit"
             android:textColor="@android:color/white"

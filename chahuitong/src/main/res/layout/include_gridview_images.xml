@@ -5,7 +5,7 @@
     android:padding="6dp"
     >
 
-    <com.damenghai.chahuitong.view.WrapHeightGridView
+    <com.damenghai.chahuitong2.view.WrapHeightGridView
         android:id="@+id/wrap_gridview_images"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

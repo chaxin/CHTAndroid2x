@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.damenghai.chahuitong.view.TopBar
+    <com.damenghai.chahuitong2.view.TopBar
         android:id="@+id/comment_bar"
         style="@style/CommonTopBar"
         app:titleText="正文"

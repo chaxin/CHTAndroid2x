@@ -5,7 +5,7 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <com.damenghai.chahuitong.view.TopBar
+    <com.damenghai.chahuitong2.view.TopBar
         android:id="@+id/modify_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height"

@@ -9,12 +9,14 @@ android {
             storePassword 'damenghai888'
         }
     }
-    compileSdkVersion 16
-    buildToolsVersion '21.1.2'
+    compileSdkVersion 22
+    buildToolsVersion '23.0.2'
     defaultConfig {
-        applicationId "com.damenghai.chahuitong"
+        applicationId "com.damenghai.chahuitong2"
         minSdkVersion 14
-        targetSdkVersion 21
+        targetSdkVersion 22
+        versionCode 41
+        versionName '2.2'
     }
     buildTypes {
         release {
@@ -60,17 +62,16 @@ repositories {
 dependencies {
     compile(name: 'calligraphy-2.1.0', ext: 'aar')
     compile files('libs/dom4j-1.6.1.jar')
-    compile files('libs/UPPayPluginEx.jar')
-    compile files('libs/UPPayAssistEx.jar')
     compile files('libs/bugly_1.2.3.6__release.jar')
     compile files('libs/umeng-update-v2.6.0.1.jar')
     compile files('libs/xUtils-2.6.14.jar')
-    compile project(':social_sdk_library_project')
-    compile project(':view_pager_indicator_library')
-    compile project(':pull_to_refresh')
     compile files('libs/pgyer_sdk_2.2.2.jar')
     compile files('libs/BmobIM_V1.1.9beta_20150820.jar')
     compile files('libs/BmobSDK_V3.4.3_0820.jar')
+    compile files('libs/alipaySDK-20151014.jar')
+    compile project(':social_sdk_library_project')
+    compile project(':view_pager_indicator_library')
+    compile project(':pull_to_refresh')
 }
 
 dependencies {

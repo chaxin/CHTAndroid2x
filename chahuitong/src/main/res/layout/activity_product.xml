@@ -6,20 +6,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <com.damenghai.chahuitong.view.TopBar
+    <com.damenghai.chahuitong2.view.TopBar
         android:id="@+id/id_product_topBar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/top_bar_height"
-        android:background="@color/primary"
         hodor:titleText="@string/product_detail"
-        hodor:titleTextColor="@android:color/white"
-        hodor:leftSrc="@drawable/btn_back_item_selector"
-        hodor:titleTextSize="@dimen/small_middle_text_size"
+        style="@style/CommonTopBar"
         />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         >
 
         <LinearLayout
@@ -29,10 +25,10 @@
             android:background="@android:color/white"
             >
 
-            <com.damenghai.chahuitong.view.BannerViewPager
+            <android.support.v4.view.ViewPager
                 android:id="@+id/id_product_img"
                 android:layout_width="wrap_content"
-                android:layout_height="200dp"
+                android:layout_height="256dp"
                 />
 
             <com.viewpagerindicator.CirclePageIndicator
@@ -164,25 +160,6 @@
                     android:text="@string/address"
                     />
 
-                <TextView
-                    android:id="@+id/id_label_phone"
-                    style="@style/TextViewBody"
-                    android:layout_alignLeft="@id/id_label_address"
-                    android:layout_below="@id/id_label_address"
-                    android:layout_marginTop="20dp"
-                    android:text="@string/phone_num"
-                    />
-
-                <TextView
-                    android:id="@+id/id_product_phone"
-                    style="@style/TextViewBody"
-                    android:textColor="@android:color/black"
-                    android:layout_alignBottom="@id/id_label_phone"
-                    android:layout_alignLeft="@id/id_product_address"
-                    android:layout_toRightOf="@id/id_label_phone"
-                    android:text="@string/phone_num"
-                    />
-
             </RelativeLayout>
 
             <View
@@ -226,13 +203,100 @@
                 android:layout_gravity="center_horizontal"
                 />
 
-            <Button
-                android:id="@+id/id_contact"
-                style="@style/CommonButton"
-                android:text="@string/contact_saler"
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:orientation="horizontal"
+        >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:background="@color/product_catact_background"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:id="@+id/product_from"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:text="廖先生"
+                />
+
+            <TextView
+                android:id="@+id/product_mobile_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:text="15375870891"
+                android:layout_marginTop="4dp"
                 />
 
         </LinearLayout>
-    </ScrollView>
+
+        <Button
+            android:id="@+id/product_btn_mobile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="电话"
+            android:layout_weight="1"
+            android:background="@color/primary"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_body"
+            android:drawableTop="@drawable/icon_white_phone"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            />
+
+        <Button
+            android:id="@+id/product_btn_sms"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="短信"
+            android:layout_weight="1"
+            android:background="@color/primary"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_body"
+            android:drawableTop="@drawable/icon_white_sms"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            />
+
+        <Button
+            android:id="@+id/product_btn_chat"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="消息"
+            android:layout_weight="1"
+            android:background="@color/primary"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_body"
+            android:drawableTop="@drawable/icon_white_message"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            />
+
+    </LinearLayout>
 
 </LinearLayout>

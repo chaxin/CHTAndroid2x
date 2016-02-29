@@ -3,8 +3,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/background_dotted_line_voucher_unused"
+    android:background="@drawable/dashed_rect_primary_normal_bg"
     android:id="@+id/voucher_item_layout"
+    android:layout_margin="8dp"
     >
 
     <ImageView

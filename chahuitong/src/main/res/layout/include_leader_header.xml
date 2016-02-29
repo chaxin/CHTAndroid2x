@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
@@ -8,90 +8,128 @@
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:background="@color/primary"
-        android:orientation="horizontal"
-        android:paddingBottom="40dp"
+        android:orientation="vertical"
         android:paddingLeft="45dp"
         android:paddingRight="35dp"
-        android:paddingTop="38dp">
-
-        <com.damenghai.chahuitong.view.RoundImageView
-            android:id="@+id/leader_avatar"
-            android:layout_width="73dp"
-            android:layout_height="73dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/test_personal_avator" />
+        android:paddingTop="32dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <com.damenghai.chahuitong2.view.RoundImageView
+                android:id="@+id/leader_avatar"
+                android:layout_width="73dp"
+                android:layout_height="73dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/avatar_default" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/leader_detail_name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="EASON"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/text_title"
                     android:textStyle="bold" />
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
                 <TextView
-                    android:id="@+id/leader_detail_followers"
-                    android:layout_width="72dp"
-                    android:layout_height="20dp"
-                    android:background="@drawable/stroke_gray"
-                    android:gravity="center"
-                    android:text="关注"
-                    android:textColor="@android:color/white" />
+                    android:id="@+id/leader_detail_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/text_body" />
 
             </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            >
 
             <TextView
-                android:id="@+id/leader_detail_title"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="bottom"
-                android:text="中国茶学院院长\n中国茶叶流通协会常务副会长"
+                android:id="@+id/leader_header_fans"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="@dimen/text_body"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/text_body" />
+                />
+
+            <TextView
+                android:id="@+id/leader_header_following"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="@dimen/text_body"
+                android:textColor="@android:color/white"
+                />
+
+            <TextView
+                android:id="@+id/leader_header_statuses"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="@dimen/text_body"
+                android:textColor="@android:color/white"
+                />
+
+
         </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/leader_header_interact"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:gravity="center"
-        android:background="@android:color/white"
+        android:background="@drawable/div_bottom_bg"
         >
 
-        <TextView
+        <CheckBox
             android:id="@+id/leader_detail_follow"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@android:color/white"
+            android:layout_height="24dp"
+            android:background="@drawable/stroke_gray"
             android:gravity="center"
-            android:text="加关注"
-            android:drawableLeft="@drawable/icon_unfollowed"
+            android:text="关注"
+            android:textColor="@color/text_body"
+            android:textSize="@dimen/text_body"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:button="@null"
             />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/stroke"
+        <Button
+            android:id="@+id/leader_detail_chat"
+            android:layout_width="62dp"
+            android:layout_height="24dp"
+            android:background="@drawable/stroke_gray"
+            android:gravity="center"
+            android:text="私信"
+            android:textColor="@color/text_body"
+            android:textSize="@dimen/text_body"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
             />
+
     </LinearLayout>
 
 </LinearLayout>

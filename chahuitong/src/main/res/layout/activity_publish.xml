@@ -7,15 +7,10 @@
     android:background="@android:color/white"
     >
 
-    <com.damenghai.chahuitong.view.TopBar
+    <com.damenghai.chahuitong2.view.TopBar
         android:id="@+id/publish_topbar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/top_bar_height"
-        android:background="@color/primary"
         hodor:titleText="@string/publish_product"
-        hodor:titleTextColor="@android:color/white"
-        hodor:titleTextSize="@dimen/small_middle_text_size"
-        hodor:leftSrc="@drawable/back_btn_normal"
+        style="@style/CommonTopBar"
         />
 
     <RadioGroup

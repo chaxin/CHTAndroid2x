@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.damenghai.chahuitong.view.TopBar
+    <com.damenghai.chahuitong2.view.TopBar
         android:id="@+id/shop_topbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height"
@@ -28,8 +28,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:paddingLeft="18dp"
-        android:paddingRight="18dp"
         android:background="@color/primary" />
 
 </LinearLayout>

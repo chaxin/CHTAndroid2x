@@ -55,7 +55,7 @@
         android:layout_height="1dp"
         android:background="@color/stroke" />
 
-    <com.damenghai.chahuitong.view.WrapHeightListView
+    <com.damenghai.chahuitong2.view.WrapHeightListView
         android:id="@+id/travel_lv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

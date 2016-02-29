@@ -57,6 +57,8 @@ public class UnderlinePageIndicator extends View implements PageIndicator {
     private int mActivePointerId = INVALID_POINTER;
     private boolean mIsDragging;
 
+    private boolean mIsLoop = false;
+
     private final Runnable mFadeRunnable = new Runnable() {
       @Override public void run() {
         if (!mFades) return;
@@ -170,8 +172,8 @@ public class UnderlinePageIndicator extends View implements PageIndicator {
         }
 
         final int paddingLeft = getPaddingLeft();
-        final float pageWidth = (getWidth() - paddingLeft - getPaddingRight()) / (1f * count);
-        final float left = paddingLeft + pageWidth * (mCurrentPage + mPositionOffset);
+        final float pageWidth = (getWidth() - paddingLeft - getPaddingRight()) / (1f * (mIsLoop ? count - 2 : count));
+        final float left = paddingLeft + pageWidth * (mIsLoop ? (mCurrentPage + mPositionOffset) - 1 : (mCurrentPage + mPositionOffset));
         final float right = left + pageWidth;
         final float top = getPaddingTop();
         final float bottom = getHeight() - getPaddingBottom();
@@ -294,6 +296,7 @@ public class UnderlinePageIndicator extends View implements PageIndicator {
     @Override
     public void setViewPager(ViewPager view, boolean isLoop) {
         setViewPager(view);
+        mIsLoop = isLoop;
     }
 
     @Override

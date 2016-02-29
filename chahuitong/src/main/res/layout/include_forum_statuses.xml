@@ -35,7 +35,7 @@
 
     </RelativeLayout>
 
-    <com.damenghai.chahuitong.view.WrapHeightListView
+    <com.damenghai.chahuitong2.view.WrapHeightListView
         android:id="@+id/forum_statuses"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

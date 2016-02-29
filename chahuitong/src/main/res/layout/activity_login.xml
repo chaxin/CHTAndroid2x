@@ -182,10 +182,13 @@
             android:src="@drawable/icon_weibo" />
 
         <ImageView
+            android:id="@+id/login_weixin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/icon_weixin" />
+            android:src="@drawable/icon_weixin"
+            android:onClick="onClick"
+            />
     </LinearLayout>
 
 </LinearLayout>

@@ -7,8 +7,13 @@
     <color name="primary_dark">#166f66</color>
     <color name="primary_light">#78c8c0</color>
 
+    <color name="white">#fff</color>
+    <color name="red">#df303f</color>
+
+    <color name="base_color_text_black">#3e3e39</color>
+
     <color name="background">#ffefefef</color>
-    <color name="background_alpha">#99333333</color>
+    <color name="background_alpha">#99f8f8f8</color>
     <color name="background_pressed">#e8e8e8</color>
     <color name="background_light">#f8f8f8</color>
     <color name="bg_agray">#49dddddd</color>
@@ -29,9 +34,13 @@
     <color name="home_tab_text">#71797f</color>
     <color name="light_top_bar_backgroud">#f9f9f9</color>
     <color name="edittext_backgroud">#e1e1e1</color>
+
     <color name="chat_backgroud">#e9e9e7</color>
     <color name="chat_item_date">#7c7c7a</color>
     <color name="chat_item_from_text">#666666</color>
+
     <color name="edit_text_stroke">#a3a3a3</color>
     <color name="divider_login">#dcdddd</color>
+
+    <color name="product_catact_background">#2e3843</color>
 </resources>

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.damenghai.chahuitong.ui.activity.HomeActivity">
+    tools:context="com.damenghai.chahuitong2.ui.activity.HomeActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,7 +11,7 @@
         android:background="@android:color/white"
         android:orientation="vertical">
 
-        <com.damenghai.chahuitong.view.TopBar
+        <com.damenghai.chahuitong2.view.TopBar
             android:layout_width="match_parent"
             android:layout_height="39dp"
             android:background="@color/primary"
@@ -23,8 +23,8 @@
             android:layout_height="0dp"
             android:layout_weight="21">
 
-            <com.damenghai.chahuitong.view.BannerViewPager
-                android:id="@+id/home_banner"
+            <com.damenghai.chahuitong2.view.BannerViewPager
+                android:id="@+id/home_bne_banner"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 />
@@ -63,27 +63,104 @@
                 android:drawableTop="@drawable/icon_home_personal"
                 android:drawablePadding="-16dp"
                 android:gravity="center"
+                android:onClick="toStartModule"
                 />
 
         </RelativeLayout>
 
         <LinearLayout
-            style="@style/LinearLayoutHomeProduct"
-            android:id="@+id/home_recommend_layout"
+            android:id="@+id/home_product_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="12"
             android:background="@drawable/draw_white2gray_sel"
+            android:orientation="horizontal"
+            android:paddingRight="24dp"
+            android:paddingLeft="12dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:clickable="true"
             >
 
             <ImageView
-                style="@style/ImageViewHomeProduct"
                 android:id="@+id/home_iv_product"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/timeline_image_loading"
                 />
 
-            <include
+            <LinearLayout
                 android:id="@+id/goods_one"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                layout="@layout/include_product_info" />
+                android:orientation="vertical"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/home_tv_title"
+                        style="@style/ProductItemTitle"
+                        />
+
+                    <TextView
+                        android:id="@+id/home_tv_like"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_body"
+                        android:textSize="@dimen/text_caption"
+                        android:gravity="right"
+                        android:drawableLeft="@drawable/icon_favorites"
+                        android:drawablePadding="2dp"
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/home_tv_desc"
+                    style="@style/TextViewHomeDesc"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="bottom"
+                    >
+
+                    <TextView
+                        android:id="@+id/home_tv_price"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/primary"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="22dp"
+                        android:gravity="center"
+                        android:textColor="@android:color/white"
+                        android:background="@color/primary"
+                        android:text="@string/show_detail"
+                        android:textSize="@dimen/micro_middle_text_size"
+                        android:paddingLeft="6dp"
+                        android:paddingRight="6dp"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
 
         </LinearLayout>
 

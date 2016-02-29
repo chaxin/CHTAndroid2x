@@ -5,16 +5,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.damenghai.chahuitong.view.TopBar
+    <com.damenghai.chahuitong2.view.TopBar
         android:id="@+id/event_bar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/top_bar_height"
-        android:background="@color/primary"
+        style="@style/CommonTopBar"
         app:titleText="茶客聚聚"
-        app:titleTextColor="@android:color/white"
-        app:titleTextSize="@dimen/text_title"
-        app:leftSrc="@drawable/back_text_normal"
-        app:rightSrc="@drawable/icon_white_edit"
         />
 
     <com.handmark.pulltorefresh.library.PullToRefreshListView

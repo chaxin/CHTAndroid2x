@@ -3,6 +3,7 @@
     <style name="PrimaryTextIndicators" parent="AppTheme">
         <item name="vpiTabPageIndicatorStyle">@style/PrimaryTextTab</item>
         <item name="vpiLinePageIndicatorStyle">@style/CustomLinePageIndicator</item>
+        <item name="vpiUnderlinePageIndicatorStyle">@style/CustomUnderlinePageIndicator</item>
     </style>
 
     <style name="WhiteTextTranIndicators" parent="AppTheme">
@@ -11,6 +12,10 @@
 
     <style name="GrayTextPrimaryIndicators" parent="AppTheme">
         <item name="vpiTabPageIndicatorStyle">@style/GrayTextPrimaryTab</item>
+    </style>
+
+    <style name="PageIndicatorDefaults" parent="AppTheme">
+        <item name="vpiTabPageIndicatorStyle">@style/TabPageIndicatorDefault</item>
     </style>
 
     <!-- 主色文本主色标签 -->
@@ -31,6 +36,12 @@
         <item name="lineWidth">30dp</item>
         <item name="unselectedColor">#FF888888</item>
         <item name="selectedColor">@color/primary</item>
+    </style>
+
+    <!--商城轮播图-->
+    <style name="CustomUnderlinePageIndicator">
+        <item name="selectedColor">@color/primary</item>
+        <item name="android:background">@color/background</item>
     </style>
 
     <!-- 白色文本暗主色背景 -->
@@ -55,6 +66,19 @@
         <item name="android:textColor">@drawable/color_gray2primary_sel</item>
         <item name="android:textSize">@dimen/text_body</item>
         <item name="android:background">@drawable/layerlist_primary_tab_sel</item>
+    </style>
+
+    <!--通过默认的改造，灰色文字，主色标签-->
+    <style name="TabPageIndicatorDefault">
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/vpi__tab_indicator</item>
+        <item name="android:paddingLeft">12dip</item>
+        <item name="android:paddingRight">12dip</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:textColor">@drawable/color_gray2primary_sel</item>
+        <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:maxLines">1</item>
     </style>
 
 </resources>

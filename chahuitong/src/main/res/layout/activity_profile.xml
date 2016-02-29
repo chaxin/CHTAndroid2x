@@ -7,7 +7,7 @@
     android:background="@color/background"
     >
 
-    <com.damenghai.chahuitong.view.TopBar
+    <com.damenghai.chahuitong2.view.TopBar
         android:id="@+id/profile_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height"
@@ -45,7 +45,7 @@
             android:layout_weight="1"
             />
 
-        <com.damenghai.chahuitong.view.RoundImageView
+        <com.damenghai.chahuitong2.view.RoundImageView
             android:id="@+id/profile_avatar"
             android:layout_width="57dp"
             android:layout_height="57dp"
@@ -55,7 +55,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_show_detail"
+            android:src="@drawable/icon_item_detail"
             android:layout_marginLeft="27dp"
             />
     </LinearLayout>
@@ -99,7 +99,7 @@
             android:textColor="@color/text_caption"
             android:textSize="@dimen/text_title"
             android:drawablePadding="27dp"
-            android:drawableRight="@drawable/icon_show_detail"
+            android:drawableRight="@drawable/icon_item_detail"
             />
 
     </LinearLayout>
@@ -143,7 +143,7 @@
             android:textColor="@color/text_caption"
             android:textSize="@dimen/text_title"
             android:drawablePadding="27dp"
-            android:drawableRight="@drawable/icon_show_detail"
+            android:drawableRight="@drawable/icon_item_detail"
             />
 
     </LinearLayout>
@@ -186,7 +186,7 @@
             android:textColor="@color/text_caption"
             android:textSize="@dimen/text_title"
             android:drawablePadding="27dp"
-            android:drawableRight="@drawable/icon_show_detail"
+            android:drawableRight="@drawable/icon_item_detail"
             />
 
     </LinearLayout>
@@ -230,7 +230,7 @@
             android:textColor="@color/text_caption"
             android:textSize="@dimen/text_title"
             android:drawablePadding="27dp"
-            android:drawableRight="@drawable/icon_show_detail"
+            android:drawableRight="@drawable/icon_item_detail"
             />
 
     </LinearLayout>
@@ -270,7 +270,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_show_detail"
+            android:src="@drawable/icon_item_detail"
             />
 
     </LinearLayout>
@@ -314,7 +314,7 @@
             android:textColor="@color/text_caption"
             android:textSize="@dimen/text_title"
             android:drawablePadding="27dp"
-            android:drawableRight="@drawable/icon_show_detail"
+            android:drawableRight="@drawable/icon_item_detail"
             />
 
     </LinearLayout>

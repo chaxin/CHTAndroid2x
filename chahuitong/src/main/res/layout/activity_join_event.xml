@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.damenghai.chahuitong.view.TopBar
+    <com.damenghai.chahuitong2.view.TopBar
         android:id="@+id/initiate_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height"
@@ -127,7 +127,7 @@
 
     <Button
         style="@style/CommonButton"
-        android:id="@+id/btn_join"
+        android:id="@+id/travel_tv_enroll"
         android:text="提交"
         />
 
